@@ -1,0 +1,29 @@
+doctype html
+html(ng-app='spotlight-famous', lang='en')
+  head
+    title Spotlight Famous
+    meta(name='viewport', content='width=device-width, maximum-scale=1, user-scalable=no')
+    meta(name='mobile-web-app-capable', content='yes')
+    meta(name='apple-mobile-web-app-capable', content='yes')
+    meta(name='apple-mobile-web-app-status-bar-style', content='black')
+    // shims for backwards compatibility
+    script(type='text/javascript', src='http://code.famo.us/lib/functionPrototypeBind.js')
+    script(type='text/javascript', src='http://code.famo.us/lib/classList.js')
+    script(type='text/javascript', src='http://code.famo.us/lib/requestAnimationFrame.js')
+    //angular
+    script(src='lib/angular/angular.js')
+    script(src='lib/underscore/underscore.js')
+    script(src='lib/angular-ui-router/release/angular-ui-router.js')
+    // famous
+    script(src='lib/famous/dist/famous-global.js')
+    script(src='lib/famous-angular/dist/famous-angular.js')
+    link(rel='stylesheet', type='text/css', href='http://code.famo.us/famous/0.3/famous.css')
+    script(type='text/javascript', src='http://code.famo.us/famous/0.3/famous-global.min.js')
+    // app code
+    link(rel='stylesheet', type='text/css', href='css/app.css')
+    link(rel='stylesheet', type='text/css', href='css/home.css')
+
+    script(type='text/javascript', src='js/index.js')
+    script(type='text/javascript', src='js/controllers/home-controller.js')
+  body
+  .container(ui-view)
