@@ -13,6 +13,9 @@
     $scope.getPageWidth = function(){
       return window.innerWidth;
     };
+    $scope.getPageHeight = function(){
+      return window.innerHeight;
+    };
 
     $scope.options = {
       scrollViewTwo: {
