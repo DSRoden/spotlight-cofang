@@ -32,5 +32,7 @@ fa-app(ng-controller='HomeCtrl')
                                     fa-surface(fa-background-color='view.color', fa-pipe-to='myEventHandler')
                           // footer
                           fa-modifier(fa-translate="boxTransitionableFooter.get()" fa-opacity="opacityTrans")
-                            fa-surface(fa-background-color="'black'") Footer
-              
+                            fa-grid-layout(fa-options="myGridLayoutOptions")
+                              fa-surface(ng-repeat="grid in grids" fa-background-color="grid.bgColor")
+                                .tab(style="text-align: center"){{grid.content}} 
+                

@@ -44,8 +44,12 @@
                   </fa-app>
                 </fa-surface>
                 <!-- footer-->
-                <fa-modifier fa-translate="boxTransitionableFooter.get()" fa-opacity="opacityTransparent">
-                  <fa-surface fa-background-color="'black'">Footer</fa-surface>
+                <fa-modifier fa-translate="boxTransitionableFooter.get()" fa-opacity="opacityTrans">
+                  <fa-grid-layout fa-options="myGridLayoutOptions">
+                    <fa-surface ng-repeat="grid in grids" fa-background-color="grid.bgColor">
+                      <div style="text-align: center" class="tab">{{grid.content}} </div>
+                    </fa-surface>
+                  </fa-grid-layout>
                 </fa-modifier>
               </fa-header-footer-layout>
             </fa-modifier>

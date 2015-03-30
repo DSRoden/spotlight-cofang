@@ -10,6 +10,17 @@
     $scope.boxTransitionableHeader = new Transitionable([0, 0, 0]);
     $scope.boxTransitionableFooter = new Transitionable([0, 0, 0]);
     $scope.opacityTrans = new Transitionable(1);
+    $scope.myGridLayoutOptions = {
+       dimensions: [2,1] // specifies number of columns and rows
+    };
+
+    $scope.grids = [{
+                      content: 'Hello',
+                      bgColor: 'rgb(240, 238, 233)'
+                    },
+                    {
+                      bgColor: 'rgb(240, 238, 233)'
+                    }];
 
     //shows and hide scope variables
     $scope.spotlightHeaderOn =  true;
