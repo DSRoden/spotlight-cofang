@@ -5,7 +5,6 @@
   .controller('HomeCtrl', ['$scope', '$timeout', '$location', '$famous', '$timeline', function($scope, $timeout, $location, $famous, $timeline){
     //shows and hide scope variables
     $scope.spotlightHeaderOn =  true;
-    $scope.spotlightFooterOn = true;
 
     var EventHandler = $famous['famous/core/EventHandler'];
 

@@ -21,7 +21,7 @@ fa-app(ng-controller='HomeCtrl')
                     fa-modifier(fa-size='[getPageWidth(), getPageHeight()]')
                       fa-header-footer-layout(fa-options='{headerSize: 40, footerSize: 40}')
                           // header
-                          fa-surface.absolute(ng-show="spotlightHeaderOn" fa-background-color="'black'") Header
+                          fa-surface.absolute(ng-if="spotlightHeaderOn"  fa-animate-move="myAnimationFunction($done)" fa-background-color="'black'") Header
                           // content
                           fa-surface(fa-background-color="'gray'") 
                             fa-app(ng-controller='HomeCtrl')
@@ -30,5 +30,5 @@ fa-app(ng-controller='HomeCtrl')
                                   fa-modifier(fa-size='[getPageWidth(), 160]')
                                     fa-surface(fa-background-color='view.color', fa-pipe-to='myEventHandler')
                           // footer
-                          fa-surface(ng-show="spotlightFooterOn" fa-background-color="'black'") Footer
+                          fa-surface(fa-background-color="'black'") Footer
               
