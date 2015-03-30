@@ -6,14 +6,20 @@ html(ng-app='spotlight-famous', lang='en')
     meta(name='mobile-web-app-capable', content='yes')
     meta(name='apple-mobile-web-app-capable', content='yes')
     meta(name='apple-mobile-web-app-status-bar-style', content='black')
+
     // shims for backwards compatibility
     script(type='text/javascript', src='http://code.famo.us/lib/functionPrototypeBind.js')
     script(type='text/javascript', src='http://code.famo.us/lib/classList.js')
     script(type='text/javascript', src='http://code.famo.us/lib/requestAnimationFrame.js')
+
     //angular
     script(src='lib/angular/angular.js')
     script(src='lib/underscore/underscore.js')
     script(src='lib/angular-ui-router/release/angular-ui-router.js')
+
+    //jquery
+    script(src='lib/jquery/dist/jquery.js')
+
     // famous
     script(src='lib/famous/dist/famous-global.js')
     script(src='lib/famous-angular/dist/famous-angular.js')

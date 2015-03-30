@@ -7,7 +7,7 @@
           <fa-app>
             <fa-view>
               <fa-modifier fa-size="[getPageWidth(), getPageHeight()]">
-                <fa-header-footer-layout fa-options="{headerSize: 75, footerSize: 75}">
+                <fa-header-footer-layout fa-options="{headerSize: 40, footerSize: 40}">
                   <!-- header-->
                   <fa-surface fa-background-color="'black'">Header</fa-surface>
                   <!-- content-->
@@ -23,16 +23,16 @@
     </fa-view>        
     <fa-view fa-index="0" fa-options="options.scrollViewOne">
       <fa-surface fa-pipe-to="eventHandler">
-        <fa-app>
+        <fa-app onScroll="scrolling()">
           <fa-view>
             <fa-modifier fa-size="[getPageWidth(), getPageHeight()]">
-              <fa-header-footer-layout fa-options="{headerSize: 75, footerSize: 75}">
+              <fa-header-footer-layout fa-options="{headerSize: 40, footerSize: 40}">
                 <!-- header-->
-                <fa-surface fa-background-color="'black'" class="absolute">Header</fa-surface>
+                <fa-surface ng-show="spotlightHeaderOn" fa-background-color="'black'" class="absolute">Header</fa-surface>
                 <!-- content-->
                 <fa-surface fa-background-color="'gray'"> 
                   <fa-app ng-controller="HomeCtrl">
-                    <fa-scroll-view fa-pipe-from="myEventHandler" fa-options="options.container">
+                    <fa-scroll-view id="main-scrollview" fa-pipe-from="myEventHandler" fa-options="options.container">
                       <fa-view ng-repeat="view in views">
                         <fa-modifier fa-size="[getPageWidth(), 160]">
                           <fa-surface fa-background-color="view.color" fa-pipe-to="myEventHandler"></fa-surface>
@@ -42,7 +42,7 @@
                   </fa-app>
                 </fa-surface>
                 <!-- footer-->
-                <fa-surface fa-background-color="'black'">Footer</fa-surface>
+                <fa-surface ng-show="spotlightFooterOn" fa-background-color="'black'">Footer</fa-surface>
               </fa-header-footer-layout>
             </fa-modifier>
           </fa-view>
