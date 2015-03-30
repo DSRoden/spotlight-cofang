@@ -3,6 +3,14 @@
 
   angular.module('spotlight-famous')
   .controller('HomeCtrl', ['$scope', '$timeout', '$location', '$famous', '$timeline', function($scope, $timeout, $location, $famous, $timeline){
+    //animations
+    var Transitionable = $famous['famous/transitions/Transitionable'],
+        Easing = $famous['famous/transitions/Easing'];
+
+    $scope.boxTransitionableHeader = new Transitionable([0, 0, 0]);
+    $scope.boxTransitionableFooter = new Transitionable([0, 0, 0]);
+    $scope.opacityTrans = new Transitionable(1);
+
     //shows and hide scope variables
     $scope.spotlightHeaderOn =  true;
 
@@ -34,49 +42,33 @@
       }
     };
 
-    //transitions and animations
-    // var Transitionable = $famous['famous/transitions/Transitionable'],
-    // Easing = $famous['famous/transitions/Easing'];
-
-    // $scope.t = new Transitionable(0);
-
-    // $scope.yRotation = $timeline([
-    //   [0, 0, Easing.inOutQuad],
-    //   [0.8, 1.1 * (Math.PI/2), Easing.inOutQuart],
-    //   [1, Math.PI/2]
-    // ]);
-
-    // $scope.translation = $timeline([
-    //   [0, [100, 100, 0], Easing.inOutQuad],
-    //   [1, [400, 200, 0]]
-    // ]);
-    //fading somethign out
+    //navbar disappears on scroll down and reappears on scroll up
     var scrollView;
     $scope.scrollViewHandler = new EventHandler();
     $timeout(function(){
       scrollView = $famous.find('#main-scrollview')[0].renderNode;
       $scope.scrollViewHandler = scrollView.sync;
        $scope.scrollViewHandler.on('start', function(event){
-          console.log('start', event);
-          console.log('start event position', scrollView.getPosition());
-          console.log('start event velocity', scrollView.getVelocity());
-          // if(scrollView.getPosition() >= 41){
-          //   $scope.spotlightHeaderOn=  false;
-          //   $scope.$digest();
-          // }
+          // console.log('start', event);
+          // console.log('start event position', scrollView.getPosition());
+          // console.log('start event velocity', scrollView.getVelocity());
         });
        $scope.scrollViewHandler.on('end', function(event){
-          console.log('end event', event);
-          console.log('end event position', scrollView.getPosition());
-          console.log('end event velocity', scrollView.getVelocity());
-          // if(scrollView.getVelocity() >= 0){
-          //   $scope.spotlightHeaderOn = true;
+          // console.log('end event', event);
+          // console.log('end event position', scrollView.getPosition());
+          // console.log('end event velocity', scrollView.getVelocity());
+          var windowHeight = window.innerHeight;
           if(scrollView.getVelocity() > 0){
-            console.log('turn header off');
-            $scope.spotlightHeaderOn= false;
+            //console.log('turn header off');
+            //$scope.spotlightHeaderOn= false;
+            $scope.boxTransitionableHeader.set([0, -40, 0], {duration: 300, curve: Easing.easeOut});
+            $scope.boxTransitionableFooter.set([0, windowHeight, 0], {duration: 300, curve: Easing.easeOut});
+            $scope.opacityTrans.set([0], {duration: 300});
             $scope.$digest();
           } else {
-            $scope.spotlightHeaderOn= true;
+            $scope.boxTransitionableHeader.set([0, 0, 0], {duration: 300, curve: Easing.easeIn});
+            $scope.boxTransitionableFooter.set([0, 0, 0], {duration: 300, curve: Easing.easeIn});
+            $scope.opacityTrans.set([1], {duration: 300});
             $scope.$digest();
           }
         });

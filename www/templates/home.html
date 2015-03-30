@@ -7,7 +7,7 @@
           <fa-app>
             <fa-view>
               <fa-modifier fa-size="[getPageWidth(), getPageHeight()]">
-                <fa-header-footer-layout fa-options="{headerSize: 40, footerSize: 40}">
+                <fa-header-footer-layout fa-options="{headerSize: 50, footerSize: 50}">
                   <!-- header-->
                   <fa-surface fa-background-color="'black'">Header</fa-surface>
                   <!-- content-->
@@ -26,9 +26,11 @@
         <fa-app onScroll="scrolling()">
           <fa-view>
             <fa-modifier fa-size="[getPageWidth(), getPageHeight()]">
-              <fa-header-footer-layout fa-options="{headerSize: 40, footerSize: 40}">
+              <fa-header-footer-layout fa-options="{headerSize: 50, footerSize: 50}">
                 <!-- header-->
-                <fa-surface ng-if="spotlightHeaderOn" fa-animate-move="myAnimationFunction($done)" fa-background-color="'black'" class="absolute">Header</fa-surface>
+                <fa-modifier fa-translate="boxTransitionableHeader.get()" fa-opacity="opacityTrans">
+                  <fa-surface fa-background-color="'black'" class="absolute">Header</fa-surface>
+                </fa-modifier>
                 <!-- content-->
                 <fa-surface fa-background-color="'gray'"> 
                   <fa-app ng-controller="HomeCtrl">
@@ -42,7 +44,9 @@
                   </fa-app>
                 </fa-surface>
                 <!-- footer-->
-                <fa-surface fa-background-color="'black'">Footer</fa-surface>
+                <fa-modifier fa-translate="boxTransitionableFooter.get()" fa-opacity="opacityTransparent">
+                  <fa-surface fa-background-color="'black'">Footer</fa-surface>
+                </fa-modifier>
               </fa-header-footer-layout>
             </fa-modifier>
           </fa-view>
