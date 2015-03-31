@@ -1,6 +1,6 @@
 
 <fa-app ng-controller="HomeCtrl">
-  <fa-scroll-view fa-pipe-from="eventHandler" fa-options="options.scrollViewTwo" fa-start-index="1">
+  <fa-scroll-view id="home" fa-pipe-from="eventHandler" fa-options="options.scrollViewTwo" fa-start-index="1">
     <fa-view fa-index="1">
       <fa-modifier fa-size="[getPageWidth(), getPageHeight()]">
         <fa-surface fa-pipe-to="eventHandler">
@@ -11,9 +11,11 @@
                   <!-- header-->
                   <fa-surface fa-background-color="'black'">Header</fa-surface>
                   <!-- content-->
-                  <fa-surface fa-background-color="'gray'">Content</fa-surface>
+                  <fa-surface fa-background-color="'white'">Content</fa-surface>
                   <!-- footer-->
-                  <fa-surface fa-background-color="'black'">Footer</fa-surface>
+                  <fa-modifier fa-translate="boxTransitionableFooter.get()" fa-opacity="opacityTrans" fa-size="[50,50]">
+                    <fa-image-surface fa-image-url="img/spotlight-icon-small.png" ng-click="switchPage(1)" class="menu-icon"></fa-image-surface>
+                  </fa-modifier>
                 </fa-header-footer-layout>
               </fa-modifier>
             </fa-view>
@@ -44,12 +46,8 @@
                   </fa-app>
                 </fa-surface>
                 <!-- footer-->
-                <fa-modifier fa-translate="boxTransitionableFooter.get()" fa-opacity="opacityTrans">
-                  <fa-grid-layout fa-options="myGridLayoutOptions">
-                    <fa-surface ng-repeat="grid in grids" fa-background-color="grid.bgColor">
-                      <div style="text-align: center" class="tab">{{grid.content}} </div>
-                    </fa-surface>
-                  </fa-grid-layout>
+                <fa-modifier fa-translate="boxTransitionableFooter.get()" fa-opacity="opacityTrans" fa-size="[50,50]">
+                  <fa-image-surface fa-image-url="img/menu-ellipses-icon.png" ng-click="switchPage(0)" class="menu-icon"></fa-image-surface>
                 </fa-modifier>
               </fa-header-footer-layout>
             </fa-modifier>

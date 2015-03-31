@@ -11,7 +11,7 @@
     $scope.boxTransitionableFooter = new Transitionable([0, 0, 0]);
     $scope.opacityTrans = new Transitionable(1);
     $scope.myGridLayoutOptions = {
-       dimensions: [2,1] // specifies number of columns and rows
+       dimensions: [1,1] // specifies number of columns and rows
     };
 
     $scope.grids = [{
@@ -27,7 +27,7 @@
 
     var EventHandler = $famous['famous/core/EventHandler'];
 
-    $scope.views = [{color: 'red'}, {color: 'blue'}, {color: 'green'}, {color: 'yellow'}, {color: 'orange'}, {color: 'red'}, {color: 'blue'}, {color: 'green'}, {color: 'yellow'}, {color: 'orange'}];
+    $scope.views = [{color: 'gray'}, {color: 'white'}, {color: 'gray'}, {color: 'white'}, {color: 'gray'}, {color: 'white'}, {color: 'gray'}, {color: 'white'}, {color: 'gray'}, {color: 'white'}];
 
     $scope.myEventHandler = new EventHandler();
     $scope.eventHandler = new EventHandler();
@@ -84,5 +84,17 @@
           }
         });
     }, 1000);
+
+    //switchpage
+    $scope.changePageHandler = new EventHandler();
+    $scope.switchPage = function(currentPage){
+      var pageView = $famous.find('#home')[0].renderNode;
+      //console.log(pageView);
+      $scope.changePageHandler = pageView.sync;
+      //console.log($scope.changePageHandler);
+      var pageToGoTo = (currentPage) ? 0 : 1;
+      pageView.goToPage(pageToGoTo);
+    };
+
   }]);
 })();

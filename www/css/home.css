@@ -17,3 +17,9 @@ fa-app {
   top: 0;
   z-index: 99999;
 }
+.menu-icon {
+  position: relative;
+  float: right;
+  right: 15px;
+  bottom: 15px;
+}
