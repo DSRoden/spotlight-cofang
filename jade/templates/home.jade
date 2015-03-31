@@ -8,13 +8,21 @@ fa-app(ng-controller='HomeCtrl')
                   fa-modifier(fa-size='[getPageWidth(), getPageHeight()]')
                     fa-header-footer-layout(fa-options='{headerSize: 50, footerSize: 50}')
                         // header
-                        fa-surface(fa-background-color="'black'") Header
+                        fa-modifier(fa-translate="boxTransitionableHeader2.get()" fa-opacity="opacityTrans2")
+                          fa-surface.absolute(fa-background-color="'black'") Header
                         // content
-                        fa-surface(fa-background-color="'white'") Content
+                        fa-surface(fa-background-color="'white'")
+                          fa-app(ng-controller='HomeCtrl')
+                              fa-scroll-view#archive-scrollview(fa-pipe-from='archiveScrollEventHandler' fa-options='options.container')
+                                fa-view(ng-repeat='view in archiveViews')
+                                  fa-modifier(fa-size='[getPageWidth(), 100]')
+                                    fa-surface(fa-background-color='view.color', fa-pipe-to='archiveScrollEventHandler')
+
                         // footer
-                        fa-modifier(fa-translate="boxTransitionableFooter.get()" fa-opacity="opacityTrans" fa-size='[50,50]')
-                          fa-image-surface.menu-icon(fa-image-url="img/spotlight-icon-small.png" ng-click="switchPage(1)")
+                        fa-modifier(fa-translate="boxTransitionableFooter2.get()" fa-opacity="opacityTrans2" fa-size='[50,50]')
+                          fa-image-surface.spotlight-icon(fa-image-url="img/spotlight-icon-small.png" ng-click="switchPage(1)")
                           
+
         |         
         fa-view(fa-index='0', fa-options='options.scrollViewOne')
             fa-surface(fa-pipe-to='eventHandler')

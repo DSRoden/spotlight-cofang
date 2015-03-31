@@ -9,12 +9,24 @@
               <fa-modifier fa-size="[getPageWidth(), getPageHeight()]">
                 <fa-header-footer-layout fa-options="{headerSize: 50, footerSize: 50}">
                   <!-- header-->
-                  <fa-surface fa-background-color="'black'">Header</fa-surface>
+                  <fa-modifier fa-translate="boxTransitionableHeader2.get()" fa-opacity="opacityTrans2">
+                    <fa-surface fa-background-color="'black'" class="absolute">Header</fa-surface>
+                  </fa-modifier>
                   <!-- content-->
-                  <fa-surface fa-background-color="'white'">Content</fa-surface>
+                  <fa-surface fa-background-color="'white'">
+                    <fa-app ng-controller="HomeCtrl">
+                      <fa-scroll-view id="archive-scrollview" fa-pipe-from="archiveScrollEventHandler" fa-options="options.container">
+                        <fa-view ng-repeat="view in archiveViews">
+                          <fa-modifier fa-size="[getPageWidth(), 100]">
+                            <fa-surface fa-background-color="view.color" fa-pipe-to="archiveScrollEventHandler"></fa-surface>
+                          </fa-modifier>
+                        </fa-view>
+                      </fa-scroll-view>
+                    </fa-app>
+                  </fa-surface>
                   <!-- footer-->
-                  <fa-modifier fa-translate="boxTransitionableFooter.get()" fa-opacity="opacityTrans" fa-size="[50,50]">
-                    <fa-image-surface fa-image-url="img/spotlight-icon-small.png" ng-click="switchPage(1)" class="menu-icon"></fa-image-surface>
+                  <fa-modifier fa-translate="boxTransitionableFooter2.get()" fa-opacity="opacityTrans2" fa-size="[50,50]">
+                    <fa-image-surface fa-image-url="img/spotlight-icon-small.png" ng-click="switchPage(1)" class="spotlight-icon"></fa-image-surface>
                   </fa-modifier>
                 </fa-header-footer-layout>
               </fa-modifier>
