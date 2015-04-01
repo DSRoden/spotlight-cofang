@@ -1,6 +1,46 @@
 
 <fa-app ng-controller="HomeCtrl">
   <fa-scroll-view id="home" fa-pipe-from="eventHandler" fa-options="options.scrollViewTwo" fa-start-index="1">
+    <!--this is the Show Archived Day View-->
+    <fa-view fa-index="2" fa-options="options.scrollViewOne">
+      <fa-modifier fa-size="[getPageWidth(), getPageHeight()]">
+        <fa-surface fa-pipe-to="eventHandler">
+          <fa-app>
+            <fa-view>
+              <fa-modifier fa-size="[getPageWidth(), getPageHeight()]">
+                <fa-header-footer-layout fa-options="{headerSize: 50, footersize: 50}">
+                  <!--header-->
+                  <fa-modifier fa-translate="boxTransitionableHeader3.get()" fa-opacity="opacityTrans3">
+                    <fa-surface fa-background-color="'black'" class="absolute"></fa-surface>
+                  </fa-modifier>
+                  <!--content-->
+                  <fa-surface fa-background-color="'white'">
+                    <fa-app ng-controller="HomeCtrl">
+                      <fa-scroll-view id="day-scrollview" fa-pipe-from="dayScrollEventHandler" fa-options="options.container">
+                        <fa-view ng-repeat="event in dayEvents">
+                          <fa-modifier fa-size="[getPageWidth(), 100]">
+                            <fa-surface fa-background-color="event.color" fa-pipe-to="dayScrollEventHandler">
+                              <div>{{event.id}}</div>
+                            </fa-surface>
+                          </fa-modifier>
+                        </fa-view>
+                      </fa-scroll-view>
+                    </fa-app>
+                  </fa-surface>
+                  <!--footer-->
+                  <fa-container-surface>
+                    <fa-modifier fa-translate="boxTransitionableFooter3.get()" fa-opacity="opacityTrans3" fa-size="[50,50]">
+                      <fa-image-surface fa-image-url="img/menu-ellipses-icon.png" ng-click="switchPage(1)" class="spotlight-icon2"></fa-image-surface>
+                    </fa-modifier>
+                  </fa-container-surface>
+                </fa-header-footer-layout>
+              </fa-modifier>
+            </fa-view>
+          </fa-app>
+        </fa-surface>
+      </fa-modifier>
+    </fa-view>
+    <!-- this is the Main Archive View-->
     <fa-view fa-index="1">
       <fa-modifier fa-size="[getPageWidth(), getPageHeight()]">
         <fa-surface fa-pipe-to="eventHandler">
@@ -10,15 +50,17 @@
                 <fa-header-footer-layout fa-options="{headerSize: 50, footerSize: 50}">
                   <!-- header-->
                   <fa-modifier fa-translate="boxTransitionableHeader2.get()" fa-opacity="opacityTrans2">
-                    <fa-surface fa-background-color="'black'" class="absolute">Header</fa-surface>
+                    <fa-surface fa-background-color="'black'" class="absolute"></fa-surface>
                   </fa-modifier>
                   <!-- content-->
                   <fa-surface fa-background-color="'white'">
                     <fa-app ng-controller="HomeCtrl">
                       <fa-scroll-view id="archive-scrollview" fa-pipe-from="archiveScrollEventHandler" fa-options="options.container">
-                        <fa-view ng-repeat="view in archiveViews">
+                        <fa-view ng-repeat="archive in archiveViews">
                           <fa-modifier fa-size="[getPageWidth(), 100]">
-                            <fa-surface fa-background-color="view.color" fa-pipe-to="archiveScrollEventHandler"></fa-surface>
+                            <fa-surface fa-background-color="archive.color" fa-pipe-to="archiveScrollEventHandler" class="archive-item">
+                              <div ng-click="goToArchivedDay(archive.id)" class="user-name">{{archive.name}}</div>
+                            </fa-surface>
                           </fa-modifier>
                         </fa-view>
                       </fa-scroll-view>
@@ -26,7 +68,7 @@
                   </fa-surface>
                   <!-- footer-->
                   <fa-modifier fa-translate="boxTransitionableFooter2.get()" fa-opacity="opacityTrans2" fa-size="[50,50]">
-                    <fa-image-surface fa-image-url="img/spotlight-icon-small.png" ng-click="switchPage(1)" class="spotlight-icon"></fa-image-surface>
+                    <fa-image-surface fa-image-url="img/spotlight-icon-small.png" ng-click="switchPage(0)" class="spotlight-icon">                </fa-image-surface>
                   </fa-modifier>
                 </fa-header-footer-layout>
               </fa-modifier>
@@ -34,7 +76,8 @@
           </fa-app>
         </fa-surface>
       </fa-modifier>
-    </fa-view>        
+    </fa-view>
+    <!-- this is the Spotlight View         -->
     <fa-view fa-index="0" fa-options="options.scrollViewOne">
       <fa-surface fa-pipe-to="eventHandler">
         <fa-app onScroll="scrolling()">
@@ -49,9 +92,9 @@
                 <fa-surface fa-background-color="'gray'"> 
                   <fa-app ng-controller="HomeCtrl">
                     <fa-scroll-view id="main-scrollview" fa-pipe-from="myEventHandler" fa-options="options.container">
-                      <fa-view ng-repeat="view in views">
-                        <fa-modifier fa-size="[getPageWidth(), 160]">
-                          <fa-surface fa-background-color="view.color" fa-pipe-to="myEventHandler"></fa-surface>
+                      <fa-view>
+                        <fa-modifier ng-repeat="view in views" fa-size="[getPageWidth(), null]">
+                          <fa-image-surface fa-image-url="{{view.image}}" fa-pipe-to="myEventHandler" class="img"></fa-image-surface>
                         </fa-modifier>
                       </fa-view>
                     </fa-scroll-view>
@@ -59,7 +102,7 @@
                 </fa-surface>
                 <!-- footer-->
                 <fa-modifier fa-translate="boxTransitionableFooter.get()" fa-opacity="opacityTrans" fa-size="[50,50]">
-                  <fa-image-surface fa-image-url="img/menu-ellipses-icon.png" ng-click="switchPage(0)" class="menu-icon"></fa-image-surface>
+                  <fa-image-surface fa-image-url="img/menu-ellipses-icon.png" ng-click="switchPage(1)" class="menu-icon"></fa-image-surface>
                 </fa-modifier>
               </fa-header-footer-layout>
             </fa-modifier>

@@ -29,3 +29,23 @@ fa-app {
   left: 15px;
   bottom: 15px;
 }
+.menu-icon2 {
+  right: 15px;
+  bottom: 15px;
+}
+.spotlight-icon2 {
+  left: 15px;
+  bottom: 15px;
+}
+.archive-item {
+  text-align: center;
+  line-height: 100px;
+}
+.user-name {
+  font-size: 30px;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  padding: 10px;
+}
+.img {
+  position: relative ! important;
+}
