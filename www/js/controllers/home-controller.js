@@ -22,7 +22,6 @@
     $scope.boxTransitionableFooter3 = new Transitionable([0, 0, 0]);
     $scope.opacityTrans3 = new Transitionable(1);
 
-
     //example for fa-grid-layout
     $scope.myGridLayoutOptions = {
        dimensions: [1,1] // specifies number of columns and rows
@@ -37,9 +36,11 @@
                     }];
 
     //example arrays for views
-    $scope.views = [{color: 'gray', image:'http://placekitten.com/g/200/300'}, {color: 'white', image:'http://placekitten.com/g/200/300'}, {color: 'gray', image: 'http://placekitten.com/g/300/300'}, {color: 'white', image:'http://placekitten.com/g/200/300'},{color: 'gray', image:'http://placekitten.com/g/200/300'}, {color: 'white', image:'http://placekitten.com/g/500/400'}, {color: 'gray', image: 'http://placekitten.com/g/270/390'}, {color: 'white', image:'http://placekitten.com/g/250/330'}];
+    $scope.views = [{color: 'gray', image: null}, {color: 'white', image: null}, {color: 'gray', image: 'https://placekitten.com/g/300/400'}, {color: 'white', image: null}, {color: 'gray', image:'https://placekitten.com/g/200/300'}, {color: 'white', image: 'https://placekitten.com/g/500/300'}, {color: 'gray', image: null}, {color: 'white', image: null}, {color: 'gray', image:'https://placekitten.com/g/200/300'}, {color: 'white', image: 'https://placekitten.com/g/200/300'}];
     $scope.archiveViews = [{color: 'gray', name: 'james'}, {color: 'white', name: 'jane'}, {color: 'gray', name: 'bob'}, {color: 'white', name: 'sally'}, {color: 'gray', name: 'james'}, {color: 'white', name: 'jane'}, {color: 'gray', name: 'bob'}, {color: 'white', name: 'sally'}];
     $scope.dayEvents = [{color: 'gray'}, {color: 'white'}, {color: 'gray'}, {color: 'white'}, {color: 'gray'}, {color: 'white'}, {color: 'gray'}, {color: 'white'}, {color: 'gray'}, {color: 'white'}];
+
+
 
     //making ids for example archived days
     $scope.makeIdsForExample = function(){
@@ -49,6 +50,24 @@
     };
     $scope.makeIdsForExample();
 
+    //helper function to calculate size for scroll
+    $scope.mainScrollHeight = 100;
+    function measureHeightForScroll(){
+      for(var i = 0; i < $scope.views.length; i++){
+        if($scope.views[i].image && $scope.views[i].color){
+          $scope.mainScrollHeight += 450;
+        } else if($scope.views[i].image === null && $scope.views[i].color){
+          $scope.mainScrollHeight += 150;
+        } else {
+          return;
+        }
+      }
+      console.log($scope.mainScrollHeight);
+    }
+
+    measureHeightForScroll();
+
+    //$scope.getViewsHeight();
     //eventhandlers
     $scope.myEventHandler = new EventHandler();
     $scope.archiveScrollEventHandler = new EventHandler();
@@ -63,6 +82,9 @@
     $scope.getPageHeight = function(){
       return window.innerHeight;
     };
+    // $scope.getViewsHeight = function(){
+    //   return $scope.views.length * 600;
+    // };
 
     //this is the option object instantiating page view transitions and constraints
     $scope.options = {
@@ -79,9 +101,24 @@
         paginated: true
       },
       container: {
-        clipSize: window.innerHeight
+        clipSize: 500
       }
     };
+
+    $scope.testHeight = 600;
+
+    // $timeout(function(){
+    //   $famous.find('#main-scrollview')[0].renderNode.sync.on('start', function(event){
+    //     var test = angular.element(document.querySelector('#main-view'));
+    //     $scope.testHeight = test[0].clientHeight;
+    //     console.log('test object', test);
+    //     console.log($scope.testHeight);
+    //   });
+    // }, 1000);
+
+    // $scope.getTestHeight = function(){
+    //   return $scope.testHeight;
+    // };
 
     //this is the section enabling spotlight scrolling with navbar and icon animation
     var scrollView;
@@ -90,7 +127,8 @@
       scrollView = $famous.find('#main-scrollview')[0].renderNode;
       $scope.scrollViewHandler = scrollView.sync;
        $scope.scrollViewHandler.on('start', function(event){
-          // console.log('start', event);
+          //console.log('start', event);
+          // console.log('size', scrollView.getSize());
           // console.log('start event position', scrollView.getPosition());
           // console.log('start event velocity', scrollView.getVelocity());
         });
@@ -98,6 +136,11 @@
           // console.log('end event', event);
           // console.log('end event position', scrollView.getPosition());
           // console.log('end event velocity', scrollView.getVelocity());
+          // console.log('get current index', scrollView.getCurrentIndex());
+          // console.log('size', scrollView.getSize());
+          // console.log('get position', scrollView.getPosition());
+          // console.log('get absolute position', scrollView.getAbsolutePosition());
+
           var windowHeight = window.innerHeight;
           if(scrollView.getVelocity() > 0){
             //console.log('turn header off');

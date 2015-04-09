@@ -47,5 +47,18 @@ fa-app {
   padding: 10px;
 }
 .img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 300px;
+  max-height: 300px;
+}
+.relative-image {
   position: relative ! important;
+  background: black ! important;
+}
+.relative-text {
+  position: relative ! important;
+  background: white ! important;
 }

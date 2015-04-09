@@ -20,7 +20,7 @@
                         <fa-view ng-repeat="event in dayEvents">
                           <fa-modifier fa-size="[getPageWidth(), 100]">
                             <fa-surface fa-background-color="event.color" fa-pipe-to="dayScrollEventHandler">
-                              <div>{{event.id}}</div>
+                              <div class="content">{{event.id}}</div>
                             </fa-surface>
                           </fa-modifier>
                         </fa-view>
@@ -92,9 +92,12 @@
                 <fa-surface fa-background-color="'gray'"> 
                   <fa-app ng-controller="HomeCtrl">
                     <fa-scroll-view id="main-scrollview" fa-pipe-from="myEventHandler" fa-options="options.container">
-                      <fa-view>
-                        <fa-modifier ng-repeat="view in views" fa-size="[getPageWidth(), null]">
-                          <fa-image-surface fa-image-url="{{view.image}}" fa-pipe-to="myEventHandler" class="img"></fa-image-surface>
+                      <fa-view fa-size="[getPageWidth(), mainScrollHeight]">
+                        <fa-modifier ng-repeat="view in views track by $index" fa-size="[getPageWidth(), 300]">
+                          <fa-surface ng-if="view.image" fa-background-color="black" class="relative-image"><img src="{{view.image}}" fa-pipe-to="myEventHandler" class="img"></fa-surface>
+                          <fa-surface ng-if="view.color" fa-background-color="white" fa-size="[getPageWidth(), 150]" class="relative-text">
+                            <div fa-pipe-to="myEventHandler" class="content">{{view.color}}</div>
+                          </fa-surface>
                         </fa-modifier>
                       </fa-view>
                     </fa-scroll-view>
