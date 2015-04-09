@@ -66,9 +66,9 @@ fa-app(ng-controller='HomeCtrl')
                           fa-app(ng-controller='HomeCtrl')
                             fa-scroll-view#main-scrollview(fa-pipe-from='myEventHandler' fa-options='options.container')
                               fa-view(fa-size='[getPageWidth(), mainScrollHeight]')
-                                fa-modifier(ng-repeat='view in views track by $index' fa-size='[getPageWidth(), 300]')
-                                  fa-surface.relative-image(ng-if="view.image" fa-background-color="black")
-                                    img.img(src="{{view.image}}" fa-pipe-to='myEventHandler')
+                                fa-modifier(ng-repeat='view in views track by $index')
+                                  fa-surface.relative-image(ng-if="view.image" fa-background-color="black" fa-size='[getPageWidth(), 300]')
+                                    .image(ng-style="{'background-image':'url({{view.image}})', 'height': '300px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to='myEventHandler')
                                   fa-surface.relative-text(ng-if="view.color" fa-background-color="white" fa-size='[getPageWidth(), 150]')
                                     .content(fa-pipe-to='myEventHandler') {{view.color}}
 
