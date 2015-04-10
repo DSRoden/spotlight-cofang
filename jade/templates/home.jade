@@ -73,14 +73,18 @@ fa-app(ng-controller='HomeCtrl')
                           fa-app(ng-controller='HomeCtrl')
                             fa-scroll-view#day-scrollview(fa-pipe-from='dayScrollEventHandler' fa-options='options.container')
                               fa-view(fa-size='[getPageWidth(), dayScrollHeight]')
-                                fa-modifier(ng-repeat='view in dayEvents track by $index')
+                                fa-modifier.top-border(ng-repeat='view in dayEvents track by $index')
                                   fa-surface.relative-image(ng-if="view.image" fa-size='[getPageWidth(), 300]')
                                     .image(ng-style="{'background-image':'url({{view.image}})', 'height': '285px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to='dayScrollEventHandler')
-                                  fa-surface.relative-text(ng-if="view.text" fa-background-color="white" fa-size='[getPageWidth(), 150]')
+                                  fa-surface.relative-text(ng-if="view.text" fa-background-color="white" fa-size='[getPageWidth(), 190]')
                                     .content(fa-pipe-to='dayScrollEventHandler')
                                       .open-quote
                                       .content-text <strong> {{view.text}} </strong>
                                       .close-quote
+                                      .content-date 5:38PM
+                                      .content-social
+                                        .comments-and-likes Comments 2000 Likes 2000
+                                        
 
                         //footer
                         fa-container-surface

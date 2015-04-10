@@ -117,9 +117,9 @@
     function measureHeightForDayScroll(){
       for(var i = 0; i < $scope.dayEvents.length; i++){
         if($scope.dayEvents[i].image && $scope.dayEvents[i].text){
-          $scope.dayScrollHeight += 450;
+          $scope.dayScrollHeight += 490;
         } else if($scope.dayEvents[i].image === null && $scope.dayEvents[i].text){
-          $scope.dayScrollHeight += 150;
+          $scope.dayScrollHeight += 190;
         } else if ($scope.dayEvents[i].image && $scope.dayEvents[i].text === null){
           $scope.dayScrollHeight += 300;
         } else {

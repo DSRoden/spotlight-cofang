@@ -98,15 +98,19 @@
                     <fa-app ng-controller="HomeCtrl">
                       <fa-scroll-view id="day-scrollview" fa-pipe-from="dayScrollEventHandler" fa-options="options.container">
                         <fa-view fa-size="[getPageWidth(), dayScrollHeight]">
-                          <fa-modifier ng-repeat="view in dayEvents track by $index">
+                          <fa-modifier ng-repeat="view in dayEvents track by $index" class="top-border">
                             <fa-surface ng-if="view.image" fa-size="[getPageWidth(), 300]" class="relative-image">
                               <div ng-style="{'background-image':'url({{view.image}})', 'height': '285px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to="dayScrollEventHandler" class="image"></div>
                             </fa-surface>
-                            <fa-surface ng-if="view.text" fa-background-color="white" fa-size="[getPageWidth(), 150]" class="relative-text">
+                            <fa-surface ng-if="view.text" fa-background-color="white" fa-size="[getPageWidth(), 190]" class="relative-text">
                               <div fa-pipe-to="dayScrollEventHandler" class="content">
                                 <div class="open-quote"></div>
                                 <div class="content-text"><strong> {{view.text}} </strong></div>
                                 <div class="close-quote"></div>
+                                <div class="content-date">5:38PM</div>
+                                <div class="content-social">
+                                  <div class="comments-and-likes">Comments 2000 Likes 2000</div>
+                                </div>
                               </div>
                             </fa-surface>
                           </fa-modifier>
