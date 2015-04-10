@@ -1,0 +1,55 @@
+fa-app {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.full-screen {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.absolute {
+  position: absolute;
+  top: 0;
+  z-index: 99999;
+}
+.menu-icon {
+  position: relative;
+  float: right;
+  right: 15px;
+  bottom: 15px;
+}
+.spotlight-icon {
+  position: relative;
+  float: left;
+  left: 15px;
+  bottom: 15px;
+}
+.menu-icon2 {
+  right: 15px;
+  bottom: 15px;
+}
+.spotlight-icon2 {
+  left: 15px;
+  bottom: 15px;
+}
+.archive-item {
+  text-align: center;
+}
+.user-name {
+  font-size: 30px;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  padding: 10px;
+}
+.relative-image {
+  position: relative ! important;
+  background: black ! important;
+}
+.relative-text {
+  position: relative ! important;
+  background: white ! important;
+}
