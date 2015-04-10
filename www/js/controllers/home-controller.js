@@ -84,6 +84,17 @@
 
     measureHeightForDayScroll();
 
+     //helper function to calculate size for archive scroll
+    $scope.archiveScrollHeight = 200;
+    function measureHeightForArchiveScroll(){
+      for(var i = 0; i < $scope.archiveViews.length; i++){
+          $scope.archiveScrollHeight += 100;
+      }
+      console.log($scope.archiveScrollHeight);
+    }
+
+    measureHeightForArchiveScroll();
+
 
 
     //$scope.getViewsHeight();
