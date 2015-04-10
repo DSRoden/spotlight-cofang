@@ -38,7 +38,7 @@
     //example arrays for views
     $scope.views = [{color: 'gray', image: null}, {color: 'white', image: null}, {color: 'gray', image: 'https://placekitten.com/g/300/400'}, {color: 'white', image: null}, {color: 'gray', image:'https://placekitten.com/g/200/300'}, {color: 'white', image: 'https://placekitten.com/g/500/300'}, {color: 'gray', image: null}, {color: 'white', image: null}, {color: 'gray', image:'https://placekitten.com/g/200/300'}, {color: 'white', image: 'https://placekitten.com/g/200/300'}];
     $scope.archiveViews = [{color: 'gray', name: 'james'}, {color: 'white', name: 'jane'}, {color: 'gray', name: 'bob'}, {color: 'white', name: 'sally'}, {color: 'gray', name: 'james'}, {color: 'white', name: 'jane'}, {color: 'gray', name: 'bob'}, {color: 'white', name: 'sally'}];
-    $scope.dayEvents = [{color: 'gray'}, {color: 'white'}, {color: 'gray'}, {color: 'white'}, {color: 'gray'}, {color: 'white'}, {color: 'gray'}, {color: 'white'}, {color: 'gray'}, {color: 'white'}];
+    $scope.dayEvents = [{color: 'gray', image: null}, {color: 'white', image: null}, {color: 'gray', image: 'https://placekitten.com/g/300/400'}, {color: 'white', image: null}, {color: 'gray', image:'https://placekitten.com/g/200/300'}, {color: 'white', image: 'https://placekitten.com/g/500/300'}, {color: 'gray', image: null}, {color: 'white', image: null}, {color: 'gray', image:'https://placekitten.com/g/200/300'}, {color: 'white', image: 'https://placekitten.com/g/200/300'}];
 
 
 
@@ -50,7 +50,7 @@
     };
     $scope.makeIdsForExample();
 
-    //helper function to calculate size for scroll
+    //helper function to calculate size for main spotlight scroll
     $scope.mainScrollHeight = 100;
     function measureHeightForScroll(){
       for(var i = 0; i < $scope.views.length; i++){
@@ -66,6 +66,25 @@
     }
 
     measureHeightForScroll();
+
+    //helper function to calculate size for archived day scroll
+    $scope.dayScrollHeight = 100;
+    function measureHeightForDayScroll(){
+      for(var i = 0; i < $scope.dayEvents.length; i++){
+        if($scope.dayEvents[i].image && $scope.dayEvents[i].color){
+          $scope.dayScrollHeight += 450;
+        } else if($scope.dayEvents[i].image === null && $scope.dayEvents[i].color){
+          $scope.dayScrollHeight += 150;
+        } else {
+          return;
+        }
+      }
+      console.log($scope.dayScrollHeight);
+    }
+
+    measureHeightForDayScroll();
+
+
 
     //$scope.getViewsHeight();
     //eventhandlers

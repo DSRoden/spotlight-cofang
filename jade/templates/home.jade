@@ -13,13 +13,16 @@ fa-app(ng-controller='HomeCtrl')
                         fa-modifier(fa-translate="boxTransitionableHeader3.get()" fa-opacity="opacityTrans3")
                           fa-surface.absolute(fa-background-color="'black'")
                         //content
-                        fa-surface(fa-background-color="'white'")
+    
+                        fa-surface(fa-background-color="'gray'") 
                           fa-app(ng-controller='HomeCtrl')
-                              fa-scroll-view#day-scrollview(fa-pipe-from='dayScrollEventHandler' fa-options='options.container')
-                                fa-view(ng-repeat='event in dayEvents')
-                                  fa-modifier(fa-size='[getPageWidth(), 100]')
-                                    fa-surface(fa-background-color='event.color', fa-pipe-to='dayScrollEventHandler')
-                                      .content {{event.id}}
+                            fa-scroll-view#day-scrollview(fa-pipe-from='dayScrollEventHandler' fa-options='options.container')
+                              fa-view(fa-size='[getPageWidth(), dayScrollHeight]')
+                                fa-modifier(ng-repeat='view in dayEvents track by $index')
+                                  fa-surface.relative-image(ng-if="view.image" fa-background-color="black" fa-size='[getPageWidth(), 300]')
+                                    .image(ng-style="{'background-image':'url({{view.image}})', 'height': '300px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to='dayScrollEventHandler')
+                                  fa-surface.relative-text(ng-if="view.color" fa-background-color="white" fa-size='[getPageWidth(), 150]')
+                                    .content(fa-pipe-to='dayScrollEventHandler') {{view.color}}
 
                         //footer
                         fa-container-surface
