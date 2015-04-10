@@ -37,7 +37,7 @@
 
     //example arrays for views
     $scope.views = [{color: 'gray', image: null}, {color: 'white', image: null}, {color: 'gray', image: 'https://placekitten.com/g/300/400'}, {color: 'white', image: null}, {color: 'gray', image:'https://placekitten.com/g/200/300'}, {color: 'white', image: 'https://placekitten.com/g/500/300'}, {color: 'gray', image: null}, {color: 'white', image: null}, {color: 'gray', image:'https://placekitten.com/g/200/300'}, {color: 'white', image: 'https://placekitten.com/g/200/300'}];
-    $scope.archiveViews = [{color: 'gray', name: 'james'}, {color: 'white', name: 'jane'}, {color: 'gray', name: 'bob'}, {color: 'white', name: 'sally'}, {color: 'gray', name: 'james'}, {color: 'white', name: 'jane'}, {color: 'gray', name: 'bob'}, {color: 'white', name: 'sally'}];
+    $scope.archiveViews = [{name: 'james', date: 'May 1, 2015'}, {name: 'jane', date: 'April 30, 2015'}, {name: 'bob', date: 'April 29, 2015'}, {name: 'sally', date: 'April 28, 2015'}, {name: 'james', date: 'April 27, 2015'}, {name: 'jane', date: 'April 26, 2015'}, {name: 'bob', date: 'April 25, 2015'}, {name: 'sally', date: 'April 24, 2015'},  {name: 'bob', date: 'April 24, 2015'}, {name: 'sally', date: 'April 23, 2015'},  {name: 'bob', date: 'April 24, 2015'}, {name: 'sally', date: 'April 24, 2015'}, {name: '', date: ''}];
     $scope.dayEvents = [{color: 'gray', image: null}, {color: 'white', image: null}, {color: 'gray', image: 'https://placekitten.com/g/300/400'}, {color: 'white', image: null}, {color: 'gray', image:'https://placekitten.com/g/200/300'}, {color: 'white', image: 'https://placekitten.com/g/500/300'}, {color: 'gray', image: null}, {color: 'white', image: null}, {color: 'gray', image:'https://placekitten.com/g/200/300'}, {color: 'white', image: 'https://placekitten.com/g/200/300'}];
 
 
@@ -49,6 +49,16 @@
       }
     };
     $scope.makeIdsForExample();
+
+
+    //helper function to add a color property archiveViews
+    var _colors = ['#FE4365', '#83AF9B', '#FC9D9A', '#F9CDAD', '#C8C8A9'];
+    function addColorProperty(){
+      for(var i = 0; i < $scope.archiveViews.length; i++){
+        $scope.archiveViews[i].color = _.sample(_colors);
+      }
+    }
+    addColorProperty();
 
     //helper function to calculate size for main spotlight scroll
     $scope.mainScrollHeight = 100;
@@ -84,16 +94,16 @@
 
     measureHeightForDayScroll();
 
-     //helper function to calculate size for archive scroll
-    $scope.archiveScrollHeight = 200;
-    function measureHeightForArchiveScroll(){
-      for(var i = 0; i < $scope.archiveViews.length; i++){
-          $scope.archiveScrollHeight += 100;
-      }
-      console.log($scope.archiveScrollHeight);
-    }
+    //  //helper function to calculate size for archive scroll
+    // $scope.archiveScrollHeight = 100;
+    // function measureHeightForArchiveScroll(){
+    //   for(var i = 0; i < $scope.archiveViews.length; i++){
+    //       $scope.archiveScrollHeight += 100;
+    //   }
+    //   console.log($scope.archiveScrollHeight);
+    // }
 
-    measureHeightForArchiveScroll();
+    // measureHeightForArchiveScroll();
 
 
 

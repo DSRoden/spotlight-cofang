@@ -39,16 +39,11 @@ fa-app {
 }
 .archive-item {
   text-align: center;
-  line-height: 100px;
 }
 .user-name {
   font-size: 30px;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   padding: 10px;
-}
-.img {
-  max-width: 300px;
-  max-height: 300px;
 }
 .relative-image {
   position: relative ! important;
