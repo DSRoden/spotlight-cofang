@@ -39,14 +39,14 @@
     $scope.views = [
                     {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image: null},
                     {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image: null},
-                    {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image: 'https://placekitten.com/g/300/400'},
+                    {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image: 'http://fillmurray.com/300/400'},
                     {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image: null},
-                    {text: null, image:'https://placekitten.com/g/200/300'},
-                    {text: null, image: 'https://placekitten.com/g/500/300'},
+                    {text: null, image:'http://fillmurray.com/200/400'},
+                    {text: null, image: 'http://fillmurray.com/500/300'},
                     {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image: null},
                     {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image: null},
-                    {text: null, image:'https://placekitten.com/g/200/300'},
-                    {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image: 'https://placekitten.com/g/200/300'}];
+                    {text: null, image:'http://fillmurray.com/300/300'},
+                    {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image: 'http://fillmurray.com/200/300'}];
 
     $scope.archiveViews = [
                             {name: 'james', date: 'May 1, 2015'},
