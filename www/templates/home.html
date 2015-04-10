@@ -19,7 +19,7 @@
                       <fa-view fa-size="[getPageWidth(), mainScrollHeight]">
                         <fa-modifier ng-repeat="view in views track by $index">
                           <fa-surface ng-if="view.image" fa-size="[getPageWidth(), 300]" class="relative-image">
-                            <div ng-style="{'background-image':'url({{view.image}})', 'height': '300px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to="myEventHandler" class="image"></div>
+                            <div ng-style="{'background-image':'url({{view.image}})', 'height': '285px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to="myEventHandler" class="image"></div>
                           </fa-surface>
                           <fa-surface ng-if="view.text" fa-background-color="white" fa-size="[getPageWidth(), 150]" class="relative-text">
                             <div fa-pipe-to="myEventHandler" class="content"> 
@@ -100,7 +100,7 @@
                         <fa-view fa-size="[getPageWidth(), dayScrollHeight]">
                           <fa-modifier ng-repeat="view in dayEvents track by $index">
                             <fa-surface ng-if="view.image" fa-size="[getPageWidth(), 300]" class="relative-image">
-                              <div ng-style="{'background-image':'url({{view.image}})', 'height': '300px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to="dayScrollEventHandler" class="image"></div>
+                              <div ng-style="{'background-image':'url({{view.image}})', 'height': '285px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to="dayScrollEventHandler" class="image"></div>
                             </fa-surface>
                             <fa-surface ng-if="view.text" fa-background-color="white" fa-size="[getPageWidth(), 150]" class="relative-text">
                               <div fa-pipe-to="dayScrollEventHandler" class="content">

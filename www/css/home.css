@@ -48,6 +48,7 @@ fa-app {
 .relative-image {
   position: relative ! important;
   background: black ! important;
+  padding: 7px;
 }
 .relative-text {
   position: relative ! important;
