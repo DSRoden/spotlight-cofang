@@ -20,8 +20,8 @@ fa-app(ng-controller='HomeCtrl')
                                 fa-modifier(ng-repeat='view in views track by $index')
                                   fa-surface.relative-image(ng-if="view.image" fa-background-color="black" fa-size='[getPageWidth(), 300]')
                                     .image(ng-style="{'background-image':'url({{view.image}})', 'height': '300px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to='myEventHandler')
-                                  fa-surface.relative-text(ng-if="view.color" fa-background-color="white" fa-size='[getPageWidth(), 150]')
-                                    .content(fa-pipe-to='myEventHandler') {{view.color}}
+                                  fa-surface.relative-text(ng-if="view.text" fa-background-color="white" fa-size='[getPageWidth(), 150]')
+                                    .content(fa-pipe-to='myEventHandler') {{view.text}}
 
                         // footer
                         fa-modifier(fa-translate="boxTransitionableFooter.get()" fa-opacity="opacityTrans" fa-size='[50,50]')
@@ -74,8 +74,8 @@ fa-app(ng-controller='HomeCtrl')
                                 fa-modifier(ng-repeat='view in dayEvents track by $index')
                                   fa-surface.relative-image(ng-if="view.image" fa-background-color="black" fa-size='[getPageWidth(), 300]')
                                     .image(ng-style="{'background-image':'url({{view.image}})', 'height': '300px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to='dayScrollEventHandler')
-                                  fa-surface.relative-text(ng-if="view.color" fa-background-color="white" fa-size='[getPageWidth(), 150]')
-                                    .content(fa-pipe-to='dayScrollEventHandler') {{view.color}}
+                                  fa-surface.relative-text(ng-if="view.text" fa-background-color="white" fa-size='[getPageWidth(), 150]')
+                                    .content(fa-pipe-to='dayScrollEventHandler') {{view.text}}
 
                         //footer
                         fa-container-surface

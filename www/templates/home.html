@@ -21,8 +21,8 @@
                           <fa-surface ng-if="view.image" fa-background-color="black" fa-size="[getPageWidth(), 300]" class="relative-image">
                             <div ng-style="{'background-image':'url({{view.image}})', 'height': '300px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to="myEventHandler" class="image"></div>
                           </fa-surface>
-                          <fa-surface ng-if="view.color" fa-background-color="white" fa-size="[getPageWidth(), 150]" class="relative-text">
-                            <div fa-pipe-to="myEventHandler" class="content">{{view.color}}</div>
+                          <fa-surface ng-if="view.text" fa-background-color="white" fa-size="[getPageWidth(), 150]" class="relative-text">
+                            <div fa-pipe-to="myEventHandler" class="content">{{view.text}}</div>
                           </fa-surface>
                         </fa-modifier>
                       </fa-view>
@@ -98,8 +98,8 @@
                             <fa-surface ng-if="view.image" fa-background-color="black" fa-size="[getPageWidth(), 300]" class="relative-image">
                               <div ng-style="{'background-image':'url({{view.image}})', 'height': '300px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to="dayScrollEventHandler" class="image"></div>
                             </fa-surface>
-                            <fa-surface ng-if="view.color" fa-background-color="white" fa-size="[getPageWidth(), 150]" class="relative-text">
-                              <div fa-pipe-to="dayScrollEventHandler" class="content">{{view.color}}</div>
+                            <fa-surface ng-if="view.text" fa-background-color="white" fa-size="[getPageWidth(), 150]" class="relative-text">
+                              <div fa-pipe-to="dayScrollEventHandler" class="content">{{view.text}}</div>
                             </fa-surface>
                           </fa-modifier>
                         </fa-view>

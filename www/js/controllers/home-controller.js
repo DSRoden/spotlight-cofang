@@ -36,11 +36,44 @@
                     }];
 
     //example arrays for views
-    $scope.views = [{color: 'gray', image: null}, {color: 'white', image: null}, {color: 'gray', image: 'https://placekitten.com/g/300/400'}, {color: 'white', image: null}, {color: 'gray', image:'https://placekitten.com/g/200/300'}, {color: 'white', image: 'https://placekitten.com/g/500/300'}, {color: 'gray', image: null}, {color: 'white', image: null}, {color: 'gray', image:'https://placekitten.com/g/200/300'}, {color: 'white', image: 'https://placekitten.com/g/200/300'}];
-    $scope.archiveViews = [{name: 'james', date: 'May 1, 2015'}, {name: 'jane', date: 'April 30, 2015'}, {name: 'bob', date: 'April 29, 2015'}, {name: 'sally', date: 'April 28, 2015'}, {name: 'james', date: 'April 27, 2015'}, {name: 'jane', date: 'April 26, 2015'}, {name: 'bob', date: 'April 25, 2015'}, {name: 'sally', date: 'April 24, 2015'},  {name: 'bob', date: 'April 24, 2015'}, {name: 'sally', date: 'April 23, 2015'},  {name: 'bob', date: 'April 24, 2015'}, {name: 'sally', date: 'April 24, 2015'}, {name: '', date: ''}];
-    $scope.dayEvents = [{color: 'gray', image: null}, {color: 'white', image: null}, {color: 'gray', image: 'https://placekitten.com/g/300/400'}, {color: 'white', image: null}, {color: 'gray', image:'https://placekitten.com/g/200/300'}, {color: 'white', image: 'https://placekitten.com/g/500/300'}, {color: 'gray', image: null}, {color: 'white', image: null}, {color: 'gray', image:'https://placekitten.com/g/200/300'}, {color: 'white', image: 'https://placekitten.com/g/200/300'}];
+    $scope.views = [
+                    {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image: null},
+                    {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image: null},
+                    {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image: 'https://placekitten.com/g/300/400'},
+                    {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image: null},
+                    {text: null, image:'https://placekitten.com/g/200/300'},
+                    {text: null, image: 'https://placekitten.com/g/500/300'},
+                    {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image: null},
+                    {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image: null},
+                    {text: null, image:'https://placekitten.com/g/200/300'},
+                    {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image: 'https://placekitten.com/g/200/300'}];
 
+    $scope.archiveViews = [
+                            {name: 'james', date: 'May 1, 2015'},
+                            {name: 'jane', date: 'April 30, 2015'},
+                            {name: 'bob', date: 'April 29, 2015'},
+                            {name: 'sally', date: 'April 28, 2015'},
+                            {name: 'james', date: 'April 27, 2015'},
+                            {name: 'jane', date: 'April 26, 2015'},
+                            {name: 'bob', date: 'April 25, 2015'},
+                            {name: 'sally', date: 'April 24, 2015'},
+                            {name: 'bob', date: 'April 24, 2015'},
+                            {name: 'sally', date: 'April 23, 2015'},
+                            {name: 'bob', date: 'April 24, 2015'},
+                            {name: 'sally', date: 'April 24, 2015'},
+                            {name: '', date: ''}];
 
+    $scope.dayEvents = [
+                        {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image: null},
+                        {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image: null},
+                        {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image: 'https://placekitten.com/g/300/400'},
+                        {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image: null},
+                        {text: null, image:'https://placekitten.com/g/200/300'},
+                        {text: null, image: 'https://placekitten.com/g/500/300'},
+                        {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image: null},
+                        {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image: null},
+                        {text: null, image:'https://placekitten.com/g/200/300'},
+                        {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image: 'https://placekitten.com/g/200/300'}];
 
     //making ids for example archived days
     $scope.makeIdsForExample = function(){
@@ -64,10 +97,12 @@
     $scope.mainScrollHeight = 100;
     function measureHeightForScroll(){
       for(var i = 0; i < $scope.views.length; i++){
-        if($scope.views[i].image && $scope.views[i].color){
+        if($scope.views[i].image && $scope.views[i].text){
           $scope.mainScrollHeight += 450;
-        } else if($scope.views[i].image === null && $scope.views[i].color){
+        } else if($scope.views[i].image === null && $scope.views[i].text){
           $scope.mainScrollHeight += 150;
+        } else if ($scope.views[i].image && $scope.views[i].text === null){
+          $scope.mainScrollHeight += 300;
         } else {
           return;
         }
@@ -81,10 +116,12 @@
     $scope.dayScrollHeight = 100;
     function measureHeightForDayScroll(){
       for(var i = 0; i < $scope.dayEvents.length; i++){
-        if($scope.dayEvents[i].image && $scope.dayEvents[i].color){
+        if($scope.dayEvents[i].image && $scope.dayEvents[i].text){
           $scope.dayScrollHeight += 450;
-        } else if($scope.dayEvents[i].image === null && $scope.dayEvents[i].color){
+        } else if($scope.dayEvents[i].image === null && $scope.dayEvents[i].text){
           $scope.dayScrollHeight += 150;
+        } else if ($scope.dayEvents[i].image && $scope.dayEvents[i].text === null){
+          $scope.dayScrollHeight += 300;
         } else {
           return;
         }
