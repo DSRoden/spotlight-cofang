@@ -20,12 +20,18 @@ fa-app(ng-controller='HomeCtrl')
                                 fa-modifier(ng-repeat='post in posts track by $index')
                                   fa-surface.relative-image(ng-if="post.image_url" fa-size='[getPageWidth(), 300]')
                                     .image(ng-style="{'background-image':'url({{post.image_url}})', 'height': '285px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to='myEventHandler')
+                                    .image-date-container(ng-hide="post.text") 
+                                      .image-date -{{post.created_at | dateToISO | date: 'h:mma'}}
+                                    .image-social(ng-hide="post.text")
+                                      .comments Comments {{post.comments}}
+                                      .likes {{post.likes}}
+                                        span.heart
                                   fa-surface.relative-text(ng-if="post.text" fa-background-color="white" fa-size='[getPageWidth(), 190]')
                                     .content(fa-pipe-to='myEventHandler') 
                                       .open-quote
                                       .content-text <strong> {{post.text}} </strong>
                                       .close-quote
-                                      .content-date {{post.created_at | dateToISO | date: 'h:mma'}}
+                                      .content-date -{{post.created_at | dateToISO | date: 'h:mma'}}
                                       .content-social
                                         .comments Comments {{post.comments}}
                                         .likes {{post.likes}}
@@ -81,6 +87,13 @@ fa-app(ng-controller='HomeCtrl')
                                 fa-modifier.top-border(ng-repeat='post in archivedDayPosts track by $index')
                                   fa-surface.relative-image(ng-if="post.image_url" fa-size='[getPageWidth(), 300]')
                                     .image(ng-style="{'background-image':'url({{post.image_url}})', 'height': '285px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to='dayScrollEventHandler')
+                                    .image-date-container(ng-hide="post.text") 
+                                      .image-date -{{post.created_at | dateToISO | date: 'h:mma'}}
+                                    .image-social(ng-hide="post.text")
+                                      .comments Comments {{post.comments}}
+                                      .likes {{post.likes}}
+                                        span.heart
+
                                   fa-surface.relative-text(ng-if="post.text" fa-background-color="white" fa-size='[getPageWidth(), 190]')
                                     .content(fa-pipe-to='dayScrollEventHandler')
                                       .open-quote
