@@ -67,7 +67,7 @@ fa-app {
 .relative-text {
   position: relative ! important;
   background: white ! important;
-  border-top: 2px solid black;
+  border-top: 2px solid #ECECEC;
 }
 
 
@@ -110,8 +110,9 @@ fa-app {
 }
 
 .content-date {
-  text-align: center;
+  margin-left: 15px;
   font-size: 14px;
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
 }
 
 .content-social {
@@ -123,8 +124,29 @@ fa-app {
   right: 0;
 }
 
-.comments-and-likes {
-  text-align: center;
-  padding: 10px;
-  color: black;
+.comments {
+  position: absolute;
+  left: 10px;
+  top: 4px;
+  text-decoration: underline;
+  padding: 5px;
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+.likes {
+  position: absolute;
+  right: 40px;
+  top: 10px;
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+.heart {
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  right: 40px;
+  bottom: 2px;
+  background: url('../img/heart.png');
+  background-size: contain;
+  background-position: center;
 }

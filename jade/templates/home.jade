@@ -17,14 +17,19 @@ fa-app(ng-controller='HomeCtrl')
                           fa-app(ng-controller='HomeCtrl')
                             fa-scroll-view#main-scrollview(fa-pipe-from='myEventHandler' fa-options='options.container')
                               fa-view(fa-size='[getPageWidth(), mainScrollHeight]')
-                                fa-modifier(ng-repeat='view in views track by $index')
-                                  fa-surface.relative-image(ng-if="view.image" fa-size='[getPageWidth(), 300]')
-                                    .image(ng-style="{'background-image':'url({{view.image}})', 'height': '285px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to='myEventHandler')
-                                  fa-surface.relative-text(ng-if="view.text" fa-background-color="white" fa-size='[getPageWidth(), 150]')
+                                fa-modifier(ng-repeat='post in posts track by $index')
+                                  fa-surface.relative-image(ng-if="post.image_url" fa-size='[getPageWidth(), 300]')
+                                    .image(ng-style="{'background-image':'url({{post.image_url}})', 'height': '285px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to='myEventHandler')
+                                  fa-surface.relative-text(ng-if="post.text" fa-background-color="white" fa-size='[getPageWidth(), 190]')
                                     .content(fa-pipe-to='myEventHandler') 
                                       .open-quote
-                                      .content-text <strong> {{view.text}} </strong>
+                                      .content-text <strong> {{post.text}} </strong>
                                       .close-quote
+                                      .content-date {{post.created_at | dateToISO | date: 'h:mma'}}
+                                      .content-social
+                                        .comments Comments {{post.comments}}
+                                        .likes {{post.likes}}
+                                          span.heart
                         // footer
                         fa-modifier(fa-translate="boxTransitionableFooter.get()" fa-opacity="opacityTrans" fa-size='[50,50]')
                           fa-image-surface.menu-icon(fa-image-url="img/menu-ellipses-icon.png" ng-click="switchPage(1)")
@@ -45,11 +50,11 @@ fa-app(ng-controller='HomeCtrl')
                         fa-surface(fa-background-color="'white'")
                           fa-app(ng-controller='HomeCtrl')
                             fa-scroll-view#archive-scrollview(fa-pipe-from='archiveScrollEventHandler' fa-options='options.container')
-                              fa-view(ng-repeat='archive in archiveViews' fa-size='[getPageWidth(), archiveScrollHeight]')
+                              fa-view(ng-repeat='archive in archivedDays' fa-size='[getPageWidth(), archiveScrollHeight]')
                                 fa-modifier(fa-size='[getPageWidth(), 100]')
                                   fa-surface.archive-item(fa-background-color='archive.color', fa-pipe-to='archiveScrollEventHandler')
                                    .user-name(ng-click="goToArchivedDay(archive.id)") {{archive.name}}
-                                   .date(ng-click="goToArchivedDay(archive.id)") {{archive.date}}
+                                   .date(ng-click="goToArchivedDay(archive.id)" ng-if="archive.date") {{archive.date | dateToISO | date: 'longDate'}}
 
                         // footer
                         fa-modifier(fa-translate="boxTransitionableFooter2.get()" fa-opacity="opacityTrans2" fa-size='[50,50]')
@@ -73,18 +78,19 @@ fa-app(ng-controller='HomeCtrl')
                           fa-app(ng-controller='HomeCtrl')
                             fa-scroll-view#day-scrollview(fa-pipe-from='dayScrollEventHandler' fa-options='options.container')
                               fa-view(fa-size='[getPageWidth(), dayScrollHeight]')
-                                fa-modifier.top-border(ng-repeat='view in dayEvents track by $index')
-                                  fa-surface.relative-image(ng-if="view.image" fa-size='[getPageWidth(), 300]')
-                                    .image(ng-style="{'background-image':'url({{view.image}})', 'height': '285px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to='dayScrollEventHandler')
-                                  fa-surface.relative-text(ng-if="view.text" fa-background-color="white" fa-size='[getPageWidth(), 190]')
+                                fa-modifier.top-border(ng-repeat='post in archivedDayPosts track by $index')
+                                  fa-surface.relative-image(ng-if="post.image_url" fa-size='[getPageWidth(), 300]')
+                                    .image(ng-style="{'background-image':'url({{post.image_url}})', 'height': '285px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to='dayScrollEventHandler')
+                                  fa-surface.relative-text(ng-if="post.text" fa-background-color="white" fa-size='[getPageWidth(), 190]')
                                     .content(fa-pipe-to='dayScrollEventHandler')
                                       .open-quote
-                                      .content-text <strong> {{view.text}} </strong>
+                                      .content-text <strong> {{post.text}} </strong>
                                       .close-quote
-                                      .content-date 5:38PM
+                                      .content-date -{{post.created_at | dateToISO | date: 'h:mma'}} 
                                       .content-social
-                                        .comments-and-likes Comments 2000 Likes 2000
-                                        
+                                        .comments Comments {{post.comments}}
+                                        .likes {{post.likes}}
+                                          span.heart
 
                         //footer
                         fa-container-surface

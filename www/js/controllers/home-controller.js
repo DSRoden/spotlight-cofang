@@ -1,3 +1,5 @@
+ /*jshint camelcase: false */
+
 (function(){
   'use strict';
 
@@ -36,59 +38,58 @@
                     }];
 
     //example arrays for views
-    $scope.views = [
-                    {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image: null},
-                    {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image: null},
-                    {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image: 'http://fillmurray.com/300/400'},
-                    {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image: null},
-                    {text: null, image:'http://fillmurray.com/200/400'},
-                    {text: null, image: 'http://fillmurray.com/500/300'},
-                    {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image: null},
-                    {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image: null},
-                    {text: null, image:'http://fillmurray.com/300/300'},
-                    {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image: 'http://fillmurray.com/200/300'}];
+    $scope.posts = [
+                    {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image_url: null, created_at: '2015-04-11 15:33:29.706269', likes: 2, comments: 2000},
+                    {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image_url: null, created_at: '1999-01-08 04:05:06', likes: 400, comments: 2000},
+                    {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image_url: 'http://fillmurray.com/300/400', created_at: '1999-01-08 04:05:06', likes: 400, comments: 2000},
+                    {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image_url: null, created_at: '1999-01-08 04:05:06', likes: 400, comments: 2000},
+                    {text: null, image_url:'http://fillmurray.com/200/400', created_at: '1999-01-08 04:05:06', likes: 400, comments: 2000},
+                    {text: null, image_url: 'http://fillmurray.com/500/300', created_at: '1999-01-08 04:05:06', likes: 400, comments: 2000},
+                    {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image_url: null, created_at: '1999-01-08 04:05:06', likes: 400, comments: 2000},
+                    {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image_url: null, created_at: '1999-01-08 04:05:06', likes: 400, comments: 2000},
+                    {text: null, image_url:'http://fillmurray.com/300/300', created_at: '1999-01-08 04:05:06', likes: 400, comments: 2000},
+                    {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image_url: 'http://fillmurray.com/200/300', created_at: '1999-01-08 04:05:06', likes: 400, comments: 2000}];
 
-    $scope.archiveViews = [
-                            {name: 'james', date: 'May 1, 2015'},
-                            {name: 'jane', date: 'April 30, 2015'},
-                            {name: 'bob', date: 'April 29, 2015'},
-                            {name: 'sally', date: 'April 28, 2015'},
-                            {name: 'james', date: 'April 27, 2015'},
-                            {name: 'jane', date: 'April 26, 2015'},
-                            {name: 'bob', date: 'April 25, 2015'},
-                            {name: 'sally', date: 'April 24, 2015'},
-                            {name: 'bob', date: 'April 24, 2015'},
-                            {name: 'sally', date: 'April 23, 2015'},
-                            {name: 'bob', date: 'April 24, 2015'},
-                            {name: 'sally', date: 'April 24, 2015'},
-                            {name: '', date: ''}];
+    $scope.archivedDays = [
+                            {name: 'james', date: '2015-04-11 15:33:29.706269'},
+                            {name: 'jane', date: '2015-04-11 15:33:29.706269'},
+                            {name: 'bob', date: '2015-04-11 15:33:29.7062695'},
+                            {name: 'sally', date: '2015-04-11 15:33:29.706269'},
+                            {name: 'james', date: '2015-04-11 15:33:29.706269'},
+                            {name: 'jane', date: '2015-04-11 15:33:29.706269'},
+                            {name: 'bob', date: '2015-04-11 15:33:29.706269'},
+                            {name: 'sally', date: '2015-04-11 15:33:29.706269'},
+                            {name: 'bob', date: '2015-04-11 15:33:29.706269'},
+                            {name: 'sally', date: '2015-04-11 15:33:29.706269'},
+                            {name: 'bob', date: '2015-04-11 15:33:29.706269'},
+                            {name: 'sally', date: '2015-04-11 15:33:29.706269'},
+                            {name: '', date: null}];
 
-    $scope.dayEvents = [
-                        {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image: null},
-                        {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image: null},
-                        {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image: 'https://placekitten.com/g/300/400'},
-                        {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image: null},
-                        {text: null, image:'https://placekitten.com/g/200/300'},
-                        {text: null, image: 'https://placekitten.com/g/500/300'},
-                        {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image: null},
-                        {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image: null},
-                        {text: null, image:'https://placekitten.com/g/200/300'},
-                        {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image: 'https://placekitten.com/g/200/300'}];
+    $scope.archivedDayPosts = [
+                    {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image_url: null, created_at: '1999-01-08 04:05:06', likes: 2, comments: 2000},
+                    {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image_url: null, created_at: '1999-01-08 04:05:06', likes: 400, comments: 2000},
+                    {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image_url: 'http://fillmurray.com/300/400', created_at: '1999-01-08 04:05:06', likes: 400, comments: 2000},
+                    {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image_url: null, created_at: '1999-01-08 04:05:06', likes: 400, comments: 2000},
+                    {text: null, image_url:'http://fillmurray.com/200/400', created_at: '1999-01-08 04:05:06', likes: 400, comments: 2000},
+                    {text: null, image_url: 'http://fillmurray.com/500/300', created_at: '1999-01-08 04:05:06', likes: 400, comments: 2000},
+                    {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image_url: null, created_at: '1999-01-08 04:05:06', likes: 400, comments: 2000},
+                    {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image_url: null, created_at: '1999-01-08 04:05:06', likes: 400, comments: 2000},
+                    {text: null, image_url:'http://fillmurray.com/300/300', created_at: '1999-01-08 04:05:06', likes: 400, comments: 2000},
+                    {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image_url: 'http://fillmurray.com/200/300', created_at: '1999-01-08 04:05:06', likes: 400, comments: 2000}];
 
     //making ids for example archived days
     $scope.makeIdsForExample = function(){
-      for(var i = 0; i < $scope.archiveViews.length; i++){
-        $scope.archiveViews[i].id = i;
+      for(var i = 0; i < $scope.archivedDays.length; i++){
+        $scope.archivedDays[i].id = i;
       }
     };
     $scope.makeIdsForExample();
 
-
     //helper function to add a color property archiveViews
     var _colors = ['#FE4365', '#83AF9B', '#FC9D9A', '#F9CDAD', '#C8C8A9'];
     function addColorProperty(){
-      for(var i = 0; i < $scope.archiveViews.length; i++){
-        $scope.archiveViews[i].color = _.sample(_colors);
+      for(var i = 0; i < $scope.archivedDays.length; i++){
+        $scope.archivedDays[i].color = _.sample(_colors);
       }
     }
     addColorProperty();
@@ -96,12 +97,12 @@
     //helper function to calculate size for main spotlight scroll
     $scope.mainScrollHeight = 100;
     function measureHeightForScroll(){
-      for(var i = 0; i < $scope.views.length; i++){
-        if($scope.views[i].image && $scope.views[i].text){
-          $scope.mainScrollHeight += 450;
-        } else if($scope.views[i].image === null && $scope.views[i].text){
-          $scope.mainScrollHeight += 150;
-        } else if ($scope.views[i].image && $scope.views[i].text === null){
+      for(var i = 0; i < $scope.posts.length; i++){
+        if($scope.posts[i].image_url && $scope.posts[i].text){
+          $scope.mainScrollHeight += 490;
+        } else if($scope.posts[i].image_url === null && $scope.posts[i].text){
+          $scope.mainScrollHeight += 190;
+        } else if ($scope.posts[i].image_url && $scope.posts[i].text === null){
           $scope.mainScrollHeight += 300;
         } else {
           return;
@@ -115,12 +116,12 @@
     //helper function to calculate size for archived day scroll
     $scope.dayScrollHeight = 100;
     function measureHeightForDayScroll(){
-      for(var i = 0; i < $scope.dayEvents.length; i++){
-        if($scope.dayEvents[i].image && $scope.dayEvents[i].text){
+      for(var i = 0; i < $scope.archivedDayPosts.length; i++){
+        if($scope.archivedDayPosts[i].image_url && $scope.archivedDayPosts[i].text){
           $scope.dayScrollHeight += 490;
-        } else if($scope.dayEvents[i].image === null && $scope.dayEvents[i].text){
+        } else if($scope.archivedDayPosts[i].image_url === null && $scope.archivedDayPosts[i].text){
           $scope.dayScrollHeight += 190;
-        } else if ($scope.dayEvents[i].image && $scope.dayEvents[i].text === null){
+        } else if ($scope.archivedDayPosts[i].image_url && $scope.archivedDayPosts[i].text === null){
           $scope.dayScrollHeight += 300;
         } else {
           return;

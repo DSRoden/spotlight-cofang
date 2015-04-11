@@ -7,5 +7,10 @@
 
     $stateProvider
     .state('home',     {url:'/',         templateUrl:'templates/home.html', controller:'HomeCtrl'});
-  }]);
+  }])
+  .filter('dateToISO', function(){
+  return function(input){
+    return new Date(input).toISOString();
+  };
+});
 })();
