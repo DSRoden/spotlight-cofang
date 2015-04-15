@@ -21,23 +21,25 @@
                           <fa-surface ng-if="post.image_url" fa-size="[getPageWidth(), 300]" class="relative-image">
                             <div ng-style="{'background-image':'url({{post.image_url}})', 'height': '285px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to="myEventHandler" class="image"></div>
                             <div ng-hide="post.text" class="image-date-container"> 
-                              <div class="image-date">-{{post.created_at | dateToISO | date: 'h:mma'}}</div>
+                              <div class="image-date">-{{moment(post.created_at).format('LT')}}</div>
                             </div>
                             <div ng-hide="post.text" class="image-social">
                               <div class="comments">Comments {{post.comments}}</div>
                               <div class="likes">{{post.likes}}<span class="heart"></span></div>
                             </div>
                           </fa-surface>
-                          <fa-surface ng-if="post.text" fa-background-color="white" fa-size="[getPageWidth(), 190]" class="relative-text">
+                          <fa-surface ng-if="post.text" fa-background-color="white" fa-size="[getPageWidth(), 200]" class="relative-text">
                             <div fa-pipe-to="myEventHandler" class="content"> 
                               <div class="open-quote"></div>
                               <div class="content-text"><strong> {{post.text}} </strong></div>
                               <div class="close-quote"></div>
-                              <div class="content-date">-{{post.created_at | dateToISO | date: 'h:mma'}}</div>
-                              <div class="content-social">
-                                <div class="comments">Comments {{post.comments}}</div>
-                                <div class="likes">{{post.likes}}<span class="heart"></span></div>
-                              </div>
+                            </div>
+                            <div class="content-date-container">
+                              <div class="content-date">-{{moment(post.created_at).format('LT')}}</div>
+                            </div>
+                            <div class="content-social">
+                              <div class="comments">Comments {{post.comments}}</div>
+                              <div class="likes">{{post.likes}}<span class="heart"></span></div>
                             </div>
                           </fa-surface>
                         </fa-modifier>
@@ -75,7 +77,7 @@
                           <fa-modifier fa-size="[getPageWidth(), 100]">
                             <fa-surface fa-background-color="archive.color" fa-pipe-to="archiveScrollEventHandler" class="archive-item">
                               <div ng-click="goToArchivedDay(archive.id)" class="user-name">{{archive.name}}</div>
-                              <div ng-click="goToArchivedDay(archive.id)" ng-if="archive.date" class="date">{{archive.date | dateToISO | date: 'longDate'}}</div>
+                              <div ng-click="goToArchivedDay(archive.id)" ng-if="archive.date" class="date">{{moment(archive.date).format('MMMM Do YYYY')}}</div>
                             </fa-surface>
                           </fa-modifier>
                         </fa-view>
@@ -114,23 +116,25 @@
                             <fa-surface ng-if="post.image_url" fa-size="[getPageWidth(), 300]" class="relative-image">
                               <div ng-style="{'background-image':'url({{post.image_url}})', 'height': '285px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to="dayScrollEventHandler" class="image"></div>
                               <div ng-hide="post.text" class="image-date-container"> 
-                                <div class="image-date">-{{post.created_at | dateToISO | date: 'h:mma'}}</div>
+                                <div class="image-date">-{{moment(post.created_at).format('MMMM Do YYYY @ h:mm:ss a')}}</div>
                               </div>
                               <div ng-hide="post.text" class="image-social">
                                 <div class="comments">Comments {{post.comments}}</div>
                                 <div class="likes">{{post.likes}}<span class="heart"></span></div>
                               </div>
                             </fa-surface>
-                            <fa-surface ng-if="post.text" fa-background-color="white" fa-size="[getPageWidth(), 190]" class="relative-text">
-                              <div fa-pipe-to="dayScrollEventHandler" class="content">
+                            <fa-surface ng-if="post.text" fa-background-color="white" fa-size="[getPageWidth(), 200]" class="relative-text">
+                              <div fa-pipe-to="dayScrollEventHandler" class="content"> 
                                 <div class="open-quote"></div>
                                 <div class="content-text"><strong> {{post.text}} </strong></div>
                                 <div class="close-quote"></div>
-                                <div class="content-date">-{{post.created_at | dateToISO | date: 'h:mma'}} </div>
-                                <div class="content-social">
-                                  <div class="comments">Comments {{post.comments}}</div>
-                                  <div class="likes">{{post.likes}}<span class="heart"></span></div>
-                                </div>
+                              </div>
+                              <div class="content-date-container">
+                                <div class="content-date">- {{moment(post.created_at).format('MMMM Do YYYY @ h:mm:ss a')}}</div>
+                              </div>
+                              <div class="content-social">
+                                <div class="comments">Comments {{post.comments}}</div>
+                                <div class="likes">{{post.likes}}<span class="heart"></span></div>
                               </div>
                             </fa-surface>
                           </fa-modifier>

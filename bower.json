@@ -5,6 +5,7 @@
   "dependencies": {
     "underscore": "~1.7.0",
     "famous-angular": "~0.5.2",
-    "angular-ui-router": "~0.2.13"
+    "angular-ui-router": "~0.2.13",
+    "moment": "~2.10.2"
   }
 }

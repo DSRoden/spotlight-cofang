@@ -6,6 +6,7 @@ html(ng-app='spotlight-famous', lang='en')
     meta(name='mobile-web-app-capable', content='yes')
     meta(name='apple-mobile-web-app-capable', content='yes')
     meta(name='apple-mobile-web-app-status-bar-style', content='black')
+    meta(name="format-detection" content="telephone=no")
 
     // shims for backwards compatibility
     script(type='text/javascript', src='http://code.famo.us/lib/functionPrototypeBind.js')
@@ -25,11 +26,16 @@ html(ng-app='spotlight-famous', lang='en')
     script(src='lib/famous-angular/dist/famous-angular.js')
     link(rel='stylesheet', type='text/css', href='http://code.famo.us/famous/0.3/famous.css')
     script(type='text/javascript', src='http://code.famo.us/famous/0.3/famous-global.min.js')
+
+    // moment
+    script(src='lib/moment/min/moment.min.js')
+
     // app code
     link(rel='stylesheet', type='text/css', href='css/app.css')
     link(rel='stylesheet', type='text/css', href='css/home.css')
 
     script(type='text/javascript', src='js/index.js')
+    script(type='text/javascript', src='js/filters.js')
     script(type='text/javascript', src='js/controllers/home-controller.js')
   body
   .container(ui-view)

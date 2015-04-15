@@ -21,21 +21,22 @@ fa-app(ng-controller='HomeCtrl')
                                   fa-surface.relative-image(ng-if="post.image_url" fa-size='[getPageWidth(), 300]')
                                     .image(ng-style="{'background-image':'url({{post.image_url}})', 'height': '285px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to='myEventHandler')
                                     .image-date-container(ng-hide="post.text") 
-                                      .image-date -{{post.created_at | dateToISO | date: 'h:mma'}}
+                                      .image-date -{{moment(post.created_at).format('LT')}}
                                     .image-social(ng-hide="post.text")
                                       .comments Comments {{post.comments}}
                                       .likes {{post.likes}}
                                         span.heart
-                                  fa-surface.relative-text(ng-if="post.text" fa-background-color="white" fa-size='[getPageWidth(), 190]')
+                                  fa-surface.relative-text(ng-if="post.text" fa-background-color="white" fa-size='[getPageWidth(), 200]')
                                     .content(fa-pipe-to='myEventHandler') 
                                       .open-quote
                                       .content-text <strong> {{post.text}} </strong>
                                       .close-quote
-                                      .content-date -{{post.created_at | dateToISO | date: 'h:mma'}}
-                                      .content-social
-                                        .comments Comments {{post.comments}}
-                                        .likes {{post.likes}}
-                                          span.heart
+                                    .content-date-container
+                                      .content-date -{{moment(post.created_at).format('LT')}}
+                                    .content-social
+                                      .comments Comments {{post.comments}}
+                                      .likes {{post.likes}}
+                                        span.heart
                         // footer
                         fa-modifier(fa-translate="boxTransitionableFooter.get()" fa-opacity="opacityTrans" fa-size='[50,50]')
                           fa-image-surface.menu-icon(fa-image-url="img/menu-ellipses-icon.png" ng-click="switchPage(1)")
@@ -60,7 +61,7 @@ fa-app(ng-controller='HomeCtrl')
                                 fa-modifier(fa-size='[getPageWidth(), 100]')
                                   fa-surface.archive-item(fa-background-color='archive.color', fa-pipe-to='archiveScrollEventHandler')
                                    .user-name(ng-click="goToArchivedDay(archive.id)") {{archive.name}}
-                                   .date(ng-click="goToArchivedDay(archive.id)" ng-if="archive.date") {{archive.date | dateToISO | date: 'longDate'}}
+                                   .date(ng-click="goToArchivedDay(archive.id)" ng-if="archive.date") {{moment(archive.date).format('MMMM Do YYYY')}}
 
                         // footer
                         fa-modifier(fa-translate="boxTransitionableFooter2.get()" fa-opacity="opacityTrans2" fa-size='[50,50]')
@@ -88,23 +89,23 @@ fa-app(ng-controller='HomeCtrl')
                                   fa-surface.relative-image(ng-if="post.image_url" fa-size='[getPageWidth(), 300]')
                                     .image(ng-style="{'background-image':'url({{post.image_url}})', 'height': '285px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to='dayScrollEventHandler')
                                     .image-date-container(ng-hide="post.text") 
-                                      .image-date -{{post.created_at | dateToISO | date: 'h:mma'}}
+                                      .image-date -{{moment(post.created_at).format('MMMM Do YYYY @ h:mm:ss a')}}
                                     .image-social(ng-hide="post.text")
                                       .comments Comments {{post.comments}}
                                       .likes {{post.likes}}
                                         span.heart
 
-                                  fa-surface.relative-text(ng-if="post.text" fa-background-color="white" fa-size='[getPageWidth(), 190]')
-                                    .content(fa-pipe-to='dayScrollEventHandler')
+                                  fa-surface.relative-text(ng-if="post.text" fa-background-color="white" fa-size='[getPageWidth(), 200]')
+                                    .content(fa-pipe-to='dayScrollEventHandler') 
                                       .open-quote
                                       .content-text <strong> {{post.text}} </strong>
                                       .close-quote
-                                      .content-date -{{post.created_at | dateToISO | date: 'h:mma'}} 
-                                      .content-social
-                                        .comments Comments {{post.comments}}
-                                        .likes {{post.likes}}
-                                          span.heart
-
+                                    .content-date-container
+                                      .content-date - {{moment(post.created_at).format('MMMM Do YYYY @ h:mm:ss a')}}
+                                    .content-social
+                                      .comments Comments {{post.comments}}
+                                      .likes {{post.likes}}
+                                        span.heart
                         //footer
                         fa-container-surface
                           fa-modifier(fa-translate="boxTransitionableFooter3.get()" fa-opacity="opacityTrans3" fa-size='[50,50]')

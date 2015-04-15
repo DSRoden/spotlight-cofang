@@ -1,3 +1,6 @@
+@commentAndLikesBackground : rgba(131, 175, 155, 0.7);
+@dateBackground : rgba(131, 175, 155, 0.7);
+
 fa-app {
   position: fixed;
   top: 0;
@@ -54,9 +57,6 @@ fa-app {
   padding: 10px;
 }
 
-.top-border {
-  border: 2px solid black;
-}
 
 .relative-image {
   position: relative ! important;
@@ -66,8 +66,7 @@ fa-app {
 
 .relative-text {
   position: relative ! important;
-  background: white ! important;
-  border-top: 2px solid #ECECEC;
+  background: url('../img/slash_it_white.png');
 }
 
 .image-date-container {
@@ -75,7 +74,7 @@ fa-app {
   bottom: 35px;
   left: 0;
   right: 0;
-  background: rgba(255, 255, 255, 0.4);
+  background: @dateBackground;
 }
 
 .image-date {
@@ -93,7 +92,7 @@ fa-app {
   right: 0;
   height: 35px;
   color: white;
-  background: rgba(255, 255, 255, 0.4);
+  background: @commentAndLikesBackground;
 }
 
 
@@ -135,19 +134,30 @@ fa-app {
   background-position: center;
 }
 
+.content-date-container {
+  position: absolute;
+  bottom: 35px;
+  left: 0;
+  right: 0;
+  background: @dateBackground;
+}
+
 .content-date {
+  padding: 3px;
   margin-left: 15px;
   font-size: 14px;
+  color: white;
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
 }
 
 .content-social {
-  background: white;
-  width: 100%;
-  height: 100%;
   position: absolute;
+  bottom: 0;
   left: 0;
   right: 0;
+  height: 35px;
+  color: white;
+  background: @commentAndLikesBackground;
 }
 
 .comments {
@@ -160,6 +170,22 @@ fa-app {
 }
 
 .likes {
+  position: absolute;
+  right: 40px;
+  top: 10px;
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+.comments-text {
+  position: absolute;
+  left: 10px;
+  top: 4px;
+  text-decoration: underline;
+  padding: 5px;
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+.likes-text {
   position: absolute;
   right: 40px;
   top: 10px;
