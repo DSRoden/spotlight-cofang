@@ -59,7 +59,7 @@ fa-app {
   bottom: 35px;
   left: 0;
   right: 0;
-  background: rgba(131, 175, 155, 0.7);
+  background: rgba(7, 216, 245, 0.7);
 }
 .image-date {
   padding: 3px;
@@ -75,7 +75,7 @@ fa-app {
   right: 0;
   height: 35px;
   color: white;
-  background: rgba(131, 175, 155, 0.7);
+  background: rgba(38, 199, 228, 0.7);
 }
 .content {
   position: relative;
@@ -116,7 +116,7 @@ fa-app {
   bottom: 35px;
   left: 0;
   right: 0;
-  background: rgba(131, 175, 155, 0.7);
+  background: rgba(7, 216, 245, 0.7);
 }
 .content-date {
   padding: 3px;
@@ -132,7 +132,7 @@ fa-app {
   right: 0;
   height: 35px;
   color: white;
-  background: rgba(131, 175, 155, 0.7);
+  background: rgba(38, 199, 228, 0.7);
 }
 .comments {
   position: absolute;
