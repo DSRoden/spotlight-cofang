@@ -346,7 +346,7 @@
     };
 
     $scope.closePostBox = function(){
-      $scope.boxTransitionableSpotlightPost.set([0, windowInnerHeight, 0], {duration: 300, curve: Easing.easeIn});
+      $scope.boxTransitionableSpotlightPost.set([windowMiddleWidth, windowInnerHeight, -20], {duration: 300, curve: Easing.easeIn});
       $scope.postboxSize.set([0,0], {duration: 300, curve: Easing.easeIn});
       $scope.postboxTransparency.set([0], {duration: 300});
     };

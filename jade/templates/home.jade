@@ -55,7 +55,7 @@ fa-app(ng-controller='HomeCtrl')
                   textarea.post-textarea(ng-model="post.message")
                   button.camera-button cam
                   button.make-post post
-                  button.cancel-post cancel
+                  button.cancel-post(ng-click="closePostbox()") cancel
 
 
 
