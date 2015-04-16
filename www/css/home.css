@@ -32,15 +32,9 @@ fa-app {
   left: 15px;
   bottom: 15px;
 }
-.text-post {
+.post-button {
   position: relative;
-  float: left;
-  left: 15px;
-  bottom: 15px;
-}
-.camera-post {
-  position: relative;
-  bottom: 15px;
+  bottom: 40px;
 }
 .menu-icon2 {
   right: 15px;
@@ -194,4 +188,52 @@ fa-app {
 .spotlight-avatar {
   left: 25%;
   padding: 5px;
+}
+.sliding-in-view {
+  z-index: 99999999999999;
+}
+.post-box-background {
+  background: url('../img/slash_it.png');
+  padding: 10%;
+}
+.camera-area {
+  position: absolute;
+  left: 35%;
+  width: 100px;
+  height: 50px;
+}
+.post-textarea {
+  position: absolute;
+  top: 30%;
+  background-color: white;
+  width: 80%;
+  height: 30%;
+  z-index: 9999999999999999;
+}
+.camera-button {
+  background: blue;
+  /* z-index: 999999999999999999999; */
+  width: 27%;
+  height: 50px;
+  position: absolute;
+  left: 10%;
+  top: 70%;
+}
+.make-post {
+  background: blue;
+  /* z-index: 999999999999999999999; */
+  width: 28%;
+  height: 50px;
+  position: absolute;
+  top: 70%;
+  left: 37%;
+}
+.cancel-post {
+  background: blue;
+  /* z-index: 999999999999999999999; */
+  width: 27%;
+  height: 50px;
+  position: absolute;
+  top: 70%;
+  left: 65%;
 }

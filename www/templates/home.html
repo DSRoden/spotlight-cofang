@@ -55,16 +55,27 @@
                 <!-- footer-->
                 <fa-modifier fa-translate="boxTransitionableFooter.get()" fa-opacity="opacityTrans">
                   <fa-image-surface fa-size="[50,50]" fa-image-url="img/menu-ellipses-icon.png" ng-click="switchPage(1)" class="menu-icon"></fa-image-surface>
-                  <fa-image-surface ng-if="userIsInTheSpotlight" fa-size="[50,50]" fa-image-url="img/menu-ellipses-icon.png" class="text-post"></fa-image-surface>
                   <fa-surface class="center-content">
                     <fa-app>
-                      <fa-image-surface ng-if="userIsInTheSpotlight" fa-size="[50,50]" fa-image-url="img/menu-ellipses-icon.png" class="camera-post"></fa-image-surface>
+                      <fa-image-surface ng-if="userIsInTheSpotlight" fa-size="[70,70]" fa-image-url="img/menu-ellipses-icon.png" ng-click="openPostBox()" class="post-button"></fa-image-surface>
                     </fa-app>
                   </fa-surface>
                 </fa-modifier>
               </fa-header-footer-layout>
             </fa-modifier>
           </fa-view>
+        </fa-app>
+        <!--spotllight post surface-->
+        <fa-app class="sliding-in-view">
+          <fa-modifier fa-translate="boxTransitionableSpotlightPost.get()" fa-opacity="postboxTransparency" fa-size="postboxSize.get()">
+            <fa-surface class="post-box-background">
+              <button class="camera-area">camera</button>
+              <textarea ng-model="post.message" class="post-textarea"></textarea>
+              <button class="camera-button">cam</button>
+              <button class="make-post">post</button>
+              <button class="cancel-post">cancel</button>
+            </fa-surface>
+          </fa-modifier>
         </fa-app>
       </fa-surface>
     </fa-view>

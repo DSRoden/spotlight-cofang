@@ -6,6 +6,9 @@
 
   angular.module('spotlight-famous')
   .controller('HomeCtrl', ['$scope', '$timeout', '$location', '$famous', '$timeline', function($scope, $timeout, $location, $famous, $timeline){
+    //initialize message
+    $scope.post = {};
+
     //enable moment
     $scope.moment = moment;
 
@@ -30,6 +33,13 @@
     $scope.boxTransitionableHeader3 = new Transitionable([0, 0, 0]);
     $scope.boxTransitionableFooter3 = new Transitionable([0, 0, 0]);
     $scope.opacityTrans3 = new Transitionable(1);
+      //spotlight post box
+    var windowInnerHeight = window.innerHeight,
+     windowMiddleWidth = window.innerWidth/2;
+    $scope.boxTransitionableSpotlightPost = new Transitionable([windowMiddleWidth, windowInnerHeight, -20]);
+    $scope.postboxSize = new Transitionable([0,0]);
+    $scope.postboxTransparency = new Transitionable(0);
+
 
     //example for fa-grid-layout
     $scope.myGridLayoutOptions = {
@@ -325,6 +335,22 @@
       $scope.switchPage(2);
 
     };
+
+      //open post box animation
+    $scope.openPostBox = function(){
+      var pageWidth = $scope.getPageWidth(),
+       pageHeight = $scope.getPageHeight();
+      $scope.boxTransitionableSpotlightPost.set([0, 50, 0], {duration: 300, curve: Easing.easeIn});
+      $scope.postboxSize.set([pageWidth, pageHeight], {duration: 300, curve: Easing.easeIn});
+      $scope.postboxTransparency.set([1], {duration: 300});
+    };
+
+    $scope.closePostBox = function(){
+      $scope.boxTransitionableSpotlightPost.set([0, windowInnerHeight, 0], {duration: 300, curve: Easing.easeIn});
+      $scope.postboxSize.set([0,0], {duration: 300, curve: Easing.easeIn});
+      $scope.postboxTransparency.set([0], {duration: 300});
+    };
+
 
   }]);
 })();

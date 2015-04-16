@@ -43,11 +43,22 @@ fa-app(ng-controller='HomeCtrl')
                         // footer
                         fa-modifier(fa-translate="boxTransitionableFooter.get()" fa-opacity="opacityTrans")
                           fa-image-surface.menu-icon(fa-size='[50,50]' fa-image-url="img/menu-ellipses-icon.png" ng-click="switchPage(1)")
-                          fa-image-surface.text-post(ng-if="userIsInTheSpotlight" fa-size='[50,50]' fa-image-url="img/menu-ellipses-icon.png")
                           fa-surface.center-content
                             fa-app
-                              fa-image-surface.camera-post(ng-if="userIsInTheSpotlight" fa-size='[50,50]' fa-image-url="img/menu-ellipses-icon.png")
-                          
+                              fa-image-surface.post-button(ng-if="userIsInTheSpotlight" fa-size='[70,70]' fa-image-url="img/menu-ellipses-icon.png" ng-click="openPostBox()")
+            
+            //spotllight post surface
+            fa-app.sliding-in-view
+              fa-modifier(fa-translate="boxTransitionableSpotlightPost.get()" fa-opacity="postboxTransparency" fa-size="postboxSize.get()")
+                fa-surface.post-box-background
+                  button.camera-area camera
+                  textarea.post-textarea(ng-model="post.message")
+                  button.camera-button cam
+                  button.make-post post
+                  button.cancel-post cancel
+
+
+
         // this is the Main Archive View
         fa-view(fa-index='1')
           fa-modifier(fa-size='[getPageWidth(), getPageHeight()]')
@@ -116,6 +127,10 @@ fa-app(ng-controller='HomeCtrl')
                         fa-container-surface
                           fa-modifier(fa-translate="boxTransitionableFooter3.get()" fa-opacity="opacityTrans3" fa-size='[50,50]')
                             fa-image-surface.spotlight-icon2(fa-image-url="img/menu-ellipses-icon.png" ng-click="switchPage(1)")
+
+
+
+  
 
 
         
