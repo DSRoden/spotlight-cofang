@@ -10,7 +10,10 @@ fa-app(ng-controller='HomeCtrl')
                     fa-header-footer-layout(fa-options='{headerSize: 50, footerSize: 50}')
                         // header
                         fa-modifier(fa-translate="boxTransitionableHeader.get()" fa-opacity="opacityTrans")
-                          fa-surface.absolute(fa-background-color="'black'") Header
+                          fa-surface.absolute(fa-background-color="'black'")
+                            fa-app
+                              fa-image-surface.spotlight-avatar(fa-size='[50,50]' fa-image-url="img/menu-ellipses-icon.png")
+                              fa-surface.spotlight-name Lilly Bloomings 
 
                         // content
                         fa-surface(fa-background-color="'gray'") 
@@ -38,9 +41,12 @@ fa-app(ng-controller='HomeCtrl')
                                       .likes {{post.likes}}
                                         span.heart
                         // footer
-                        fa-modifier(fa-translate="boxTransitionableFooter.get()" fa-opacity="opacityTrans" fa-size='[50,50]')
-                          fa-image-surface.menu-icon(fa-image-url="img/menu-ellipses-icon.png" ng-click="switchPage(1)")
-
+                        fa-modifier(fa-translate="boxTransitionableFooter.get()" fa-opacity="opacityTrans")
+                          fa-image-surface.menu-icon(fa-size='[50,50]' fa-image-url="img/menu-ellipses-icon.png" ng-click="switchPage(1)")
+                          fa-image-surface.text-post(ng-if="userIsInTheSpotlight" fa-size='[50,50]' fa-image-url="img/menu-ellipses-icon.png")
+                          fa-surface.center-content
+                            fa-app
+                              fa-image-surface.camera-post(ng-if="userIsInTheSpotlight" fa-size='[50,50]' fa-image-url="img/menu-ellipses-icon.png")
                           
         // this is the Main Archive View
         fa-view(fa-index='1')

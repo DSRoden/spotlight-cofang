@@ -10,7 +10,12 @@
               <fa-header-footer-layout fa-options="{headerSize: 50, footerSize: 50}">
                 <!-- header-->
                 <fa-modifier fa-translate="boxTransitionableHeader.get()" fa-opacity="opacityTrans">
-                  <fa-surface fa-background-color="'black'" class="absolute">Header</fa-surface>
+                  <fa-surface fa-background-color="'black'" class="absolute">
+                    <fa-app>
+                      <fa-image-surface fa-size="[50,50]" fa-image-url="img/menu-ellipses-icon.png" class="spotlight-avatar"></fa-image-surface>
+                      <fa-surface class="spotlight-name">Lilly Bloomings </fa-surface>
+                    </fa-app>
+                  </fa-surface>
                 </fa-modifier>
                 <!-- content-->
                 <fa-surface fa-background-color="'gray'"> 
@@ -48,8 +53,14 @@
                   </fa-app>
                 </fa-surface>
                 <!-- footer-->
-                <fa-modifier fa-translate="boxTransitionableFooter.get()" fa-opacity="opacityTrans" fa-size="[50,50]">
-                  <fa-image-surface fa-image-url="img/menu-ellipses-icon.png" ng-click="switchPage(1)" class="menu-icon"></fa-image-surface>
+                <fa-modifier fa-translate="boxTransitionableFooter.get()" fa-opacity="opacityTrans">
+                  <fa-image-surface fa-size="[50,50]" fa-image-url="img/menu-ellipses-icon.png" ng-click="switchPage(1)" class="menu-icon"></fa-image-surface>
+                  <fa-image-surface ng-if="userIsInTheSpotlight" fa-size="[50,50]" fa-image-url="img/menu-ellipses-icon.png" class="text-post"></fa-image-surface>
+                  <fa-surface class="center-content">
+                    <fa-app>
+                      <fa-image-surface ng-if="userIsInTheSpotlight" fa-size="[50,50]" fa-image-url="img/menu-ellipses-icon.png" class="camera-post"></fa-image-surface>
+                    </fa-app>
+                  </fa-surface>
                 </fa-modifier>
               </fa-header-footer-layout>
             </fa-modifier>

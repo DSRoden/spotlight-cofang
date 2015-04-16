@@ -9,6 +9,9 @@
     //enable moment
     $scope.moment = moment;
 
+    //checking if user is in the spotlight
+    $scope.userIsInTheSpotlight = true;
+
     //animations and eventhandler inits
     var Transitionable = $famous['famous/transitions/Transitionable'],
         Easing = $famous['famous/transitions/Easing'],
