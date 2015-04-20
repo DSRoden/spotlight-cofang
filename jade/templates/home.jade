@@ -32,7 +32,7 @@ fa-app(ng-controller='HomeCtrl')
                                   fa-surface.relative-text(ng-if="post.text" fa-background-color="white" fa-size='[getPageWidth(), 200]')
                                     .content(fa-pipe-to='myEventHandler') 
                                       .open-quote
-                                      .content-text <strong> {{post.text}} </strong>
+                                      .content-text {{post.text}}
                                       .close-quote
                                     .content-date-container
                                       .content-date -{{moment(post.created_at).format('LT')}}
@@ -51,11 +51,20 @@ fa-app(ng-controller='HomeCtrl')
             fa-app.sliding-in-view
               fa-modifier(fa-translate="boxTransitionableSpotlightPost.get()" fa-opacity="postboxTransparency" fa-size="postboxSize.get()")
                 fa-surface.post-box-background
-                  textarea(ng-model="post.message" ng-style="{'width' : '100%', 'height': '{{textareaHeight()}}', 'border' : 'none', 'border-radius' : '10px', 'background': 'rgb(234, 233, 233)'}")
+                  textarea(ng-model="post.message"  placeholder="Share something with the world. What's on your mind, what's for breakfast, where are you?" ng-style="{'width' : '100%', 'height': '{{textareaHeight()}}', 'border' : 'none', 'border-radius' : '10px', 'background': 'rgb(234, 233, 233)'}")
                   .new-image-area(ng-style="{'background-image':'url({{addImageUrl}})', 'height': '{{addImageHeight()}}',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center', 'margin-top' : '10px'}")
                   fa-app
-                    fa-image-surface.make-post(ng-if="userIsInTheSpotlight" fa-size='[70,70]' fa-image-url="img/menu-ellipses-icon.png" ng-click="openPostBox()")
+                    fa-image-surface.make-post(ng-if="userIsInTheSpotlight" fa-size='[70,70]' fa-image-url="img/menu-ellipses-icon.png")
+                  fa-app
+                    fa-image-surface.open-camera(ng-if="userIsInTheSpotlight" fa-size='[50, 50]' fa-image-url="img/menu-ellipses-icon.png")
+                  fa-app
+                    fa-image-surface.open-albums(ng-if="userIsInTheSpotlight" fa-size='[45,45]' fa-image-url="img/menu-ellipses-icon.png")
+                  fa-app
+                    fa-image-surface.spotlight-help(ng-if="userIsInTheSpotlight" fa-size='[50,50]' fa-image-url="img/menu-ellipses-icon.png")
+                  fa-app
+                    fa-image-surface.close-post-box(ng-if="userIsInTheSpotlight" fa-size='[45,45]' fa-image-url="img/menu-ellipses-icon.png" ng-click="closePostbox()")
           
+
 
 
 
@@ -115,7 +124,7 @@ fa-app(ng-controller='HomeCtrl')
                                   fa-surface.relative-text(ng-if="post.text" fa-background-color="white" fa-size='[getPageWidth(), 200]')
                                     .content(fa-pipe-to='dayScrollEventHandler') 
                                       .open-quote
-                                      .content-text <strong> {{post.text}} </strong>
+                                      .content-text {{post.text}}
                                       .close-quote
                                     .content-date-container
                                       .content-date - {{moment(post.created_at).format('MMMM Do YYYY @ h:mm:ss a')}}

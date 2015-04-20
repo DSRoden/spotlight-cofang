@@ -55,7 +55,7 @@ fa-app {
 }
 .relative-image {
   position: relative ! important;
-  background: url('../img/slash_it.png');
+  background: url('../img/slash_it_white.png');
   padding: 7px;
 }
 .relative-text {
@@ -99,6 +99,7 @@ fa-app {
   background: url('../img/openQuote.png');
   background-size: contain;
   background-position: center;
+  opacity: 0.4;
 }
 .content-text {
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
@@ -118,6 +119,7 @@ fa-app {
   background: url('../img/closeQuote.png');
   background-size: contain;
   background-position: center;
+  opacity: 0.4;
 }
 .content-date-container {
   position: absolute;
@@ -215,6 +217,26 @@ fa-app {
 .make-post {
   left: 40%;
   bottom: 70px;
+  z-index: 99999999999999999999999999999;
+}
+.open-camera {
+  left: 22%;
+  bottom: 95px;
+  z-index: 99999999999999999999999999999;
+}
+.open-albums {
+  left: 7%;
+  bottom: 97px;
+  z-index: 99999999999999999999999999999;
+}
+.spotlight-help {
+  left: 64%;
+  bottom: 95px;
+  z-index: 99999999999999999999999999999;
+}
+.close-post-box {
+  left: 81%;
+  bottom: 97px;
   z-index: 99999999999999999999999999999;
 }
 .cancel-post {
