@@ -63,6 +63,7 @@ fa-app(ng-controller='HomeCtrl')
                     fa-image-surface.open-albums(ng-if="userIsInTheSpotlight" fa-size='[45,45]' fa-image-url="img/menu-ellipses-icon.png")
                     fa-image-surface.spotlight-help(ng-if="userIsInTheSpotlight" fa-size='[50,50]' fa-image-url="img/menu-ellipses-icon.png" ng-click="showAccount()")
                     fa-image-surface.close-post-box(ng-if="userIsInTheSpotlight" fa-size='[45,45]' fa-image-url="img/menu-ellipses-icon.png" ng-click="closePostbox()")       
+            
             //- spotlight account 
             fa-app.top-slide-in-view
               fa-modifier(fa-translate="boxTransitionableSpotlightAccount.get()" fa-opacity="accountBoxTransparency" fa-size="accountBoxSize.get()")
