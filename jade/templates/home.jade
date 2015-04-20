@@ -1,21 +1,21 @@
 fa-app(ng-controller='HomeCtrl')
     fa-scroll-view#home(fa-pipe-from='eventHandler', fa-options='options.scrollViewTwo', fa-start-index='1')
 
-        // this is the Spotlight View         
+        //- this is the Spotlight View         
         fa-view(fa-index='0', fa-options='options.scrollViewOne')
           fa-surface(fa-pipe-to='eventHandler')
             fa-app(onScroll="scrolling()")
                 fa-view
                   fa-modifier(fa-size='[getPageWidth(), getPageHeight()]')
                     fa-header-footer-layout(fa-options='{headerSize: 50, footerSize: 50}')
-                        // header
+                        //- header
                         fa-modifier(fa-translate="boxTransitionableHeader.get()" fa-opacity="opacityTrans")
                           fa-surface.absolute(fa-background-color="'black'")
                             fa-app
                               fa-image-surface.spotlight-avatar(fa-size='[50,50]' fa-image-url="img/menu-ellipses-icon.png")
                               fa-surface.spotlight-name Lilly Bloomings 
 
-                        // content
+                        //- content
                         fa-surface(fa-background-color="'gray'") 
                           fa-app(ng-controller='HomeCtrl')
                             fa-scroll-view#main-scrollview(fa-pipe-from='myEventHandler' fa-options='options.container')
@@ -45,30 +45,29 @@ fa-app(ng-controller='HomeCtrl')
                           fa-image-surface.menu-icon(fa-size='[50,50]' fa-image-url="img/menu-ellipses-icon.png" ng-click="switchPage(1)")
                           fa-surface.center-content
                             fa-app.highest-z-index
-                              fa-image-surface.post-button(ng-if="userIsInTheSpotlight" fa-size='[70,70]' fa-image-url="img/menu-ellipses-icon.png" ng-click="openPostBox()")
+                              fa-image-surface.show-post-button(ng-if="userIsInTheSpotlight" fa-size='[70,70]' fa-image-url="img/menu-ellipses-icon.png" ng-click="openPostBox()")
             
-            //spotllight post surface
+            //- spotllight post surface
             fa-app.sliding-in-view
               fa-modifier(fa-translate="boxTransitionableSpotlightPost.get()" fa-opacity="postboxTransparency" fa-size="postboxSize.get()")
                 fa-surface.post-box-background
-                  textarea(ng-model="post.message"  placeholder="Share something with the world. What's on your mind, what's for breakfast, where are you?" ng-style="{'width' : '100%', 'height': '{{textareaHeight()}}', 'border' : 'none', 'border-radius' : '10px', 'background': 'rgb(234, 233, 233)'}")
+                  textarea(ng-model="post.message"  placeholder="  Share something with the world." ng-style="{'width' : '100%', 'height': '{{textareaHeight()}}', 'border' : 'none', 'border-radius' : '10px', 'background': 'rgb(234, 233, 233)'}")
                   .new-image-area(ng-style="{'background-image':'url({{addImageUrl}})', 'height': '{{addImageHeight()}}',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center', 'margin-top' : '10px'}")
                   fa-app
                     fa-image-surface.make-post(ng-if="userIsInTheSpotlight" fa-size='[70,70]' fa-image-url="img/menu-ellipses-icon.png")
-                  fa-app
                     fa-image-surface.open-camera(ng-if="userIsInTheSpotlight" fa-size='[50, 50]' fa-image-url="img/menu-ellipses-icon.png")
-                  fa-app
                     fa-image-surface.open-albums(ng-if="userIsInTheSpotlight" fa-size='[45,45]' fa-image-url="img/menu-ellipses-icon.png")
-                  fa-app
-                    fa-image-surface.spotlight-help(ng-if="userIsInTheSpotlight" fa-size='[50,50]' fa-image-url="img/menu-ellipses-icon.png")
-                  fa-app
+                    fa-image-surface.spotlight-help(ng-if="userIsInTheSpotlight" fa-size='[50,50]' fa-image-url="img/menu-ellipses-icon.png" ng-click="showAccount()")
                     fa-image-surface.close-post-box(ng-if="userIsInTheSpotlight" fa-size='[45,45]' fa-image-url="img/menu-ellipses-icon.png" ng-click="closePostbox()")
-          
+            
+            //- spotlight account 
+            fa-app.top-slide-in-view
+              fa-modifier(fa-translate="boxTransitionableSpotlightAccount.get()" fa-opacity="accountBoxTransparency" fa-size="accountBoxSize.get()")
+                fa-surface.account-box-background
 
 
 
-
-        // this is the Main Archive View
+        //- this is the Main Archive View
         fa-view(fa-index='1')
           fa-modifier(fa-size='[getPageWidth(), getPageHeight()]')
             fa-surface(fa-pipe-to='eventHandler')

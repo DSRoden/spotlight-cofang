@@ -25,6 +25,12 @@
       return textareaHeight + 'px';
     };
 
+    // flipping to help screen
+     $scope.flipIt = function(){
+      console.log('trying to flip');
+       $famous.find('fa-flipper')[0].flip();
+    };
+
     //checking if user is in the spotlight
     $scope.userIsInTheSpotlight = true;
 
@@ -48,12 +54,16 @@
     $scope.opacityTrans3 = new Transitionable(1);
       //spotlight post box
     var windowInnerHeight = window.innerHeight,
-     // windowMiddleWidth = window.innerWidth/2,
-     negativeWindowWidth = -window.innerWidth;
-
-    $scope.boxTransitionableSpotlightPost = new Transitionable([negativeWindowWidth, windowInnerHeight, -20]);
-    $scope.postboxSize = new Transitionable([0,0]);
+    // windowMiddleWidth = window.innerWidth/2,
+    //negativeWindowWidth = -window.innerWidth,
+    windowWidth = window.innerWidth;
+    $scope.boxTransitionableSpotlightPost = new Transitionable([0, windowInnerHeight, 0]);
+    $scope.postboxSize = new Transitionable([windowWidth,windowInnerHeight]);
     $scope.postboxTransparency = new Transitionable(0);
+      //spotlight account box
+    $scope.boxTransitionableSpotlightAccount = new Transitionable([0, -(windowInnerHeight), 0]);
+    $scope.accountBoxSize = new Transitionable([windowWidth, windowInnerHeight]);
+    $scope.accountBoxTransparency = new Transitionable(0);
 
 
     //example for fa-grid-layout
@@ -365,9 +375,18 @@
     };
 
     $scope.closePostbox = function(){
-      $scope.boxTransitionableSpotlightPost.set([negativeWindowWidth, windowInnerHeight, -20], {duration: 300, curve: Easing.easeIn});
-      $scope.postboxSize.set([0,0], {duration: 300, curve: Easing.easeIn});
+      $scope.boxTransitionableSpotlightPost.set([0, windowInnerHeight, 0], {duration: 300, curve: Easing.easeOut});
+      $scope.postboxSize.set([windowWidth,windowInnerHeight], {duration: 300, curve: Easing.easeOut});
       $scope.postboxTransparency.set([0], {duration: 300});
+    };
+
+    $scope.showAccount = function(){
+      console.log('show account');
+      var pageWidth = $scope.getPageWidth(),
+       pageHeight = $scope.getPageHeight();
+      $scope.boxTransitionableSpotlightAccount.set([0, 0, 0], {duration: 300, curve: Easing.easeIn});
+      $scope.accountBoxSize.set([pageWidth, pageHeight], {duration: 300, curve: Easing.easeIn});
+      $scope.accountBoxTransparency.set([1], {duration: 300});
     };
 
 
