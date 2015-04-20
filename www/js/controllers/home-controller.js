@@ -12,6 +12,19 @@
     //enable moment
     $scope.moment = moment;
 
+    //add Image url
+    $scope.addImageUrl = 'http://fillmurray.com/200/400';
+    $scope.addImageHeight = function(){
+      var imageHeight = window.innerHeight/4;
+      return imageHeight + 'px';
+    };
+
+    // textarea height
+    $scope.textareaHeight = function(){
+      var textareaHeight = window.innerHeight/3;
+      return textareaHeight + 'px';
+    };
+
     //checking if user is in the spotlight
     $scope.userIsInTheSpotlight = true;
 
@@ -35,24 +48,30 @@
     $scope.opacityTrans3 = new Transitionable(1);
       //spotlight post box
     var windowInnerHeight = window.innerHeight,
-     windowMiddleWidth = window.innerWidth/2;
-    $scope.boxTransitionableSpotlightPost = new Transitionable([windowMiddleWidth, windowInnerHeight, -20]);
+     // windowMiddleWidth = window.innerWidth/2,
+     negativeWindowWidth = -window.innerWidth;
+
+    $scope.boxTransitionableSpotlightPost = new Transitionable([negativeWindowWidth, windowInnerHeight, -20]);
     $scope.postboxSize = new Transitionable([0,0]);
     $scope.postboxTransparency = new Transitionable(0);
 
 
     //example for fa-grid-layout
-    $scope.myGridLayoutOptions = {
-       dimensions: [1,1] // specifies number of columns and rows
-    };
 
-    $scope.grids = [{
-                      content: 'Hello',
-                      bgColor: 'rgb(240, 238, 233)'
-                    },
-                    {
-                      bgColor: 'rgb(240, 238, 233)'
-                    }];
+    $scope.myGridLayoutOptions = {
+       dimensions: [2,2] // specifies number of columns and rows
+    };
+    // $scope.myGridLayoutOptions = {
+    //    dimensions: [1,1] // specifies number of columns and rows
+    // };
+
+    // $scope.grids = [{
+    //                   content: 'Hello',
+    //                   bgColor: 'rgb(240, 238, 233)'
+    //                 },
+    //                 {
+    //                   bgColor: 'rgb(240, 238, 233)'
+    //                 }];
 
     //example arrays for views
     $scope.posts = [
@@ -345,8 +364,8 @@
       $scope.postboxTransparency.set([1], {duration: 300});
     };
 
-    $scope.closePostBox = function(){
-      $scope.boxTransitionableSpotlightPost.set([windowMiddleWidth, windowInnerHeight, -20], {duration: 300, curve: Easing.easeIn});
+    $scope.closePostbox = function(){
+      $scope.boxTransitionableSpotlightPost.set([negativeWindowWidth, windowInnerHeight, -20], {duration: 300, curve: Easing.easeIn});
       $scope.postboxSize.set([0,0], {duration: 300, curve: Easing.easeIn});
       $scope.postboxTransparency.set([0], {duration: 300});
     };
