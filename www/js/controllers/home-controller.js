@@ -61,7 +61,7 @@
     $scope.postboxSize = new Transitionable([windowWidth,windowInnerHeight]);
     $scope.postboxTransparency = new Transitionable(0);
       //spotlight account box
-    $scope.boxTransitionableSpotlightAccount = new Transitionable([0, -(windowInnerHeight), 0]);
+    $scope.boxTransitionableSpotlightAccount = new Transitionable([0, windowInnerHeight, 0]);
     $scope.accountBoxSize = new Transitionable([windowWidth, windowInnerHeight]);
     $scope.accountBoxTransparency = new Transitionable(0);
 
@@ -384,7 +384,7 @@
       console.log('show account');
       var pageWidth = $scope.getPageWidth(),
        pageHeight = $scope.getPageHeight();
-      $scope.boxTransitionableSpotlightAccount.set([0, 0, 0], {duration: 300, curve: Easing.easeIn});
+      $scope.boxTransitionableSpotlightAccount.set([0, 50, 0], {duration: 300, curve: Easing.easeIn});
       $scope.accountBoxSize.set([pageWidth, pageHeight], {duration: 300, curve: Easing.easeIn});
       $scope.accountBoxTransparency.set([1], {duration: 300});
     };

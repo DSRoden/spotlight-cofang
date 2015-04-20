@@ -210,7 +210,7 @@ fa-app {
   background-color: white;
   width: 100%;
   height: 150px;
-  z-index: 9999999999999999;
+  z-index: 9999999999999999999999999999999999999;
 }
 .camera-button {
   background: blue;
@@ -247,5 +247,9 @@ fa-app {
   z-index: 99999999999999999999999999999;
 }
 .heighest-z-index {
-  z-index: 999999999999999999999999999999999999;
+  z-index: 99999999999999999999999999999999999999999999;
+}
+.textbox-and-image-container {
+  margin-top: -30px ! important;
+  padding: 10px ! important;
 }
