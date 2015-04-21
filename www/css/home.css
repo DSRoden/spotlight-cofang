@@ -226,6 +226,9 @@ fa-app {
 .top-slide-in-view {
   z-index: 999999999999999999999999999999999;
 }
+.winner-info-background {
+  background: url('../img/slash_it_white.png');
+}
 .post-box-background {
   background: url('../img/slash_it_white.png');
   padding: 10%;

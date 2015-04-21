@@ -10,8 +10,8 @@
                 <fa-modifier fa-translate="boxTransitionableHeader.get()" fa-opacity="opacityTrans">
                   <fa-surface fa-background-color="'black'" class="absolute">
                     <fa-app>
-                      <fa-image-surface fa-size="[50,50]" fa-image-url="img/avatar_icon.png" class="spotlight-avatar"></fa-image-surface>
-                      <fa-surface class="spotlight-name">Lilly Bloomings </fa-surface>
+                      <fa-image-surface fa-size="[50,50]" fa-image-url="img/avatar_icon2.png" ng-click="showWinnerInfo()" class="spotlight-avatar"></fa-image-surface>
+                      <fa-surface ng-click="showWinnerInfo()" class="spotlight-name">Lilly Bloomings </fa-surface>
                       <fa-surface class="twitter">t</fa-surface>
                       <fa-surface class="facebook">f</fa-surface>
                     </fa-app>
@@ -86,7 +86,6 @@
         <fa-app class="top-slide-in-view">
           <fa-modifier fa-translate="boxTransitionableSpotlightAccount.get()" fa-opacity="accountBoxTransparency" fa-size="accountBoxSize.get()">
             <fa-surface class="account-box-background">
-              <!-- bio, avatar, links to facebook and twitter log out-->
               <div ng-style="{'position' : 'relative', 'height' : '80px', 'margin-top' : '-20px'}" class="avatar-container">
                 <div ng-style="{'position' : 'absolute', 'left' : '10%', 'height' : '70px', 'width' : '70px', 'background' : 'url({{avatar}})', 'background-size' : 'contain', 'background-repeat' : 'no-repeat', 'background-color' : 'black', 'border-radius': '100%', 'background-position' : 'center', 'background-size' : 'cover'}" class="avatar-choice"></div>
                 <div ng-style="{'position' : 'absolute', 'top' : '20px', 'left' : '50%',  'height' : '30px', 'width' : '100px', 'border' : '2px solid black', 'text-align' : 'center', 'line-height' : '30px', 'border-radius' : '10px'}" class="change-avatar"> Replace</div>
@@ -102,6 +101,11 @@
                 <div ng-style="{'position' : 'absolute', 'width' : '44%', 'height' : '50px', 'text-align' : 'center', 'line-height' : '50px', 'border' : '2px solid black', 'left' : '55%', 'border-radius' : '10px'}" class="save-account">SAVE</div>
               </div>
             </fa-surface>
+          </fa-modifier>
+        </fa-app>
+        <fa-app class="top-slide-in-view">
+          <fa-modifier fa-translate="boxTransitionableWinnerInfo.get()" fa-opacity="winnerInfoBoxTransparency" fa-size="winnerInfoBoxSize.get()">
+            <fa-surface class="winner-info-background"></fa-surface>
           </fa-modifier>
         </fa-app>
       </fa-surface>

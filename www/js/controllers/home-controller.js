@@ -74,7 +74,7 @@
       //spotlight post box
     var windowInnerHeight = window.innerHeight,
     // windowMiddleWidth = window.innerWidth/2,
-    //negativeWindowWidth = -window.innerWidth,
+    // negativeWindowWidth = -window.innerWidth,
     windowWidth = window.innerWidth;
     $scope.boxTransitionableSpotlightPost = new Transitionable([0, windowInnerHeight, 0]);
     $scope.postboxSize = new Transitionable([windowWidth,windowInnerHeight]);
@@ -83,6 +83,11 @@
     $scope.boxTransitionableSpotlightAccount = new Transitionable([0, windowInnerHeight, 0]);
     $scope.accountBoxSize = new Transitionable([windowWidth, windowInnerHeight]);
     $scope.accountBoxTransparency = new Transitionable(0);
+      //winner info box
+    $scope.boxTransitionableWinnerInfo = new Transitionable([0, windowInnerHeight, 0]);
+    $scope.winnerInfoBoxSize = new Transitionable([windowWidth, windowInnerHeight]);
+    $scope.winnerInfoBoxTransparency = new Transitionable(1);
+
 
 
     //example for fa-grid-layout
@@ -411,6 +416,14 @@
       $scope.boxTransitionableSpotlightAccount.set([0, windowInnerHeight, 0], {duration: 300, curve: Easing.easeIn});
       $scope.accountBoxSize.set([windowWidth,windowInnerHeight], {duration: 300, curve: Easing.easeIn});
       $scope.accountBoxTransparency.set([0], {duration: 300});
+    };
+
+    $scope.showWinnerInfo = function(){
+       var pageWidth = $scope.getPageWidth(),
+       pageHeight = $scope.getPageHeight();
+      $scope.boxTransitionableWinnerInfo.set([0, 50, 0], {duration: 300, curve: Easing.easeIn});
+      $scope.winnerInfoBoxSize.set([pageWidth, pageHeight], {duration: 300, curve: Easing.easeIn});
+      $scope.winnerInfoBoxTransparency.set([1], {duration: 300});
     };
 
 
