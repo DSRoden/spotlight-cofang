@@ -90,7 +90,7 @@ fa-app(ng-controller='HomeCtrl')
                 fa-surface.winner-info-background
                   .winner-image(ng-style="{'position' : 'relative', 'margin-top' : '20px'}")
                     .image(ng-style="{'background-image':'url({{winner.avatar_url}})', 'height': '200px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to='dayScrollEventHandler')
-                  .winner-bio(ng-style="{'position' : 'absolute', 'top' : '220px', 'padding' : '15px', 'margin' : '20px', 'background' : 'rgb(215, 213, 213)',  'border-radius' : '10px', 'font-size' : '16px', 'font-family' : 'Helvetica Neue'}") {{winner.bio}} - name, @twitter
+                  .winner-bio(ng-style="{'position' : 'absolute', 'top' : '220px', 'padding' : '15px', 'margin' : '20px', 'background' : 'rgb(215, 213, 213)',  'border-radius' : '10px', 'font-size' : '16px', 'font-family' : 'Helvetica Neue'}") {{winner.bio}}
                   .go-back(ng-style="{'position' : 'absolute', 'top' : '80%', 'width' : '20%', 'height' : '30px', 'text-align' : 'center', 'line-height' : '30px', 'border' : '2px solid black', 'border-radius' : '10px', 'left' : '40%'}" ng-click="closeWinnerInfo()") BACK
 
         //- this is the Main Archive View
