@@ -15,13 +15,19 @@
     //add Image url
     $scope.addImageUrl = 'http://fillmurray.com/200/400';
     $scope.addImageHeight = function(){
-      var imageHeight = window.innerHeight/4;
-      return imageHeight + 'px';
+        var imageHeight;
+      if(window.innerHeight < 500){
+        imageHeight = window.innerHeight/4;
+        return imageHeight + 'px';
+      } else {
+        imageHeight = window.innerHeight/3;
+        return imageHeight + 'px';
+      }
     };
 
     // textarea height
     $scope.textareaHeight = function(){
-      var textareaHeight = window.innerHeight/3;
+      var textareaHeight = window.innerHeight/3.5;
       return textareaHeight + 'px';
     };
 
@@ -388,8 +394,8 @@
     };
 
     $scope.closePostbox = function(){
-      $scope.boxTransitionableSpotlightPost.set([0, windowInnerHeight, 0], {duration: 300, curve: Easing.easeOut});
-      $scope.postboxSize.set([windowWidth,windowInnerHeight], {duration: 300, curve: Easing.easeOut});
+      $scope.boxTransitionableSpotlightPost.set([0, windowInnerHeight, 0], {duration: 300, curve: Easing.easeIn});
+      $scope.postboxSize.set([windowWidth,windowInnerHeight], {duration: 300, curve: Easing.easeIn});
       $scope.postboxTransparency.set([0], {duration: 300});
     };
 
