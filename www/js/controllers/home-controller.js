@@ -94,6 +94,11 @@
     $scope.winnerInfoBoxTransparency = new Transitionable(1);
 
 
+    $scope.flipIt = function(){
+      console.log('flipping');
+       $famous.find('fa-flipper')[0].flip();
+    };
+
 
     //example for fa-grid-layout
 
