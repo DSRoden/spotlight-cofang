@@ -10,7 +10,7 @@
                 <fa-modifier fa-translate="boxTransitionableHeader.get()" fa-opacity="opacityTrans">
                   <fa-surface fa-background-color="'black'" class="absolute">
                     <fa-app>
-                      <fa-image-surface fa-size="[50,50]" fa-image-url="img/menu-ellipses-icon.png" class="spotlight-avatar"></fa-image-surface>
+                      <fa-image-surface fa-size="[50,50]" fa-image-url="img/avatar_icon.png" class="spotlight-avatar"></fa-image-surface>
                       <fa-surface class="spotlight-name">Lilly Bloomings </fa-surface>
                     </fa-app>
                   </fa-surface>
@@ -52,7 +52,7 @@
                   <fa-image-surface fa-size="[50,50]" fa-image-url="img/menu-ellipses-icon.png" ng-click="switchPage(1)" class="menu-icon"></fa-image-surface>
                   <fa-surface class="center-content">
                     <fa-app class="highest-z-index">
-                      <fa-image-surface ng-if="userIsInTheSpotlight" fa-size="[70,70]" fa-image-url="img/menu-ellipses-icon.png" ng-click="openPostBox()" class="show-post-button"></fa-image-surface>
+                      <fa-image-surface ng-if="userIsInTheSpotlight" fa-size="[70,70]" fa-image-url="img/add_post.png" ng-click="openPostBox()" class="show-post-button"></fa-image-surface>
                     </fa-app>
                   </fa-surface>
                 </fa-modifier>
@@ -67,14 +67,16 @@
                 <fa-modifier fa-translate="boxTransitionableSpotlightPost.get()" fa-opacity="postboxTransparency" fa-size="postboxSize.get()">
                   <fa-surface class="textbox-and-image-container">
                     <textarea ng-model="post.message" placeholder="  Share something with the world." ng-style="{'width' : '95%', 'height': '{{textareaHeight()}}', 'border' : 'none', 'border-radius' : '10px', 'background': 'rgb(234, 233, 233)', 'font-size' : '16px', 'padding' : '10px'}"></textarea>
-                    <div ng-style="{'background-image':'url({{addImageUrl}})', 'height': '{{addImageHeight()}}',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center', 'margin-top' : '10px'}" class="new-image-area"></div>
+                    <div ng-style="{'background-image':'url({{addImageUrl}})', 'height': '{{addImageHeight()}}',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center', 'margin-top' : '10px'}" class="new-image-area">
+                      <div ng-style="{'height' : '30px', 'width': '30px', 'background-color' : 'rgba(0, 0, 0, 0.5)', 'border-radius' : '100%', 'color' : 'white', 'font-size' : '20px', 'font-family' : 'Helvetica', 'float' : 'right', 'text-align' : 'center', 'line-height' : '32px'}" class="delete-image">X</div>
+                    </div>
                   </fa-surface>
                 </fa-modifier>
-                <fa-image-surface ng-if="userIsInTheSpotlight" fa-size="[70,70]" fa-image-url="img/menu-ellipses-icon.png" class="make-post"></fa-image-surface>
-                <fa-image-surface ng-if="userIsInTheSpotlight" fa-size="[50, 50]" fa-image-url="img/menu-ellipses-icon.png" class="open-camera"></fa-image-surface>
-                <fa-image-surface ng-if="userIsInTheSpotlight" fa-size="[45,45]" fa-image-url="img/menu-ellipses-icon.png" class="open-albums"></fa-image-surface>
-                <fa-image-surface ng-if="userIsInTheSpotlight" fa-size="[50,50]" fa-image-url="img/menu-ellipses-icon.png" ng-click="showAccount()" class="spotlight-help"></fa-image-surface>
-                <fa-image-surface ng-if="userIsInTheSpotlight" fa-size="[45,45]" fa-image-url="img/menu-ellipses-icon.png" ng-click="closePostbox()" class="close-post-box">      </fa-image-surface>
+                <fa-image-surface ng-if="userIsInTheSpotlight" fa-size="[70,70]" fa-image-url="img/postit_icon.png" class="make-post"></fa-image-surface>
+                <fa-image-surface ng-if="userIsInTheSpotlight" fa-size="[50, 50]" fa-image-url="img/camera_icon.png" class="open-camera"></fa-image-surface>
+                <fa-image-surface ng-if="userIsInTheSpotlight" fa-size="[45,45]" fa-image-url="img/albums_icon.png" class="open-albums"></fa-image-surface>
+                <fa-image-surface ng-if="userIsInTheSpotlight" fa-size="[50,50]" fa-image-url="img/account_icon.png" ng-click="showAccount()" class="spotlight-help"></fa-image-surface>
+                <fa-image-surface ng-if="userIsInTheSpotlight" fa-size="[45,45]" fa-image-url="img/close_icon.png" ng-click="closePostbox()" class="close-post-box">      </fa-image-surface>
               </fa-app>
             </fa-surface>
           </fa-modifier>
@@ -84,7 +86,7 @@
             <fa-surface class="account-box-background">
               <!-- bio, avatar, links to facebook and twitter log out-->
               <div ng-style="{'position' : 'relative', 'height' : '80px', 'margin-top' : '-20px'}" class="avatar-container">
-                <div ng-style="{'position' : 'absolute', 'left' : '10%', 'height' : '70px', 'width' : '70px', 'background' : 'url({{avatar}})', 'background-size' : 'contain', 'background-repeat' : 'no-repeat', 'background-color' : 'black', 'border-radius': '100%', 'background-position' : 'center'}" class="avatar-choice"></div>
+                <div ng-style="{'position' : 'absolute', 'left' : '10%', 'height' : '70px', 'width' : '70px', 'background' : 'url({{avatar}})', 'background-size' : 'contain', 'background-repeat' : 'no-repeat', 'background-color' : 'black', 'border-radius': '100%', 'background-position' : 'center', 'background-size' : 'cover'}" class="avatar-choice"></div>
                 <div ng-style="{'position' : 'absolute', 'top' : '20px', 'left' : '50%',  'height' : '30px', 'width' : '100px', 'border' : '2px solid black', 'text-align' : 'center', 'line-height' : '30px', 'border-radius' : '10px'}" class="change-avatar"> Replace</div>
               </div>
               <div ng-style="{'position' : 'relative', 'height' : '{{accountContentHeight()}}'}" class="account-inputs">

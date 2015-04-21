@@ -12,7 +12,7 @@ fa-app(ng-controller='HomeCtrl')
                         fa-modifier(fa-translate="boxTransitionableHeader.get()" fa-opacity="opacityTrans")
                           fa-surface.absolute(fa-background-color="'black'")
                             fa-app
-                              fa-image-surface.spotlight-avatar(fa-size='[50,50]' fa-image-url="img/menu-ellipses-icon.png")
+                              fa-image-surface.spotlight-avatar(fa-size='[50,50]' fa-image-url="img/avatar_icon.png")
                               fa-surface.spotlight-name Lilly Bloomings 
 
                         //- content
@@ -45,7 +45,7 @@ fa-app(ng-controller='HomeCtrl')
                           fa-image-surface.menu-icon(fa-size='[50,50]' fa-image-url="img/menu-ellipses-icon.png" ng-click="switchPage(1)")
                           fa-surface.center-content
                             fa-app.highest-z-index
-                              fa-image-surface.show-post-button(ng-if="userIsInTheSpotlight" fa-size='[70,70]' fa-image-url="img/menu-ellipses-icon.png" ng-click="openPostBox()")
+                              fa-image-surface.show-post-button(ng-if="userIsInTheSpotlight" fa-size='[70,70]' fa-image-url="img/add_post.png" ng-click="openPostBox()")
             
             //- spotllight post surface
             fa-app.sliding-in-view
@@ -58,11 +58,12 @@ fa-app(ng-controller='HomeCtrl')
                       fa-surface.textbox-and-image-container
                         textarea(ng-model="post.message"  placeholder="  Share something with the world." ng-style="{'width' : '95%', 'height': '{{textareaHeight()}}', 'border' : 'none', 'border-radius' : '10px', 'background': 'rgb(234, 233, 233)', 'font-size' : '16px', 'padding' : '10px'}")
                         .new-image-area(ng-style="{'background-image':'url({{addImageUrl}})', 'height': '{{addImageHeight()}}',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center', 'margin-top' : '10px'}")
-                    fa-image-surface.make-post(ng-if="userIsInTheSpotlight" fa-size='[70,70]' fa-image-url="img/menu-ellipses-icon.png")
-                    fa-image-surface.open-camera(ng-if="userIsInTheSpotlight" fa-size='[50, 50]' fa-image-url="img/menu-ellipses-icon.png")
-                    fa-image-surface.open-albums(ng-if="userIsInTheSpotlight" fa-size='[45,45]' fa-image-url="img/menu-ellipses-icon.png")
-                    fa-image-surface.spotlight-help(ng-if="userIsInTheSpotlight" fa-size='[50,50]' fa-image-url="img/menu-ellipses-icon.png" ng-click="showAccount()")
-                    fa-image-surface.close-post-box(ng-if="userIsInTheSpotlight" fa-size='[45,45]' fa-image-url="img/menu-ellipses-icon.png" ng-click="closePostbox()")       
+                          .delete-image(ng-style="{'height' : '30px', 'width': '30px', 'background-color' : 'rgba(0, 0, 0, 0.5)', 'border-radius' : '100%', 'color' : 'white', 'font-size' : '20px', 'font-family' : 'Helvetica', 'float' : 'right', 'text-align' : 'center', 'line-height' : '32px'}") X
+                    fa-image-surface.make-post(ng-if="userIsInTheSpotlight" fa-size='[70,70]' fa-image-url="img/postit_icon.png")
+                    fa-image-surface.open-camera(ng-if="userIsInTheSpotlight" fa-size='[50, 50]' fa-image-url="img/camera_icon.png")
+                    fa-image-surface.open-albums(ng-if="userIsInTheSpotlight" fa-size='[45,45]' fa-image-url="img/albums_icon.png")
+                    fa-image-surface.spotlight-help(ng-if="userIsInTheSpotlight" fa-size='[50,50]' fa-image-url="img/account_icon.png" ng-click="showAccount()")
+                    fa-image-surface.close-post-box(ng-if="userIsInTheSpotlight" fa-size='[45,45]' fa-image-url="img/close_icon.png" ng-click="closePostbox()")       
             
             //- spotlight account 
             fa-app.top-slide-in-view
@@ -70,7 +71,7 @@ fa-app(ng-controller='HomeCtrl')
                 fa-surface.account-box-background
                   // bio, avatar, links to facebook and twitter log out
                   .avatar-container(ng-style="{'position' : 'relative', 'height' : '80px', 'margin-top' : '-20px'}")
-                    .avatar-choice(ng-style="{'position' : 'absolute', 'left' : '10%', 'height' : '70px', 'width' : '70px', 'background' : 'url({{avatar}})', 'background-size' : 'contain', 'background-repeat' : 'no-repeat', 'background-color' : 'black', 'border-radius': '100%', 'background-position' : 'center'}")
+                    .avatar-choice(ng-style="{'position' : 'absolute', 'left' : '10%', 'height' : '70px', 'width' : '70px', 'background' : 'url({{avatar}})', 'background-size' : 'contain', 'background-repeat' : 'no-repeat', 'background-color' : 'black', 'border-radius': '100%', 'background-position' : 'center', 'background-size' : 'cover'}")
                     .change-avatar(ng-style="{'position' : 'absolute', 'top' : '20px', 'left' : '50%',  'height' : '30px', 'width' : '100px', 'border' : '2px solid black', 'text-align' : 'center', 'line-height' : '30px', 'border-radius' : '10px'}")  Replace
                   .account-inputs(ng-style="{'position' : 'relative', 'height' : '{{accountContentHeight()}}'}")
                     input(ng-style="{'padding' : '7px', 'width' : '95%', 'height' : '15%', 'margin-top' : '10px', 'background-color' : 'rgb(215, 213, 213)', 'border-radius' : '5px', 'border' : 'none', 'font-size' : '16px'}")

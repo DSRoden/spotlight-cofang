@@ -13,7 +13,7 @@
     $scope.moment = moment;
 
     //add Image url
-    $scope.addImageUrl = 'http://fillmurray.com/200/400';
+    $scope.addImageUrl = 'http://fillmurray.com/300/400';
     $scope.addImageHeight = function(){
         var imageHeight;
       if(window.innerHeight < 500){
