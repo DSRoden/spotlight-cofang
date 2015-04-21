@@ -56,7 +56,7 @@ fa-app(ng-controller='HomeCtrl')
                   fa-app 
                     fa-modifier(fa-translate="boxTransitionableSpotlightPost.get()" fa-opacity="postboxTransparency" fa-size="postboxSize.get()")
                       fa-surface.textbox-and-image-container
-                        textarea(ng-model="post.message"  placeholder="  Share something with the world." ng-style="{'width' : '100%', 'height': '{{textareaHeight()}}', 'border' : 'none', 'border-radius' : '10px', 'background': 'rgb(234, 233, 233)'}")
+                        textarea(ng-model="post.message"  placeholder="  Share something with the world." ng-style="{'width' : '100%', 'height': '{{textareaHeight()}}', 'border' : 'none', 'border-radius' : '10px', 'background': 'rgb(234, 233, 233)', 'font-size' : '14px'}")
                         .new-image-area(ng-style="{'background-image':'url({{addImageUrl}})', 'height': '{{addImageHeight()}}',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center', 'margin-top' : '10px'}")
                     fa-image-surface.make-post(ng-if="userIsInTheSpotlight" fa-size='[70,70]' fa-image-url="img/menu-ellipses-icon.png")
                     fa-image-surface.open-camera(ng-if="userIsInTheSpotlight" fa-size='[50, 50]' fa-image-url="img/menu-ellipses-icon.png")
@@ -68,8 +68,19 @@ fa-app(ng-controller='HomeCtrl')
             fa-app.top-slide-in-view
               fa-modifier(fa-translate="boxTransitionableSpotlightAccount.get()" fa-opacity="accountBoxTransparency" fa-size="accountBoxSize.get()")
                 fa-surface.account-box-background
-
-
+                  // bio, avatar, links to facebook and twitter log out
+                  .avatar-container(ng-style="{'position' : 'relative', 'height' : '80px', 'margin-top' : '-20px'}")
+                    .avatar-choice(ng-style="{'position' : 'absolute', 'left' : '10%', 'height' : '70px', 'width' : '70px', 'background' : 'url({{avatar}})', 'background-size' : 'contain', 'background-repeat' : 'no-repeat', 'background-color' : 'black', 'border-radius': '100%', 'background-position' : 'center'}")
+                    .change-avatar(ng-style="{'position' : 'absolute', 'top' : '20px', 'left' : '50%',  'height' : '30px', 'width' : '100px', 'border' : '2px solid black', 'text-align' : 'center', 'line-height' : '30px', 'border-radius' : '10px'}")  Replace
+                  .account-inputs(ng-style="{'position' : 'relative', 'height' : '{{accountContentHeight()}}'}")
+                    input(ng-style="{'padding' : '7px', 'width' : '95%', 'height' : '15%', 'margin-top' : '10px', 'background-color' : 'rgb(215, 213, 213)', 'border-radius' : '5px', 'border' : 'none', 'font-size' : '16px'}")
+                    input(ng-style="{'padding' : '7px', 'width' : '95%', 'height' : '15%', 'margin-top' : '10px', 'background-color' : 'rgb(215, 213, 213)', 'border-radius' : '5px', 'border' : 'none', 'font-size' : '16px'}")
+                    input(ng-style="{'padding' : '7px', 'width' : '95%', 'height' : '15%', 'margin-top' : '10px', 'background-color' : 'rgb(215, 213, 213)', 'border-radius' : '5px', 'border' : 'none', 'font-size' : '16px'}")
+                    textarea(ng-style="{'padding' : '7px', 'width' : '95%', 'height' : '30%', 'margin-top' : '10px', 'background-color' : 'rgb(215, 213, 213)', 'border-radius' : '5px', 'border' : 'none', 'font-size' : '16px'}")
+                  .account-options(ng-style="{'position' : 'relative', 'height' : '80px', 'margin-top' : '60px'}")
+                    .go-back(ng-style="{'position' : 'absolute','width' : '44%', 'height' : '50px', 'text-align' : 'center', 'line-height' : '50px', 'border' : '2px solid black', 'border-radius' : '10px'}" ng-click="closeAccountPage()") BACK
+                    .save-account(ng-style="{'position' : 'absolute', 'width' : '44%', 'height' : '50px', 'text-align' : 'center', 'line-height' : '50px', 'border' : '2px solid black', 'left' : '55%', 'border-radius' : '10px'}") SAVE
+        
 
         //- this is the Main Archive View
         fa-view(fa-index='1')

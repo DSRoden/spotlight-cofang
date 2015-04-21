@@ -25,14 +25,27 @@
       return textareaHeight + 'px';
     };
 
-    // flipping to help screen
-     $scope.flipIt = function(){
-      console.log('trying to flip');
-       $famous.find('fa-flipper')[0].flip();
+    //input height
+    $scope.inputHeight = function(){
+      var inputHeight = window.innerHeight/13;
+      return inputHeight + 'px';
+    };
+
+    $scope.bioHeight = function(){
+      var bioHeight = window.innerHeight/6;
+      return bioHeight + 'px';
+    };
+
+    $scope.accountContentHeight = function(){
+      var accountContentHeight = window.innerHeight - 300;
+      return accountContentHeight + 'px';
     };
 
     //checking if user is in the spotlight
     $scope.userIsInTheSpotlight = true;
+
+    //spotlight avatar
+    $scope.avatar = 'http://fillmurray.com/200/400';
 
     //animations and eventhandler inits
     var Transitionable = $famous['famous/transitions/Transitionable'],
@@ -381,12 +394,17 @@
     };
 
     $scope.showAccount = function(){
-      console.log('show account');
       var pageWidth = $scope.getPageWidth(),
        pageHeight = $scope.getPageHeight();
       $scope.boxTransitionableSpotlightAccount.set([0, 50, 0], {duration: 300, curve: Easing.easeIn});
       $scope.accountBoxSize.set([pageWidth, pageHeight], {duration: 300, curve: Easing.easeIn});
       $scope.accountBoxTransparency.set([1], {duration: 300});
+    };
+
+    $scope.closeAccountPage = function(){
+      $scope.boxTransitionableSpotlightAccount.set([0, windowInnerHeight, 0], {duration: 300, curve: Easing.easeIn});
+      $scope.accountBoxSize.set([windowWidth,windowInnerHeight], {duration: 300, curve: Easing.easeIn});
+      $scope.accountBoxTransparency.set([0], {duration: 300});
     };
 
 
