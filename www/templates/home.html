@@ -10,10 +10,10 @@
                 <fa-modifier fa-translate="boxTransitionableHeader.get()" fa-opacity="opacityTrans">
                   <fa-surface fa-background-color="'black'" class="absolute">
                     <fa-app>
-                      <fa-image-surface fa-size="[50,50]" fa-image-url="img/avatar_icon2.png" ng-click="showWinnerInfo()" class="spotlight-avatar"></fa-image-surface>
+                      <fa-image-surface fa-size="[50,50]" fa-image-url="img/spotlight-icon-small.png" ng-click="showWinnerInfo()" class="spotlight-avatar"></fa-image-surface>
                       <fa-surface ng-click="showWinnerInfo()" class="spotlight-name">Lilly Bloomings </fa-surface>
-                      <fa-surface class="twitter">t</fa-surface>
-                      <fa-surface class="facebook">f</fa-surface>
+                      <fa-surface ng-click="showWinnerTwitter()" class="twitter">t</fa-surface>
+                      <fa-surface ng-click="showWinnerFacebook()" class="facebook">f</fa-surface>
                     </fa-app>
                   </fa-surface>
                 </fa-modifier>
@@ -96,7 +96,7 @@
                 <input ng-style="{'padding' : '7px', 'width' : '95%', 'height' : '15%', 'margin-top' : '10px', 'background-color' : 'rgb(215, 213, 213)', 'border-radius' : '5px', 'border' : 'none', 'font-size' : '16px'}">
                 <textarea ng-style="{'padding' : '7px', 'width' : '95%', 'height' : '30%', 'margin-top' : '10px', 'background-color' : 'rgb(215, 213, 213)', 'border-radius' : '5px', 'border' : 'none', 'font-size' : '16px'}"></textarea>
               </div>
-              <div ng-style="{'position' : 'relative', 'height' : '80px', 'margin-top' : '60px'}" class="account-options">
+              <div ng-style="{'position' : 'relative', 'height' : '80px', 'margin-top' : '60px', 'font-family' : 'Helvetica Neue'}" class="account-options">
                 <div ng-style="{'position' : 'absolute','width' : '44%', 'height' : '50px', 'text-align' : 'center', 'line-height' : '50px', 'border' : '2px solid black', 'border-radius' : '10px'}" ng-click="closeAccountPage()" class="go-back">BACK</div>
                 <div ng-style="{'position' : 'absolute', 'width' : '44%', 'height' : '50px', 'text-align' : 'center', 'line-height' : '50px', 'border' : '2px solid black', 'left' : '55%', 'border-radius' : '10px'}" class="save-account">SAVE</div>
               </div>
@@ -105,7 +105,13 @@
         </fa-app>
         <fa-app class="top-slide-in-view">
           <fa-modifier fa-translate="boxTransitionableWinnerInfo.get()" fa-opacity="winnerInfoBoxTransparency" fa-size="winnerInfoBoxSize.get()">
-            <fa-surface class="winner-info-background"></fa-surface>
+            <fa-surface class="winner-info-background">
+              <div ng-style="{'position' : 'relative', 'margin-top' : '20px'}" class="winner-image">
+                <div ng-style="{'background-image':'url({{winner.avatar_url}})', 'height': '200px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to="dayScrollEventHandler" class="image"></div>
+              </div>
+              <div ng-style="{'position' : 'absolute', 'top' : '220px', 'padding' : '15px', 'margin' : '20px', 'background' : 'rgb(215, 213, 213)',  'border-radius' : '10px', 'font-size' : '16px', 'font-family' : 'Helvetica Neue'}" class="winner-bio">{{winner.bio}} - name, @twitter</div>
+              <div ng-style="{'position' : 'absolute', 'top' : '80%', 'width' : '20%', 'height' : '30px', 'text-align' : 'center', 'line-height' : '30px', 'border' : '2px solid black', 'border-radius' : '10px', 'left' : '40%'}" ng-click="closeWinnerInfo()" class="go-back">BACK</div>
+            </fa-surface>
           </fa-modifier>
         </fa-app>
       </fa-surface>

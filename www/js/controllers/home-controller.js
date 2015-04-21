@@ -12,6 +12,11 @@
     //enable moment
     $scope.moment = moment;
 
+    //winner avatar url
+    $scope.winner = {};
+    $scope.winner.avatar_url = 'http://fillmurray.com/300/400';
+    $scope.winner.bio = 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.';
+
     //add Image url
     $scope.addImageUrl = 'http://fillmurray.com/300/400';
     $scope.addImageHeight = function(){
@@ -78,11 +83,11 @@
     windowWidth = window.innerWidth;
     $scope.boxTransitionableSpotlightPost = new Transitionable([0, windowInnerHeight, 0]);
     $scope.postboxSize = new Transitionable([windowWidth,windowInnerHeight]);
-    $scope.postboxTransparency = new Transitionable(0);
+    $scope.postboxTransparency = new Transitionable(1);
       //spotlight account box
     $scope.boxTransitionableSpotlightAccount = new Transitionable([0, windowInnerHeight, 0]);
     $scope.accountBoxSize = new Transitionable([windowWidth, windowInnerHeight]);
-    $scope.accountBoxTransparency = new Transitionable(0);
+    $scope.accountBoxTransparency = new Transitionable(1);
       //winner info box
     $scope.boxTransitionableWinnerInfo = new Transitionable([0, windowInnerHeight, 0]);
     $scope.winnerInfoBoxSize = new Transitionable([windowWidth, windowInnerHeight]);
@@ -146,6 +151,8 @@
                     {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image_url: null, created_at: '1999-01-08 04:05:06', likes: 400, comments: 2000},
                     {text: null, image_url:'http://fillmurray.com/300/300', created_at: '1999-01-08 04:05:06', likes: 400, comments: 2000},
                     {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image_url: 'http://fillmurray.com/200/300', created_at: '1999-01-08 04:05:06', likes: 400, comments: 2000}];
+
+
 
     //making ids for example archived days
     $scope.makeIdsForExample = function(){
@@ -426,6 +433,11 @@
       $scope.winnerInfoBoxTransparency.set([1], {duration: 300});
     };
 
+    $scope.closeWinnerInfo = function(){
+      $scope.boxTransitionableWinnerInfo.set([0, windowInnerHeight, 0], {duration: 300, curve: Easing.easeIn});
+      $scope.winnerInfoBoxSize.set([windowWidth,windowInnerHeight], {duration: 300, curve: Easing.easeIn});
+      $scope.winnerInfoBoxTransparency.set([1], {duration: 300});
+    };
 
   }]);
 })();
