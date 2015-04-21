@@ -1,6 +1,8 @@
 @commentAndLikesBackground : rgba(255, 255, 255, 0.7);
 @dateBackground : rgba(255, 255, 255, 0.7);
 @socialTextColor : rgba(0, 0, 0, 0.7);
+@twitter : #00aced;
+@facebook : #3B5998;
 
 fa-app {
   position: fixed;
@@ -219,15 +221,43 @@ fa-app {
 }
 
 .spotlight-name {
-  left: 35%;
+  left: 15%;
   padding: 20px;
   width: 100% ! important;
   color: white;
 }
 
 .spotlight-avatar {
-  left: 25%;
+  left: 5%;
   padding: 5px;
+}
+
+.twitter {
+  color: white;
+  font-size: 20px;
+  height: 30px ! important;
+  width: 30px ! important;
+  background-color: @twitter ! important;
+  right: 20%;
+  top: 10px;
+  line-height: 30px;
+  text-align: center;
+  font-family: 'Helvetica Neue', 'Helvetica';
+  border-radius: 100%;
+}
+
+.facebook {
+  color: white;
+  font-size: 20px;
+  height: 30px ! important;
+  width: 30px ! important;
+  background-color: @facebook ! important;
+  right: 5%;
+  top: 10px;
+  line-height: 30px;
+  text-align: center;
+  font-family: 'Helvetica Neue', 'Helvetica';
+  border-radius: 100%;
 }
 
 .sliding-in-view {
