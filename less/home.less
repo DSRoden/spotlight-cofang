@@ -1,5 +1,6 @@
-@commentAndLikesBackground : rgba(38, 199, 228, 0.7);
-@dateBackground : rgba(7, 216, 245, .7);
+@commentAndLikesBackground : rgba(255, 255, 255, 0.7);
+@dateBackground : rgba(255, 255, 255, 0.7);
+@socialTextColor : rgba(0, 0, 0, 0.7);
 
 fa-app {
   position: fixed;
@@ -91,7 +92,7 @@ fa-app {
   padding: 3px;
   margin-left: 15px;
   font-size: 14px;
-  color: white;
+  color: @socialTextColor;
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
 }
 
@@ -101,8 +102,9 @@ fa-app {
   left: 0;
   right: 0;
   height: 35px;
-  color: white;
+  color: @socialTextColor;
   background: @commentAndLikesBackground;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5)
 }
 
 
@@ -130,7 +132,7 @@ fa-app {
   padding: 20px;
   padding-top: 25px;
   margin-left: 10px;
-  text-align: center;
+  text-align: left;
 }
 
 .close-quote {
@@ -158,7 +160,7 @@ fa-app {
   padding: 3px;
   margin-left: 15px;
   font-size: 14px;
-  color: white;
+  color: @socialTextColor;
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
 }
 
@@ -168,8 +170,9 @@ fa-app {
   left: 0;
   right: 0;
   height: 35px;
-  color: white;
+  color: @socialTextColor;
   background: @commentAndLikesBackground;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5)
 }
 
 .comments {

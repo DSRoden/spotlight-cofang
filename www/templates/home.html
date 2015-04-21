@@ -32,9 +32,7 @@
                           </fa-surface>
                           <fa-surface ng-if="post.text" fa-background-color="white" fa-size="[getPageWidth(), 200]" class="relative-text">
                             <div fa-pipe-to="myEventHandler" class="content"> 
-                              <div class="open-quote"></div>
                               <div class="content-text">{{post.text}}</div>
-                              <div class="close-quote"></div>
                             </div>
                             <div class="content-date-container">
                               <div class="content-date">-{{moment(post.created_at).format('LT')}}</div>
@@ -171,9 +169,7 @@
                             </fa-surface>
                             <fa-surface ng-if="post.text" fa-background-color="white" fa-size="[getPageWidth(), 200]" class="relative-text">
                               <div fa-pipe-to="dayScrollEventHandler" class="content"> 
-                                <div class="open-quote"></div>
                                 <div class="content-text">{{post.text}}</div>
-                                <div class="close-quote"></div>
                               </div>
                               <div class="content-date-container">
                                 <div class="content-date">- {{moment(post.created_at).format('MMMM Do YYYY @ h:mm:ss a')}}</div>

@@ -31,9 +31,9 @@ fa-app(ng-controller='HomeCtrl')
                                         span.heart
                                   fa-surface.relative-text(ng-if="post.text" fa-background-color="white" fa-size='[getPageWidth(), 200]')
                                     .content(fa-pipe-to='myEventHandler') 
-                                      .open-quote
+                                      //- .open-quote
                                       .content-text {{post.text}}
-                                      .close-quote
+                                      //- .close-quote
                                     .content-date-container
                                       .content-date -{{moment(post.created_at).format('LT')}}
                                     .content-social
@@ -137,9 +137,9 @@ fa-app(ng-controller='HomeCtrl')
 
                                   fa-surface.relative-text(ng-if="post.text" fa-background-color="white" fa-size='[getPageWidth(), 200]')
                                     .content(fa-pipe-to='dayScrollEventHandler') 
-                                      .open-quote
+                                      //- .open-quote
                                       .content-text {{post.text}}
-                                      .close-quote
+                                      //- .close-quote
                                     .content-date-container
                                       .content-date - {{moment(post.created_at).format('MMMM Do YYYY @ h:mm:ss a')}}
                                     .content-social
