@@ -113,8 +113,14 @@
             <fa-modifier fa-translate="[0, 50, 0]" fa-size="[getPageWidth(), getPageHeight()]">
               <fa-surface class="account-box-background">
                 <fa-app>
-                  <fa-image-surface ng-if="userIsInTheSpotlight" fa-size="[70,70]" fa-image-url="img/postit_icon.png" class="go-back"></fa-image-surface>
-                  <fa-image-surface ng-if="userIsInTheSpotlight" fa-size="[50, 50]" fa-image-url="img/camera_icon.png" ng-click="flipIt()" class="end-spotlight"></fa-image-surface>
+                  <fa-surface class="session-info-surface">
+                    <div class="session-info-container"> 
+                      <div class="session-time">Your time in the Spotlight ends:</div>
+                      <div class="session-end-date">TIME</div>
+                      <div ng-click="showConfirmationDialog()" class="end-session">End my session now</div>
+                    </div>
+                  </fa-surface>
+                  <fa-image-surface fa-size="[90, 54]" fa-image-url="img/back_button.png" ng-click="flipIt()" class="flip-back"></fa-image-surface>
                 </fa-app>
               </fa-surface>
             </fa-modifier>
@@ -127,7 +133,18 @@
                 <div ng-style="{'background-image':'url({{winner.avatar_url}})', 'height': '200px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to="dayScrollEventHandler" class="image"></div>
               </div>
               <div ng-style="{'position' : 'absolute', 'top' : '220px', 'padding' : '15px', 'margin' : '20px', 'background' : 'rgb(215, 213, 213)',  'border-radius' : '10px', 'font-size' : '16px', 'font-family' : 'Helvetica Neue'}" class="winner-bio">{{winner.bio}}</div>
-              <div ng-style="{'position' : 'absolute', 'top' : '80%', 'width' : '20%', 'height' : '30px', 'text-align' : 'center', 'line-height' : '30px', 'border' : '2px solid black', 'border-radius' : '10px', 'left' : '40%', 'font-family' : 'Helvetica'}" ng-click="closeWinnerInfo()" class="go-back">BACK</div>
+              <div ng-style="{'position' : 'absolute', 'top' : '80%', 'width' : '20%', 'height' : '30px', 'text-align' : 'center', 'line-height' : '30px', 'border' : '2px solid black', 'border-radius' : '10px', 'left' : '40%', 'font-family' : 'Helvetica'}" ng-click="closeWinnerInfo()" class="go-back-to-main">Back</div>
+            </fa-surface>
+          </fa-modifier>
+        </fa-app>
+        <fa-app class="top-slide-in-view">
+          <fa-modifier fa-translate="boxTransitionableConfirmation.get()" fa-opacity="confirmationBoxTransparency" fa-size="confirmationBoxSize.get()">
+            <fa-surface class="confirmation-dialog-background">
+              <div class="confirmation-dialog-content">
+                <div class="confirmation-text">Are you sure {{confirmation.text}}?</div>
+                <div ng-click="closeConfirmationDialog()" class="confirmation-no">No</div>
+                <div class="confirmation-yes">Yes</div>
+              </div>
             </fa-surface>
           </fa-modifier>
         </fa-app>

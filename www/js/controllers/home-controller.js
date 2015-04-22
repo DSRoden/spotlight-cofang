@@ -12,6 +12,10 @@
     //enable moment
     $scope.moment = moment;
 
+    //confirmation dialog
+    $scope.confirmation = {};
+    $scope.confirmation.text = 'end your time in the Spotlight';
+
     //winner avatar url
     $scope.winner = {};
     $scope.winner.avatar_url = 'http://fillmurray.com/300/400';
@@ -92,6 +96,11 @@
     $scope.boxTransitionableWinnerInfo = new Transitionable([0, windowInnerHeight, 0]);
     $scope.winnerInfoBoxSize = new Transitionable([windowWidth, windowInnerHeight]);
     $scope.winnerInfoBoxTransparency = new Transitionable(1);
+      //confirmaiton box
+    $scope.boxTransitionableConfirmation = new Transitionable([0, windowInnerHeight, 0]);
+    $scope.confirmationBoxSize = new Transitionable([windowWidth, windowInnerHeight]);
+    $scope.confirmationBoxTransparency = new Transitionable(1);
+
 
 
     $scope.flipIt = function(){
@@ -103,7 +112,7 @@
     //example for fa-grid-layout
 
     $scope.myGridLayoutOptions = {
-       dimensions: [2,2] // specifies number of columns and rows
+       dimensions: [1,3] // specifies number of columns and rows
     };
     // $scope.myGridLayoutOptions = {
     //    dimensions: [1,1] // specifies number of columns and rows
@@ -442,6 +451,20 @@
       $scope.boxTransitionableWinnerInfo.set([0, windowInnerHeight, 0], {duration: 300, curve: Easing.easeIn});
       $scope.winnerInfoBoxSize.set([windowWidth,windowInnerHeight], {duration: 300, curve: Easing.easeIn});
       $scope.winnerInfoBoxTransparency.set([1], {duration: 300});
+    };
+
+    $scope.showConfirmationDialog = function(){
+       var pageWidth = $scope.getPageWidth(),
+       pageHeight = $scope.getPageHeight();
+      $scope.boxTransitionableConfirmation.set([0, 50, 0], {duration: 300, curve: Easing.easeIn});
+      $scope.confirmationBoxSize.set([pageWidth, pageHeight], {duration: 300, curve: Easing.easeIn});
+      $scope.confirmationBoxTransparency.set([1], {duration: 300});
+    };
+
+    $scope.closeConfirmationDialog = function(){
+      $scope.boxTransitionableConfirmation.set([0, windowInnerHeight, 0], {duration: 300, curve: Easing.easeIn});
+      $scope.confirmationBoxSize.set([windowWidth,windowInnerHeight], {duration: 300, curve: Easing.easeIn});
+      $scope.confirmationBoxTransparency.set([1], {duration: 300});
     };
 
   }]);

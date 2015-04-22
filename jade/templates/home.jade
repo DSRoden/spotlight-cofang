@@ -84,6 +84,7 @@ fa-app(ng-controller='HomeCtrl')
                             input(ng-style="{'padding' : '7px', 'width' : '85%', 'margin-left' : '5%', 'height' : '15%', 'margin-top' : '10px', 'background-color' : 'rgb(215, 213, 213)', 'border-radius' : '5px', 'border' : 'none', 'font-size' : '16px'}")
                             input(ng-style="{'padding' : '7px', 'width' : '85%', 'margin-left' : '5%', 'height' : '15%', 'margin-top' : '10px', 'background-color' : 'rgb(215, 213, 213)', 'border-radius' : '5px', 'border' : 'none', 'font-size' : '16px'}")
                             textarea(ng-style="{'padding' : '7px', 'width' : '85%', 'margin-left' : '5%', 'height' : '30%', 'margin-top' : '10px', 'background-color' : 'rgb(215, 213, 213)', 'border-radius' : '5px', 'border' : 'none', 'font-size' : '16px'}")
+                        
                         fa-image-surface.delete-photo(fa-size='[50, 50]' fa-image-url="img/delete_icon.png")
                         fa-image-surface.change-photo-camera(fa-size='[50, 50]' fa-image-url="img/camera_icon.png")
                         fa-image-surface.change-photo-albums(fa-size='[50, 50]' fa-image-url="img/albums_icon.png")
@@ -94,8 +95,12 @@ fa-app(ng-controller='HomeCtrl')
                 fa-modifier(fa-translate="[0, 50, 0]" fa-size="[getPageWidth(), getPageHeight()]")
                   fa-surface.account-box-background
                     fa-app
-                      fa-image-surface.go-back(ng-if="userIsInTheSpotlight" fa-size='[70,70]' fa-image-url="img/postit_icon.png")
-                      fa-image-surface.end-spotlight(ng-if="userIsInTheSpotlight" fa-size='[50, 50]' fa-image-url="img/camera_icon.png" ng-click="flipIt()")
+                      fa-surface.session-info-surface
+                        .session-info-container 
+                          .session-time Your time in the Spotlight ends:
+                          .session-end-date TIME
+                          .end-session(ng-click="showConfirmationDialog()") End my session now
+                      fa-image-surface.flip-back(fa-size='[90, 54]' fa-image-url="img/back_button.png" ng-click="flipIt()")
                         
                   
             //- if clicking on spotlight winner
@@ -105,7 +110,18 @@ fa-app(ng-controller='HomeCtrl')
                   .winner-image(ng-style="{'position' : 'relative', 'margin-top' : '20px'}")
                     .image(ng-style="{'background-image':'url({{winner.avatar_url}})', 'height': '200px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to='dayScrollEventHandler')
                   .winner-bio(ng-style="{'position' : 'absolute', 'top' : '220px', 'padding' : '15px', 'margin' : '20px', 'background' : 'rgb(215, 213, 213)',  'border-radius' : '10px', 'font-size' : '16px', 'font-family' : 'Helvetica Neue'}") {{winner.bio}}
-                  .go-back(ng-style="{'position' : 'absolute', 'top' : '80%', 'width' : '20%', 'height' : '30px', 'text-align' : 'center', 'line-height' : '30px', 'border' : '2px solid black', 'border-radius' : '10px', 'left' : '40%', 'font-family' : 'Helvetica'}" ng-click="closeWinnerInfo()") BACK
+                  .go-back-to-main(ng-style="{'position' : 'absolute', 'top' : '80%', 'width' : '20%', 'height' : '30px', 'text-align' : 'center', 'line-height' : '30px', 'border' : '2px solid black', 'border-radius' : '10px', 'left' : '40%', 'font-family' : 'Helvetica'}" ng-click="closeWinnerInfo()") Back
+
+            //- confirmation box
+            fa-app.top-slide-in-view
+              fa-modifier(fa-translate="boxTransitionableConfirmation.get()" fa-opacity="confirmationBoxTransparency" fa-size="confirmationBoxSize.get()")
+                fa-surface.confirmation-dialog-background
+                  .confirmation-dialog-content
+                    .confirmation-text Are you sure {{confirmation.text}}?
+                    .confirmation-no(ng-click="closeConfirmationDialog()") No
+                    .confirmation-yes Yes
+
+
 
         //- this is the Main Archive View
         fa-view(fa-index='1')
