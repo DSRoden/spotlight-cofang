@@ -6,6 +6,28 @@
 
   angular.module('spotlight-famous')
   .controller('HomeCtrl', ['$scope', '$timeout', '$location', '$famous', '$timeline', function($scope, $timeout, $location, $famous, $timeline){
+    //initialize user
+    $scope.user = {};
+    $scope.userNotSignedIn = true;
+    if($scope.userNotSignedIn){
+      $scope.login = true;
+    }
+
+    $scope.showLogin = function(){
+      $scope.register = false;
+      $scope.login = true;
+      $scope.registerTransparency.set([0], {duration: 300});
+      $scope.loginTransparency.set([1], {duration: 300});
+
+    };
+
+    $scope.showRegister = function(){
+      $scope.login = false;
+      $scope.register = true;
+      $scope.loginTransparency.set([0], {duration: 300});
+      $scope.registerTransparency.set([1], {duration: 300});
+    };
+
     //initialize message
     $scope.post = {};
 
@@ -100,14 +122,20 @@
     $scope.boxTransitionableConfirmation = new Transitionable([0, windowInnerHeight, 0]);
     $scope.confirmationBoxSize = new Transitionable([windowWidth, windowInnerHeight]);
     $scope.confirmationBoxTransparency = new Transitionable(1);
+      //registration box
+    $scope.boxTransitionableRegistration = new Transitionable([0, 50, 0]);
+    $scope.registrationBoxSize = new Transitionable([windowWidth, windowInnerHeight]);
+    $scope.registrationBoxTransparency = new Transitionable(1);
+      //reigstration transparencies
+    $scope.loginTransparency = new Transitionable(1);
+    $scope.registerTransparency = new Transitionable(0);
 
 
-
+    //flipping to view session or account page
     $scope.flipIt = function(){
       console.log('flipping');
        $famous.find('fa-flipper')[0].flip();
     };
-
 
     //example for fa-grid-layout
 

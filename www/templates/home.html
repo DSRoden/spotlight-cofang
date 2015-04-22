@@ -184,6 +184,53 @@
               </fa-modifier>
             </fa-view>
           </fa-app>
+          <fa-app ng-if="userNotSignedIn" class="top-in-slide-view">
+            <fa-modifier fa-translate="boxTransitionableRegistration.get()" fa-opacity="registrationBoxTransparency" fa-size="registrationBoxSize.get()">
+              <fa-surface class="registration-view-background">
+                <fa-app class="registration-view-background">
+                  <fa-modifier fa-size="[getPageWidth(), 400]" fa-opacity="loginTransparency">
+                    <fa-surface ng-if="login" class="registration-view-background"> 
+                      <div class="login-container">
+                        <div class="login-username">
+                          <input type="text" ng-model="user.username" placeholder="User name" class="account-input">
+                        </div>
+                        <div class="login-password">
+                          <input type="password" ng-model="user.password" placeholder="Password" class="account-input">
+                        </div>
+                        <div class="register-surface-buttons">
+                          <div class="account-button">Login</div>
+                          <div ng-click="showRegister()" class="account-button">Register</div>
+                        </div>
+                      </div>
+                    </fa-surface>
+                  </fa-modifier>
+                  <fa-modifier fa-size="[getPageWidth(), 400]" fa-opacity="registerTransparency">            
+                    <fa-surface ng-if="register" class="registration-view-background"> 
+                      <div class="register-container">
+                        <div class="register-username">
+                          <input type="text" ng-model="user.username" placeholder="User name" class="account-input">
+                        </div>
+                        <div class="register-password">
+                          <input type="password" ng-model="user.password" placeholder="Password" class="account-input">
+                        </div>
+                        <div class="register-password-confirmation">
+                          <input type="password" ng-model="user.passwordConfirmation" placeholder="Confirm Password" class="account-input">
+                        </div>
+                        <div class="register-phone">
+                          <input type="text" ng-model="user.phone" placeholder="Phone (optional)" class="account-input">
+                        </div>
+                        <div class="register-explanation">* Adding your phone number enters you into the Spotlight Lottery, we will never use it for any other purpose.</div>
+                        <div class="register-surface-buttons">
+                          <div class="account-button">Register</div>
+                          <div ng-click="showLogin()" class="account-button"> Login</div>
+                        </div>
+                      </div>
+                    </fa-surface>
+                  </fa-modifier>
+                </fa-app>
+              </fa-surface>
+            </fa-modifier>
+          </fa-app>
         </fa-surface>
       </fa-modifier>
     </fa-view>
