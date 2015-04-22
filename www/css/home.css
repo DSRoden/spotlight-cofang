@@ -290,3 +290,38 @@ fa-app {
   background: url('../img/slash_it_white.png');
   padding: 10%;
 }
+.go-back {
+  bottom: 25% ! important;
+  left: 5% ! important;
+}
+.spotlight-time {
+  bottom: 25% ! important;
+  left: 35.5% ! important;
+}
+.save {
+  bottom: 25% ! important;
+  left: 66% ! important;
+}
+.delete-photo {
+  left: 40%;
+}
+.change-photo-camera {
+  left: 60%;
+}
+.change-photo-albums {
+  left: 80%;
+}
+@media (min-width: 321px) {
+  .go-back {
+    bottom: 25% ! important;
+    left: 5% ! important;
+  }
+  .spotlight-time {
+    bottom: 25% ! important;
+    left: 37.5% ! important;
+  }
+  .save {
+    bottom: 25% ! important;
+    left: 70% ! important;
+  }
+}
