@@ -176,7 +176,7 @@ fa-app(ng-controller='HomeCtrl')
                             .register-surface-buttons
                               .account-login Login
                               .account-register(ng-click="showRegister()") Register
-                              .question-mark(ng-click="showAboutOne()")
+                              .question-mark(ng-click="showAboutOne($event)")
                               .go-left(ng-click="switchPage(0)")
                               .go-right(ng-click="switchPage(2)")
                       fa-modifier(fa-size="[getPageWidth(), 400]" fa-opacity="registerTransparency")             

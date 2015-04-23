@@ -33,7 +33,8 @@
       $scope.registerTransparency.set([1], {duration: 300});
     };
 
-    $scope.showAboutOne = function(){
+    $scope.showAboutOne = function(e){
+      console.log('e', e);
       $scope.login = false;
       $scope.register = false;
       $scope.about = true;
