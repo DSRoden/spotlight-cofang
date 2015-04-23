@@ -123,7 +123,7 @@
     $scope.confirmationBoxSize = new Transitionable([windowWidth, windowInnerHeight]);
     $scope.confirmationBoxTransparency = new Transitionable(1);
       //registration box
-    $scope.boxTransitionableRegistration = new Transitionable([0, 50, 0]);
+    $scope.boxTransitionableRegistration = new Transitionable([0, 0, 0]);
     $scope.registrationBoxSize = new Transitionable([windowWidth, windowInnerHeight]);
     $scope.registrationBoxTransparency = new Transitionable(1);
       //reigstration transparencies

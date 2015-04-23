@@ -156,16 +156,22 @@ fa-app(ng-controller='HomeCtrl')
                       fa-modifier(fa-size="[getPageWidth(), 400]" fa-opacity="loginTransparency")
                         fa-surface.registration-view-background(ng-if="login") 
                           .login-container
+                            .title Spotlight
+                            .logo
                             .login-username
                               input.account-input(type="text" ng-model="user.username" placeholder="User name")
                             .login-password
                               input.account-input(type="password" ng-model="user.password" placeholder="Password")
                             .register-surface-buttons
-                              .account-button Login
-                              .account-button(ng-click="showRegister()") Register
+                              .account-login Login
+                              .account-register(ng-click="showRegister()") Register
+                              .question-mark
+                              .go-left(ng-click="switchPage(0)")
+                              .go-right(ng-click="switchPage(2)")
                       fa-modifier(fa-size="[getPageWidth(), 400]" fa-opacity="registerTransparency")             
                         fa-surface.registration-view-background(ng-if="register") 
                           .register-container
+                            .slogan One person per day
                             .register-username
                               input.account-input(type="text" ng-model="user.username" placeholder="User name")
                             .register-password
@@ -176,8 +182,8 @@ fa-app(ng-controller='HomeCtrl')
                               input.account-input(type="text" ng-model="user.phone" placeholder="Phone (optional)")
                             .register-explanation * Adding your phone number enters you into the Spotlight Lottery, we will never use it for any other purpose.
                             .register-surface-buttons
-                              .account-button Register
-                              .account-button(ng-click="showLogin()")  Login
+                              .account-login(ng-click="showLogin()")  Login
+                              .account-register Register
 
          //this is the Show Archived Day View
         fa-view(fa-index='2' fa-options='options.scrollViewOne')

@@ -191,6 +191,8 @@
                   <fa-modifier fa-size="[getPageWidth(), 400]" fa-opacity="loginTransparency">
                     <fa-surface ng-if="login" class="registration-view-background"> 
                       <div class="login-container">
+                        <div class="title">Spotlight</div>
+                        <div class="logo"></div>
                         <div class="login-username">
                           <input type="text" ng-model="user.username" placeholder="User name" class="account-input">
                         </div>
@@ -198,8 +200,11 @@
                           <input type="password" ng-model="user.password" placeholder="Password" class="account-input">
                         </div>
                         <div class="register-surface-buttons">
-                          <div class="account-button">Login</div>
-                          <div ng-click="showRegister()" class="account-button">Register</div>
+                          <div class="account-login">Login</div>
+                          <div ng-click="showRegister()" class="account-register">Register</div>
+                          <div class="question-mark"></div>
+                          <div ng-click="switchPage(0)" class="go-left"></div>
+                          <div ng-click="switchPage(2)" class="go-right"></div>
                         </div>
                       </div>
                     </fa-surface>
@@ -207,6 +212,7 @@
                   <fa-modifier fa-size="[getPageWidth(), 400]" fa-opacity="registerTransparency">            
                     <fa-surface ng-if="register" class="registration-view-background"> 
                       <div class="register-container">
+                        <div class="slogan">One person per day</div>
                         <div class="register-username">
                           <input type="text" ng-model="user.username" placeholder="User name" class="account-input">
                         </div>
@@ -221,8 +227,8 @@
                         </div>
                         <div class="register-explanation">* Adding your phone number enters you into the Spotlight Lottery, we will never use it for any other purpose.</div>
                         <div class="register-surface-buttons">
-                          <div class="account-button">Register</div>
-                          <div ng-click="showLogin()" class="account-button"> Login</div>
+                          <div ng-click="showLogin()" class="account-login"> Login</div>
+                          <div class="account-register">Register</div>
                         </div>
                       </div>
                     </fa-surface>
