@@ -153,6 +153,17 @@ fa-app(ng-controller='HomeCtrl')
                 fa-modifier(fa-translate="boxTransitionableRegistration.get()" fa-opacity="registrationBoxTransparency" fa-size="registrationBoxSize.get()")
                   fa-surface.registration-view-background
                     fa-app.registration-view-background
+                      fa-modifier(fa-size="[getPageWidth(), 400]" fa-opacity="aboutTransparency")
+                        fa-surface.registration-view-background(ng-if="about")
+                          .about-container
+                            .about-title Why Spotlight?
+                            .about-info 
+                              span Spotlight is an attempt to create a simpler social network.
+                              span Spotlight is an attempt to create a simpler social network.
+                              span Spotlight is an attempt to create a simpler social network.
+                              span Spotlight is an attempt to create a simpler social network.
+                              span Spotlight is an attempt to create a simpler social network.
+                            .go-back-to-login(ng-click="closeAboutOne()") Back
                       fa-modifier(fa-size="[getPageWidth(), 400]" fa-opacity="loginTransparency")
                         fa-surface.registration-view-background(ng-if="login") 
                           .login-container
@@ -184,17 +195,7 @@ fa-app(ng-controller='HomeCtrl')
                             .register-surface-buttons
                               .account-login(ng-click="showLogin()")  Login
                               .account-register(ng-click="showRegister()")  Register
-                      fa-modifier(fa-size="[getPageWidth(), 400]" fa-opacity="aboutTransparency")
-                        fa-surface.registration-view-background(ng-if="about")
-                          .about-container
-                            .about-title Why Spotlight?
-                            .about-info 
-                              span Spotlight is an attempt to create a simpler social network.
-                              span Spotlight is an attempt to create a simpler social network.
-                              span Spotlight is an attempt to create a simpler social network.
-                              span Spotlight is an attempt to create a simpler social network.
-                              span Spotlight is an attempt to create a simpler social network.
-                            .go-back-to-login(ng-click="closeAboutOne()") Back
+                      
 
 
 

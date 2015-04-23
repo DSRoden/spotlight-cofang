@@ -188,6 +188,15 @@
             <fa-modifier fa-translate="boxTransitionableRegistration.get()" fa-opacity="registrationBoxTransparency" fa-size="registrationBoxSize.get()">
               <fa-surface class="registration-view-background">
                 <fa-app class="registration-view-background">
+                  <fa-modifier fa-size="[getPageWidth(), 400]" fa-opacity="aboutTransparency">
+                    <fa-surface ng-if="about" class="registration-view-background">
+                      <div class="about-container">
+                        <div class="about-title">Why Spotlight?</div>
+                        <div class="about-info"> <span>Spotlight is an attempt to create a simpler social network.</span><span>Spotlight is an attempt to create a simpler social network.</span><span>Spotlight is an attempt to create a simpler social network.</span><span>Spotlight is an attempt to create a simpler social network.</span><span>Spotlight is an attempt to create a simpler social network.</span></div>
+                        <div ng-click="closeAboutOne()" class="go-back-to-login">Back</div>
+                      </div>
+                    </fa-surface>
+                  </fa-modifier>
                   <fa-modifier fa-size="[getPageWidth(), 400]" fa-opacity="loginTransparency">
                     <fa-surface ng-if="login" class="registration-view-background"> 
                       <div class="login-container">
@@ -230,15 +239,6 @@
                           <div ng-click="showLogin()" class="account-login"> Login</div>
                           <div ng-click="showRegister()" class="account-register"> Register</div>
                         </div>
-                      </div>
-                    </fa-surface>
-                  </fa-modifier>
-                  <fa-modifier fa-size="[getPageWidth(), 400]" fa-opacity="aboutTransparency">
-                    <fa-surface ng-if="about" class="registration-view-background">
-                      <div class="about-container">
-                        <div class="about-title">Why Spotlight?</div>
-                        <div class="about-info"> <span>Spotlight is an attempt to create a simpler social network.</span><span>Spotlight is an attempt to create a simpler social network.</span><span>Spotlight is an attempt to create a simpler social network.</span><span>Spotlight is an attempt to create a simpler social network.</span><span>Spotlight is an attempt to create a simpler social network.</span></div>
-                        <div ng-click="closeAboutOne()" class="go-back-to-login">Back</div>
                       </div>
                     </fa-surface>
                   </fa-modifier>

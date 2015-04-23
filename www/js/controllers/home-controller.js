@@ -45,7 +45,7 @@
     $scope.closeAboutOne = function(){
       $scope.login = true;
       $scope.register = false;
-      $scope.about = true;
+      $scope.about = false;
       $scope.loginTransparency.set([1], {duration: 300});
       $scope.registerTransparency.set([0], {duration: 300});
       $scope.aboutTransparency.set([0], {duration: 300});
