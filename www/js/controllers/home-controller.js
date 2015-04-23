@@ -6,6 +6,9 @@
 
   angular.module('spotlight-famous')
   .controller('HomeCtrl', ['$scope', '$timeout', '$location', '$famous', '$timeline', function($scope, $timeout, $location, $famous, $timeline){
+    //initialize spotlight about
+    $scope.spotlight = {};
+
     //initialize user
     $scope.user = {};
     $scope.userNotSignedIn = true;
@@ -15,6 +18,7 @@
 
     $scope.showLogin = function(){
       $scope.register = false;
+      $scope.about = false;
       $scope.login = true;
       $scope.registerTransparency.set([0], {duration: 300});
       $scope.loginTransparency.set([1], {duration: 300});
@@ -23,11 +27,29 @@
 
     $scope.showRegister = function(){
       $scope.login = false;
+      $scope.about = false;
       $scope.register = true;
       $scope.loginTransparency.set([0], {duration: 300});
       $scope.registerTransparency.set([1], {duration: 300});
     };
 
+    $scope.showAboutOne = function(){
+      $scope.login = false;
+      $scope.register = false;
+      $scope.about = true;
+      $scope.loginTransparency.set([0], {duration: 300});
+      $scope.registerTransparency.set([0], {duration: 300});
+      $scope.aboutTransparency.set([1], {duration: 300});
+    };
+
+    $scope.closeAboutOne = function(){
+      $scope.login = true;
+      $scope.register = false;
+      $scope.about = true;
+      $scope.loginTransparency.set([1], {duration: 300});
+      $scope.registerTransparency.set([0], {duration: 300});
+      $scope.aboutTransparency.set([0], {duration: 300});
+    };
     //initialize message
     $scope.post = {};
 
@@ -129,6 +151,11 @@
       //reigstration transparencies
     $scope.loginTransparency = new Transitionable(1);
     $scope.registerTransparency = new Transitionable(0);
+    $scope.aboutTransparency = new Transitionable(0);
+      //about one
+    $scope.boxTransitionableAboutOne = new Transitionable([0, windowInnerHeight, 0]);
+    $scope.aboutOneBoxSize = new Transitionable([windowWidth, windowInnerHeight]);
+    $scope.aboutOneBoxTransparency = new Transitionable(1);
 
 
     //flipping to view session or account page
@@ -494,6 +521,15 @@
       $scope.confirmationBoxSize.set([windowWidth,windowInnerHeight], {duration: 300, curve: Easing.easeIn});
       $scope.confirmationBoxTransparency.set([1], {duration: 300});
     };
+
+    // $scope.showAboutOne = function(){
+    //   console.log('about one');
+    //   var pageWidth = $scope.getPageWidth(),
+    //       pageHeight = $scope.getPageHeight();
+    //   $scope.boxTransitionableAboutOne.set([0, 0, 0], {duration: 300, curve: Easing.easeIn});
+    //   $scope.aboutOneBoxSize.set([pageWidth, pageHeight], {duration: 300, curve: Easing.easeIn});
+    //   $scope.aboutOneBoxTransparency.set([1], {duration: 300});
+    // };
 
   }]);
 })();

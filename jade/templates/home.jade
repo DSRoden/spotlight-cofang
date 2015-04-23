@@ -165,7 +165,7 @@ fa-app(ng-controller='HomeCtrl')
                             .register-surface-buttons
                               .account-login Login
                               .account-register(ng-click="showRegister()") Register
-                              .question-mark
+                              .question-mark(ng-click="showAboutOne()")
                               .go-left(ng-click="switchPage(0)")
                               .go-right(ng-click="switchPage(2)")
                       fa-modifier(fa-size="[getPageWidth(), 400]" fa-opacity="registerTransparency")             
@@ -183,8 +183,22 @@ fa-app(ng-controller='HomeCtrl')
                             .register-explanation * Adding your phone number enters you into the Spotlight Lottery, we will never use it for any other purpose.
                             .register-surface-buttons
                               .account-login(ng-click="showLogin()")  Login
-                              .account-register Register
+                              .account-register(ng-click="showRegister()")  Register
+                      fa-modifier(fa-size="[getPageWidth(), 400]" fa-opacity="aboutTransparency")
+                        fa-surface.registration-view-background(ng-if="about")
+                          .about-container
+                            .about-title Why Spotlight?
+                            .about-info 
+                              span Spotlight is an attempt to create a simpler social network.
+                              span Spotlight is an attempt to create a simpler social network.
+                              span Spotlight is an attempt to create a simpler social network.
+                              span Spotlight is an attempt to create a simpler social network.
+                              span Spotlight is an attempt to create a simpler social network.
+                            .go-back-to-login(ng-click="closeAboutOne()") Back
 
+
+
+                    
          //this is the Show Archived Day View
         fa-view(fa-index='2' fa-options='options.scrollViewOne')
           fa-modifier(fa-size='[getPageWidth(), getPageHeight()]')
