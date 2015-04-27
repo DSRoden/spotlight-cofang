@@ -47,7 +47,7 @@ fa-app(ng-controller='HomeCtrl')
                           fa-image-surface.menu-icon(fa-size='[50,50]' fa-image-url="img/menu-ellipses-icon.png" ng-click="switchPage(1)")
                           fa-surface.center-content
                             fa-app.highest-z-index
-                              fa-image-surface.show-post-button(ng-if="userIsInTheSpotlight" fa-size='[70,70]' fa-image-url="img/add_post.png" ng-click="openPostBox()")
+                              fa-image-surface.show-post-button(ng-if="userIsInTheSpotlight" fa-size='[70,70]' fa-image-url="img/add_post.png" fa-pipe-to="eventHandler" fa-click="openPostBox($event)")
             
             //- spotllight post surface
             fa-app.sliding-in-view
@@ -121,6 +121,12 @@ fa-app(ng-controller='HomeCtrl')
                     .confirmation-no(ng-click="closeConfirmationDialog()") No
                     .confirmation-yes Yes
 
+            //- comments box
+            fa-app.top-slide-in-view
+              fa-modifier(fa-translate="boxTransitionableComments.get()" fa-opacity="commentsBoxTransparency" fa-size="commentsBoxSize.get()")
+                fa-surface.confirmation-dialog-background
+                  
+
 
 
         //- this is the Main Archive View
@@ -150,52 +156,53 @@ fa-app(ng-controller='HomeCtrl')
 
 
               fa-app.top-in-slide-view(ng-if="userNotSignedIn")
-                fa-modifier(fa-translate="boxTransitionableRegistration.get()" fa-opacity="registrationBoxTransparency" fa-size="registrationBoxSize.get()")
-                  fa-surface.registration-view-background
-                    fa-app.registration-view-background
-                      fa-modifier(fa-size="[getPageWidth(), 400]" fa-opacity="aboutTransparency")
-                        fa-surface.registration-view-background(ng-if="about")
-                          .about-container
-                            .about-title Why Spotlight?
-                            .about-info 
-                              span Spotlight is an attempt to create a simpler social network.
-                              span Spotlight is an attempt to create a simpler social network.
-                              span Spotlight is an attempt to create a simpler social network.
-                              span Spotlight is an attempt to create a simpler social network.
-                              span Spotlight is an attempt to create a simpler social network.
-                            .go-back-to-login(ng-click="closeAboutOne()") Back
-                      fa-modifier(fa-size="[getPageWidth(), 400]" fa-opacity="loginTransparency")
-                        fa-surface.registration-view-background(ng-if="login") 
-                          .login-container
-                            .title Spotlight
-                            .logo
-                            .login-username
-                              input.account-input(type="text" ng-model="user.username" placeholder="User name")
-                            .login-password
-                              input.account-input(type="password" ng-model="user.password" placeholder="Password")
-                            .register-surface-buttons
-                              .account-login Login
-                              .account-register(ng-click="showRegister()") Register
-                              .question-mark(ng-click="showAboutOne($event)")
-                              .go-left(ng-click="switchPage(0)")
-                              .go-right(ng-click="switchPage(2)")
-                      fa-modifier(fa-size="[getPageWidth(), 400]" fa-opacity="registerTransparency")             
-                        fa-surface.registration-view-background(ng-if="register") 
-                          .register-container
-                            .slogan One person at a time
-                            .register-username
-                              input.account-input(type="text" ng-model="user.username" placeholder="User name")
-                            .register-password
-                              input.account-input(type="password" ng-model="user.password" placeholder="Password")
-                            .register-password-confirmation
-                              input.account-input(type="password" ng-model="user.passwordConfirmation" placeholder="Confirm Password")
-                            .register-phone
-                              input.account-input(type="text" ng-model="user.phone" placeholder="Phone (optional)")
-                            .register-explanation * Adding your phone number enters you into the Spotlight Lottery, we will never use it for any other purpose.
-                            .register-surface-buttons
-                              .account-login(ng-click="showLogin()")  Login
-                              .account-register(ng-click="showRegister()")  Register
-                      
+                fa-view
+                  fa-modifier(fa-translate="boxTransitionableRegistration.get()" fa-opacity="registrationBoxTransparency" fa-size="registrationBoxSize.get()")
+                    fa-surface.registration-view-background
+                      fa-app.registration-view-background
+                        fa-modifier(fa-size="[getPageWidth(), 400]" fa-opacity="aboutTransparency")
+                          fa-surface.registration-view-background(ng-if="about")
+                            .about-container
+                              .about-title Why Spotlight?
+                              .about-info 
+                                span Spotlight is an attempt to create a simpler social network.
+                                span Spotlight is an attempt to create a simpler social network.
+                                span Spotlight is an attempt to create a simpler social network.
+                                span Spotlight is an attempt to create a simpler social network.
+                                span Spotlight is an attempt to create a simpler social network.
+                              .go-back-to-login(ng-click="closeAboutOne()") Back
+                        fa-modifier(fa-size="[getPageWidth(), 400]" fa-opacity="loginTransparency")
+                          fa-surface.registration-view-background(ng-if="login" fa-tap="tapEvent($event)" fa-pipe-to="archiveScrollEventHandler") 
+                            .login-container
+                              .title Spotlight
+                              .logo
+                              .login-username
+                                input.account-input(type="text" ng-model="user.username" placeholder="User name")
+                              .login-password
+                                input.account-input(type="password" ng-model="user.password" placeholder="Password")
+                              .register-surface-buttons
+                                .account-login Login
+                                .account-register(ng-click="showRegister()") Register
+                                .question-mark(ng-click="showAboutOne($event);")
+                                .go-left(ng-click="switchPage(0)")
+                                .go-right(ng-click="switchPage(2)")
+                        fa-modifier(fa-size="[getPageWidth(), 400]" fa-opacity="registerTransparency")             
+                          fa-surface.registration-view-background(ng-if="register") 
+                            .register-container
+                              .slogan One person at a time
+                              .register-username
+                                input.account-input(type="text" ng-model="user.username" placeholder="User name")
+                              .register-password
+                                input.account-input(type="password" ng-model="user.password" placeholder="Password")
+                              .register-password-confirmation
+                                input.account-input(type="password" ng-model="user.passwordConfirmation" placeholder="Confirm Password")
+                              .register-phone
+                                input.account-input(type="text" ng-model="user.phone" placeholder="Phone (optional)")
+                              .register-explanation * Adding your phone number enters you into the Spotlight Lottery, we will never use it for any other purpose.
+                              .register-surface-buttons
+                                .account-login(ng-click="showLogin()")  Login
+                                .account-register(ng-click="showRegister()")  Register
+                        
 
 
 

@@ -9,6 +9,10 @@
     //initialize spotlight about
     $scope.spotlight = {};
 
+    $scope.tapEvent = function($event){
+      console.log('tap event');
+    };
+
     //initialize user
     $scope.user = {};
     $scope.userNotSignedIn = true;
@@ -35,6 +39,7 @@
 
     $scope.showAboutOne = function(e){
       console.log('e', e);
+      e.stopPropagation();
       $scope.login = false;
       $scope.register = false;
       $scope.about = true;
@@ -467,7 +472,7 @@
     };
 
       //open post box animation
-    $scope.openPostBox = function(){
+    $scope.openPostBox = function($event){
       var pageWidth = $scope.getPageWidth(),
        pageHeight = $scope.getPageHeight();
       $scope.boxTransitionableSpotlightPost.set([0, 50, 0], {duration: 300, curve: Easing.easeIn});

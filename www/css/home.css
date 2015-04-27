@@ -501,10 +501,11 @@ fa-app {
   font-family: Helvetica Neue;
 }
 .go-back-to-login {
+  margin-top: 32%;
   position: absolute;
   border: 2px solid black;
   width: 80px;
-  left: 35%;
+  left: 37%;
   text-align: center;
   height: 50px;
   border-radius: 10px;

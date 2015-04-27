@@ -1,3 +1,5 @@
+/* global FastClick */
+
 (function(){
   'use strict';
 
@@ -7,5 +9,8 @@
 
     $stateProvider
     .state('home',     {url:'/',         templateUrl:'templates/home.html', controller:'HomeCtrl'});
-  }]);
+  }])
+  .run(function(){
+    FastClick.attach(document.body);
+  });
 })();
