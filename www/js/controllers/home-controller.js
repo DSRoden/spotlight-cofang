@@ -604,6 +604,7 @@
 
     $scope.eventHandlerB.on('myEvent', function(){
       console.log('post box');
+      $scope.userIsInTheSpotlight = false;
       var windowHeight = window.innerHeight;
       $scope.boxTransitionableFooter.set([0, (windowHeight *2), 0], {duration: 300, curve: Easing.easeOut});
       $scope.opacityTrans.set([0], {duration: 300});
