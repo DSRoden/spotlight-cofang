@@ -7,7 +7,7 @@
           <fa-view>
             <fa-modifier fa-size="[getPageWidth(), getPageHeight()]">
               <fa-header-footer-layout fa-options="{headerSize: 50, footerSize: 50}">
-                <fa-modifier fa-translate="boxTransitionableHeader.get()" fa-opacity="opacityTrans">
+                <fa-modifier id="mainHeader" fa-translate="boxTransitionableHeader.get()" fa-opacity="opacityTrans">
                   <fa-surface fa-background-color="'black'" class="absolute">
                     <fa-app>
                       <fa-image-surface fa-size="[50,50]" fa-image-url="img/spotlight-icon-small.png" ng-click="showWinnerInfo()" class="spotlight-avatar"></fa-image-surface>
@@ -40,9 +40,13 @@
                               <div class="content-date">-{{moment(post.created_at).format('LT')}}</div>
                             </div>
                             <div class="content-social">
-                              <div ng-click="openCommentsBox()" class="comments">Comments {{post.comments}}</div>
+                              <div ng-click="openCommentsBox()" class="comments">{{post.comments}}</div>
                               <div class="likes">{{post.likes}}</div>
                             </div>
+                            <fa-app>
+                              <fa-image-surface fa-image-url="img/heart.png" fa-size="[20,20]" ng-click="openCommentsBox()" class="comments-icon"></fa-image-surface>
+                              <fa-image-surface fa-image-url="img/heart.png" fa-size="[20,20]" ng-click="like(post)" class="heart"></fa-image-surface>
+                            </fa-app>
                           </fa-surface>
                         </fa-modifier>
                       </fa-view>
@@ -56,7 +60,7 @@
                                 <fa-scroll-view id="comments-scrollview" fa-pipe-from="commentsScrollHandler" fa-options="options.container">
                                   <fa-view fa-size="[getPageWidth(), 700]">
                                     <fa-modifier ng-repeat="comment in comments track by $index">
-                                      <fa-surface fa-background-color="white" fa-size="[getPageWidth(), 200]" class="relative-text">
+                                      <fa-surface fa-background-color="white" fa-size="[getPageWidth(), 100]" class="relative-text">
                                         <div fa-pipe-to="commentsScrollHandler" class="content"> 
                                           <div class="content-text">{{comment.text}}</div>
                                         </div>
@@ -72,8 +76,9 @@
                     </fa-surface>
                   </fa-app>
                 </fa-surface>
-                <fa-modifier fa-translate="boxTransitionableFooter.get()" fa-opacity="opacityTrans">
-                  <fa-image-surface fa-size="[50,50]" fa-image-url="img/menu-ellipses-icon.png" ng-click="switchPage(1)" class="menu-icon"></fa-image-surface>
+                <!-- footer-->
+                <fa-modifier id="mainFooter" fa-translate="boxTransitionableFooter.get()" fa-opacity="opacityTrans">
+                  <fa-image-surface ng-if="!commentMenu" fa-size="[50,50]" fa-image-url="img/menu-ellipses-icon.png" ng-click="switchPage(1)" class="menu-icon"></fa-image-surface>
                   <fa-surface class="center-content">
                     <fa-app class="highest-z-index">
                       <fa-image-surface ng-if="userIsInTheSpotlight" fa-size="[70,70]" fa-image-url="img/add_post.png" fa-pipe-to="eventHandler" fa-click="openPostBox($event)" class="show-post-button"></fa-image-surface>

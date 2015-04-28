@@ -9,7 +9,7 @@ fa-app(ng-controller='HomeCtrl')
                   fa-modifier(fa-size='[getPageWidth(), getPageHeight()]')
                     fa-header-footer-layout(fa-options='{headerSize: 50, footerSize: 50}')
                         //- header
-                        fa-modifier(fa-translate="boxTransitionableHeader.get()" fa-opacity="opacityTrans")
+                        fa-modifier#mainHeader(fa-translate="boxTransitionableHeader.get()" fa-opacity="opacityTrans")
                           fa-surface.absolute(fa-background-color="'black'")
                             fa-app
                               fa-image-surface.spotlight-avatar(fa-size='[50,50]' fa-image-url="img/spotlight-icon-small.png" ng-click="showWinnerInfo()")
@@ -39,10 +39,11 @@ fa-app(ng-controller='HomeCtrl')
                                     .content-date-container
                                       .content-date -{{moment(post.created_at).format('LT')}}
                                     .content-social
-                                      .comments(ng-click="openCommentsBox()") Comments {{post.comments}}
+                                      .comments(ng-click="openCommentsBox()") {{post.comments}}
                                       .likes {{post.likes}}
-                                    //- fa-app
-                                    //-   fa-image-surface(fa-image-url="img/heart.png" ng-click="openCommentsBox()" fa-size='[10,10]')
+                                    fa-app
+                                      fa-image-surface.comments-icon(fa-image-url="img/heart.png" fa-size='[20,20]' ng-click="openCommentsBox()")
+                                      fa-image-surface.heart(fa-image-url="img/heart.png" fa-size='[20,20]' ng-click="like(post)")
                             
                             //- comments surface
                             fa-surface
@@ -54,13 +55,20 @@ fa-app(ng-controller='HomeCtrl')
                                         fa-scroll-view#comments-scrollview(fa-pipe-from='commentsScrollHandler' fa-options='options.container')
                                           fa-view(fa-size='[getPageWidth(), 700]')
                                             fa-modifier(ng-repeat='comment in comments track by $index')
-                                              fa-surface.relative-text(fa-background-color="white" fa-size='[getPageWidth(), 200]')
+                                              fa-surface.relative-text(fa-background-color="white" fa-size='[getPageWidth(), 100]')
                                                 .content(fa-pipe-to="commentsScrollHandler") 
                                                   .content-text {{comment.text}}
+
+                           //- fa-surface
+                           //-  fa-app.sliding-in-view
+                           //-    fa-view(fa-pipe-from="eventHandlerB")
+                           //-      fa-modifier(fa-translate="boxTransitionableComments.get()" fa-opacity="commentsBoxTransparency" fa-size="commentsBoxSize.get()")
+                           //-        fa-surface.post-box-background
                                                 
-                        //- // footer
-                        fa-modifier(fa-translate="boxTransitionableFooter.get()" fa-opacity="opacityTrans")
-                          fa-image-surface.menu-icon(fa-size='[50,50]' fa-image-url="img/menu-ellipses-icon.png" ng-click="switchPage(1)")
+                        // footer
+                        fa-modifier#mainFooter(fa-translate="boxTransitionableFooter.get()" fa-opacity="opacityTrans")
+                          fa-image-surface.menu-icon(ng-if="!commentMenu" fa-size='[50,50]' fa-image-url="img/menu-ellipses-icon.png" ng-click="switchPage(1)")
+                          //- fa-image-surface.menu-icon(ng-if="commentMenu" fa-pipe-from="eventHandlerB" fa-size='[50,50]' fa-image-url="img/spotlight-icon-small.png" ng-click="switchPage(1)")
                           fa-surface.center-content
                             fa-app.highest-z-index
                               fa-image-surface.show-post-button(ng-if="userIsInTheSpotlight" fa-size='[70,70]' fa-image-url="img/add_post.png" fa-pipe-to="eventHandler" fa-click="openPostBox($event)")

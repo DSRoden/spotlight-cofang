@@ -148,9 +148,8 @@ fa-app {
 }
 .comments {
   position: absolute;
-  left: 10px;
+  left: 40px;
   top: 4px;
-  text-decoration: underline;
   padding: 5px;
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
 }
@@ -175,14 +174,12 @@ fa-app {
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
 }
 .heart {
-  position: absolute;
-  height: 20px;
-  width: 20px;
-  right: 40px;
-  bottom: 2px;
-  background: url('../img/heart.png');
-  background-size: contain;
-  background-position: center;
+  bottom: 10px;
+  right: 80px;
+}
+.comments-icon {
+  bottom: 10px;
+  left: 20px;
 }
 .spotlight-name {
   left: 15%;

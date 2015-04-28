@@ -9,17 +9,16 @@
     //initialize spotlight about
     $scope.spotlight = {};
 
+    //initializing menu icon
+    $scope.menuIcon = 'img/menu-ellipses-icon.png';
+
     $scope.tapEvent = function($event){
       console.log('tap event');
     };
 
     //like event
-    $scope.like = function(post, $event){
+    $scope.like = function(post){
       post.likes += 1;
-      if ($event.stopPropagation){$event.stopPropagation();}
-      if ($event.preventDefault){$event.preventDefault();}
-      $event.cancelBubble = true;
-      $event.returnValue = false;
     };
 
     //initialize user
@@ -420,6 +419,44 @@
         });
     }, 1000);
 
+      //this is the section enabling spotlight scrolling with navbar and icon animation
+    var scrollCommentsView;
+    $scope.scrollCommentsViewHandler = new EventHandler();
+    $timeout(function(){
+      scrollCommentsView = $famous.find('#comments-scrollview')[0].renderNode;
+      $scope.scrollCommentsViewHandler = scrollCommentsView.sync;
+       $scope.scrollCommentsViewHandler.on('start', function(event){
+          //console.log('start', event);
+          // console.log('size', scrollView.getSize());
+          // console.log('start event position', scrollView.getPosition());
+          // console.log('start event velocity', scrollView.getVelocity());
+        });
+       $scope.scrollCommentsViewHandler.on('end', function(event){
+          // console.log('end event', event);
+          // console.log('end event position', scrollView.getPosition());
+          // console.log('end event velocity', scrollView.getVelocity());
+          // console.log('get current index', scrollView.getCurrentIndex());
+          // console.log('size', scrollView.getSize());
+          // console.log('get position', scrollView.getPosition());
+          // console.log('get absolute position', scrollView.getAbsolutePosition());
+
+          var windowHeight = window.innerHeight;
+          if(scrollCommentsView.getVelocity() > 0){
+            //console.log('turn header off');
+            //$scope.spotlightHeaderOn= false;
+            $scope.boxTransitionableHeader.set([0, -40, 0], {duration: 300, curve: Easing.easeOut});
+            $scope.boxTransitionableFooter.set([0, windowHeight, 0], {duration: 300, curve: Easing.easeOut});
+            $scope.opacityTrans.set([0], {duration: 300});
+            $scope.$digest();
+          } else {
+            $scope.boxTransitionableHeader.set([0, 0, 0], {duration: 300, curve: Easing.easeIn});
+            $scope.boxTransitionableFooter.set([0, 0, 0], {duration: 300, curve: Easing.easeIn});
+            $scope.opacityTrans.set([1], {duration: 300});
+            $scope.$digest();
+          }
+        });
+    }, 1000);
+
 
     //this is the section enabling archive scrolling with navbar and icon animation
     var archiveScrollView;
@@ -567,8 +604,11 @@
 
     $scope.eventHandlerB.on('myEvent', function(){
       console.log('post box');
+      var windowHeight = window.innerHeight;
+      $scope.boxTransitionableFooter.set([0, (windowHeight *2), 0], {duration: 300, curve: Easing.easeOut});
+      $scope.opacityTrans.set([0], {duration: 300});
       var pageWidth = $scope.getPageWidth(),
-       pageHeight = $scope.getPageHeight();
+      pageHeight = $scope.getPageHeight();
       $scope.boxTransitionableComments.set([0, 0, 0], {duration: 300, curve: Easing.easeIn});
       $scope.commentsBoxSize.set([pageWidth, pageHeight], {duration: 300, curve: Easing.easeIn});
       $scope.commentsBoxTransparency.set([1], {duration: 300});
