@@ -13,6 +13,15 @@
       console.log('tap event');
     };
 
+    //like event
+    $scope.like = function(post, $event){
+      post.likes += 1;
+      if ($event.stopPropagation){$event.stopPropagation();}
+      if ($event.preventDefault){$event.preventDefault();}
+      $event.cancelBubble = true;
+      $event.returnValue = false;
+    };
+
     //initialize user
     $scope.user = {};
     $scope.userNotSignedIn = true;
@@ -162,6 +171,10 @@
     $scope.boxTransitionableAboutOne = new Transitionable([0, windowInnerHeight, 0]);
     $scope.aboutOneBoxSize = new Transitionable([windowWidth, windowInnerHeight]);
     $scope.aboutOneBoxTransparency = new Transitionable(1);
+      //comments
+    $scope.boxTransitionableComments = new Transitionable([0, windowInnerHeight, 0]);
+    $scope.commentsBoxSize = new Transitionable([windowWidth, windowInnerHeight]);
+    $scope.commentsBoxTransparency = new Transitionable(1);
 
 
     //flipping to view session or account page
@@ -214,6 +227,21 @@
                             {name: 'bob', date: '2015-04-11 15:33:29.706269'},
                             {name: 'sally', date: '2015-04-11 15:33:29.706269'},
                             {name: '', date: null}];
+
+    $scope.comments = [
+                            {text: 'james', date: '2015-04-11 15:33:29.706269'},
+                            {text: 'jane', date: '2015-04-11 15:33:29.706269'},
+                            {text: 'bob', date: '2015-04-11 15:33:29.7062695'},
+                            {text: 'sally', date: '2015-04-11 15:33:29.706269'},
+                            {text: 'james', date: '2015-04-11 15:33:29.706269'},
+                            {text: 'jane', date: '2015-04-11 15:33:29.706269'},
+                            {text: 'bob', date: '2015-04-11 15:33:29.706269'},
+                            {text: 'sally', date: '2015-04-11 15:33:29.706269'},
+                            {text: 'bob', date: '2015-04-11 15:33:29.706269'},
+                            {text: 'sally', date: '2015-04-11 15:33:29.706269'},
+                            {text: 'bob', date: '2015-04-11 15:33:29.706269'},
+                            {text: 'sally', date: '2015-04-11 15:33:29.706269'},
+                            {text: '', date: null}];
 
     $scope.archivedDayPosts = [
                     {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image_url: null, created_at: '1999-01-08 04:05:06', likes: 2, comments: 2000},
@@ -303,6 +331,10 @@
     $scope.archiveScrollEventHandler = new EventHandler();
     $scope.eventHandler = new EventHandler();
     $scope.dayScrollEventHandler = new EventHandler();
+    $scope.eventHandlerA = new EventHandler();
+    $scope.eventHandlerB = new EventHandler();
+    $scope.eventHandlerA.pipe($scope.eventHandlerB);
+    $scope.commentsScrollHandler = new EventHandler();
 
 
     //functions for getting the window width and height
@@ -473,6 +505,7 @@
 
       //open post box animation
     $scope.openPostBox = function($event){
+      console.log('post box');
       var pageWidth = $scope.getPageWidth(),
        pageHeight = $scope.getPageHeight();
       $scope.boxTransitionableSpotlightPost.set([0, 50, 0], {duration: 300, curve: Easing.easeIn});
@@ -528,14 +561,18 @@
       $scope.confirmationBoxTransparency.set([1], {duration: 300});
     };
 
-    // $scope.showAboutOne = function(){
-    //   console.log('about one');
-    //   var pageWidth = $scope.getPageWidth(),
-    //       pageHeight = $scope.getPageHeight();
-    //   $scope.boxTransitionableAboutOne.set([0, 0, 0], {duration: 300, curve: Easing.easeIn});
-    //   $scope.aboutOneBoxSize.set([pageWidth, pageHeight], {duration: 300, curve: Easing.easeIn});
-    //   $scope.aboutOneBoxTransparency.set([1], {duration: 300});
-    // };
+    $scope.openCommentsBox = function(){
+      $scope.eventHandlerA.emit('myEvent');
+    };
+
+    $scope.eventHandlerB.on('myEvent', function(){
+      console.log('post box');
+      var pageWidth = $scope.getPageWidth(),
+       pageHeight = $scope.getPageHeight();
+      $scope.boxTransitionableComments.set([0, 0, 0], {duration: 300, curve: Easing.easeIn});
+      $scope.commentsBoxSize.set([pageWidth, pageHeight], {duration: 300, curve: Easing.easeIn});
+      $scope.commentsBoxTransparency.set([1], {duration: 300});
+    });
 
   }]);
 })();

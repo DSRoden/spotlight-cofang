@@ -40,16 +40,38 @@
                               <div class="content-date">-{{moment(post.created_at).format('LT')}}</div>
                             </div>
                             <div class="content-social">
-                              <div class="comments">Comments {{post.comments}}</div>
-                              <div class="likes">{{post.likes}}<span class="heart"></span></div>
+                              <div ng-click="openCommentsBox()" class="comments">Comments {{post.comments}}</div>
+                              <div class="likes">{{post.likes}}</div>
                             </div>
                           </fa-surface>
                         </fa-modifier>
                       </fa-view>
                     </fa-scroll-view>
+                    <fa-surface>
+                      <fa-app class="sliding-in-view">
+                        <fa-view fa-pipe-from="eventHandlerB">
+                          <fa-modifier fa-translate="boxTransitionableComments.get()" fa-opacity="commentsBoxTransparency" fa-size="commentsBoxSize.get()">
+                            <fa-surface class="post-box-background">
+                              <fa-app>
+                                <fa-scroll-view id="comments-scrollview" fa-pipe-from="commentsScrollHandler" fa-options="options.container">
+                                  <fa-view fa-size="[getPageWidth(), 700]">
+                                    <fa-modifier ng-repeat="comment in comments track by $index">
+                                      <fa-surface fa-background-color="white" fa-size="[getPageWidth(), 200]" class="relative-text">
+                                        <div fa-pipe-to="commentsScrollHandler" class="content"> 
+                                          <div class="content-text">{{comment.text}}</div>
+                                        </div>
+                                      </fa-surface>
+                                    </fa-modifier>
+                                  </fa-view>
+                                </fa-scroll-view>
+                              </fa-app>
+                            </fa-surface>
+                          </fa-modifier>
+                        </fa-view>
+                      </fa-app>
+                    </fa-surface>
                   </fa-app>
                 </fa-surface>
-                <!-- footer-->
                 <fa-modifier fa-translate="boxTransitionableFooter.get()" fa-opacity="opacityTrans">
                   <fa-image-surface fa-size="[50,50]" fa-image-url="img/menu-ellipses-icon.png" ng-click="switchPage(1)" class="menu-icon"></fa-image-surface>
                   <fa-surface class="center-content">
@@ -63,25 +85,27 @@
           </fa-view>
         </fa-app>
         <fa-app class="sliding-in-view">
-          <fa-modifier fa-translate="boxTransitionableSpotlightPost.get()" fa-opacity="postboxTransparency" fa-size="postboxSize.get()">
-            <fa-surface class="post-box-background">
-              <fa-app> 
-                <fa-modifier fa-translate="boxTransitionableSpotlightPost.get()" fa-opacity="postboxTransparency" fa-size="postboxSize.get()">
-                  <fa-surface class="textbox-and-image-container">
-                    <textarea ng-model="post.message" placeholder="  Share something with the world." ng-style="{'width' : '95%', 'height': '{{textareaHeight()}}', 'border' : 'none', 'border-radius' : '10px', 'background': 'rgb(234, 233, 233)', 'font-size' : '16px', 'padding' : '10px'}"></textarea>
-                    <div ng-style="{'background-image':'url({{addImageUrl}})', 'height': '{{addImageHeight()}}',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center', 'margin-top' : '10px'}" class="new-image-area">
-                      <div ng-style="{'height' : '30px', 'width': '30px', 'background-color' : 'rgba(0, 0, 0, 0.5)', 'border-radius' : '100%', 'color' : 'white', 'font-size' : '20px', 'font-family' : 'Helvetica', 'float' : 'right', 'text-align' : 'center', 'line-height' : '32px'}" class="delete-image">X</div>
-                    </div>
-                  </fa-surface>
-                </fa-modifier>
-                <fa-image-surface ng-if="userIsInTheSpotlight" fa-size="[70,70]" fa-image-url="img/postit_icon.png" class="make-post"></fa-image-surface>
-                <fa-image-surface ng-if="userIsInTheSpotlight" fa-size="[50, 50]" fa-image-url="img/camera_icon.png" class="open-camera"></fa-image-surface>
-                <fa-image-surface ng-if="userIsInTheSpotlight" fa-size="[45,45]" fa-image-url="img/albums_icon.png" class="open-albums"></fa-image-surface>
-                <fa-image-surface ng-if="userIsInTheSpotlight" fa-size="[50,50]" fa-image-url="img/account_icon.png" ng-click="showAccount()" class="spotlight-help"></fa-image-surface>
-                <fa-image-surface ng-if="userIsInTheSpotlight" fa-size="[45,45]" fa-image-url="img/close_icon.png" ng-click="closePostbox()" class="close-post-box">      </fa-image-surface>
-              </fa-app>
-            </fa-surface>
-          </fa-modifier>
+          <fa-view fa-pipe-from="eventHandlerB">
+            <fa-modifier fa-pipe-from="eventHandler" fa-translate="boxTransitionableSpotlightPost.get()" fa-opacity="postboxTransparency" fa-size="postboxSize.get()">
+              <fa-surface class="post-box-background">
+                <fa-app> 
+                  <fa-modifier fa-translate="boxTransitionableSpotlightPost.get()" fa-opacity="postboxTransparency" fa-size="postboxSize.get()">
+                    <fa-surface class="textbox-and-image-container">
+                      <textarea ng-model="post.message" placeholder="  Share something with the world." ng-style="{'width' : '95%', 'height': '{{textareaHeight()}}', 'border' : 'none', 'border-radius' : '10px', 'background': 'rgb(234, 233, 233)', 'font-size' : '16px', 'padding' : '10px'}"></textarea>
+                      <div ng-style="{'background-image':'url({{addImageUrl}})', 'height': '{{addImageHeight()}}',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center', 'margin-top' : '10px'}" class="new-image-area">
+                        <div ng-style="{'height' : '30px', 'width': '30px', 'background-color' : 'rgba(0, 0, 0, 0.5)', 'border-radius' : '100%', 'color' : 'white', 'font-size' : '20px', 'font-family' : 'Helvetica', 'float' : 'right', 'text-align' : 'center', 'line-height' : '32px'}" class="delete-image">X</div>
+                      </div>
+                    </fa-surface>
+                  </fa-modifier>
+                  <fa-image-surface ng-if="userIsInTheSpotlight" fa-size="[70,70]" fa-image-url="img/postit_icon.png" class="make-post"></fa-image-surface>
+                  <fa-image-surface ng-if="userIsInTheSpotlight" fa-size="[50, 50]" fa-image-url="img/camera_icon.png" class="open-camera"></fa-image-surface>
+                  <fa-image-surface ng-if="userIsInTheSpotlight" fa-size="[45,45]" fa-image-url="img/albums_icon.png" class="open-albums"></fa-image-surface>
+                  <fa-image-surface ng-if="userIsInTheSpotlight" fa-size="[50,50]" fa-image-url="img/account_icon.png" ng-click="showAccount()" class="spotlight-help"></fa-image-surface>
+                  <fa-image-surface ng-if="userIsInTheSpotlight" fa-size="[45,45]" fa-image-url="img/close_icon.png" ng-click="closePostbox()" class="close-post-box">      </fa-image-surface>
+                </fa-app>
+              </fa-surface>
+            </fa-modifier>
+          </fa-view>
         </fa-app>
         <fa-app class="top-slide-in-view">
           <fa-flipper>
