@@ -51,40 +51,40 @@
                         </fa-modifier>
                       </fa-view>
                     </fa-scroll-view>
-                    <fa-surface>
-                      <fa-app class="sliding-in-view">
-                        <fa-view fa-pipe-from="eventHandlerB">
-                          <fa-modifier fa-translate="boxTransitionableComments.get()" fa-opacity="commentsBoxTransparency" fa-size="commentsBoxSize.get()">
-                            <fa-surface class="post-box-background">
-                              <fa-app>
-                                <fa-scroll-view id="comments-scrollview" fa-pipe-from="commentsScrollHandler" fa-options="options.container">
-                                  <fa-view fa-size="[getPageWidth(), 700]">
-                                    <fa-modifier ng-repeat="comment in comments track by $index">
-                                      <fa-surface fa-background-color="white" fa-size="[getPageWidth(), 100]" class="relative-text">
-                                        <div fa-pipe-to="commentsScrollHandler" class="content"> 
-                                          <div class="content-text">{{comment.text}}</div>
-                                        </div>
-                                      </fa-surface>
-                                    </fa-modifier>
-                                  </fa-view>
-                                </fa-scroll-view>
-                              </fa-app>
-                            </fa-surface>
-                          </fa-modifier>
-                        </fa-view>
-                      </fa-app>
-                    </fa-surface>
+                    <fa-app class="sliding-in-view">                          
+                      <fa-view fa-pipe-from="eventHandlerB">
+                        <fa-modifier fa-translate="boxTransitionableComments.get()" fa-opacity="commentsBoxTransparency" fa-size="commentsBoxSize.get()">
+                          <fa-surface class="post-box-background">
+                            <fa-app>
+                              <fa-scroll-view id="comments-scrollview" fa-pipe-from="commentsScrollHandler" fa-options="options.container">
+                                <fa-view fa-size="[getPageWidth(), 700]">
+                                  <fa-modifier ng-repeat="comment in comments track by $index">
+                                    <fa-surface fa-background-color="white" fa-size="[getPageWidth(), 100]" class="relative-text">
+                                      <div fa-pipe-to="commentsScrollHandler" class="content"> 
+                                        <div class="content-text">{{comment.text}}</div>
+                                      </div>
+                                    </fa-surface>
+                                  </fa-modifier>
+                                </fa-view>
+                              </fa-scroll-view>
+                            </fa-app>
+                          </fa-surface>
+                        </fa-modifier>
+                      </fa-view>
+                    </fa-app>
                   </fa-app>
                 </fa-surface>
                 <!-- footer-->
-                <fa-modifier id="mainFooter" fa-translate="boxTransitionableFooter.get()" fa-opacity="opacityTrans">
-                  <fa-image-surface ng-if="!commentMenu" fa-size="[50,50]" fa-image-url="img/menu-ellipses-icon.png" ng-click="switchPage(1)" class="menu-icon"></fa-image-surface>
-                  <fa-surface class="center-content">
-                    <fa-app class="highest-z-index">
-                      <fa-image-surface ng-if="userIsInTheSpotlight" fa-size="[70,70]" fa-image-url="img/add_post.png" fa-pipe-to="eventHandler" fa-click="openPostBox($event)" class="show-post-button"></fa-image-surface>
-                    </fa-app>
-                  </fa-surface>
-                </fa-modifier>
+                <fa-view fa-pipe-from="eventHandlerB">
+                  <fa-modifier id="mainFooter" fa-translate="boxTransitionableFooter.get()" fa-opacity="opacityTrans">
+                    <fa-image-surface fa-size="[50,50]" fa-image-url="img/menu-ellipses-icon.png" ng-click="switchPage(1)" class="menu-icon"></fa-image-surface>
+                    <fa-surface class="center-content">
+                      <fa-app class="highest-z-index">
+                        <fa-image-surface ng-if="userIsInTheSpotlight" fa-size="[70,70]" fa-image-url="img/add_post.png" fa-pipe-to="eventHandler" fa-click="openPostBox($event)" class="show-post-button"></fa-image-surface>
+                      </fa-app>
+                    </fa-surface>
+                  </fa-modifier>
+                </fa-view>
               </fa-header-footer-layout>
             </fa-modifier>
           </fa-view>
