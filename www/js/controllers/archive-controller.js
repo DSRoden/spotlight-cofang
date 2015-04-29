@@ -5,11 +5,10 @@
   'use strict';
 
   angular.module('spotlight-famous')
-  .controller('HomeCtrl', ['$scope', '$timeout', '$location', '$famous', '$timeline', '$state', function($scope, $timeout, $location, $famous, $timeline, $state){
+  .controller('ArchiveCtrl', ['$scope', '$timeout', '$location', '$famous', '$timeline', '$state', function($scope, $timeout, $location, $famous, $timeline, $state){
     //go to archive
-    $scope.goToArchive = function(){
-      console.log('switching states to archive');
-      $state.go('archive');
+    $scope.goToHome= function(){
+      $state.go('home');
     };
 
     //initialize spotlight about

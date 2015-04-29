@@ -8,7 +8,8 @@
     $urlRouterProvider.otherwise('/');
 
     $stateProvider
-    .state('home',     {url:'/',         templateUrl:'templates/home.html', controller:'HomeCtrl'});
+    .state('home',     {url:'/',         templateUrl:'templates/home.html', controller:'HomeCtrl'})
+    .state('archive',     {url:'/',         templateUrl:'templates/archive.html', controller:'ArchiveCtrl'});
   }])
   .run(function(){
     FastClick.attach(document.body);
