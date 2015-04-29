@@ -562,6 +562,7 @@
     $scope.showRegistration = function(done){
       $scope.userNotSignedIn = true;
       $scope.login = true;
+      $scope.userIsInTheSpotlight = false;
       console.log('registration');
       var pageWidth = $scope.getPageWidth(),
        pageHeight = $scope.getPageHeight();
