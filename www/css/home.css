@@ -64,7 +64,7 @@ fa-app {
 }
 .image-date-container {
   position: absolute;
-  bottom: 35px;
+  bottom: 36px;
   left: 0;
   right: 0;
   background: rgba(255, 255, 255, 0.7);
@@ -124,7 +124,7 @@ fa-app {
 }
 .content-date-container {
   position: absolute;
-  bottom: 35px;
+  bottom: 36px;
   left: 0;
   right: 0;
   background: rgba(255, 255, 255, 0.7);
@@ -148,9 +148,8 @@ fa-app {
 }
 .comments {
   position: absolute;
-  left: 10px;
+  left: 15px;
   top: 4px;
-  text-decoration: underline;
   padding: 5px;
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
 }
@@ -242,6 +241,9 @@ fa-app {
 }
 .registration-view-background {
   background: url('../img/slash_it_white.png');
+}
+.registration-z-index {
+  z-index: 9999999 ! important;
 }
 .about-one-view {
   background: url('../img/slash_it_white.png');

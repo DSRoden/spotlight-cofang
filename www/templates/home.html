@@ -23,24 +23,24 @@
                       <fa-view fa-size="[getPageWidth(), mainScrollHeight]">
                         <fa-modifier ng-repeat="post in posts track by $index">
                           <fa-surface ng-if="post.image_url" fa-size="[getPageWidth(), 300]" class="relative-image">
-                            <div ng-style="{'background-image':'url({{post.image_url}})', 'height': '285px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to="myEventHandler" class="image"></div>
+                            <div ng-click="showComments(post.id)" ng-style="{'background-image':'url({{post.image_url}})', 'height': '285px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to="myEventHandler" class="image"></div>
                             <div ng-hide="post.text" class="image-date-container"> 
                               <div class="image-date">-{{moment(post.created_at).format('LT')}}</div>
                             </div>
                             <div ng-hide="post.text" class="image-social">
-                              <div class="comments">Comments {{post.comments}}</div>
+                              <div ng-click="showComments(post.id)" class="comments">Comments {{post.comments}}</div>
                               <div class="likes">{{post.likes}}<span class="heart"></span></div>
                             </div>
                           </fa-surface>
                           <fa-surface ng-if="post.text" fa-background-color="white" fa-size="[getPageWidth(), 200]" class="relative-text">
-                            <div fa-pipe-to="myEventHandler" class="content"> 
+                            <div fa-pipe-to="myEventHandler" ng-click="showComments(post.id)" class="content"> 
                               <div class="content-text">{{post.text}}</div>
                             </div>
                             <div class="content-date-container">
-                              <div class="content-date">-{{moment(post.created_at).format('LT')}}</div>
+                              <div class="content-date">{{moment(post.created_at).format('LT')}}</div>
                             </div>
                             <div class="content-social">
-                              <div class="comments">Comments {{post.comments}}</div>
+                              <div ng-click="showComments(post.id)" class="comments">Comments {{post.comments}}</div>
                               <div class="likes">{{post.likes}}<span class="heart"></span></div>
                             </div>
                           </fa-surface>
@@ -51,7 +51,6 @@
                 </fa-surface>
                 <!-- footer-->
                 <fa-modifier fa-translate="boxTransitionableFooter.get()" fa-opacity="opacityTrans">
-                  <fa-image-surface fa-size="[50,50]" fa-image-url="img/menu-ellipses-icon.png" ng-click="switchPage(1)" class="menu-icon"></fa-image-surface>
                   <fa-surface class="center-content">
                     <fa-app class="highest-z-index">
                       <fa-image-surface ng-if="userIsInTheSpotlight" fa-size="[70,70]" fa-image-url="img/add_post.png" fa-pipe-to="eventHandler" fa-click="openPostBox($event)" class="show-post-button"></fa-image-surface>
@@ -169,12 +168,13 @@
                   <!-- content-->
                   <fa-surface fa-background-color="'white'">
                     <fa-app ng-controller="HomeCtrl">
-                      <fa-scroll-view id="archive-scrollview" fa-pipe-from="archiveScrollEventHandler" fa-options="options.container">
-                        <fa-view ng-repeat="archive in archivedDays" fa-size="[getPageWidth(), archiveScrollHeight]">
-                          <fa-modifier fa-size="[getPageWidth(), 100]">
-                            <fa-surface fa-background-color="archive.color" fa-pipe-to="archiveScrollEventHandler" class="archive-item">
-                              <div ng-click="goToArchivedDay(archive.id)" class="user-name">{{archive.name}}</div>
-                              <div ng-click="goToArchivedDay(archive.id)" ng-if="archive.date" class="date">{{moment(archive.date).format('MMMM Do YYYY')}}</div>
+                      <fa-scroll-view id="comments-scrollview" fa-pipe-from="commentsScrollHandler" fa-options="options.container">
+                        <fa-view fa-size="[getPageWidth(), 700]">
+                          <fa-modifier ng-repeat="comment in comments track by $index">
+                            <fa-surface fa-background-color="white" fa-size="[getPageWidth(), 100]" class="relative-text">
+                              <div fa-pipe-to="commentsScrollHandler" class="content"> 
+                                <div class="content-text">{{comment.text}}</div>
+                              </div>
                             </fa-surface>
                           </fa-modifier>
                         </fa-view>
@@ -183,133 +183,71 @@
                   </fa-surface>
                   <!-- footer-->
                   <fa-modifier fa-translate="boxTransitionableFooter2.get()" fa-opacity="opacityTrans2" fa-size="[50,50]">
-                    <fa-image-surface fa-image-url="img/spotlight-icon-small.png" ng-click="switchPage(0)" class="spotlight-icon">                </fa-image-surface>
+                    <fa-image-surface fa-size="[50,50]" fa-image-url="img/menu-ellipses-icon.png" ng-click="showRegistration()" class="menu-icon"></fa-image-surface>
                   </fa-modifier>
                 </fa-header-footer-layout>
               </fa-modifier>
             </fa-view>
-          </fa-app>
-          <fa-app ng-if="userNotSignedIn" class="top-in-slide-view">
-            <fa-view>
-              <fa-modifier fa-translate="boxTransitionableRegistration.get()" fa-opacity="registrationBoxTransparency" fa-size="registrationBoxSize.get()">
-                <fa-surface class="registration-view-background">
-                  <fa-app class="registration-view-background">
-                    <fa-modifier fa-size="[getPageWidth(), 400]" fa-opacity="aboutTransparency">
-                      <fa-surface ng-if="about" class="registration-view-background">
-                        <div class="about-container">
-                          <div class="about-title">Why Spotlight?</div>
-                          <div class="about-info"> <span>Spotlight is an attempt to create a simpler social network.</span><span>Spotlight is an attempt to create a simpler social network.</span><span>Spotlight is an attempt to create a simpler social network.</span><span>Spotlight is an attempt to create a simpler social network.</span><span>Spotlight is an attempt to create a simpler social network.</span></div>
-                          <div ng-click="closeAboutOne()" class="go-back-to-login">Back</div>
-                        </div>
-                      </fa-surface>
-                    </fa-modifier>
-                    <fa-modifier fa-size="[getPageWidth(), 400]" fa-opacity="loginTransparency">
-                      <fa-surface ng-if="login" fa-tap="tapEvent($event)" fa-pipe-to="archiveScrollEventHandler" class="registration-view-background"> 
-                        <div class="login-container">
-                          <div class="title">Spotlight</div>
-                          <div class="logo"></div>
-                          <div class="login-username">
-                            <input type="text" ng-model="user.username" placeholder="User name" class="account-input">
-                          </div>
-                          <div class="login-password">
-                            <input type="password" ng-model="user.password" placeholder="Password" class="account-input">
-                          </div>
-                          <div class="register-surface-buttons">
-                            <div class="account-login">Login</div>
-                            <div ng-click="showRegister()" class="account-register">Register</div>
-                            <div ng-click="showAboutOne($event);" class="question-mark"></div>
-                            <div ng-click="switchPage(0)" class="go-left"></div>
-                            <div ng-click="switchPage(2)" class="go-right"></div>
-                          </div>
-                        </div>
-                      </fa-surface>
-                    </fa-modifier>
-                    <fa-modifier fa-size="[getPageWidth(), 400]" fa-opacity="registerTransparency">            
-                      <fa-surface ng-if="register" class="registration-view-background"> 
-                        <div class="register-container">
-                          <div class="slogan">One person at a time</div>
-                          <div class="register-username">
-                            <input type="text" ng-model="user.username" placeholder="User name" class="account-input">
-                          </div>
-                          <div class="register-password">
-                            <input type="password" ng-model="user.password" placeholder="Password" class="account-input">
-                          </div>
-                          <div class="register-password-confirmation">
-                            <input type="password" ng-model="user.passwordConfirmation" placeholder="Confirm Password" class="account-input">
-                          </div>
-                          <div class="register-phone">
-                            <input type="text" ng-model="user.phone" placeholder="Phone (optional)" class="account-input">
-                          </div>
-                          <div class="register-explanation">* Adding your phone number enters you into the Spotlight Lottery, we will never use it for any other purpose.</div>
-                          <div class="register-surface-buttons">
-                            <div ng-click="showLogin()" class="account-login"> Login</div>
-                            <div ng-click="showRegister()" class="account-register"> Register</div>
-                          </div>
-                        </div>
-                      </fa-surface>
-                    </fa-modifier>
-                  </fa-app>
-                </fa-surface>
-              </fa-modifier>
-            </fa-view>
-          </fa-app>
-        </fa-surface>
-      </fa-modifier>
-    </fa-view>
-    <!--this is the Show Archived Day View-->
-    <fa-view fa-index="2" fa-options="options.scrollViewOne">
-      <fa-modifier fa-size="[getPageWidth(), getPageHeight()]">
-        <fa-surface fa-pipe-to="eventHandler">
-          <fa-app>
-            <fa-view>
-              <fa-modifier fa-size="[getPageWidth(), getPageHeight()]">
-                <fa-header-footer-layout fa-options="{headerSize: 50, footersize: 50}">
-                  <!--header-->
-                  <fa-modifier fa-translate="boxTransitionableHeader3.get()" fa-opacity="opacityTrans3">
-                    <fa-surface fa-background-color="'black'" class="absolute"></fa-surface>
+            <fa-modifier fa-translate="boxTransitionableRegistration.get()" fa-opacity="registrationBoxTransparency" fa-size="registrationBoxSize.get()">
+              <fa-surface class="registration-view-background registration-z-index">
+                <fa-app ng-if="userNotSignedIn" class="registration-view-background">
+                  <fa-modifier fa-size="[getPageWidth(), 400]" fa-opacity="aboutTransparency">
+                    <fa-surface ng-if="about" class="registration-view-background">
+                      <div class="about-container">
+                        <div class="about-title">Why Spotlight?</div>
+                        <div class="about-info"> <span>Spotlight is an attempt to create a simpler social network.</span><span>Spotlight is an attempt to create a simpler social network.</span><span>Spotlight is an attempt to create a simpler social network.</span><span>Spotlight is an attempt to create a simpler social network.</span><span>Spotlight is an attempt to create a simpler social network.</span></div>
+                        <div ng-click="closeAboutOne()" class="go-back-to-login">Back</div>
+                      </div>
+                    </fa-surface>
                   </fa-modifier>
-                  <!--content-->
-                  <fa-surface fa-background-color="'gray'"> 
-                    <fa-app ng-controller="HomeCtrl">
-                      <fa-scroll-view id="day-scrollview" fa-pipe-from="dayScrollEventHandler" fa-options="options.container">
-                        <fa-view fa-size="[getPageWidth(), dayScrollHeight]">
-                          <fa-modifier ng-repeat="post in archivedDayPosts track by $index" class="top-border">
-                            <fa-surface ng-if="post.image_url" fa-size="[getPageWidth(), 300]" class="relative-image">
-                              <div ng-style="{'background-image':'url({{post.image_url}})', 'height': '285px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to="dayScrollEventHandler" class="image"></div>
-                              <div ng-hide="post.text" class="image-date-container"> 
-                                <div class="image-date">-{{moment(post.created_at).format('MMMM Do YYYY @ h:mm:ss a')}}</div>
-                              </div>
-                              <div ng-hide="post.text" class="image-social">
-                                <div class="comments">Comments {{post.comments}}</div>
-                                <div class="likes">{{post.likes}}<span class="heart"></span></div>
-                              </div>
-                            </fa-surface>
-                            <fa-surface ng-if="post.text" fa-background-color="white" fa-size="[getPageWidth(), 200]" class="relative-text">
-                              <div fa-pipe-to="dayScrollEventHandler" class="content"> 
-                                <div class="content-text">{{post.text}}</div>
-                              </div>
-                              <div class="content-date-container">
-                                <div class="content-date">- {{moment(post.created_at).format('MMMM Do YYYY @ h:mm:ss a')}}</div>
-                              </div>
-                              <div class="content-social">
-                                <div class="comments">Comments {{post.comments}}</div>
-                                <div class="likes">{{post.likes}}<span class="heart"></span></div>
-                              </div>
-                            </fa-surface>
-                          </fa-modifier>
-                        </fa-view>
-                      </fa-scroll-view>
-                    </fa-app>
-                  </fa-surface>
-                  <!--footer-->
-                  <fa-container-surface>
-                    <fa-modifier fa-translate="boxTransitionableFooter3.get()" fa-opacity="opacityTrans3" fa-size="[50,50]">
-                      <fa-image-surface fa-image-url="img/menu-ellipses-icon.png" ng-click="switchPage(1)" class="spotlight-icon2"></fa-image-surface>
-                    </fa-modifier>
-                  </fa-container-surface>
-                </fa-header-footer-layout>
-              </fa-modifier>
-            </fa-view>
+                  <fa-modifier fa-size="[getPageWidth(), 400]" fa-opacity="loginTransparency">
+                    <fa-surface ng-if="login" fa-tap="tapEvent($event)" fa-pipe-to="archiveScrollEventHandler" class="registration-view-background"> 
+                      <div class="login-container">
+                        <div class="title">Spotlight</div>
+                        <div class="logo"></div>
+                        <div class="login-username">
+                          <input type="text" ng-model="user.username" placeholder="User name" class="account-input">
+                        </div>
+                        <div class="login-password">
+                          <input type="password" ng-model="user.password" placeholder="Password" class="account-input">
+                        </div>
+                        <div class="register-surface-buttons">
+                          <div class="account-login">Login</div>
+                          <div ng-click="showRegister()" class="account-register">Register</div>
+                          <div ng-click="showAboutOne($event);" class="question-mark"></div>
+                          <div ng-click="switchPage(0)" class="go-left"></div>
+                          <div ng-click="closeRegistration()" class="go-right"></div>
+                        </div>
+                      </div>
+                    </fa-surface>
+                  </fa-modifier>
+                  <fa-modifier fa-size="[getPageWidth(), 400]" fa-opacity="registerTransparency">            
+                    <fa-surface ng-if="register" class="registration-view-background"> 
+                      <div class="register-container">
+                        <div class="slogan">One person at a time</div>
+                        <div class="register-username">
+                          <input type="text" ng-model="user.username" placeholder="User name" class="account-input">
+                        </div>
+                        <div class="register-password">
+                          <input type="password" ng-model="user.password" placeholder="Password" class="account-input">
+                        </div>
+                        <div class="register-password-confirmation">
+                          <input type="password" ng-model="user.passwordConfirmation" placeholder="Confirm Password" class="account-input">
+                        </div>
+                        <div class="register-phone">
+                          <input type="text" ng-model="user.phone" placeholder="Phone (optional)" class="account-input">
+                        </div>
+                        <div class="register-explanation">* Adding your phone number enters you into the Spotlight Lottery, we will never use it for any other purpose.</div>
+                        <div class="register-surface-buttons">
+                          <div ng-click="showLogin()" class="account-login"> Login</div>
+                          <div ng-click="showRegister()" class="account-register"> Register</div>
+                        </div>
+                      </div>
+                    </fa-surface>
+                  </fa-modifier>
+                </fa-app>
+              </fa-surface>
+            </fa-modifier>
           </fa-app>
         </fa-surface>
       </fa-modifier>

@@ -15,7 +15,7 @@
 
     //initialize user
     $scope.user = {};
-    $scope.userNotSignedIn = true;
+    $scope.userNotSignedIn = false;
     if($scope.userNotSignedIn){
       $scope.login = true;
     }
@@ -151,7 +151,7 @@
     $scope.confirmationBoxSize = new Transitionable([windowWidth, windowInnerHeight]);
     $scope.confirmationBoxTransparency = new Transitionable(1);
       //registration box
-    $scope.boxTransitionableRegistration = new Transitionable([0, 0, 0]);
+    $scope.boxTransitionableRegistration = new Transitionable([0, windowInnerHeight, 0]);
     $scope.registrationBoxSize = new Transitionable([windowWidth, windowInnerHeight]);
     $scope.registrationBoxTransparency = new Transitionable(1);
       //reigstration transparencies
@@ -228,6 +228,20 @@
                     {text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', image_url: 'http://fillmurray.com/200/300', created_at: '1999-01-08 04:05:06', likes: 400, comments: 2000}];
 
 
+    $scope.comments = [
+                            {text: 'james', date: '2015-04-11 15:33:29.706269'},
+                            {text: 'jane', date: '2015-04-11 15:33:29.706269'},
+                            {text: 'bob', date: '2015-04-11 15:33:29.7062695'},
+                            {text: 'sally', date: '2015-04-11 15:33:29.706269'},
+                            {text: 'james', date: '2015-04-11 15:33:29.706269'},
+                            {text: 'jane', date: '2015-04-11 15:33:29.706269'},
+                            {text: 'bob', date: '2015-04-11 15:33:29.706269'},
+                            {text: 'sally', date: '2015-04-11 15:33:29.706269'},
+                            {text: 'bob', date: '2015-04-11 15:33:29.706269'},
+                            {text: 'sally', date: '2015-04-11 15:33:29.706269'},
+                            {text: 'bob', date: '2015-04-11 15:33:29.706269'},
+                            {text: 'sally', date: '2015-04-11 15:33:29.706269'},
+                            {text: '', date: null}];
 
     //making ids for example archived days
     $scope.makeIdsForExample = function(){
@@ -236,6 +250,14 @@
       }
     };
     $scope.makeIdsForExample();
+
+    //making ids for example posts
+    $scope.makeIdsForPosts = function(){
+      for(var i = 0; i < $scope.posts.length; i++){
+        $scope.posts[i].id = i;
+      }
+    };
+    $scope.makeIdsForPosts();
 
     //helper function to add a color property archiveViews
     var _colors = ['#FE4365', '#83AF9B', '#FC9D9A', '#F9CDAD', '#C8C8A9'];
@@ -303,6 +325,7 @@
     $scope.archiveScrollEventHandler = new EventHandler();
     $scope.eventHandler = new EventHandler();
     $scope.dayScrollEventHandler = new EventHandler();
+    $scope.commentsScrollHandler = new EventHandler();
 
 
     //functions for getting the window width and height
@@ -389,29 +412,67 @@
     }, 1000);
 
 
-    //this is the section enabling archive scrolling with navbar and icon animation
-    var archiveScrollView;
-    $scope.scrollViewHandlerArchive = new EventHandler();
+    // //this is the section enabling archive scrolling with navbar and icon animation
+    // var archiveScrollView;
+    // $scope.scrollViewHandlerArchive = new EventHandler();
+    // $timeout(function(){
+    //   archiveScrollView = $famous.find('#archive-scrollview')[0].renderNode;
+    //   $scope.scrollViewHandlerArchive = archiveScrollView.sync;
+    //    $scope.scrollViewHandlerArchive.on('start', function(event){
+    //       // console.log('start', event);
+    //       // console.log('start event position', scrollView.getPosition());
+    //       // console.log('start event velocity', scrollView.getVelocity());
+    //     });
+    //    $scope.scrollViewHandlerArchive.on('end', function(event){
+    //       // console.log('end event', event);
+    //       // console.log('end event position', scrollView.getPosition());
+    //       // console.log('end event velocity', scrollView.getVelocity());
+    //       var archiveWindowHeight = window.innerHeight;
+    //       if(archiveScrollView.getVelocity() > 0){
+    //         //console.log('turn header off');
+    //         $scope.boxTransitionableHeader2.set([0, -40, 0], {duration: 300, curve: Easing.easeOut});
+    //         $scope.boxTransitionableFooter2.set([0, archiveWindowHeight, 0], {duration: 300, curve: Easing.easeOut});
+    //         $scope.opacityTrans2.set([0], {duration: 300});
+    //         $scope.$digest();
+    //       } else{
+    //         $scope.boxTransitionableHeader2.set([0, 0, 0], {duration: 300, curve: Easing.easeIn});
+    //         $scope.boxTransitionableFooter2.set([0, 0, 0], {duration: 300, curve: Easing.easeIn});
+    //         $scope.opacityTrans2.set([1], {duration: 300});
+    //         $scope.$digest();
+    //       }
+    //     });
+    // }, 1000);
+
+ //comments scroll
+  var scrollCommentsView;
+    $scope.scrollCommentsViewHandler = new EventHandler();
     $timeout(function(){
-      archiveScrollView = $famous.find('#archive-scrollview')[0].renderNode;
-      $scope.scrollViewHandlerArchive = archiveScrollView.sync;
-       $scope.scrollViewHandlerArchive.on('start', function(event){
-          // console.log('start', event);
+      scrollCommentsView = $famous.find('#comments-scrollview')[0].renderNode;
+      $scope.scrollCommentsViewHandler = scrollCommentsView.sync;
+       $scope.scrollCommentsViewHandler.on('start', function(event){
+          //console.log('start', event);
+          // console.log('size', scrollView.getSize());
           // console.log('start event position', scrollView.getPosition());
           // console.log('start event velocity', scrollView.getVelocity());
         });
-       $scope.scrollViewHandlerArchive.on('end', function(event){
+       $scope.scrollCommentsViewHandler.on('end', function(event){
           // console.log('end event', event);
           // console.log('end event position', scrollView.getPosition());
           // console.log('end event velocity', scrollView.getVelocity());
-          var archiveWindowHeight = window.innerHeight;
-          if(archiveScrollView.getVelocity() > 0){
+          // console.log('get current index', scrollView.getCurrentIndex());
+          // console.log('size', scrollView.getSize());
+          // console.log('get position', scrollView.getPosition());
+          // console.log('get absolute position', scrollView.getAbsolutePosition());
+
+          var windowHeight = window.innerHeight;
+          if(scrollCommentsView.getVelocity() > 0){
             //console.log('turn header off');
+            //$scope.spotlightHeaderOn= false;
             $scope.boxTransitionableHeader2.set([0, -40, 0], {duration: 300, curve: Easing.easeOut});
-            $scope.boxTransitionableFooter2.set([0, archiveWindowHeight, 0], {duration: 300, curve: Easing.easeOut});
+            $scope.boxTransitionableFooter2.set([0, windowHeight, 0], {duration: 300, curve: Easing.easeOut});
             $scope.opacityTrans2.set([0], {duration: 300});
             $scope.$digest();
-          } else{
+          } else {
             $scope.boxTransitionableHeader2.set([0, 0, 0], {duration: 300, curve: Easing.easeIn});
             $scope.boxTransitionableFooter2.set([0, 0, 0], {duration: 300, curve: Easing.easeIn});
             $scope.opacityTrans2.set([1], {duration: 300});
@@ -420,47 +481,17 @@
         });
     }, 1000);
 
-  //this is the section enabling show day scrolling with navbar and icon animation
-      var dayScrollView;
-      $scope.scrollViewHandlerDay = new EventHandler();
-      $timeout(function(){
-        dayScrollView = $famous.find('#day-scrollview')[0].renderNode;
-        $scope.scrollViewHandlerDay = dayScrollView.sync;
-         $scope.scrollViewHandlerDay.on('start', function(event){
-            // console.log('start', event);
-            // console.log('start event position', scrollView.getPosition());
-            // console.log('start event velocity', scrollView.getVelocity());
-          });
-         $scope.scrollViewHandlerDay.on('end', function(event){
-            // console.log('end event', event);
-            // console.log('end event position', scrollView.getPosition());
-            // console.log('end event velocity', scrollView.getVelocity());
-            var dayWindowHeight = window.innerHeight;
-            if(dayScrollView.getVelocity() > 0){
-              //console.log('turn header off');
-              $scope.boxTransitionableHeader3.set([0, -40, 0], {duration: 300, curve: Easing.easeOut});
-              $scope.boxTransitionableFooter3.set([0, dayWindowHeight, 0], {duration: 300, curve: Easing.easeOut});
-              $scope.opacityTrans3.set([0], {duration: 300});
-              $scope.$digest();
-            } else{
-              $scope.boxTransitionableHeader3.set([0, 0, 0], {duration: 300, curve: Easing.easeIn});
-              $scope.boxTransitionableFooter3.set([0, 0, 0], {duration: 300, curve: Easing.easeIn});
-              $scope.opacityTrans3.set([1], {duration: 300});
-              $scope.$digest();
-            }
-          });
-      }, 1000);
 
-    //Switch page function
-    $scope.changePageHandler = new EventHandler();
-    $scope.switchPage = function(pageToGoTo){
-      var pageView = $famous.find('#home')[0].renderNode;
-      //console.log(pageView);
-      $scope.changePageHandler = pageView.sync;
-      //console.log($scope.changePageHandler);
-      //var pageToGoTo = (currentPage) ? 0 : 1;
-      pageView.goToPage(pageToGoTo);
-    };
+    // //Switch page function
+    // $scope.changePageHandler = new EventHandler();
+    // $scope.switchPage = function(pageToGoTo){
+    //   var pageView = $famous.find('#home')[0].renderNode;
+    //   //console.log(pageView);
+    //   $scope.changePageHandler = pageView.sync;
+    //   //console.log($scope.changePageHandler);
+    //   //var pageToGoTo = (currentPage) ? 0 : 1;
+    //   pageView.goToPage(pageToGoTo);
+    // };
 
     //Go to archived day function
     $scope.goToArchivedDay = function(id){
@@ -528,13 +559,46 @@
       $scope.confirmationBoxTransparency.set([1], {duration: 300});
     };
 
-    // $scope.showAboutOne = function(){
-    //   console.log('about one');
-    //   var pageWidth = $scope.getPageWidth(),
-    //       pageHeight = $scope.getPageHeight();
-    //   $scope.boxTransitionableAboutOne.set([0, 0, 0], {duration: 300, curve: Easing.easeIn});
-    //   $scope.aboutOneBoxSize.set([pageWidth, pageHeight], {duration: 300, curve: Easing.easeIn});
-    //   $scope.aboutOneBoxTransparency.set([1], {duration: 300});
+    $scope.showRegistration = function(done){
+      $scope.userNotSignedIn = true;
+      $scope.login = true;
+      console.log('registration');
+      var pageWidth = $scope.getPageWidth(),
+       pageHeight = $scope.getPageHeight();
+      $scope.boxTransitionableHeader2.set([0, 0, 0], {duration: 300, curve: Easing.easeIn});
+
+      $scope.boxTransitionableRegistration.set([0, 0, 0], {duration: 300, curve: Easing.easeIn});
+      $scope.registrationBoxSize.set([pageWidth, pageHeight], {duration: 300, curve: Easing.easeIn});
+      $scope.registrationBoxTransparency.set([1], {duration: 300});
+    };
+
+    $scope.closeRegistration = function(){
+      console.log('registration');
+      $scope.boxTransitionableRegistration.set([0, windowInnerHeight, 0], {duration: 300, curve: Easing.easeIn});
+      $scope.registrationBoxSize.set([windowWidth, 0], {duration: 300, curve: Easing.easeIn});
+      $scope.registrationBoxTransparency.set([1], {duration: 300});
+      // $scope.login = false;
+    };
+
+    $scope.changePageHandler = new EventHandler();
+    $scope.showComments = function(id){
+      //first call to bring in the comments associated with that post id
+      console.log('post id', id);
+      //then slide to view
+      var pageView = $famous.find('#home')[0].renderNode;
+      $scope.changePageHandler = pageView.sync;
+      pageView.goToPage(1);
+    };
+
+    //  //Switch page function
+    // $scope.changePageHandler = new EventHandler();
+    // $scope.switchPage = function(pageToGoTo){
+    //   var pageView = $famous.find('#home')[0].renderNode;
+    //   //console.log(pageView);
+    //   $scope.changePageHandler = pageView.sync;
+    //   //console.log($scope.changePageHandler);
+    //   //var pageToGoTo = (currentPage) ? 0 : 1;
+    //   pageView.goToPage(pageToGoTo);
     // };
 
   }]);
