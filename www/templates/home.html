@@ -51,9 +51,9 @@
                 </fa-surface>
                 <!-- footer-->
                 <fa-modifier fa-translate="boxTransitionableFooter.get()" fa-opacity="opacityTrans">
-                  <fa-image-surface fa-size="[50,50]" fa-image-url="img/menu-ellipses-icon.png" ng-click="goToArchive()" class="menu-icon"></fa-image-surface>
                   <fa-surface class="center-content">
                     <fa-app class="highest-z-index">
+                      <fa-image-surface fa-size="[50,50]" fa-image-url="img/menu-ellipses-icon.png" ng-click="goToArchive()" class="menu-icon"></fa-image-surface>
                       <fa-image-surface ng-if="userIsInTheSpotlight" fa-size="[70,70]" fa-image-url="img/add_post.png" fa-pipe-to="eventHandler" fa-click="openPostBox($event)" class="show-post-button"></fa-image-surface>
                     </fa-app>
                   </fa-surface>

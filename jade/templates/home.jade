@@ -44,9 +44,9 @@ fa-app(ng-controller='HomeCtrl')
                                         span.heart
                         // footer
                         fa-modifier(fa-translate="boxTransitionableFooter.get()" fa-opacity="opacityTrans")
-                          fa-image-surface.menu-icon(fa-size='[50,50]' fa-image-url="img/menu-ellipses-icon.png" ng-click="goToArchive()")
                           fa-surface.center-content
                             fa-app.highest-z-index
+                              fa-image-surface.menu-icon(fa-size='[50,50]' fa-image-url="img/menu-ellipses-icon.png" ng-click="goToArchive()")
                               fa-image-surface.show-post-button(ng-if="userIsInTheSpotlight" fa-size='[70,70]' fa-image-url="img/add_post.png" fa-pipe-to="eventHandler" fa-click="openPostBox($event)")
             
             //- spotllight post surface
