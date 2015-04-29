@@ -604,6 +604,7 @@
 
     $scope.eventHandlerB.on('myEvent', function(){
       console.log('post box');
+      $scope.$broadcast('comments');
       var windowHeight = window.innerHeight;
       $scope.boxTransitionableFooter.set([0, (windowHeight *2), 0], {duration: 300, curve: Easing.easeOut});
       $scope.opacityTrans.set([0], {duration: 300});
@@ -613,6 +614,12 @@
       $scope.commentsBoxSize.set([pageWidth, pageHeight], {duration: 300, curve: Easing.easeIn});
       $scope.commentsBoxTransparency.set([1], {duration: 300});
       $scope.commentMenu = true;
+    });
+
+    $scope.$on('comments', function(){
+        console.log('broadcast');
+        $scope.userIsInTheSpotlight = false;
+        console.log($scope.userIsInTheSpotlight);
     });
 
   }]);

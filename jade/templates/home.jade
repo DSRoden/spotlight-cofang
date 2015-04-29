@@ -47,21 +47,22 @@ fa-app(ng-controller='HomeCtrl')
                                       fa-image-surface.heart(fa-image-url="img/heart.png" fa-size='[20,20]' ng-click="like(post)")
                             
                             //- comments surface
-                            fa-app.sliding-in-view                           
-                              fa-view(fa-pipe-from="eventHandlerB")
-                                fa-modifier(fa-translate="boxTransitionableComments.get()" fa-opacity="commentsBoxTransparency" fa-size="commentsBoxSize.get()")
-                                  fa-surface.post-box-background
-                                    fa-app
-                                      fa-scroll-view#comments-scrollview(fa-pipe-from='commentsScrollHandler' fa-options='options.container')
-                                        fa-view(fa-size='[getPageWidth(), 700]')
-                                          fa-modifier(ng-repeat='comment in comments track by $index')
-                                            fa-surface.relative-text(fa-background-color="white" fa-size='[getPageWidth(), 100]')
-                                              .content(fa-pipe-to="commentsScrollHandler") 
-                                                .content-text {{comment.text}}
+                            fa-surface
+                              fa-app.sliding-in-view                           
+                                fa-view
+                                  fa-modifier(fa-translate="boxTransitionableComments.get()" fa-opacity="commentsBoxTransparency" fa-size="commentsBoxSize.get()")
+                                    fa-surface.post-box-background
+                                      fa-app
+                                        fa-scroll-view#comments-scrollview(fa-pipe-from='commentsScrollHandler' fa-options='options.container')
+                                          fa-view(fa-size='[getPageWidth(), 700]')
+                                            fa-modifier(ng-repeat='comment in comments track by $index')
+                                              fa-surface.relative-text(fa-background-color="white" fa-size='[getPageWidth(), 100]')
+                                                .content(fa-pipe-to="commentsScrollHandler") 
+                                                  .content-text {{comment.text}}
 
 
                         // footer
-                        fa-view(fa-pipe-from="eventHandlerB")
+                        fa-view
                           fa-modifier#mainFooter(fa-translate="boxTransitionableFooter.get()" fa-opacity="opacityTrans")
                             fa-image-surface.menu-icon(fa-size='[50,50]' fa-image-url="img/menu-ellipses-icon.png" ng-click="switchPage(1)")
                             fa-surface.center-content
@@ -72,7 +73,7 @@ fa-app(ng-controller='HomeCtrl')
 
             //- spotllight post surface
             fa-app.sliding-in-view
-              fa-view(fa-pipe-from="eventHandlerB")
+              fa-view
                 fa-modifier(fa-pipe-from="eventHandler" fa-translate="boxTransitionableSpotlightPost.get()" fa-opacity="postboxTransparency" fa-size="postboxSize.get()")
                   fa-surface.post-box-background
                     //- textarea(ng-model="post.message"  placeholder="  Share something with the world." ng-style="{'width' : '100%', 'height': '{{textareaHeight()}}', 'border' : 'none', 'border-radius' : '10px', 'background': 'rgb(234, 233, 233)'}")
@@ -224,10 +225,6 @@ fa-app(ng-controller='HomeCtrl')
                               .register-surface-buttons
                                 .account-login(ng-click="showLogin()")  Login
                                 .account-register(ng-click="showRegister()")  Register
-                        
-
-
-
                     
          //this is the Show Archived Day View
         fa-view(fa-index='2' fa-options='options.scrollViewOne')
