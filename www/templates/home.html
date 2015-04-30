@@ -29,7 +29,7 @@
                                 <fa-surface class="content-date">{{moment(post.created_at).format('LT')}}</fa-surface>
                                 <fa-surface fa-size="[100,30]" ng-click="commentsModal()" class="comments-icon">Comments {{post.comments}}</fa-surface>
                                 <fa-image-surface fa-image-url="img/heart.png" fa-size="[20,20]" ng-click="like(post)" class="heart"></fa-image-surface>
-                                <fa-surface class="likes">{{post.likes}}</fa-surface>
+                                <fa-surface class="likes-image">{{post.likes}}</fa-surface>
                               </fa-app>
                             </div>
                           </fa-surface>
@@ -53,7 +53,7 @@
                 <fa-modifier fa-translate="boxTransitionableFooter.get()" fa-opacity="opacityTrans">
                   <fa-surface class="center-content">
                     <fa-app class="highest-z-index">
-                      <fa-image-surface fa-size="[50,50]" fa-image-url="img/menu-ellipses-icon.png" ng-click="goToArchive()" class="menu-icon"></fa-image-surface>
+                      <fa-image-surface fa-size="[50,50]" fa-image-url="img/menu-ellipses-icon.png" ng-click="switchPage(1)" class="menu-icon"></fa-image-surface>
                       <fa-image-surface ng-if="userIsInTheSpotlight" fa-size="[70,70]" fa-image-url="img/add_post.png" fa-pipe-to="eventHandler" fa-click="openPostBox($event)" class="show-post-button"></fa-image-surface>
                     </fa-app>
                   </fa-surface>
@@ -154,6 +154,43 @@
           </fa-modifier>
         </fa-app>
       </fa-surface>
+    </fa-view>
+    <fa-view fa-index="1">
+      <fa-modifier fa-size="[getPageWidth(), getPageHeight()]">
+        <fa-surface fa-pipe-to="eventHandler">
+          <fa-app>
+            <fa-view>
+              <fa-modifier fa-size="[getPageWidth(), getPageHeight()]">
+                <fa-header-footer-layout fa-options="{headerSize: 50, footerSize: 50}">
+                  <!-- header-->
+                  <fa-modifier fa-translate="boxTransitionableHeader2.get()" fa-opacity="opacityTrans2">
+                    <fa-surface fa-background-color="'black'" class="absolute"></fa-surface>
+                  </fa-modifier>
+                  <!-- content-->
+                  <fa-surface fa-background-color="'white'">
+                    <fa-app ng-controller="HomeCtrl">
+                      <fa-scroll-view id="archive-scrollview" fa-pipe-from="archiveScrollEventHandler" fa-options="options.container">
+                        <fa-view ng-repeat="archive in archivedDays" fa-size="[getPageWidth(), archiveScrollHeight]">
+                          <fa-modifier fa-size="[getPageWidth(), 100]">
+                            <fa-surface fa-background-color="archive.color" fa-pipe-to="archiveScrollEventHandler" ng-click="archivedDay(archive.id)" class="archive-item">
+                              <div ng-click="goToArchivedDay(archive.id)" class="user-name">{{archive.name}}</div>
+                              <div ng-click="goToArchivedDay(archive.id)" ng-if="archive.date" class="date">{{moment(archive.date).format('MMMM Do YYYY')}}</div>
+                            </fa-surface>
+                          </fa-modifier>
+                        </fa-view>
+                      </fa-scroll-view>
+                    </fa-app>
+                  </fa-surface>
+                  <!-- footer-->
+                  <fa-modifier fa-translate="boxTransitionableFooter2.get()" fa-opacity="opacityTrans2" fa-size="[50,50]">
+                    <fa-image-surface fa-image-url="img/spotlight-icon-small.png" ng-click="switchPage(0)" class="spotlight-icon">                </fa-image-surface>
+                  </fa-modifier>
+                </fa-header-footer-layout>
+              </fa-modifier>
+            </fa-view>
+          </fa-app>
+        </fa-surface>
+      </fa-modifier>
     </fa-view>
   </fa-scroll-view>
 </fa-app>

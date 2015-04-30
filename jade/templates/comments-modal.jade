@@ -11,7 +11,7 @@ fa-app
                       fa-surface.absolute(fa-background-color="'black'")
                     // content
                     fa-surface(fa-background-color="'white'")
-                      fa-app(ng-controller='HomeCtrl')
+                      fa-app(ng-controller='CommentsCtrl')
                         fa-scroll-view#comments-scrollview(fa-pipe-from='commentsScrollHandler' fa-options='options.container')
                           fa-view(fa-size='[getPageWidth(), 700]')
                             fa-modifier(ng-repeat='comment in comments track by $index')
@@ -20,8 +20,9 @@ fa-app
                                   .content-text {{comment.text}}
                     // footer
                     fa-modifier(fa-translate="boxTransitionableFooter2.get()" fa-opacity="opacityTrans2" fa-size='[50,50]')
-                      fa-image-surface.menu-icon(fa-size='[50,50]' fa-image-url="img/menu-ellipses-icon.png" ng-click="showRegistration()")
-          
+                      fa-image-surface.menu-icon(fa-size='[50,50]' fa-image-url="img/menu-ellipses-icon.png" ng-click="closeComments()")
+                      fa-image-surface.add-comment-icon(fa-size='[50,50]' fa-image-url="img/menu-ellipses-icon.png" ng-click="showRegistration()")
+
         
             fa-modifier(fa-translate="boxTransitionableRegistration.get()" fa-opacity="registrationBoxTransparency" fa-size="registrationBoxSize.get()")
               fa-surface.registration-view-background.registration-z-index
@@ -70,4 +71,3 @@ fa-app
                           .account-register(ng-click="showRegister()")  Register
 
 
-                                

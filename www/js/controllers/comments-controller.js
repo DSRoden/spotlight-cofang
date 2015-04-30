@@ -5,7 +5,7 @@
   'use strict';
 
   angular.module('spotlight-famous')
-  .controller('HomeCtrl', ['$scope', '$timeout', '$location', '$famous', '$timeline', '$state', 'ngDialog', function($scope, $timeout, $location, $famous, $timeline, $state, ngDialog){
+  .controller('CommentsCtrl', ['$scope', '$timeout', '$location', '$famous', '$timeline', '$state', 'ngDialog', function($scope, $timeout, $location, $famous, $timeline, $state, ngDialog){
     //go to archive
     $scope.goToArchive = function(){
       console.log('switching states to archive');
@@ -414,29 +414,67 @@
     }, 1000);
 
 
-    //this is the section enabling archive scrolling with navbar and icon animation
-    var archiveScrollView;
-    $scope.scrollViewHandlerArchive = new EventHandler();
+    // //this is the section enabling archive scrolling with navbar and icon animation
+    // var archiveScrollView;
+    // $scope.scrollViewHandlerArchive = new EventHandler();
+    // $timeout(function(){
+    //   archiveScrollView = $famous.find('#archive-scrollview')[0].renderNode;
+    //   $scope.scrollViewHandlerArchive = archiveScrollView.sync;
+    //    $scope.scrollViewHandlerArchive.on('start', function(event){
+    //       // console.log('start', event);
+    //       // console.log('start event position', scrollView.getPosition());
+    //       // console.log('start event velocity', scrollView.getVelocity());
+    //     });
+    //    $scope.scrollViewHandlerArchive.on('end', function(event){
+    //       // console.log('end event', event);
+    //       // console.log('end event position', scrollView.getPosition());
+    //       // console.log('end event velocity', scrollView.getVelocity());
+    //       var archiveWindowHeight = window.innerHeight;
+    //       if(archiveScrollView.getVelocity() > 0){
+    //         //console.log('turn header off');
+    //         $scope.boxTransitionableHeader2.set([0, -40, 0], {duration: 300, curve: Easing.easeOut});
+    //         $scope.boxTransitionableFooter2.set([0, archiveWindowHeight, 0], {duration: 300, curve: Easing.easeOut});
+    //         $scope.opacityTrans2.set([0], {duration: 300});
+    //         $scope.$digest();
+    //       } else{
+    //         $scope.boxTransitionableHeader2.set([0, 0, 0], {duration: 300, curve: Easing.easeIn});
+    //         $scope.boxTransitionableFooter2.set([0, 0, 0], {duration: 300, curve: Easing.easeIn});
+    //         $scope.opacityTrans2.set([1], {duration: 300});
+    //         $scope.$digest();
+    //       }
+    //     });
+    // }, 1000);
+
+ //comments scroll
+  var scrollCommentsView;
+    $scope.scrollCommentsViewHandler = new EventHandler();
     $timeout(function(){
-      archiveScrollView = $famous.find('#archive-scrollview')[0].renderNode;
-      $scope.scrollViewHandlerArchive = archiveScrollView.sync;
-       $scope.scrollViewHandlerArchive.on('start', function(event){
-          // console.log('start', event);
+      scrollCommentsView = $famous.find('#comments-scrollview')[0].renderNode;
+      $scope.scrollCommentsViewHandler = scrollCommentsView.sync;
+       $scope.scrollCommentsViewHandler.on('start', function(event){
+          //console.log('start', event);
+          // console.log('size', scrollView.getSize());
           // console.log('start event position', scrollView.getPosition());
           // console.log('start event velocity', scrollView.getVelocity());
         });
-       $scope.scrollViewHandlerArchive.on('end', function(event){
+       $scope.scrollCommentsViewHandler.on('end', function(event){
           // console.log('end event', event);
           // console.log('end event position', scrollView.getPosition());
           // console.log('end event velocity', scrollView.getVelocity());
-          var archiveWindowHeight = window.innerHeight;
-          if(archiveScrollView.getVelocity() > 0){
+          // console.log('get current index', scrollView.getCurrentIndex());
+          // console.log('size', scrollView.getSize());
+          // console.log('get position', scrollView.getPosition());
+          // console.log('get absolute position', scrollView.getAbsolutePosition());
+
+          var windowHeight = window.innerHeight;
+          if(scrollCommentsView.getVelocity() > 0){
             //console.log('turn header off');
+            //$scope.spotlightHeaderOn= false;
             $scope.boxTransitionableHeader2.set([0, -40, 0], {duration: 300, curve: Easing.easeOut});
-            $scope.boxTransitionableFooter2.set([0, archiveWindowHeight, 0], {duration: 300, curve: Easing.easeOut});
+            $scope.boxTransitionableFooter2.set([0, windowHeight, 0], {duration: 300, curve: Easing.easeOut});
             $scope.opacityTrans2.set([0], {duration: 300});
             $scope.$digest();
-          } else{
+          } else {
             $scope.boxTransitionableHeader2.set([0, 0, 0], {duration: 300, curve: Easing.easeIn});
             $scope.boxTransitionableFooter2.set([0, 0, 0], {duration: 300, curve: Easing.easeIn});
             $scope.opacityTrans2.set([1], {duration: 300});
@@ -447,15 +485,15 @@
 
 
     // //Switch page function
-    $scope.changePageHandler = new EventHandler();
-    $scope.switchPage = function(pageToGoTo){
-      var pageView = $famous.find('#home')[0].renderNode;
-      //console.log(pageView);
-      $scope.changePageHandler = pageView.sync;
-      //console.log($scope.changePageHandler);
-      //var pageToGoTo = (currentPage) ? 0 : 1;
-      pageView.goToPage(pageToGoTo);
-    };
+    // $scope.changePageHandler = new EventHandler();
+    // $scope.switchPage = function(pageToGoTo){
+    //   var pageView = $famous.find('#home')[0].renderNode;
+    //   //console.log(pageView);
+    //   $scope.changePageHandler = pageView.sync;
+    //   //console.log($scope.changePageHandler);
+    //   //var pageToGoTo = (currentPage) ? 0 : 1;
+    //   pageView.goToPage(pageToGoTo);
+    // };
 
     //Go to archived day function
     $scope.goToArchivedDay = function(id){
@@ -568,14 +606,13 @@
       ngDialog.close('', '');
     };
 
+    $scope.closeComments = function(){
+      $scope.closeDialog();
+    };
+
     //like event
     $scope.like = function(post){
       post.likes += 1;
-    };
-
-    $scope.archivedDay = function(id){
-      console.log('id of day', id);
-      $state.go('archivedDay');
     };
 
   }]);

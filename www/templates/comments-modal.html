@@ -13,7 +13,7 @@
                 </fa-modifier>
                 <!-- content-->
                 <fa-surface fa-background-color="'white'">
-                  <fa-app ng-controller="HomeCtrl">
+                  <fa-app ng-controller="CommentsCtrl">
                     <fa-scroll-view id="comments-scrollview" fa-pipe-from="commentsScrollHandler" fa-options="options.container">
                       <fa-view fa-size="[getPageWidth(), 700]">
                         <fa-modifier ng-repeat="comment in comments track by $index">
@@ -29,7 +29,8 @@
                 </fa-surface>
                 <!-- footer-->
                 <fa-modifier fa-translate="boxTransitionableFooter2.get()" fa-opacity="opacityTrans2" fa-size="[50,50]">
-                  <fa-image-surface fa-size="[50,50]" fa-image-url="img/menu-ellipses-icon.png" ng-click="showRegistration()" class="menu-icon"></fa-image-surface>
+                  <fa-image-surface fa-size="[50,50]" fa-image-url="img/menu-ellipses-icon.png" ng-click="closeComments()" class="menu-icon"></fa-image-surface>
+                  <fa-image-surface fa-size="[50,50]" fa-image-url="img/menu-ellipses-icon.png" ng-click="showRegistration()" class="add-comment-icon"></fa-image-surface>
                 </fa-modifier>
               </fa-header-footer-layout>
             </fa-modifier>

@@ -9,7 +9,7 @@
 
     $stateProvider
     .state('home',     {url:'/',         templateUrl:'templates/home.html', controller:'HomeCtrl'})
-    .state('archive',     {url:'/',         templateUrl:'templates/archive.html', controller:'ArchiveCtrl'});
+    .state('archivedDay',     {url:'/',         templateUrl:'templates/archived-day.html', controller:'ArchivedDayCtrl'});
   }])
   .run(function(){
     FastClick.attach(document.body);

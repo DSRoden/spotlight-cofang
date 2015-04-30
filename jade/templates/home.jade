@@ -30,7 +30,7 @@ fa-app(ng-controller='HomeCtrl')
                                         fa-surface.content-date {{moment(post.created_at).format('LT')}}
                                         fa-surface.comments-icon(fa-size='[100,30]' ng-click="commentsModal()") Comments {{post.comments}}
                                         fa-image-surface.heart(fa-image-url="img/heart.png" fa-size='[20,20]' ng-click="like(post)")
-                                        fa-surface.likes {{post.likes}}
+                                        fa-surface.likes-image {{post.likes}}
                                   fa-surface.relative-text(ng-if="post.text" fa-background-color="white" fa-size='[getPageWidth(), 200]')
                                     .content(fa-pipe-to="myEventHandler")
                                       //- .open-quote
@@ -46,7 +46,7 @@ fa-app(ng-controller='HomeCtrl')
                         fa-modifier(fa-translate="boxTransitionableFooter.get()" fa-opacity="opacityTrans")
                           fa-surface.center-content
                             fa-app.highest-z-index
-                              fa-image-surface.menu-icon(fa-size='[50,50]' fa-image-url="img/menu-ellipses-icon.png" ng-click="goToArchive()")
+                              fa-image-surface.menu-icon(fa-size='[50,50]' fa-image-url="img/menu-ellipses-icon.png" ng-click="switchPage(1)")
                               fa-image-surface.show-post-button(ng-if="userIsInTheSpotlight" fa-size='[70,70]' fa-image-url="img/add_post.png" fa-pipe-to="eventHandler" fa-click="openPostBox($event)")
             
             //- spotllight post surface
@@ -101,7 +101,6 @@ fa-app(ng-controller='HomeCtrl')
                           .session-end-date TIME
                           .end-session(ng-click="showConfirmationDialog()") End my session now
                       fa-image-surface.flip-back(fa-size='[90, 54]' fa-image-url="img/back_button.png" ng-click="flipIt()")
-                        
                   
             //- if clicking on spotlight winner
             fa-app.top-slide-in-view
@@ -126,6 +125,30 @@ fa-app(ng-controller='HomeCtrl')
               fa-modifier(fa-translate="boxTransitionableComments.get()" fa-opacity="commentsBoxTransparency" fa-size="commentsBoxSize.get()")
                 fa-surface.confirmation-dialog-background
                   
+        //- this is the Main Archive View
+        fa-view(fa-index='1')
+          fa-modifier(fa-size='[getPageWidth(), getPageHeight()]')
+            fa-surface(fa-pipe-to='eventHandler')
+              fa-app
+                fa-view
+                  fa-modifier(fa-size='[getPageWidth(), getPageHeight()]')
+                    fa-header-footer-layout(fa-options='{headerSize: 50, footerSize: 50}')
+                        // header
+                        fa-modifier(fa-translate="boxTransitionableHeader2.get()" fa-opacity="opacityTrans2")
+                          fa-surface.absolute(fa-background-color="'black'")
+                        // content
+                        fa-surface(fa-background-color="'white'")
+                          fa-app(ng-controller='HomeCtrl')
+                            fa-scroll-view#archive-scrollview(fa-pipe-from='archiveScrollEventHandler' fa-options='options.container')
+                              fa-view(ng-repeat='archive in archivedDays' fa-size='[getPageWidth(), archiveScrollHeight]')
+                                fa-modifier(fa-size='[getPageWidth(), 100]')
+                                  fa-surface.archive-item(fa-background-color='archive.color', fa-pipe-to='archiveScrollEventHandler' ng-click="archivedDay(archive.id)")
+                                   .user-name(ng-click="goToArchivedDay(archive.id)") {{archive.name}}
+                                   .date(ng-click="goToArchivedDay(archive.id)" ng-if="archive.date") {{moment(archive.date).format('MMMM Do YYYY')}}
+
+                        // footer
+                        fa-modifier(fa-translate="boxTransitionableFooter2.get()" fa-opacity="opacityTrans2" fa-size='[50,50]')
+                          fa-image-surface.spotlight-icon(fa-image-url="img/spotlight-icon-small.png" ng-click="switchPage(0)")                 
 
 
 
