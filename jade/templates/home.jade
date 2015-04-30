@@ -25,23 +25,23 @@ fa-app(ng-controller='HomeCtrl')
                                 fa-modifier(ng-repeat='post in posts track by $index')
                                   fa-surface.relative-image(ng-if="post.image_url" fa-size='[getPageWidth(), 300]')
                                     .image(ng-click="showComments(post.id)" ng-style="{'background-image':'url({{post.image_url}})', 'height': '285px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to='myEventHandler')
-                                    .image-date-container(ng-hide="post.text") 
-                                      .image-date -{{moment(post.created_at).format('LT')}}
                                     .image-social(ng-hide="post.text")
-                                      .comments(ng-click="showComments(post.id)") Comments {{post.comments}}
-                                      .likes {{post.likes}}
-                                        span.heart
+                                      fa-app
+                                        fa-surface.content-date {{moment(post.created_at).format('LT')}}
+                                        fa-surface.comments-icon(fa-size='[100,30]' ng-click="commentsModal()") Comments {{post.comments}}
+                                        fa-image-surface.heart(fa-image-url="img/heart.png" fa-size='[20,20]' ng-click="like(post)")
+                                        fa-surface.likes {{post.likes}}
                                   fa-surface.relative-text(ng-if="post.text" fa-background-color="white" fa-size='[getPageWidth(), 200]')
-                                    .content(fa-pipe-to='myEventHandler'  ng-click="showComments(post.id)") 
+                                    .content(fa-pipe-to="myEventHandler")
                                       //- .open-quote
-                                      .content-text {{post.text}}
+                                      fa-app
+                                        fa-surface.content-text(ng-click="commentsModal()")  {{post.text}}
+                                        fa-surface.content-date {{moment(post.created_at).format('LT')}}
+                                        fa-surface.comments-icon(fa-size='[100,30]' ng-click="commentsModal()") Comments {{post.comments}}
+                                        fa-image-surface.heart(fa-image-url="img/heart.png" fa-size='[20,20]' ng-click="like(post)")
+                                        fa-surface.likes {{post.likes}}
                                       //- .close-quote
-                                    .content-date-container
-                                      .content-date {{moment(post.created_at).format('LT')}}
-                                    .content-social
-                                      .comments(ng-click="showComments(post.id)") Comments {{post.comments}}
-                                      .likes {{post.likes}}
-                                        span.heart
+                                    
                         // footer
                         fa-modifier(fa-translate="boxTransitionableFooter.get()" fa-opacity="opacityTrans")
                           fa-surface.center-content

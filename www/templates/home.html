@@ -24,24 +24,24 @@
                         <fa-modifier ng-repeat="post in posts track by $index">
                           <fa-surface ng-if="post.image_url" fa-size="[getPageWidth(), 300]" class="relative-image">
                             <div ng-click="showComments(post.id)" ng-style="{'background-image':'url({{post.image_url}})', 'height': '285px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to="myEventHandler" class="image"></div>
-                            <div ng-hide="post.text" class="image-date-container"> 
-                              <div class="image-date">-{{moment(post.created_at).format('LT')}}</div>
-                            </div>
                             <div ng-hide="post.text" class="image-social">
-                              <div ng-click="showComments(post.id)" class="comments">Comments {{post.comments}}</div>
-                              <div class="likes">{{post.likes}}<span class="heart"></span></div>
+                              <fa-app>
+                                <fa-surface class="content-date">{{moment(post.created_at).format('LT')}}</fa-surface>
+                                <fa-surface fa-size="[100,30]" ng-click="commentsModal()" class="comments-icon">Comments {{post.comments}}</fa-surface>
+                                <fa-image-surface fa-image-url="img/heart.png" fa-size="[20,20]" ng-click="like(post)" class="heart"></fa-image-surface>
+                                <fa-surface class="likes">{{post.likes}}</fa-surface>
+                              </fa-app>
                             </div>
                           </fa-surface>
                           <fa-surface ng-if="post.text" fa-background-color="white" fa-size="[getPageWidth(), 200]" class="relative-text">
-                            <div fa-pipe-to="myEventHandler" ng-click="showComments(post.id)" class="content"> 
-                              <div class="content-text">{{post.text}}</div>
-                            </div>
-                            <div class="content-date-container">
-                              <div class="content-date">{{moment(post.created_at).format('LT')}}</div>
-                            </div>
-                            <div class="content-social">
-                              <div ng-click="showComments(post.id)" class="comments">Comments {{post.comments}}</div>
-                              <div class="likes">{{post.likes}}<span class="heart"></span></div>
+                            <div fa-pipe-to="myEventHandler" class="content">
+                              <fa-app>
+                                <fa-surface ng-click="commentsModal()" class="content-text"> {{post.text}}</fa-surface>
+                                <fa-surface class="content-date">{{moment(post.created_at).format('LT')}}</fa-surface>
+                                <fa-surface fa-size="[100,30]" ng-click="commentsModal()" class="comments-icon">Comments {{post.comments}}</fa-surface>
+                                <fa-image-surface fa-image-url="img/heart.png" fa-size="[20,20]" ng-click="like(post)" class="heart"></fa-image-surface>
+                                <fa-surface class="likes">{{post.likes}}</fa-surface>
+                              </fa-app>
                             </div>
                           </fa-surface>
                         </fa-modifier>

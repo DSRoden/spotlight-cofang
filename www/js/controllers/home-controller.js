@@ -5,7 +5,7 @@
   'use strict';
 
   angular.module('spotlight-famous')
-  .controller('HomeCtrl', ['$scope', '$timeout', '$location', '$famous', '$timeline', '$state', function($scope, $timeout, $location, $famous, $timeline, $state){
+  .controller('HomeCtrl', ['$scope', '$timeout', '$location', '$famous', '$timeline', '$state', 'ngDialog', function($scope, $timeout, $location, $famous, $timeline, $state, ngDialog){
     //go to archive
     $scope.goToArchive = function(){
       console.log('switching states to archive');
@@ -14,10 +14,6 @@
 
     //initialize spotlight about
     $scope.spotlight = {};
-
-    $scope.tapEvent = function($event){
-      console.log('tap event');
-    };
 
     //initialize user
     $scope.user = {};
@@ -597,16 +593,23 @@
       pageView.goToPage(1);
     };
 
-    //  //Switch page function
-    // $scope.changePageHandler = new EventHandler();
-    // $scope.switchPage = function(pageToGoTo){
-    //   var pageView = $famous.find('#home')[0].renderNode;
-    //   //console.log(pageView);
-    //   $scope.changePageHandler = pageView.sync;
-    //   //console.log($scope.changePageHandler);
-    //   //var pageToGoTo = (currentPage) ? 0 : 1;
-    //   pageView.goToPage(pageToGoTo);
-    // };
+    // comments modal
+    $scope.commentsModal = function(){
+      ngDialog.open({
+          template: 'templates/comments-modal.html',
+          scope: $scope
+      });
+      console.log('modal');
+    };
+
+    $scope.closeDialog = function(){
+      ngDialog.close('', '');
+    };
+
+    //like event
+    $scope.like = function(post){
+      post.likes += 1;
+    };
 
   }]);
 })();

@@ -3,7 +3,7 @@
 (function(){
   'use strict';
 
-  angular.module('spotlight-famous', ['ui.router', 'famous.angular', 'spotlightFilters'])
+  angular.module('spotlight-famous', ['ui.router', 'famous.angular', 'spotlightFilters', 'ngDialog'])
   .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider, $state){
     $urlRouterProvider.otherwise('/');
 
