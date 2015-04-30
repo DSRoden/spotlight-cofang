@@ -597,7 +597,7 @@
     $scope.commentsModal = function(){
       ngDialog.open({
           template: 'templates/comments-modal.html',
-          scope: $scope
+          controller: 'HomeCtrl'
       });
       console.log('modal');
     };
