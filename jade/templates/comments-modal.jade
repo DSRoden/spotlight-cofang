@@ -20,10 +20,9 @@ fa-app
                                   .content-text {{comment.text}}
                     // footer
                     fa-modifier(fa-translate="boxTransitionableFooter2.get()" fa-opacity="opacityTrans2" fa-size='[50,50]')
-                      fa-image-surface.menu-icon(fa-size='[50,50]' fa-image-url="img/menu-ellipses-icon.png" ng-click="closeComments()")
-                      fa-image-surface.add-comment-icon(fa-size='[50,50]' fa-image-url="img/menu-ellipses-icon.png" ng-click="showRegistration()")
+                      fa-image-surface.menu-icon(fa-size='[50,50]' fa-image-url="img/menu-ellipses-icon.png" ng-click="showRegistration()")
+                      fa-image-surface.spotlight-icon(fa-size='[50,50]' fa-image-url="img/left_arrow.png" ng-click="closeComments()")
 
-        
             fa-modifier(fa-translate="boxTransitionableRegistration.get()" fa-opacity="registrationBoxTransparency" fa-size="registrationBoxSize.get()")
               fa-surface.registration-view-background.registration-z-index
                 fa-app.registration-view-background(ng-if="userNotSignedIn")

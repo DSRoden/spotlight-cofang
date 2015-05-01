@@ -576,7 +576,7 @@
       $scope.confirmationBoxTransparency.set([1], {duration: 300});
     };
 
-    $scope.showRegistration = function(done){
+   $scope.showRegistration = function(done){
       $scope.userNotSignedIn = true;
       $scope.login = true;
       $scope.userIsInTheSpotlight = false;
