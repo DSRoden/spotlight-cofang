@@ -537,6 +537,9 @@ fa-app {
   background: white;
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
 }
+.z-of-day-icon {
+  z-index: 999999999999999999999999999999999999999999999999999999999999999999 ! important;
+}
 @media (min-width: 321px) {
   .go-back {
     bottom: 22% ! important;

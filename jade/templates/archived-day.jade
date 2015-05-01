@@ -1,49 +1,48 @@
-fa-app(ng-controller="ArchivedDayCtrl")
-  fa-view
-    fa-modifier(fa-size='[getPageWidth(), getPageHeight()]')
-      fa-surface(fa-pipe-to='eventHandler')
-        fa-app
-            fa-view
-              fa-modifier(fa-size='[getPageWidth(), getPageHeight()]')
-                fa-header-footer-layout(fa-options='{headerSize: 50, footerSize: 50}')
-                    //- header
-                    fa-modifier(fa-translate="boxTransitionableHeader3.get()" fa-opacity="opacityTrans3")
-                      fa-surface.absolute(fa-background-color="'black'")
-                        fa-app
-                          fa-image-surface.spotlight-avatar(fa-size='[50,50]' fa-image-url="img/spotlight-icon-small.png" ng-click="showWinnerInfo()")
-                          fa-surface.spotlight-name(ng-click="showWinnerInfo()") Lilly Bloomings 
-                          fa-surface.twitter(ng-click="showWinnerTwitter()") t
-                          fa-surface.facebook(ng-click="showWinnerFacebook()") f
+fa-view
+  fa-modifier(fa-opacity="dayOpacity" fa-size='[getPageWidth(), getPageHeight()]')
+    fa-surface(fa-pipe-to='eventHandler')
+      fa-app(ng-controller="ArchivedDayCtrl")
+          fa-view
+            fa-modifier(fa-size='[getPageWidth(), getPageHeight()]')
+              fa-header-footer-layout(fa-options='{headerSize: 50, footerSize: 50}')
+                  //- header
+                  fa-modifier(fa-translate="boxTransitionableHeader3.get()" fa-opacity="opacityTrans3")
+                    fa-surface.absolute(fa-background-color="'black'")
+                      fa-app
+                        fa-image-surface.spotlight-avatar(fa-size='[50,50]' fa-image-url="img/spotlight-icon-small.png" ng-click="showWinnerInfo()")
+                        fa-surface.spotlight-name(ng-click="showWinnerInfo()") Lilly Bloomings 
+                        fa-surface.twitter(ng-click="showWinnerTwitter()") t
+                        fa-surface.facebook(ng-click="showWinnerFacebook()") f
 
-                    //- content
-                    fa-surface(fa-background-color="'gray'") 
-                      fa-app(ng-controller='ArchivedDayCtrl')
-                        fa-scroll-view#day-scrollview(fa-pipe-from='dayScrollEventHandler' fa-options='options.container')
-                          fa-view(fa-size='[getPageWidth(), dayScrollHeight]')
-                            fa-modifier.top-border(ng-repeat='post in archivedDayPosts track by $index')
-                              fa-surface.relative-image(ng-if="post.image_url" fa-size='[getPageWidth(), 300]')
-                                .image(ng-click="showComments(post.id)" ng-style="{'background-image':'url({{post.image_url}})', 'height': '285px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to='dayScrollEventHandler')
-                                .image-social(ng-hide="post.text")
-                                  fa-app
-                                    fa-surface.content-date {{moment(post.created_at).format('LT')}}
-                                    fa-surface.comments-icon(fa-size='[100,30]' ng-click="commentsModal()") Comments {{post.comments}}
-                                    fa-image-surface.heart(fa-image-url="img/heart.png" fa-size='[20,20]' ng-click="like(post)")
-                                    fa-surface.likes-image {{post.likes}}
-                              fa-surface.relative-text(ng-if="post.text" fa-background-color="white" fa-size='[getPageWidth(), 200]')
-                                .content(fa-pipe-to="dayScrollEventHandler")
-                                  //- .open-quote
-                                  fa-app
-                                    fa-surface.content-text(ng-click="commentsModal()")  {{post.text}}
-                                    fa-surface.content-date {{moment(post.created_at).format('LT')}}
-                                    fa-surface.comments-icon(fa-size='[100,30]' ng-click="commentsModal()") Comments {{post.comments}}
-                                    fa-image-surface.heart(fa-image-url="img/heart.png" fa-size='[20,20]' ng-click="like(post)")
-                                    fa-surface.likes {{post.likes}}
-                                  //- .close-quote
-                                
-                    // footer
-                    fa-modifier(fa-translate="boxTransitionableFooter3.get()" fa-opacity="opacityTrans3")
-                      fa-surface.center-content
-                        fa-app.highest-z-index
-                          fa-image-surface.menu-icon(fa-size='[50,50]' fa-image-url="img/menu-ellipses-icon.png" ng-click="closeDay()")
+                  //- content
+                  fa-surface
+                    fa-app(ng-controller='ArchivedDayCtrl')
+                      fa-scroll-view#day-scrollview(fa-pipe-from='dayScrollEventHandler' fa-options='options.container')
+                        fa-view(fa-size='[getPageWidth(), dayScrollHeight]')
+                          fa-modifier.top-border(ng-repeat='post in archivedDayPosts track by $index')
+                            fa-surface.relative-image(ng-if="post.image_url" fa-size='[getPageWidth(), 300]')
+                              .image(ng-click="showComments(post.id)" ng-style="{'background-image':'url({{post.image_url}})', 'height': '285px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to='dayScrollEventHandler')
+                              .image-social(ng-hide="post.text")
+                                fa-app
+                                  fa-surface.content-date {{moment(post.created_at).format('LT')}}
+                                  fa-surface.comments-icon(fa-size='[100,30]' ng-click="commentsModal()") Comments {{post.comments}}
+                                  fa-image-surface.heart(fa-image-url="img/heart.png" fa-size='[20,20]' ng-click="like(post)")
+                                  fa-surface.likes-image {{post.likes}}
+                            fa-surface.relative-text(ng-if="post.text" fa-background-color="white" fa-size='[getPageWidth(), 200]')
+                              .content(fa-pipe-to="dayScrollEventHandler")
+                                //- .open-quote
+                                fa-app
+                                  fa-surface.content-text(ng-click="commentsModal()")  {{post.text}}
+                                  fa-surface.content-date {{moment(post.created_at).format('LT')}}
+                                  fa-surface.comments-icon(fa-size='[100,30]' ng-click="commentsModal()") Comments {{post.comments}}
+                                  fa-image-surface.heart(fa-image-url="img/heart.png" fa-size='[20,20]' ng-click="like(post)")
+                                  fa-surface.likes {{post.likes}}
+                                //- .close-quote
+                              
+                  // footer
+                  fa-modifier(fa-translate="boxTransitionableFooter3.get()" fa-opacity="opacityTrans3")
+                    fa-surface.center-content
+                      fa-app.highest-z-index
+                        fa-image-surface.menu-icon(fa-size='[50,50]' fa-image-url="img/menu-ellipses-icon.png" ng-click="closeDay()")
 
 

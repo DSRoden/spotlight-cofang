@@ -1,5 +1,6 @@
-fa-app(ng-controller='HomeCtrl')
-    fa-scroll-view#home(fa-pipe-from='eventHandler', fa-options='options.scrollViewTwo', fa-start-index='1')
+fa-view
+  fa-modifier(fa-opacity="homeOpacity")
+    fa-scroll-view#home(fa-pipe-from='eventHandler', fa-options='options.scrollViewTwo', fa- fa-start-index='0')
 
         //- this is the Spotlight View         
         fa-view(fa-index='0', fa-options='options.scrollViewOne')
@@ -18,14 +19,13 @@ fa-app(ng-controller='HomeCtrl')
                               fa-surface.facebook(ng-click="showWinnerFacebook()") f
 
                         //- content
-                        fa-surface(fa-background-color="'gray'") 
+                        fa-surface
                           fa-app(ng-controller='HomeCtrl')
                             fa-scroll-view#main-scrollview(fa-pipe-from='myEventHandler' fa-options='options.container')
                               fa-view(fa-size='[getPageWidth(), mainScrollHeight]')
                                 fa-modifier(ng-repeat='post in posts track by $index')
                                   fa-surface.relative-image(ng-if="post.image_url" fa-size='[getPageWidth(), 300]')
                                     .image(ng-click="showComments(post.id)" ng-style="{'background-image':'url({{post.image_url}})', 'height': '285px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to='myEventHandler')
-                                    .image-social(ng-hide="post.text")
                                       fa-app
                                         fa-surface.content-date {{moment(post.created_at).format('LT')}}
                                         fa-surface.comments-icon(fa-size='[100,30]' ng-click="commentsModal()") Comments {{post.comments}}
@@ -128,27 +128,23 @@ fa-app(ng-controller='HomeCtrl')
         //- this is the Main Archive View
         fa-view(fa-index='1')
           fa-modifier(fa-size='[getPageWidth(), getPageHeight()]')
-            fa-surface(fa-pipe-to='eventHandler')
-              fa-app
-                fa-view
-                  fa-modifier(fa-size='[getPageWidth(), getPageHeight()]')
-                    fa-header-footer-layout(fa-options='{headerSize: 50, footerSize: 50}')
-                        // header
-                        fa-modifier(fa-translate="boxTransitionableHeader2.get()" fa-opacity="opacityTrans2")
-                          fa-surface.absolute(fa-background-color="'black'")
-                        // content
-                        fa-surface(fa-background-color="'white'")
-                          fa-app(ng-controller='HomeCtrl')
-                            fa-scroll-view#archive-scrollview(fa-pipe-from='archiveScrollEventHandler' fa-options='options.container')
-                              fa-view(ng-repeat='archive in archivedDays' fa-size='[getPageWidth(), archiveScrollHeight]')
-                                fa-modifier(fa-size='[getPageWidth(), 100]')
-                                  fa-surface.archive-item(fa-background-color='archive.color', fa-pipe-to='archiveScrollEventHandler' ng-click="archivedDay(archive.id)")
-                                   .user-name(ng-click="goToArchivedDay(archive.id)") {{archive.name}}
-                                   .date(ng-click="goToArchivedDay(archive.id)" ng-if="archive.date") {{moment(archive.date).format('MMMM Do YYYY')}}
+            fa-header-footer-layout(fa-options='{headerSize: 50, footerSize: 50}')
+                // header
+                fa-modifier(fa-translate="boxTransitionableHeader2.get()" fa-opacity="opacityTrans2")
+                  fa-surface.absolute(fa-background-color="'black'")
+                // content
+                fa-surface(fa-pipe-to="eventHandler")
+                  fa-app(ng-controller='HomeCtrl')
+                    fa-scroll-view#archive-scrollview(fa-pipe-from='archiveScrollEventHandler' fa-options='options.container')
+                      fa-view(ng-repeat='archive in archivedDays' fa-size='[getPageWidth(), archiveScrollHeight]')
+                        fa-modifier(fa-size='[getPageWidth(), 100]')
+                          fa-surface.archive-item(fa-background-color='archive.color', fa-pipe-to='archiveScrollEventHandler' ng-click="archivedDay(archive.id)")
+                           .user-name(ng-click="goToArchivedDay(archive.id)") {{archive.name}}
+                           .date(ng-click="goToArchivedDay(archive.id)" ng-if="archive.date") {{moment(archive.date).format('MMMM Do YYYY')}}
 
-                        // footer
-                        fa-modifier(fa-translate="boxTransitionableFooter2.get()" fa-opacity="opacityTrans2" fa-size='[50,50]')
-                          fa-image-surface.spotlight-icon(fa-image-url="img/spotlight-icon-small.png" ng-click="switchPage(0)")                 
+                // footer
+                fa-modifier(fa-translate="boxTransitionableFooter2.get()" fa-opacity="opacityTrans2" fa-size='[50,50]')
+                  fa-image-surface.spotlight-icon(fa-image-url="img/spotlight-icon-small.png" ng-click="switchPage(0)")                 
 
 
 

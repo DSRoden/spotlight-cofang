@@ -38,6 +38,7 @@ html(ng-app='spotlight-famous', lang='en')
 
     // app code
     link(rel='stylesheet', type='text/css', href='css/app.css')
+    link(rel='stylesheet', type='text/css', href='css/index.css')
     link(rel='stylesheet', type='text/css', href='css/home.css')
     link(rel='stylesheet', type='text/css', href='lib/ngDialog/css/ngDialog.css')
 
@@ -48,4 +49,6 @@ html(ng-app='spotlight-famous', lang='en')
     script(type='text/javascript', src='js/controllers/comments-controller.js')
     script(type='text/javascript', src='js/controllers/archived-day-controller.js')
   body
-  .container(ui-view)
+      fa-app
+        ui-view(fa-animate-leave='leave($done)', fa-animate-enter='enter($done)')
+
