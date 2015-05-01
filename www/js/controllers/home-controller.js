@@ -466,6 +466,38 @@
         });
     }, 1000);
 
+   //this is the section enabling show day scrolling with navbar and icon animation
+    var dayScrollView;
+    $scope.scrollViewHandlerDay = new EventHandler();
+    $timeout(function(){
+      dayScrollView = $famous.find('#day-scrollview')[0].renderNode;
+      $scope.scrollViewHandlerDay = dayScrollView.sync;
+       $scope.scrollViewHandlerDay.on('start', function(event){
+          // console.log('start', event);
+          // console.log('start event position', scrollView.getPosition());
+          // console.log('start event velocity', scrollView.getVelocity());
+        });
+       $scope.scrollViewHandlerDay.on('end', function(event){
+          // console.log('end event', event);
+          // console.log('end event position', scrollView.getPosition());
+          // console.log('end event velocity', scrollView.getVelocity());
+          var dayWindowHeight = window.innerHeight;
+          if(dayScrollView.getVelocity() > 0){
+            //console.log('turn header off');
+            $scope.boxTransitionableHeader3.set([0, -40, 0], {duration: 300, curve: Easing.easeOut});
+            $scope.boxTransitionableFooter3.set([0, dayWindowHeight, 0], {duration: 300, curve: Easing.easeOut});
+            $scope.opacityTrans3.set([0], {duration: 300});
+            $scope.$digest();
+          } else{
+            $scope.boxTransitionableHeader3.set([0, 0, 0], {duration: 300, curve: Easing.easeIn});
+            $scope.boxTransitionableFooter3.set([0, 0, 0], {duration: 300, curve: Easing.easeIn});
+            $scope.opacityTrans3.set([1], {duration: 300});
+            $scope.$digest();
+          }
+        });
+    }, 1000);
+
+
 
     // //Switch page function
     $scope.changePageHandler = new EventHandler();
@@ -594,9 +626,18 @@
       post.likes += 1;
     };
 
-    $scope.archivedDay = function(id){
-      console.log('id of day', id);
-      $state.go('archivedDay');
+    //switch states
+    $scope.goToCategories = function(){
+      console.log('going to category view');
+      $state.go('categories');
+    };
+
+    //Go to archived day function
+    $scope.goToArchivedDay = function(id){
+      //make a call to the database to find the day by id and return it's contents
+     //switch to show day view
+      //console.log(id);
+      $scope.switchPage(2);
     };
 
   }]);

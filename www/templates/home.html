@@ -14,7 +14,7 @@
                         <fa-image-surface fa-size="[50,50]" fa-image-url="img/spotlight-icon-small.png" ng-click="showWinnerInfo()" class="spotlight-avatar"></fa-image-surface>
                         <fa-surface ng-click="showWinnerInfo()" class="spotlight-name">Lilly Bloomings </fa-surface>
                         <fa-surface ng-click="showWinnerTwitter()" class="twitter">t</fa-surface>
-                        <fa-surface ng-click="showWinnerFacebook()" class="facebook">f</fa-surface>
+                        <fa-surface ng-click="goToCategories()" class="facebook">f</fa-surface>
                       </fa-app>
                     </fa-surface>
                   </fa-modifier>
@@ -168,9 +168,9 @@
                 <fa-scroll-view id="archive-scrollview" fa-pipe-from="archiveScrollEventHandler" fa-options="options.container">
                   <fa-view ng-repeat="archive in archivedDays" fa-size="[getPageWidth(), archiveScrollHeight]">
                     <fa-modifier fa-size="[getPageWidth(), 100]">
-                      <fa-surface fa-background-color="archive.color" fa-pipe-to="archiveScrollEventHandler" ng-click="archivedDay(archive.id)" class="archive-item">
-                        <div ng-click="goToArchivedDay(archive.id)" class="user-name">{{archive.name}}</div>
-                        <div ng-click="goToArchivedDay(archive.id)" ng-if="archive.date" class="date">{{moment(archive.date).format('MMMM Do YYYY')}}</div>
+                      <fa-surface fa-background-color="archive.color" fa-pipe-to="archiveScrollEventHandler" class="archive-item">
+                        <div ng-if="archive.name" ng-click="goToArchivedDay(archive.id)" class="user-name">{{archive.name}}</div>
+                        <div ng-if="archive.date" ng-click="goToArchivedDay(archive.id)" class="date">{{moment(archive.date).format('MMMM Do YYYY')}}</div>
                       </fa-surface>
                     </fa-modifier>
                   </fa-view>
@@ -180,6 +180,62 @@
             <!-- footer-->
             <fa-modifier fa-translate="boxTransitionableFooter2.get()" fa-opacity="opacityTrans2" fa-size="[50,50]">
               <fa-image-surface fa-image-url="img/spotlight-icon-small.png" ng-click="switchPage(0)" class="spotlight-icon">                </fa-image-surface>
+            </fa-modifier>
+          </fa-header-footer-layout>
+        </fa-modifier>
+      </fa-view>
+      <fa-view fa-index="2">
+        <fa-modifier fa-size="[getPageWidth(), getPageHeight()]">
+          <fa-header-footer-layout fa-options="{headerSize: 50, footerSize: 50}">
+            <fa-modifier fa-translate="boxTransitionableHeader3.get()" fa-opacity="opacityTrans3">
+              <fa-surface fa-background-color="'black'" class="absolute">
+                <fa-app>
+                  <fa-image-surface fa-size="[50,50]" fa-image-url="img/spotlight-icon-small.png" ng-click="showWinnerInfo()" class="spotlight-avatar"></fa-image-surface>
+                  <fa-surface ng-click="showWinnerInfo()" class="spotlight-name">Lilly Bloomings </fa-surface>
+                  <fa-surface ng-click="showWinnerTwitter()" class="twitter">t</fa-surface>
+                  <fa-surface ng-click="showWinnerFacebook()" class="facebook">f</fa-surface>
+                </fa-app>
+              </fa-surface>
+            </fa-modifier>
+            <fa-surface fa-pipe-to="eventHandler">
+              <fa-app ng-controller="HomeCtrl">
+                <fa-scroll-view id="day-scrollview" fa-pipe-from="dayScrollEventHandler" fa-options="options.container">
+                  <fa-view fa-size="[getPageWidth(), dayScrollHeight]">
+                    <fa-modifier ng-repeat="post in archivedDayPosts track by $index" class="top-border">
+                      <fa-surface ng-if="post.image_url" fa-size="[getPageWidth(), 300]" class="relative-image">
+                        <div ng-click="showComments(post.id)" ng-style="{'background-image':'url({{post.image_url}})', 'height': '285px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to="dayScrollEventHandler" class="image"></div>
+                        <div ng-click="showComments(post.id)" ng-style="{'background-image':'url({{post.image_url}})', 'height': '285px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to="myEventHandler" class="image">
+                          <fa-app>
+                            <fa-surface class="content-date">{{moment(post.created_at).format('LT')}}</fa-surface>
+                            <fa-surface fa-size="[100,30]" ng-click="commentsModal()" class="comments-icon">Comments {{post.comments}}</fa-surface>
+                            <fa-image-surface fa-image-url="img/heart.png" fa-size="[20,20]" ng-click="like(post)" class="heart"></fa-image-surface>
+                            <fa-surface class="likes-image">{{post.likes}}</fa-surface>
+                          </fa-app>
+                        </div>
+                      </fa-surface>
+                      <fa-surface ng-if="post.text" fa-background-color="white" fa-size="[getPageWidth(), 200]" class="relative-text">
+                        <div fa-pipe-to="dayScrollEventHandler" class="content">
+                          <fa-app>
+                            <fa-surface ng-click="commentsModal()" class="content-text"> {{post.text}}</fa-surface>
+                            <fa-surface class="content-date">{{moment(post.created_at).format('LT')}}</fa-surface>
+                            <fa-surface fa-size="[100,30]" ng-click="commentsModal()" class="comments-icon">Comments {{post.comments}}</fa-surface>
+                            <fa-image-surface fa-image-url="img/heart.png" fa-size="[20,20]" ng-click="like(post)" class="heart"></fa-image-surface>
+                            <fa-surface class="likes">{{post.likes}}</fa-surface>
+                          </fa-app>
+                        </div>
+                      </fa-surface>
+                    </fa-modifier>
+                  </fa-view>
+                </fa-scroll-view>
+              </fa-app>
+            </fa-surface>
+            <!-- footer-->
+            <fa-modifier fa-translate="boxTransitionableFooter3.get()" fa-opacity="opacityTrans3">
+              <fa-surface class="center-content">
+                <fa-app class="highest-z-index">
+                  <fa-image-surface fa-size="[50,50]" fa-image-url="img/menu-ellipses-icon.png" ng-click="switchPage(1)" class="spotlight-icon"></fa-image-surface>
+                </fa-app>
+              </fa-surface>
             </fa-modifier>
           </fa-header-footer-layout>
         </fa-modifier>

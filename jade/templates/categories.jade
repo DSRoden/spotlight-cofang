@@ -1,7 +1,7 @@
 fa-view
-  fa-modifier(fa-opacity="dayOpacity" fa-size='[getPageWidth(), getPageHeight()]')
+  fa-modifier(fa-opacity="categoriesOpacity" fa-size='[getPageWidth(), getPageHeight()]')
     fa-surface(fa-pipe-to='eventHandler')
-      fa-app(ng-controller="ArchivedDayCtrl")
+      fa-app(ng-controller="CategoriesCtrl")
           fa-view
             fa-modifier(fa-size='[getPageWidth(), getPageHeight()]')
               fa-header-footer-layout(fa-options='{headerSize: 50, footerSize: 50}')
@@ -16,7 +16,7 @@ fa-view
 
                   //- content
                   fa-surface
-                    fa-app(ng-controller='ArchivedDayCtrl')
+                    fa-app(ng-controller='CategoriesCtrl')
                       fa-scroll-view#day-scrollview(fa-pipe-from='dayScrollEventHandler' fa-options='options.container')
                         fa-view(fa-size='[getPageWidth(), dayScrollHeight]')
                           fa-modifier.top-border(ng-repeat='post in archivedDayPosts track by $index')
