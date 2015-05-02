@@ -48,7 +48,7 @@ fa-view
                             fa-app.highest-z-index
                               fa-image-surface.menu-icon(fa-size='[50,50]' fa-image-url="img/menu-ellipses-icon.png" ng-click="switchPage(1)")
                               fa-image-surface.show-post-button(ng-if="userIsInTheSpotlight" fa-size='[70,70]' fa-image-url="img/add_post.png" fa-pipe-to="eventHandler" fa-click="openPostBox($event)")
-                              fa-image-surface.spotlight-icon(fa-size='[50,50]' fa-image-url="img/menu-ellipses-icon.png" ng-click="showRegistration()")
+                              fa-image-surface.spotlight-icon(fa-size='[50,50]' fa-image-url="img/menu-ellipses-icon.png" ng-click="showUserAccount()")
             
 
 
@@ -78,22 +78,21 @@ fa-view
                     fa-app
                       fa-modifier(fa-translate="boxTransitionableSpotlightAccount.get()" fa-opacity="accountBoxTransparency" fa-size="accountBoxSize.get()")
                         fa-surface
-                          //- bio, avatar, links to facebook and twitter log out
-                          .avatar-container(ng-style="{'position' : 'relative', 'height' : '80px', 'margin-top' : '-20px'}")
-                            .avatar-choice(ng-style="{'position' : 'absolute', 'left' : '5%', 'height' : '80px', 'width' : '80px', 'background' : 'url({{avatar}})', 'background-size' : 'contain', 'background-repeat' : 'no-repeat', 'background-position' : 'center', 'background-size' : 'contain'}")
-                          //-   .change-avatar(ng-style="{'position' : 'absolute', 'top' : '20px', 'left' : '50%',  'height' : '30px', 'width' : '100px', 'border' : '2px solid black', 'text-align' : 'center', 'line-height' : '30px', 'border-radius' : '10px'}")  Replace
-                          .account-inputs(ng-style="{'position' : 'relative', 'height' : '{{accountContentHeight()}}'}")
-                            input(ng-style="{'padding' : '7px', 'width' : '85%', 'margin-left' : '5%', 'height' : '15%', 'margin-top' : '10px', 'background-color' : 'rgb(215, 213, 213)', 'border-radius' : '5px', 'border' : 'none', 'font-size' : '16px'}")
-                            input(ng-style="{'padding' : '7px', 'width' : '85%', 'margin-left' : '5%', 'height' : '15%', 'margin-top' : '10px', 'background-color' : 'rgb(215, 213, 213)', 'border-radius' : '5px', 'border' : 'none', 'font-size' : '16px'}")
-                            input(ng-style="{'padding' : '7px', 'width' : '85%', 'margin-left' : '5%', 'height' : '15%', 'margin-top' : '10px', 'background-color' : 'rgb(215, 213, 213)', 'border-radius' : '5px', 'border' : 'none', 'font-size' : '16px'}")
-                            textarea(ng-style="{'padding' : '7px', 'width' : '85%', 'margin-left' : '5%', 'height' : '30%', 'margin-top' : '10px', 'background-color' : 'rgb(215, 213, 213)', 'border-radius' : '5px', 'border' : 'none', 'font-size' : '16px'}")
+                          //- //- bio, avatar, links to facebook and twitter log out
+                          //- .avatar-container(ng-style="{'position' : 'relative', 'height' : '80px', 'margin-top' : '-20px'}")
+                          //-   .avatar-choice(ng-style="{'position' : 'absolute', 'left' : '5%', 'height' : '80px', 'width' : '80px', 'background' : 'url({{avatar}})', 'background-size' : 'contain', 'background-repeat' : 'no-repeat', 'background-position' : 'center', 'background-size' : 'contain'}")
+                          //- //-   .change-avatar(ng-style="{'position' : 'absolute', 'top' : '20px', 'left' : '50%',  'height' : '30px', 'width' : '100px', 'border' : '2px solid black', 'text-align' : 'center', 'line-height' : '30px', 'border-radius' : '10px'}")  Replace
+                          //- .account-inputs(ng-style="{'position' : 'relative', 'height' : '{{accountContentHeight()}}'}")
+                          //-   input(ng-style="{'padding' : '7px', 'width' : '85%', 'margin-left' : '5%', 'height' : '15%', 'margin-top' : '10px', 'background-color' : 'rgb(215, 213, 213)', 'border-radius' : '5px', 'border' : 'none', 'font-size' : '16px'}")
+                          //-   input(ng-style="{'padding' : '7px', 'width' : '85%', 'margin-left' : '5%', 'height' : '15%', 'margin-top' : '10px', 'background-color' : 'rgb(215, 213, 213)', 'border-radius' : '5px', 'border' : 'none', 'font-size' : '16px'}")
+                          //-   input(ng-style="{'padding' : '7px', 'width' : '85%', 'margin-left' : '5%', 'height' : '15%', 'margin-top' : '10px', 'background-color' : 'rgb(215, 213, 213)', 'border-radius' : '5px', 'border' : 'none', 'font-size' : '16px'}")
+                          //-   textarea(ng-style="{'padding' : '7px', 'width' : '85%', 'margin-left' : '5%', 'height' : '30%', 'margin-top' : '10px', 'background-color' : 'rgb(215, 213, 213)', 'border-radius' : '5px', 'border' : 'none', 'font-size' : '16px'}")
                         
-                        fa-image-surface.delete-photo(fa-size='[50, 50]' fa-image-url="img/delete_icon.png")
-                        fa-image-surface.change-photo-camera(fa-size='[50, 50]' fa-image-url="img/camera_icon.png")
-                        fa-image-surface.change-photo-albums(fa-size='[50, 50]' fa-image-url="img/albums_icon.png")
+                        //- fa-image-surface.delete-photo(fa-size='[50, 50]' fa-image-url="img/delete_icon.png")
+                        //- fa-image-surface.change-photo-camera(fa-size='[50, 50]' fa-image-url="img/camera_icon.png")
+                        //- fa-image-surface.change-photo-albums(fa-size='[50, 50]' fa-image-url="img/albums_icon.png")
                         fa-image-surface.go-back(fa-size='[90, 54]' fa-image-url="img/back_button.png" ng-click="closeAccountPage()")
                         fa-image-surface.spotlight-time(fa-size='[90, 54]' fa-image-url="img/session_button.png" ng-click="flipIt()")
-                        fa-image-surface.save(fa-size='[90, 54]' fa-image-url="img/save_button.png")
                       
                 fa-modifier(fa-translate="[0, 50, 0]" fa-size="[getPageWidth(), getPageHeight()]")
                   fa-surface.account-box-background
@@ -123,7 +122,7 @@ fa-view
                     .confirmation-no(ng-click="closeConfirmationDialog()") No
                     .confirmation-yes Yes
 
-            //- comments box
+            //- sign in page
             fa-app.top-slide-in-view
               fa-modifier(fa-translate="boxTransitionableRegistration.get()" fa-opacity="registrationBoxTransparency" fa-size="registrationBoxSize.get()")
                 fa-surface.registration-view-background.registration-z-index
@@ -170,6 +169,31 @@ fa-view
                           .register-surface-buttons
                             .account-login(ng-click="showLogin()")  Login
                             .account-register(ng-click="showRegister()")  Register
+            
+            //- user account
+            fa-app.top-slide-in-view
+              fa-modifier(fa-translate="boxTransitionableUserAccount.get()" fa-opacity="userAccountBoxTransparency" fa-size="userAccountBoxSize.get()")
+                fa-surface.registration-view-background.registration-z-index
+                  fa-app.registration-view-background
+                    fa-modifier(fa-size="[getPageWidth(),getPageHeight()]")
+                      fa-surface
+                        //- bio, avatar, links to facebook and twitter log out
+                        .avatar-container(ng-style="{'position' : 'relative', 'height' : '80px', 'margin-top' : '40px'}")
+                          .avatar-choice(ng-style="{'position' : 'absolute', 'left' : '5%', 'height' : '80px', 'width' : '80px', 'background' : 'url({{avatar}})', 'background-size' : 'contain', 'background-repeat' : 'no-repeat', 'background-position' : 'center', 'background-size' : 'contain'}")
+                        //-   .change-avatar(ng-style="{'position' : 'absolute', 'top' : '20px', 'left' : '50%',  'height' : '30px', 'width' : '100px', 'border' : '2px solid black', 'text-align' : 'center', 'line-height' : '30px', 'border-radius' : '10px'}")  Replace
+                        .account-inputs(ng-style="{'position' : 'relative', 'height' : '{{accountContentHeight()}}'}")
+                          input(ng-style="{'padding' : '7px', 'width' : '85%', 'margin-left' : '5%', 'height' : '15%', 'margin-top' : '10px', 'background-color' : 'rgb(215, 213, 213)', 'border-radius' : '5px', 'border' : 'none', 'font-size' : '16px'}")
+                          input(ng-style="{'padding' : '7px', 'width' : '85%', 'margin-left' : '5%', 'height' : '15%', 'margin-top' : '10px', 'background-color' : 'rgb(215, 213, 213)', 'border-radius' : '5px', 'border' : 'none', 'font-size' : '16px'}")
+                          input(ng-style="{'padding' : '7px', 'width' : '85%', 'margin-left' : '5%', 'height' : '15%', 'margin-top' : '10px', 'background-color' : 'rgb(215, 213, 213)', 'border-radius' : '5px', 'border' : 'none', 'font-size' : '16px'}")
+                          textarea(ng-style="{'padding' : '7px', 'width' : '85%', 'margin-left' : '5%', 'height' : '30%', 'margin-top' : '10px', 'background-color' : 'rgb(215, 213, 213)', 'border-radius' : '5px', 'border' : 'none', 'font-size' : '16px'}")
+                      
+                      fa-image-surface.account-delete-photo(fa-size='[50, 50]' fa-image-url="img/delete_icon.png")
+                      fa-image-surface.account-change-photo-camera(fa-size='[50, 50]' fa-image-url="img/camera_icon.png")
+                      fa-image-surface.account-change-photo-albums(fa-size='[50, 50]' fa-image-url="img/albums_icon.png")
+                      fa-image-surface.account-go-back(fa-size='[90, 54]' fa-image-url="img/back_button.png" ng-click="closeUserAccountPage()")
+                      fa-image-surface.account-save(fa-size='[90, 54]' fa-image-url="img/save_button.png")
+                    
+
 
         //- this is the Main Archive View
         fa-view(fa-index='1')

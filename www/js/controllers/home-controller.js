@@ -180,6 +180,10 @@
     $scope.boxTransitionableAboutOne = new Transitionable([0, windowInnerHeight, 0]);
     $scope.aboutOneBoxSize = new Transitionable([windowWidth, windowInnerHeight]);
     $scope.aboutOneBoxTransparency = new Transitionable(1);
+       //user account
+    $scope.boxTransitionableUserAccount = new Transitionable([0, windowInnerHeight, 0]);
+    $scope.userAccountBoxSize = new Transitionable([windowWidth, windowInnerHeight]);
+    $scope.userAccountBoxTransparency = new Transitionable(1);
 
 
     //flipping to view session or account page
@@ -596,6 +600,14 @@
       $scope.registrationBoxSize.set([windowWidth, 0], {duration: 300, curve: Easing.easeIn});
       $scope.registrationBoxTransparency.set([1], {duration: 300});
       // $scope.login = false;
+    };
+
+    $scope.showUserAccount = function(){
+      var pageWidth = $scope.getPageWidth(),
+       pageHeight = $scope.getPageHeight();
+      $scope.boxTransitionableUserAccount.set([0, 0, 0], {duration: 300, curve: Easing.easeIn});
+      $scope.userAccountBoxSize.set([pageWidth, pageHeight], {duration: 300, curve: Easing.easeIn});
+      $scope.userAccountBoxTransparency.set([1], {duration: 300});
     };
 
     $scope.changePageHandler = new EventHandler();

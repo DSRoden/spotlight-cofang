@@ -55,7 +55,7 @@
                       <fa-app class="highest-z-index">
                         <fa-image-surface fa-size="[50,50]" fa-image-url="img/menu-ellipses-icon.png" ng-click="switchPage(1)" class="menu-icon"></fa-image-surface>
                         <fa-image-surface ng-if="userIsInTheSpotlight" fa-size="[70,70]" fa-image-url="img/add_post.png" fa-pipe-to="eventHandler" fa-click="openPostBox($event)" class="show-post-button"></fa-image-surface>
-                        <fa-image-surface fa-size="[50,50]" fa-image-url="img/menu-ellipses-icon.png" ng-click="showRegistration()" class="spotlight-icon"></fa-image-surface>
+                        <fa-image-surface fa-size="[50,50]" fa-image-url="img/menu-ellipses-icon.png" ng-click="showUserAccount()" class="spotlight-icon"></fa-image-surface>
                       </fa-app>
                     </fa-surface>
                   </fa-modifier>
@@ -91,22 +91,9 @@
                   <fa-app>
                     <fa-modifier fa-translate="boxTransitionableSpotlightAccount.get()" fa-opacity="accountBoxTransparency" fa-size="accountBoxSize.get()">
                       <fa-surface>
-                        <div ng-style="{'position' : 'relative', 'height' : '80px', 'margin-top' : '-20px'}" class="avatar-container">
-                          <div ng-style="{'position' : 'absolute', 'left' : '5%', 'height' : '80px', 'width' : '80px', 'background' : 'url({{avatar}})', 'background-size' : 'contain', 'background-repeat' : 'no-repeat', 'background-position' : 'center', 'background-size' : 'contain'}" class="avatar-choice"></div>
-                        </div>
-                        <div ng-style="{'position' : 'relative', 'height' : '{{accountContentHeight()}}'}" class="account-inputs">
-                          <input ng-style="{'padding' : '7px', 'width' : '85%', 'margin-left' : '5%', 'height' : '15%', 'margin-top' : '10px', 'background-color' : 'rgb(215, 213, 213)', 'border-radius' : '5px', 'border' : 'none', 'font-size' : '16px'}">
-                          <input ng-style="{'padding' : '7px', 'width' : '85%', 'margin-left' : '5%', 'height' : '15%', 'margin-top' : '10px', 'background-color' : 'rgb(215, 213, 213)', 'border-radius' : '5px', 'border' : 'none', 'font-size' : '16px'}">
-                          <input ng-style="{'padding' : '7px', 'width' : '85%', 'margin-left' : '5%', 'height' : '15%', 'margin-top' : '10px', 'background-color' : 'rgb(215, 213, 213)', 'border-radius' : '5px', 'border' : 'none', 'font-size' : '16px'}">
-                          <textarea ng-style="{'padding' : '7px', 'width' : '85%', 'margin-left' : '5%', 'height' : '30%', 'margin-top' : '10px', 'background-color' : 'rgb(215, 213, 213)', 'border-radius' : '5px', 'border' : 'none', 'font-size' : '16px'}"></textarea>
-                        </div>
                       </fa-surface>
-                      <fa-image-surface fa-size="[50, 50]" fa-image-url="img/delete_icon.png" class="delete-photo"></fa-image-surface>
-                      <fa-image-surface fa-size="[50, 50]" fa-image-url="img/camera_icon.png" class="change-photo-camera"></fa-image-surface>
-                      <fa-image-surface fa-size="[50, 50]" fa-image-url="img/albums_icon.png" class="change-photo-albums"></fa-image-surface>
                       <fa-image-surface fa-size="[90, 54]" fa-image-url="img/back_button.png" ng-click="closeAccountPage()" class="go-back"></fa-image-surface>
                       <fa-image-surface fa-size="[90, 54]" fa-image-url="img/session_button.png" ng-click="flipIt()" class="spotlight-time"></fa-image-surface>
-                      <fa-image-surface fa-size="[90, 54]" fa-image-url="img/save_button.png" class="save"></fa-image-surface>
                     </fa-modifier>
                   </fa-app>
                 </fa-surface>
@@ -206,6 +193,32 @@
                         </div>
                       </div>
                     </fa-surface>
+                  </fa-modifier>
+                </fa-app>
+              </fa-surface>
+            </fa-modifier>
+          </fa-app>
+          <fa-app class="top-slide-in-view">
+            <fa-modifier fa-translate="boxTransitionableUserAccount.get()" fa-opacity="userAccountBoxTransparency" fa-size="userAccountBoxSize.get()">
+              <fa-surface class="registration-view-background registration-z-index">
+                <fa-app class="registration-view-background">
+                  <fa-modifier fa-size="[getPageWidth(),getPageHeight()]">
+                    <fa-surface>
+                      <div ng-style="{'position' : 'relative', 'height' : '80px', 'margin-top' : '40px'}" class="avatar-container">
+                        <div ng-style="{'position' : 'absolute', 'left' : '5%', 'height' : '80px', 'width' : '80px', 'background' : 'url({{avatar}})', 'background-size' : 'contain', 'background-repeat' : 'no-repeat', 'background-position' : 'center', 'background-size' : 'contain'}" class="avatar-choice"></div>
+                      </div>
+                      <div ng-style="{'position' : 'relative', 'height' : '{{accountContentHeight()}}'}" class="account-inputs">
+                        <input ng-style="{'padding' : '7px', 'width' : '85%', 'margin-left' : '5%', 'height' : '15%', 'margin-top' : '10px', 'background-color' : 'rgb(215, 213, 213)', 'border-radius' : '5px', 'border' : 'none', 'font-size' : '16px'}">
+                        <input ng-style="{'padding' : '7px', 'width' : '85%', 'margin-left' : '5%', 'height' : '15%', 'margin-top' : '10px', 'background-color' : 'rgb(215, 213, 213)', 'border-radius' : '5px', 'border' : 'none', 'font-size' : '16px'}">
+                        <input ng-style="{'padding' : '7px', 'width' : '85%', 'margin-left' : '5%', 'height' : '15%', 'margin-top' : '10px', 'background-color' : 'rgb(215, 213, 213)', 'border-radius' : '5px', 'border' : 'none', 'font-size' : '16px'}">
+                        <textarea ng-style="{'padding' : '7px', 'width' : '85%', 'margin-left' : '5%', 'height' : '30%', 'margin-top' : '10px', 'background-color' : 'rgb(215, 213, 213)', 'border-radius' : '5px', 'border' : 'none', 'font-size' : '16px'}"></textarea>
+                      </div>
+                    </fa-surface>
+                    <fa-image-surface fa-size="[50, 50]" fa-image-url="img/delete_icon.png" class="account-delete-photo"></fa-image-surface>
+                    <fa-image-surface fa-size="[50, 50]" fa-image-url="img/camera_icon.png" class="account-change-photo-camera"></fa-image-surface>
+                    <fa-image-surface fa-size="[50, 50]" fa-image-url="img/albums_icon.png" class="account-change-photo-albums"></fa-image-surface>
+                    <fa-image-surface fa-size="[90, 54]" fa-image-url="img/back_button.png" ng-click="closeUserAccountPage()" class="account-go-back"></fa-image-surface>
+                    <fa-image-surface fa-size="[90, 54]" fa-image-url="img/save_button.png" class="account-save"></fa-image-surface>
                   </fa-modifier>
                 </fa-app>
               </fa-surface>
