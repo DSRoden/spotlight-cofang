@@ -20,10 +20,51 @@ fa-app {
   left: 0;
 }
 
+.button {
+  box-shadow: 0px 2px 5px #888888;
+  border-radius: 100%;
+}
+
+.phone-top-bar {
+  position: absolute;
+  top: 0;
+  height: 7px;
+  width: 100%;
+  z-index: 9999999999999999999999999999999999999999999999999999999999999999999999999999999999;
+  background: #1e5799; /* Old browsers */
+  background: -moz-linear-gradient(left,  #1e5799 0%, #2989d8 49%, #207cca 100%, #7db9e8 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%,#1e5799), color-stop(49%,#2989d8), color-stop(100%,#207cca), color-stop(100%,#7db9e8)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(left,  #1e5799 0%,#2989d8 49%,#207cca 100%,#7db9e8 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(left,  #1e5799 0%,#2989d8 49%,#207cca 100%,#7db9e8 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(left,  #1e5799 0%,#2989d8 49%,#207cca 100%,#7db9e8 100%); /* IE10+ */
+  background: linear-gradient(to right,  #1e5799 0%,#2989d8 49%,#207cca 100%,#7db9e8 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=1 ); /* IE6-9 */
+}
+
 .absolute{
 	position: absolute;
 	top: 0;
 	z-index: 99999;
+  background: #1e5799; /* Old browsers */
+  background: -moz-linear-gradient(left,  #1e5799 0%, #2989d8 49%, #207cca 100%, #7db9e8 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%,#1e5799), color-stop(49%,#2989d8), color-stop(100%,#207cca), color-stop(100%,#7db9e8)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(left,  #1e5799 0%,#2989d8 49%,#207cca 100%,#7db9e8 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(left,  #1e5799 0%,#2989d8 49%,#207cca 100%,#7db9e8 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(left,  #1e5799 0%,#2989d8 49%,#207cca 100%,#7db9e8 100%); /* IE10+ */
+  background: linear-gradient(to right,  #1e5799 0%,#2989d8 49%,#207cca 100%,#7db9e8 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=1 ); /* IE6-9 */
+  border-bottom: 2px solid rgba(78, 80, 82, 0.5);
+}
+
+.card {
+  margin: 5px;
+  border: 1px solid black;
+}
+
+.card-format {
+  border: 1px solid rgba(103, 98, 98, .2);
+  border-bottom: 2px solid rgba(103, 98, 98, .6);
+  margin-top: 1px;
 }
 
 .center-content {
@@ -35,6 +76,8 @@ fa-app {
   float: right;
   right: 15px;
   bottom: 15px;
+  box-shadow: 0px 2px 5px #888888;
+  border-radius: 100%;
 }
 
 .spotlight-icon {
@@ -42,6 +85,8 @@ fa-app {
   float: left;
   left: 15px;
   bottom: 15px;
+  box-shadow: 0px 2px 5px #888888;
+  border-radius: 100%;
 }
 
 .add-comment-icon {
@@ -49,12 +94,16 @@ fa-app {
   float: right;
   right: -35px;
   bottom: 70px;
+  box-shadow: 0px 2px 5px #888888;
+  border-radius: 100%;
 }
 
 .show-post-button {
   left: 40%;
   bottom: 20px;
   z-index: 99999999999999999999999999999;
+  box-shadow: 0px 2px 5px #888888;
+  border-radius: 100%;
 }
 
 .menu-icon2 {
@@ -80,13 +129,19 @@ fa-app {
 
 .relative-image {
   position: relative ! important;
-  background: url('../img/slash_it_white.png');
+  /* background: url('../img/slash_it_white.png'); */
+  background: white;
   padding: 7px;
+  margin: 10px;
+  border: 1px solid rgba(103, 98, 98, .2);
 }
 
 .relative-text {
   position: relative ! important;
-  background: url('../img/slash_it_white.png');
+   /* background: url('../img/slash_it_white.png'); */
+  background: white;
+  margin: 10px;
+  border: 1px solid rgba(103, 98, 98, .2);
 }
 
 .image-date-container {
@@ -185,7 +240,7 @@ fa-app {
   height: 35px;
   color: @socialTextColor;
   background: @commentAndLikesBackground;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2)
+  border-bottom: 1px solid rgba(78, 80, 82, 0.2);
 }
 
 .comments {
@@ -199,14 +254,14 @@ fa-app {
 .likes {
   position: absolute;
   right: 70px;
-  top: 178px;
+  top: 175px;
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
 }
 
 .likes-image {
   position: absolute;
   right: 70px;
-  top: 278px;
+  top: 275px;
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
 }
 
@@ -245,18 +300,22 @@ fa-app {
 
 
 .spotlight-name {
+  margin-top: 7px;
   left: 15%;
   padding: 20px;
   width: 100% ! important;
   color: white;
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
 }
 
 .spotlight-avatar {
+  margin-top: 12px;
   left: 5%;
   padding: 5px;
 }
 
 .twitter {
+  margin-top: 10px;
   color: white;
   font-size: 20px;
   height: 30px ! important;
@@ -271,6 +330,7 @@ fa-app {
 }
 
 .facebook {
+  margin-top: 10px;
   color: white;
   font-size: 20px;
   height: 30px ! important;
@@ -297,7 +357,8 @@ fa-app {
 }
 
 .post-box-background {
-  background: url('../img/slash_it_white.png');
+  /* background: url('../img/slash_it_white.png'); */
+  background: rgb(240, 240, 240);
   padding: 10%;
 }
 
@@ -342,32 +403,42 @@ fa-app {
 
 .make-post {
   left: 40%;
-  bottom: 70px;
+  bottom: 85px;
   z-index: 99999999999999999999999999999;
+  box-shadow: 0px 2px 5px #888888;
+  border-radius: 100%;
 }
 
 .open-camera {
   left: 22%;
   bottom: 95px;
   z-index: 99999999999999999999999999999;
+  box-shadow: 0px 2px 5px #888888;
+  border-radius: 100%;
 }
 
 .open-albums {
   left: 7%;
   bottom: 97px;;
   z-index: 99999999999999999999999999999;
+  box-shadow: 0px 2px 5px #888888;
+  border-radius: 100%;
 }
 
 .spotlight-help {
   left: 64%;
   bottom: 95px;
   z-index: 99999999999999999999999999999999999;
+  box-shadow: 0px 2px 5px #888888;
+  border-radius: 100%;
 }
 
 .close-post-box {
   left: 81%;
   bottom: 97px;
   z-index: 99999999999999999999999999999;
+  box-shadow: 0px 2px 5px #888888;
+  border-radius: 100%;
 }
 
 .heighest-z-index {
@@ -375,7 +446,7 @@ fa-app {
 }
 
 .textbox-and-image-container {
-  margin-top: -30px ! important;
+  margin-top: -50px ! important;
   padding: 10px ! important;
 }
 

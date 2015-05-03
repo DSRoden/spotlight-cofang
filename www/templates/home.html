@@ -7,11 +7,12 @@
           <fa-app onScroll="scrolling()">
             <fa-view>
               <fa-modifier fa-size="[getPageWidth(), getPageHeight()]">
-                <fa-header-footer-layout fa-options="{headerSize: 50, footerSize: 50}">
-                  <fa-modifier fa-translate="boxTransitionableHeader.get()" fa-opacity="opacityTrans">
+                <fa-surface fa-size="[getPageWidth(), 15]" class="phone-top-bar"></fa-surface>
+                <fa-header-footer-layout fa-options="{headerSize: 60, footerSize: 50}">
+                  <fa-modifier fa-translate="boxTransitionableHeader.get()">
                     <fa-surface fa-background-color="'black'" class="absolute">
                       <fa-app>
-                        <fa-image-surface fa-size="[50,50]" fa-image-url="img/spotlight-icon-small.png" ng-click="showWinnerInfo()" class="spotlight-avatar"></fa-image-surface>
+                        <fa-image-surface fa-size="[45,45]" fa-image-url="img/spotlight-icon-small.png" ng-click="showWinnerInfo()" class="spotlight-avatar"></fa-image-surface>
                         <fa-surface ng-click="showWinnerInfo()" class="spotlight-name">Lilly Bloomings </fa-surface>
                         <fa-surface ng-click="showWinnerTwitter()" class="twitter">t</fa-surface>
                         <fa-surface ng-click="goToCategories()" class="facebook">f</fa-surface>
@@ -23,7 +24,7 @@
                       <fa-scroll-view id="main-scrollview" fa-pipe-from="myEventHandler" fa-options="options.container">
                         <fa-view fa-size="[getPageWidth(), mainScrollHeight]">
                           <fa-modifier ng-repeat="post in posts track by $index">
-                            <fa-surface ng-if="post.image_url" fa-size="[getPageWidth(), 300]" class="relative-image">
+                            <fa-surface ng-if="post.image_url" fa-size="[(getPageWidth() - 20), 300]" class="relative-image">
                               <div ng-click="showComments(post.id)" ng-style="{'background-image':'url({{post.image_url}})', 'height': '285px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to="myEventHandler" class="image">
                                 <fa-app>
                                   <fa-surface class="content-date">{{moment(post.created_at).format('LT')}}</fa-surface>
@@ -33,7 +34,7 @@
                                 </fa-app>
                               </div>
                             </fa-surface>
-                            <fa-surface ng-if="post.text" fa-background-color="white" fa-size="[getPageWidth(), 200]" class="relative-text">
+                            <fa-surface ng-if="post.text" fa-background-color="white" fa-size="[(getPageWidth() - 20), 200]" class="relative-text">
                               <div fa-pipe-to="myEventHandler" class="content">
                                 <fa-app>
                                   <fa-surface ng-click="commentsModal()" class="content-text"> {{post.text}}</fa-surface>
@@ -69,9 +70,9 @@
                 <fa-app> 
                   <fa-modifier fa-translate="boxTransitionableSpotlightPost.get()" fa-opacity="postboxTransparency" fa-size="postboxSize.get()">
                     <fa-surface class="textbox-and-image-container">
-                      <textarea ng-model="post.message" placeholder="  Share something with the world." ng-style="{'width' : '95%', 'height': '{{textareaHeight()}}', 'border' : 'none', 'border-radius' : '10px', 'background': 'rgb(234, 233, 233)', 'font-size' : '16px', 'padding' : '10px'}"></textarea>
-                      <div ng-style="{'background-image':'url({{addImageUrl}})', 'height': '{{addImageHeight()}}',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center', 'margin-top' : '10px'}" class="new-image-area">
-                        <div ng-style="{'height' : '30px', 'width': '30px', 'background-color' : 'rgba(0, 0, 0, 0.5)', 'border-radius' : '100%', 'color' : 'white', 'font-size' : '20px', 'font-family' : 'Helvetica', 'float' : 'right', 'text-align' : 'center', 'line-height' : '32px'}" class="delete-image">X</div>
+                      <textarea ng-model="post.message" placeholder="  Share something with the world." ng-style="{'width' : '94%', 'height': '{{textareaHeight()}}', 'background': 'white', 'font-size' : '16px', 'padding' : '10px'}" class="card-format"></textarea>
+                      <div ng-style="{'background-image':'url({{addImageUrl}})', 'height': '{{addImageHeight()}}',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center', 'margin-top' : '10px'}" class="new-image-area card-format">
+                        <div ng-style="{'height' : '30px', 'width': '30px', 'background-color' : 'rgba(0, 0, 0, 0.5)', 'color' : 'white', 'font-size' : '20px', 'font-family' : 'Helvetica', 'float' : 'right', 'text-align' : 'center', 'line-height' : '32px'}" class="delete-image">X</div>
                       </div>
                     </fa-surface>
                   </fa-modifier>
@@ -228,9 +229,10 @@
       </fa-view>
       <fa-view fa-index="1">
         <fa-modifier fa-size="[getPageWidth(), getPageHeight()]">
-          <fa-header-footer-layout fa-options="{headerSize: 50, footerSize: 50}">
+          <fa-surface fa-size="[getPageWidth(), 15]" class="phone-top-bar"></fa-surface>
+          <fa-header-footer-layout fa-options="{headerSize: 60, footerSize: 50}">
             <!-- header-->
-            <fa-modifier fa-translate="boxTransitionableHeader2.get()" fa-opacity="opacityTrans2">
+            <fa-modifier fa-translate="boxTransitionableHeader2.get()">
               <fa-surface fa-background-color="'black'" class="absolute"></fa-surface>
             </fa-modifier>
             <!-- content-->
@@ -257,11 +259,12 @@
       </fa-view>
       <fa-view fa-index="2">
         <fa-modifier fa-size="[getPageWidth(), getPageHeight()]">
-          <fa-header-footer-layout fa-options="{headerSize: 50, footerSize: 50}">
-            <fa-modifier fa-translate="boxTransitionableHeader3.get()" fa-opacity="opacityTrans3">
+          <fa-surface fa-size="[getPageWidth(), 15]" class="phone-top-bar"></fa-surface>
+          <fa-header-footer-layout fa-options="{headerSize: 60, footerSize: 50}">
+            <fa-modifier fa-translate="boxTransitionableHeader3.get()">
               <fa-surface fa-background-color="'black'" class="absolute">
                 <fa-app>
-                  <fa-image-surface fa-size="[50,50]" fa-image-url="img/spotlight-icon-small.png" ng-click="showWinnerInfo()" class="spotlight-avatar"></fa-image-surface>
+                  <fa-image-surface fa-size="[45,45]" fa-image-url="img/spotlight-icon-small.png" ng-click="showWinnerInfo()" class="spotlight-avatar"></fa-image-surface>
                   <fa-surface ng-click="showWinnerInfo()" class="spotlight-name">Lilly Bloomings </fa-surface>
                   <fa-surface ng-click="showWinnerTwitter()" class="twitter">t</fa-surface>
                   <fa-surface ng-click="showWinnerFacebook()" class="facebook">f</fa-surface>
@@ -273,9 +276,8 @@
                 <fa-scroll-view id="day-scrollview" fa-pipe-from="dayScrollEventHandler" fa-options="options.container">
                   <fa-view fa-size="[getPageWidth(), dayScrollHeight]">
                     <fa-modifier ng-repeat="post in archivedDayPosts track by $index" class="top-border">
-                      <fa-surface ng-if="post.image_url" fa-size="[getPageWidth(), 300]" class="relative-image">
-                        <div ng-click="showComments(post.id)" ng-style="{'background-image':'url({{post.image_url}})', 'height': '285px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to="dayScrollEventHandler" class="image"></div>
-                        <div ng-click="showComments(post.id)" ng-style="{'background-image':'url({{post.image_url}})', 'height': '285px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to="myEventHandler" class="image">
+                      <fa-surface ng-if="post.image_url" fa-size="[(getPageWidth() -20), 300]" class="relative-image">
+                        <div ng-click="showComments(post.id)" ng-style="{'background-image':'url({{post.image_url}})', 'height': '285px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to="dayScrollEventHandler" class="image">
                           <fa-app>
                             <fa-surface class="content-date">{{moment(post.created_at).format('LT')}}</fa-surface>
                             <fa-surface fa-size="[100,30]" ng-click="commentsModal()" class="comments-icon">Comments {{post.comments}}</fa-surface>
@@ -284,7 +286,7 @@
                           </fa-app>
                         </div>
                       </fa-surface>
-                      <fa-surface ng-if="post.text" fa-background-color="white" fa-size="[getPageWidth(), 200]" class="relative-text">
+                      <fa-surface ng-if="post.text" fa-background-color="white" fa-size="[(getPageWidth() -20), 200]" class="relative-text">
                         <div fa-pipe-to="dayScrollEventHandler" class="content">
                           <fa-app>
                             <fa-surface ng-click="commentsModal()" class="content-text"> {{post.text}}</fa-surface>
