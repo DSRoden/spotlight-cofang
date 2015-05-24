@@ -22,8 +22,10 @@ fa-app {
   height: 7px;
   width: 100%;
   z-index: 9999999999999999999999999999999999999999999999999999999999999999999999999999999999;
+  background: #088dff;
+}
+.phone-top-bar-gradient {
   background: #1e5799;
-  /* Old browsers */
   background: -moz-linear-gradient(left, #1e5799 0%, #2989d8 49%, #207cca 100%, #7db9e8 100%);
   /* FF3.6+ */
   background: -webkit-gradient(linear, left top, right top, color-stop(0%, #1e5799), color-stop(49%, #2989d8), color-stop(100%, #207cca), color-stop(100%, #7db9e8));
@@ -43,6 +45,10 @@ fa-app {
   position: absolute;
   top: 0;
   z-index: 99999;
+  background: #088dff ! important;
+  border-bottom: 2px solid rgba(78, 80, 82, 0.5);
+}
+.abosolute-gradient {
   background: #1e5799;
   /* Old browsers */
   background: -moz-linear-gradient(left, #1e5799 0%, #2989d8 49%, #207cca 100%, #7db9e8 100%);
@@ -59,7 +65,9 @@ fa-app {
   /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1e5799', endColorstr='#7db9e8', GradientType=1);
   /* IE6-9 */
-  border-bottom: 2px solid rgba(78, 80, 82, 0.5);
+}
+.borderBottom {
+  border: 2px solid #ffdc00 ! important;
 }
 .card {
   margin: 5px;
@@ -68,7 +76,12 @@ fa-app {
 .card-format {
   border: 1px solid rgba(103, 98, 98, 0.2);
   border-bottom: 2px solid rgba(103, 98, 98, 0.6);
-  margin-top: 1px;
+}
+.account-card {
+  background: white;
+  margin: 10px;
+  border: 1px solid rgba(103, 98, 98, 0.2);
+  border-bottom: 2px solid rgba(103, 98, 98, 0.6);
 }
 .center-content {
   text-align: center ! important;
@@ -127,6 +140,14 @@ fa-app {
   padding: 7px;
   margin: 10px;
   border: 1px solid rgba(103, 98, 98, 0.2);
+}
+.connect {
+  margin-bottom: 0px ! important;
+  border-bottom: none ! important;
+}
+.connectTop {
+  margin-top: 0px ! important;
+  border-top: none ! important;
 }
 .relative-text {
   position: relative ! important;
@@ -209,7 +230,7 @@ fa-app {
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
   color: rgba(0, 0, 0, 0.7);
   background: white;
-  width: 100% ! important;
+  width: 99.5% ! important;
   height: 20px ! important;
   bottom: 30px;
 }
@@ -246,7 +267,7 @@ fa-app {
   position: absolute;
   left: 10px;
   top: 4px;
-  text-decoration: underline;
+  color: #2886d4;
   padding: 5px;
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
 }
@@ -261,12 +282,12 @@ fa-app {
   right: 80px;
 }
 .comments-icon {
-  width: 100% ! important;
+  width: 99.5% ! important;
   height: 30px ! important;
   line-height: 30px;
   bottom: 0px;
   background: white;
-  text-decoration: underline;
+  color: #2886d4;
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
   padding-left: 20px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
@@ -282,6 +303,11 @@ fa-app {
 .spotlight-avatar {
   margin-top: 12px;
   left: 5%;
+  padding: 5px;
+}
+.account-icon {
+  margin-top: 12px;
+  right: 5%;
   padding: 5px;
 }
 .twitter {
@@ -334,7 +360,8 @@ fa-app {
   background: url('../img/slash_it_white.png');
 }
 .registration-view-background {
-  background: url('../img/slash_it_white.png');
+  /* background: url('../img/slash_it_white.png'); */
+  background: #f0f0f0;
 }
 .registration-z-index {
   z-index: 999999999999999999999999999999999999999999999999999999 ! important;
@@ -528,6 +555,29 @@ fa-app {
   border: none;
   border-radius: 10px;
 }
+.account-card-input {
+  padding: 7px;
+  width: 85%;
+  margin-left: 5%;
+  height: 15%;
+  margin-top: 10px;
+  /* border-radius: 5px; */
+  border: none;
+  font-size: 16px;
+  background-color: #f0f0f0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.account-card-textarea {
+  padding: 7px;
+  width: 85%;
+  margin-left: 5%;
+  height: 30%;
+  margin-top: 10px;
+  border: none;
+  font-size: 16px;
+  background-color: #f0f0f0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
 .register-explanation {
   font-size: 14px;
   padding: 30px;
@@ -558,7 +608,7 @@ fa-app {
   position: absolute;
   height: 35px;
   width: 35px;
-  background: url('../img/question_icon.png');
+  background: url('../img/question_icon_blue.png');
   background-size: contain;
   background-position: center;
   top: 99%;
@@ -623,25 +673,43 @@ fa-app {
 .z-of-day-icon {
   z-index: 999999999999999999999999999999999999999999999999999999999999999999 ! important;
 }
-.account-save {
+.account-save-button {
+  position: absolute;
   bottom: 10% ! important;
+  bottom: -40%;
   right: 15% ! important;
+  height: 50px;
+  background-color: #f0f0f0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  width: 100px;
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  text-align: center;
+  line-height: 50px;
 }
 .account-delete-photo {
   top: 40px;
   left: 40%;
 }
 .account-change-photo-camera {
-  top: 40px;
-  left: 60%;
+  top: 80px;
+  left: 55%;
 }
 .account-change-photo-albums {
-  top: 40px;
-  left: 80%;
+  top: 80px;
+  left: 75%;
 }
-.account-go-back {
+.account-go-back-button {
+  position: absolute;
   bottom: 10% ! important;
+  bottom: -40%;
   left: 15% ! important;
+  height: 50px;
+  background-color: #f0f0f0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  width: 100px;
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  text-align: center;
+  line-height: 50px;
 }
 .spotlight-session {
   bottom: 10% ! important;

@@ -5,12 +5,14 @@
   'use strict';
 
   angular.module('spotlight-famous')
-  .controller('CommentsCtrl', ['$scope', '$timeout', '$location', '$famous', '$timeline', '$state', 'ngDialog', function($scope, $timeout, $location, $famous, $timeline, $state, ngDialog){
+  .controller('CommentsCtrl', ['$scope', '$timeout', '$location', '$famous', '$timeline', '$state', 'ngDialog', function($scope , $timeout, $location, $famous, $timeline, $state, ngDialog){
     //go to archive
     $scope.goToArchive = function(){
       console.log('switching states to archive');
       $state.go('archive');
     };
+
+    console.log('new scopes', $scope.ngDialogData.post);
 
     //initialize spotlight about
     $scope.spotlight = {};
@@ -231,19 +233,15 @@
 
 
     $scope.comments = [
-                            {text: 'james', date: '2015-04-11 15:33:29.706269'},
-                            {text: 'jane', date: '2015-04-11 15:33:29.706269'},
-                            {text: 'bob', date: '2015-04-11 15:33:29.7062695'},
-                            {text: 'sally', date: '2015-04-11 15:33:29.706269'},
-                            {text: 'james', date: '2015-04-11 15:33:29.706269'},
-                            {text: 'jane', date: '2015-04-11 15:33:29.706269'},
-                            {text: 'bob', date: '2015-04-11 15:33:29.706269'},
-                            {text: 'sally', date: '2015-04-11 15:33:29.706269'},
-                            {text: 'bob', date: '2015-04-11 15:33:29.706269'},
-                            {text: 'sally', date: '2015-04-11 15:33:29.706269'},
-                            {text: 'bob', date: '2015-04-11 15:33:29.706269'},
-                            {text: 'sally', date: '2015-04-11 15:33:29.706269'},
-                            {text: '', date: null}];
+                            {username: 'james',  text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', created_at: '2015-04-11 15:33:29.706269'},
+                            {username: 'jane', text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', created_at: '2015-04-11 15:33:29.706269'},
+                            {username: 'bob', text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', created_at: '2015-04-11 15:33:29.7062695'},
+                            {username: 'james',  text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', created_at: '2015-04-11 15:33:29.706269'},
+                            {username: 'jane', text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', created_at: '2015-04-11 15:33:29.706269'},
+                            {username: 'bob', text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', created_at: '2015-04-11 15:33:29.7062695'},
+                            {username: 'james',  text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', created_at: '2015-04-11 15:33:29.706269'},
+                            {username: 'jane', text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', created_at: '2015-04-11 15:33:29.706269'},
+                            {username: 'bob', text: 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.', created_at: '2015-04-11 15:33:29.7062695'}];
 
     //making ids for example archived days
     $scope.makeIdsForExample = function(){
@@ -320,6 +318,29 @@
     // measureHeightForArchiveScroll();
 
 
+ // get post and attach to comments
+ //helper function to calculate size for comments scroll
+    $scope.commentsScrollHeight = 100;
+    function measureHeightForCommentsScroll(){
+      var post = $scope.ngDialogData.post;
+      if(post.image_url && post.text){
+        post.size = 450;
+        $scope.commentsScrollHeight += 500;
+      } else if(post.image_url === null && post.text){
+        post.size = 150;
+        $scope.commentsScrollHeight += 200;
+      } else if(post.image_url && post.text === null){
+        post.size = 300;
+        $scope.commentsScrollHeight += 300;
+      }
+      for(var i = 0; i < $scope.comments.length; i++){
+        $scope.comments[i].size = 150;
+        $scope.commentsScrollHeight += 150;
+      }
+      $scope.comments.unshift(post);
+    }
+
+    measureHeightForCommentsScroll();
 
     //$scope.getViewsHeight();
     //eventhandlers

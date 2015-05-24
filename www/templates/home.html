@@ -12,7 +12,7 @@
                   <fa-modifier fa-translate="boxTransitionableHeader.get()">
                     <fa-surface fa-background-color="'black'" class="absolute">
                       <fa-app>
-                        <fa-image-surface fa-size="[45,45]" fa-image-url="img/spotlight-icon-small.png" ng-click="showWinnerInfo()" class="spotlight-avatar"></fa-image-surface>
+                        <fa-image-surface fa-size="[45,45]" fa-image-url="img/spotlight-icon-small-yellow.png" ng-click="showWinnerInfo()" class="spotlight-avatar"></fa-image-surface>
                         <fa-surface ng-click="showWinnerInfo()" class="spotlight-name">Lilly Bloomings </fa-surface>
                         <fa-surface ng-click="showWinnerTwitter()" class="twitter">t</fa-surface>
                         <fa-surface ng-click="goToCategories()" class="facebook">f</fa-surface>
@@ -24,22 +24,22 @@
                       <fa-scroll-view id="main-scrollview" fa-pipe-from="myEventHandler" fa-options="options.container">
                         <fa-view fa-size="[getPageWidth(), mainScrollHeight]">
                           <fa-modifier ng-repeat="post in posts track by $index">
-                            <fa-surface ng-if="post.image_url" fa-size="[(getPageWidth() - 20), 300]" class="relative-image">
+                            <fa-surface ng-if="post.image_url" fa-size="[(getPageWidth() - 20), 300]" ng-class="{connect : post.text}" class="relative-image">
                               <div ng-click="showComments(post.id)" ng-style="{'background-image':'url({{post.image_url}})', 'height': '285px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to="myEventHandler" class="image">
-                                <fa-app>
+                                <fa-app ng-if="!post.text">
                                   <fa-surface class="content-date">{{moment(post.created_at).format('LT')}}</fa-surface>
-                                  <fa-surface fa-size="[100,30]" ng-click="commentsModal()" class="comments-icon">Comments {{post.comments}}</fa-surface>
+                                  <fa-surface fa-size="[100,30]" ng-click="commentsModal(post)" class="comments-icon">Comments {{post.comments}}</fa-surface>
                                   <fa-image-surface fa-image-url="img/heart.png" fa-size="[20,20]" ng-click="like(post)" class="heart"></fa-image-surface>
                                   <fa-surface class="likes-image">{{post.likes}}</fa-surface>
                                 </fa-app>
                               </div>
                             </fa-surface>
-                            <fa-surface ng-if="post.text" fa-background-color="white" fa-size="[(getPageWidth() - 20), 200]" class="relative-text">
+                            <fa-surface ng-if="post.text" fa-background-color="white" fa-size="[(getPageWidth() - 20), 200]" ng-class="{connectTop : post.image_url}" class="relative-text">
                               <div fa-pipe-to="myEventHandler" class="content">
                                 <fa-app>
                                   <fa-surface ng-click="commentsModal()" class="content-text"> {{post.text}}</fa-surface>
                                   <fa-surface class="content-date">{{moment(post.created_at).format('LT')}}</fa-surface>
-                                  <fa-surface fa-size="[100,30]" ng-click="commentsModal()" class="comments-icon">Comments {{post.comments}}</fa-surface>
+                                  <fa-surface fa-size="[100,30]" ng-click="commentsModal(post)" fa-pipe-to="myEventHandler" class="comments-icon">Comments {{post.comments}}</fa-surface>
                                   <fa-image-surface fa-image-url="img/heart.png" fa-size="[20,20]" ng-click="like(post)" class="heart"></fa-image-surface>
                                   <fa-surface class="likes">{{post.likes}}</fa-surface>
                                 </fa-app>
@@ -54,9 +54,10 @@
                   <fa-modifier fa-translate="boxTransitionableFooter.get()" fa-opacity="opacityTrans">
                     <fa-surface class="center-content">
                       <fa-app class="highest-z-index">
-                        <fa-image-surface fa-size="[50,50]" fa-image-url="img/menu-ellipses-icon.png" ng-click="switchPage(1)" class="menu-icon"></fa-image-surface>
-                        <fa-image-surface ng-if="userIsInTheSpotlight" fa-size="[70,70]" fa-image-url="img/add_post.png" fa-pipe-to="eventHandler" fa-click="openPostBox($event)" class="show-post-button"></fa-image-surface>
-                        <fa-image-surface fa-size="[50,50]" fa-image-url="img/menu-ellipses-icon.png" ng-click="showUserAccount()" class="spotlight-icon"></fa-image-surface>
+                        <fa-image-surface fa-size="[50,50]" fa-image-url="img/right_arrow_yellow.png" ng-click="switchPage(1)" class="menu-icon"></fa-image-surface>
+                        <fa-image-surface ng-if="userIsInTheSpotlight" fa-size="[70,70]" fa-image-url="img/add_post_yellow.png" fa-pipe-to="eventHandler" fa-click="openPostBox($event)" class="show-post-button"></fa-image-surface>
+                        
+                        
                       </fa-app>
                     </fa-surface>
                   </fa-modifier>
@@ -205,21 +206,26 @@
                 <fa-app class="registration-view-background">
                   <fa-modifier fa-size="[getPageWidth(),getPageHeight()]">
                     <fa-surface>
-                      <div ng-style="{'position' : 'relative', 'height' : '80px', 'margin-top' : '40px'}" class="avatar-container">
-                        <div ng-style="{'position' : 'absolute', 'left' : '5%', 'height' : '80px', 'width' : '80px', 'background' : 'url({{avatar}})', 'background-size' : 'contain', 'background-repeat' : 'no-repeat', 'background-position' : 'center', 'background-size' : 'contain'}" class="avatar-choice"></div>
-                      </div>
-                      <div ng-style="{'position' : 'relative', 'height' : '{{accountContentHeight()}}'}" class="account-inputs">
-                        <input ng-style="{'padding' : '7px', 'width' : '85%', 'margin-left' : '5%', 'height' : '15%', 'margin-top' : '10px', 'background-color' : 'rgb(215, 213, 213)', 'border-radius' : '5px', 'border' : 'none', 'font-size' : '16px'}">
-                        <input ng-style="{'padding' : '7px', 'width' : '85%', 'margin-left' : '5%', 'height' : '15%', 'margin-top' : '10px', 'background-color' : 'rgb(215, 213, 213)', 'border-radius' : '5px', 'border' : 'none', 'font-size' : '16px'}">
-                        <input ng-style="{'padding' : '7px', 'width' : '85%', 'margin-left' : '5%', 'height' : '15%', 'margin-top' : '10px', 'background-color' : 'rgb(215, 213, 213)', 'border-radius' : '5px', 'border' : 'none', 'font-size' : '16px'}">
-                        <textarea ng-style="{'padding' : '7px', 'width' : '85%', 'margin-left' : '5%', 'height' : '30%', 'margin-top' : '10px', 'background-color' : 'rgb(215, 213, 213)', 'border-radius' : '5px', 'border' : 'none', 'font-size' : '16px'}"></textarea>
+                      <div ng-style="{'height' : '{{accountContentHeight()+270}}px'}" class="account-card">
+                        <div ng-style="{'position' : 'relative', 'height' : '80px', 'margin-top' : '40px'}" class="avatar-container">
+                          <div ng-style="{'position' : 'absolute', 'left' : '5%', 'height' : '80px', 'width' : '80px', 'background' : 'url({{avatar}})', 'background-size' : 'contain', 'background-repeat' : 'no-repeat', 'background-position' : 'center', 'background-size' : 'contain', 'border' : '1px solid rgba(0, 0, 0, 0.2)'}" class="avatar-choice">
+                            <div ng-style="{'height' : '20px', 'width': '20px', 'background-color' : 'rgba(0, 0, 0, 0.5)', 'color' : 'white', 'font-size' : '20px', 'font-family' : 'Helvetica', 'float' : 'right', 'text-align' : 'center', 'line-height' : '22px'}" class="delete-image">X</div>
+                          </div>
+                        </div>
+                        <div ng-style="{'position' : 'relative', 'height' : '{{accountContentHeight()}}px'}" class="account-inputs">
+                          <input class="account-card-input">
+                          <input class="account-card-input">
+                          <input class="account-card-input">
+                          <textarea class="account-card-textarea"></textarea>
+                        </div>
+                        <div ng-click="closeUserAccount()" class="account-go-back-button">Back</div>
+                        <div class="account-save-button">Save</div>
                       </div>
                     </fa-surface>
-                    <fa-image-surface fa-size="[50, 50]" fa-image-url="img/delete_icon.png" class="account-delete-photo"></fa-image-surface>
                     <fa-image-surface fa-size="[50, 50]" fa-image-url="img/camera_icon.png" class="account-change-photo-camera"></fa-image-surface>
                     <fa-image-surface fa-size="[50, 50]" fa-image-url="img/albums_icon.png" class="account-change-photo-albums"></fa-image-surface>
-                    <fa-image-surface fa-size="[90, 54]" fa-image-url="img/back_button.png" ng-click="closeUserAccountPage()" class="account-go-back"></fa-image-surface>
-                    <fa-image-surface fa-size="[90, 54]" fa-image-url="img/save_button.png" class="account-save"></fa-image-surface>
+                    
+                    
                   </fa-modifier>
                 </fa-app>
               </fa-surface>
@@ -233,7 +239,13 @@
           <fa-header-footer-layout fa-options="{headerSize: 60, footerSize: 50}">
             <!-- header-->
             <fa-modifier fa-translate="boxTransitionableHeader2.get()">
-              <fa-surface fa-background-color="'black'" class="absolute"></fa-surface>
+              <fa-surface fa-background-color="'black'" class="absolute">
+                <fa-app>
+                  <fa-image-surface fa-size="[45,45]" fa-image-url="img/spotlight-icon-small-yellow.png" class="spotlight-avatar"></fa-image-surface>
+                  <fa-surface class="spotlight-name">Spotlight Archive</fa-surface>
+                  <fa-image-surface fa-size="[45,45]" fa-image-url="img/spotlight-icon-small-yellow.png" ng-click="showWinnerInfo()" class="account-icon"></fa-image-surface>
+                </fa-app>
+              </fa-surface>
             </fa-modifier>
             <!-- content-->
             <fa-surface fa-pipe-to="eventHandler">
@@ -252,7 +264,7 @@
             </fa-surface>
             <!-- footer-->
             <fa-modifier fa-translate="boxTransitionableFooter2.get()" fa-opacity="opacityTrans2" fa-size="[50,50]">
-              <fa-image-surface fa-image-url="img/spotlight-icon-small.png" ng-click="switchPage(0)" class="spotlight-icon">                </fa-image-surface>
+              <fa-image-surface fa-image-url="img/left_arrow_yellow.png" ng-click="switchPage(0)" class="spotlight-icon">                </fa-image-surface>
             </fa-modifier>
           </fa-header-footer-layout>
         </fa-modifier>
@@ -264,7 +276,7 @@
             <fa-modifier fa-translate="boxTransitionableHeader3.get()">
               <fa-surface fa-background-color="'black'" class="absolute">
                 <fa-app>
-                  <fa-image-surface fa-size="[45,45]" fa-image-url="img/spotlight-icon-small.png" ng-click="showWinnerInfo()" class="spotlight-avatar"></fa-image-surface>
+                  <fa-image-surface fa-size="[45,45]" fa-image-url="img/spotlight-icon-small-yellow.png" ng-click="showWinnerInfo()" class="spotlight-avatar"></fa-image-surface>
                   <fa-surface ng-click="showWinnerInfo()" class="spotlight-name">Lilly Bloomings </fa-surface>
                   <fa-surface ng-click="showWinnerTwitter()" class="twitter">t</fa-surface>
                   <fa-surface ng-click="showWinnerFacebook()" class="facebook">f</fa-surface>
@@ -276,9 +288,9 @@
                 <fa-scroll-view id="day-scrollview" fa-pipe-from="dayScrollEventHandler" fa-options="options.container">
                   <fa-view fa-size="[getPageWidth(), dayScrollHeight]">
                     <fa-modifier ng-repeat="post in archivedDayPosts track by $index" class="top-border">
-                      <fa-surface ng-if="post.image_url" fa-size="[(getPageWidth() -20), 300]" class="relative-image">
+                      <fa-surface ng-if="post.image_url" fa-size="[(getPageWidth() -20), 300]" ng-class="{connect : post.text}" class="relative-image">
                         <div ng-click="showComments(post.id)" ng-style="{'background-image':'url({{post.image_url}})', 'height': '285px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to="dayScrollEventHandler" class="image">
-                          <fa-app>
+                          <fa-app ng-if="!post.text">
                             <fa-surface class="content-date">{{moment(post.created_at).format('LT')}}</fa-surface>
                             <fa-surface fa-size="[100,30]" ng-click="commentsModal()" class="comments-icon">Comments {{post.comments}}</fa-surface>
                             <fa-image-surface fa-image-url="img/heart.png" fa-size="[20,20]" ng-click="like(post)" class="heart"></fa-image-surface>
@@ -286,7 +298,7 @@
                           </fa-app>
                         </div>
                       </fa-surface>
-                      <fa-surface ng-if="post.text" fa-background-color="white" fa-size="[(getPageWidth() -20), 200]" class="relative-text">
+                      <fa-surface ng-if="post.text" fa-background-color="white" fa-size="[(getPageWidth() -20), 200]" ng-class="{connectTop : post.image_url}" class="relative-text">
                         <div fa-pipe-to="dayScrollEventHandler" class="content">
                           <fa-app>
                             <fa-surface ng-click="commentsModal()" class="content-text"> {{post.text}}</fa-surface>
@@ -306,7 +318,7 @@
             <fa-modifier fa-translate="boxTransitionableFooter3.get()" fa-opacity="opacityTrans3">
               <fa-surface class="center-content">
                 <fa-app class="highest-z-index">
-                  <fa-image-surface fa-size="[50,50]" fa-image-url="img/menu-ellipses-icon.png" ng-click="switchPage(1)" class="spotlight-icon"></fa-image-surface>
+                  <fa-image-surface fa-size="[50,50]" fa-image-url="img/left_arrow_yellow.png" ng-click="switchPage(1)" class="spotlight-icon"></fa-image-surface>
                 </fa-app>
               </fa-surface>
             </fa-modifier>
