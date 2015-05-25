@@ -24,7 +24,7 @@
                       <fa-scroll-view id="main-scrollview" fa-pipe-from="myEventHandler" fa-options="options.container">
                         <fa-view fa-size="[getPageWidth(), mainScrollHeight]">
                           <fa-modifier ng-repeat="post in posts track by $index">
-                            <fa-surface ng-if="post.image_url" fa-size="[(getPageWidth() - 20), 300]" ng-class="{connect : post.text}" class="relative-image">
+                            <fa-surface ng-if="post.image_url" fa-size="[(getPageWidth() - 19), 300]" ng-class="{connect : post.text, commentShadow : !post.text}" class="relative-image">
                               <div ng-click="showComments(post.id)" ng-style="{'background-image':'url({{post.image_url}})', 'height': '285px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to="myEventHandler" class="image">
                                 <fa-app ng-if="!post.text">
                                   <fa-surface class="content-date">{{moment(post.created_at).format('LT')}}</fa-surface>
@@ -34,7 +34,7 @@
                                 </fa-app>
                               </div>
                             </fa-surface>
-                            <fa-surface ng-if="post.text" fa-background-color="white" fa-size="[(getPageWidth() - 20), 200]" ng-class="{connectTop : post.image_url}" class="relative-text">
+                            <fa-surface ng-if="post.text" fa-background-color="white" fa-size="[(getPageWidth() - 19), 200]" ng-class="{connectTop : post.image_url}" class="relative-text commentShadow">
                               <div fa-pipe-to="myEventHandler" class="content">
                                 <fa-app>
                                   <fa-surface ng-click="commentsModal()" class="content-text"> {{post.text}}</fa-surface>
@@ -263,7 +263,7 @@
                 <fa-scroll-view id="day-scrollview" fa-pipe-from="dayScrollEventHandler" fa-options="options.container">
                   <fa-view fa-size="[getPageWidth(), dayScrollHeight]">
                     <fa-modifier ng-repeat="post in archivedDayPosts track by $index" class="top-border">
-                      <fa-surface ng-if="post.image_url" fa-size="[(getPageWidth() -20), 300]" ng-class="{connect : post.text}" class="relative-image">
+                      <fa-surface ng-if="post.image_url" fa-size="[(getPageWidth() -20), 300]" ng-class="{connect : post.text, commentShadow : !post.text}" class="relative-image">
                         <div ng-click="showComments(post.id)" ng-style="{'background-image':'url({{post.image_url}})', 'height': '285px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to="dayScrollEventHandler" class="image">
                           <fa-app ng-if="!post.text">
                             <fa-surface class="content-date">{{moment(post.created_at).format('LT')}}</fa-surface>
@@ -273,7 +273,7 @@
                           </fa-app>
                         </div>
                       </fa-surface>
-                      <fa-surface ng-if="post.text" fa-background-color="white" fa-size="[(getPageWidth() -20), 200]" ng-class="{connectTop : post.image_url}" class="relative-text">
+                      <fa-surface ng-if="post.text" fa-background-color="white" fa-size="[(getPageWidth() -20), 200]" ng-class="{connectTop : post.image_url}" class="relative-text commentShadow">
                         <div fa-pipe-to="dayScrollEventHandler" class="content">
                           <fa-app>
                             <fa-surface ng-click="commentsModal()" class="content-text"> {{post.text}}</fa-surface>

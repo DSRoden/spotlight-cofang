@@ -242,7 +242,7 @@ fa-app {
   background: white;
   width: 99.5% ! important;
   height: 20px ! important;
-  bottom: 30px;
+  bottom: 29px;
 }
 .content-social {
   position: absolute;
@@ -292,7 +292,7 @@ fa-app {
   right: 80px;
 }
 .comments-icon {
-  width: 99.5% ! important;
+  width: 99% ! important;
   height: 30px ! important;
   line-height: 30px;
   bottom: 0px;
@@ -300,7 +300,9 @@ fa-app {
   color: #2886d4;
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
   padding-left: 20px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+.commentShadow {
+  box-shadow: 0px 2px 0px rgba(103, 98, 98, 0.2) ! important;
 }
 .spotlight-name {
   margin-top: 7px;
