@@ -6,6 +6,35 @@
 
   angular.module('spotlight-famous')
   .controller('HomeCtrl', ['$scope', '$timeout', '$location', '$famous', '$timeline', '$state', 'ngDialog', '$controller', function($scope, $timeout, $location, $famous, $timeline, $state, ngDialog, $controller){
+    //initiating size depenedents
+    $scope.spotlightWinnerMarginTop = 0;
+    $scope.spotlightWinnerCardHeight = 0;
+    $scope.spotlightWinnerBackArrow = 0;
+    function sizeDependencies(){
+     var  height = window.innerHeight;
+        if(height === 480){
+           $scope.spotlightWinnerCardHeight = 385;
+          $scope.spotlightWinnerMarginTop = -5;
+          $scope.spotlightWinnerBackArrow = -15;
+        } else if(height === 568){
+           $scope.spotlightWinnerCardHeight = 460;
+          $scope.spotlightWinnerMarginTop = 25;
+          $scope.spotlightWinnerBackArrow = 30;
+        } else if(height === 667){
+           $scope.spotlightWinnerCardHeight = 560;
+          $scope.spotlightWinnerMarginTop = 45;
+          $scope.spotlightWinnerBackArrow = 120;
+        } else if(height === 736){
+          $scope.spotlightWinnerCardHeight = 640;
+          $scope.spotlightWinnerMarginTop = 65;
+          $scope.spotlightWinnerBackArrow = 200;
+        } else {
+          console.log('unrecognized size');
+        }
+      }
+
+    sizeDependencies();
+
     //animations and eventhandler inits
     var Transitionable = $famous['famous/transitions/Transitionable'],
         Easing = $famous['famous/transitions/Easing'],
@@ -181,7 +210,7 @@
     $scope.aboutOneBoxSize = new Transitionable([windowWidth, windowInnerHeight]);
     $scope.aboutOneBoxTransparency = new Transitionable(1);
        //user account
-    $scope.boxTransitionableUserAccount = new Transitionable([0, windowInnerHeight, 0]);
+    $scope.boxTransitionableUserAccount = new Transitionable([(window.innerWidth * 2), windowInnerHeight, 0]);
     $scope.userAccountBoxSize = new Transitionable([windowWidth, windowInnerHeight]);
     $scope.userAccountBoxTransparency = new Transitionable(1);
 
@@ -286,10 +315,14 @@
     $scope.makeIdsForPosts();
 
     //helper function to add a color property archiveViews
-    var _colors = ['#FE4365', '#83AF9B', '#FC9D9A', '#F9CDAD', '#C8C8A9'];
+    var _colors = ['#E1ECF2', '#ECFFFF'];
     function addColorProperty(){
       for(var i = 0; i < $scope.archivedDays.length; i++){
-        $scope.archivedDays[i].color = _.sample(_colors);
+        if(i % 2 === 0){
+          $scope.archivedDays[i].color = _colors[0];
+        } else {
+          $scope.archivedDays[i].color = _colors[1];
+        }
       }
     }
     addColorProperty();
@@ -609,13 +642,13 @@
     $scope.showUserAccount = function(){
       var pageWidth = $scope.getPageWidth(),
        pageHeight = $scope.getPageHeight();
-      $scope.boxTransitionableUserAccount.set([0, 0, 0], {duration: 300, curve: Easing.easeIn});
+      $scope.boxTransitionableUserAccount.set([window.innerWidth, 0, 0], {duration: 300, curve: Easing.easeIn});
       $scope.userAccountBoxSize.set([pageWidth, pageHeight], {duration: 300, curve: Easing.easeIn});
       $scope.userAccountBoxTransparency.set([1], {duration: 300});
     };
 
     $scope.closeUserAccount = function(){
-      $scope.boxTransitionableUserAccount.set([0, windowInnerHeight, 0], {duration: 300, curve: Easing.easeIn});
+      $scope.boxTransitionableUserAccount.set([window.innerWidth, windowInnerHeight, 0], {duration: 300, curve: Easing.easeIn});
       $scope.userAccountBoxSize.set([windowWidth, windowInnerHeight], {duration: 300, curve: Easing.easeIn});
     };
 
@@ -639,6 +672,15 @@
           controller: 'CommentsCtrl'
       });
       console.log('modal');
+    };
+
+    // account modal
+    $scope.accountModal = function(){
+      ngDialog.open({
+          template: 'templates/account-modal.html',
+          controller: 'AccountCtrl'
+      });
+      console.log('account-modal');
     };
 
     $scope.closeDialog = function(){

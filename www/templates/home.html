@@ -77,7 +77,7 @@
                       </div>
                     </fa-surface>
                   </fa-modifier>
-                  <fa-image-surface ng-if="userIsInTheSpotlight" fa-size="[70,70]" fa-image-url="img/postit_icon.png" class="make-post"></fa-image-surface>
+                  <fa-image-surface ng-if="userIsInTheSpotlight" fa-size="[70,70]" fa-image-url="img/airplane-icon-yellow.png" class="make-post"></fa-image-surface>
                   <fa-image-surface ng-if="userIsInTheSpotlight" fa-size="[50, 50]" fa-image-url="img/camera_icon.png" class="open-camera"></fa-image-surface>
                   <fa-image-surface ng-if="userIsInTheSpotlight" fa-size="[45,45]" fa-image-url="img/albums_icon.png" class="open-albums"></fa-image-surface>
                   <fa-image-surface ng-if="userIsInTheSpotlight" fa-size="[50,50]" fa-image-url="img/account_icon.png" ng-click="showAccount()" class="spotlight-help"></fa-image-surface>
@@ -119,11 +119,15 @@
           <fa-app class="top-slide-in-view">
             <fa-modifier fa-translate="boxTransitionableWinnerInfo.get()" fa-opacity="winnerInfoBoxTransparency" fa-size="winnerInfoBoxSize.get()">
               <fa-surface class="winner-info-background">
-                <div ng-style="{'position' : 'relative', 'margin-top' : '20px'}" class="winner-image">
-                  <div ng-style="{'background-image':'url({{winner.avatar_url}})', 'height': '200px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to="dayScrollEventHandler" class="image"></div>
+                <div ng-style="{'margin' : '5px', 'background' : 'white', 'padding' : '10px', 'border': '1px solid rgba(103, 98, 98, .2)', 'border-bottom' : '2px solid rgba(103, 98, 98, .6)', 'height' : '{{spotlightWinnerCardHeight}}px'}" class="winner-info-card">
+                  <div ng-style="{'position' : 'relative', 'margin-top' : '{{spotlightWinnerMarginTop}}px'}" class="winner-image">
+                    <div ng-style="{'background-image':'url({{winner.avatar_url}})', 'height': '200px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to="dayScrollEventHandler" class="image"></div>
+                  </div>
+                  <div ng-style="{'position' : 'relative', 'margin-top' : '20px', 'padding' : '15px', 'margin' : '10px', 'font-size' : '16px', 'font-family' : 'Helvetica Neue'}" class="winner-bio">{{winner.bio}}</div>
+                  <div ng-style="{'text-align' : 'center', 'margin-top' : '{{spotlightWinnerBackArrow}}px'}" class="arrow-container">
+                    <div ng-click="closeWinnerInfo()" class="go-back-to-main back-arrow"></div>
+                  </div>
                 </div>
-                <div ng-style="{'position' : 'absolute', 'top' : '220px', 'padding' : '15px', 'margin' : '20px', 'background' : 'rgb(215, 213, 213)',  'border-radius' : '10px', 'font-size' : '16px', 'font-family' : 'Helvetica Neue'}" class="winner-bio">{{winner.bio}}</div>
-                <div ng-style="{'position' : 'absolute', 'top' : '80%', 'width' : '20%', 'height' : '30px', 'text-align' : 'center', 'line-height' : '30px', 'border' : '2px solid black', 'border-radius' : '10px', 'left' : '40%', 'font-family' : 'Helvetica'}" ng-click="closeWinnerInfo()" class="go-back-to-main">Back</div>
               </fa-surface>
             </fa-modifier>
           </fa-app>
@@ -200,37 +204,8 @@
               </fa-surface>
             </fa-modifier>
           </fa-app>
-          <fa-app class="top-slide-in-view">
-            <fa-modifier fa-translate="boxTransitionableUserAccount.get()" fa-opacity="userAccountBoxTransparency" fa-size="userAccountBoxSize.get()">
-              <fa-surface class="registration-view-background registration-z-index">
-                <fa-app class="registration-view-background">
-                  <fa-modifier fa-size="[getPageWidth(),getPageHeight()]">
-                    <fa-surface>
-                      <div ng-style="{'height' : '{{accountContentHeight()+270}}px'}" class="account-card">
-                        <div ng-style="{'position' : 'relative', 'height' : '80px', 'margin-top' : '40px'}" class="avatar-container">
-                          <div ng-style="{'position' : 'absolute', 'left' : '5%', 'height' : '80px', 'width' : '80px', 'background' : 'url({{avatar}})', 'background-size' : 'contain', 'background-repeat' : 'no-repeat', 'background-position' : 'center', 'background-size' : 'contain', 'border' : '1px solid rgba(0, 0, 0, 0.2)'}" class="avatar-choice">
-                            <div ng-style="{'height' : '20px', 'width': '20px', 'background-color' : 'rgba(0, 0, 0, 0.5)', 'color' : 'white', 'font-size' : '20px', 'font-family' : 'Helvetica', 'float' : 'right', 'text-align' : 'center', 'line-height' : '22px'}" class="delete-image">X</div>
-                          </div>
-                        </div>
-                        <div ng-style="{'position' : 'relative', 'height' : '{{accountContentHeight()}}px'}" class="account-inputs">
-                          <input class="account-card-input">
-                          <input class="account-card-input">
-                          <input class="account-card-input">
-                          <textarea class="account-card-textarea"></textarea>
-                        </div>
-                        <div ng-click="closeUserAccount()" class="account-go-back-button">Back</div>
-                        <div class="account-save-button">Save</div>
-                      </div>
-                    </fa-surface>
-                    <fa-image-surface fa-size="[50, 50]" fa-image-url="img/camera_icon.png" class="account-change-photo-camera"></fa-image-surface>
-                    <fa-image-surface fa-size="[50, 50]" fa-image-url="img/albums_icon.png" class="account-change-photo-albums"></fa-image-surface>
-                    
-                    
-                  </fa-modifier>
-                </fa-app>
-              </fa-surface>
-            </fa-modifier>
-          </fa-app>
+          
+          
         </fa-surface>
       </fa-view>
       <fa-view fa-index="1">
@@ -243,7 +218,7 @@
                 <fa-app>
                   <fa-image-surface fa-size="[45,45]" fa-image-url="img/spotlight-icon-small-yellow.png" class="spotlight-avatar"></fa-image-surface>
                   <fa-surface class="spotlight-name">Spotlight Archive</fa-surface>
-                  <fa-image-surface fa-size="[45,45]" fa-image-url="img/spotlight-icon-small-yellow.png" ng-click="showWinnerInfo()" class="account-icon"></fa-image-surface>
+                  <fa-image-surface fa-size="[45,45]" fa-image-url="img/account-icon-yellow.png" ng-click="accountModal()" class="account-icon"></fa-image-surface>
                 </fa-app>
               </fa-surface>
             </fa-modifier>

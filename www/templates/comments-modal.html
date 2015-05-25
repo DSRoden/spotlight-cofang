@@ -104,12 +104,26 @@
                       <div class="register-explanation">* Adding your phone number enters you into the Spotlight Lottery, we will never use it for any other purpose.</div>
                       <div class="register-surface-buttons">
                         <div ng-click="showLogin()" class="account-login"> Login</div>
-                        <div ng-click="showRegister()" class="account-register"> Register</div>
+                        <div ng-click="showRegister()" class="account-register"> Register
+                        </div>
                       </div>
                     </div>
                   </fa-surface>
                 </fa-modifier>
               </fa-app>
+            </fa-surface>
+          </fa-modifier>
+          <fa-modifier fa-translate="boxTransitionableWinnerInfo.get()" fa-opacity="winnerInfoBoxTransparency" fa-size="winnerInfoBoxSize.get()">
+            <fa-surface class="winner-info-background">
+              <div ng-style="{'margin' : '5px', 'background' : 'white', 'padding' : '10px', 'border': '1px solid rgba(103, 98, 98, .2)', 'border-bottom' : '2px solid rgba(103, 98, 98, .6)', 'height' : '{{spotlightWinnerCardHeight}}px'}" class="winner-info-card">
+                <div ng-style="{'position' : 'relative', 'margin-top' : '{{spotlightWinnerMarginTop}}px'}" class="winner-image">
+                  <div ng-style="{'background-image':'url({{winner.avatar_url}})', 'height': '200px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to="dayScrollEventHandler" class="image"></div>
+                </div>
+                <div ng-style="{'position' : 'relative', 'margin-top' : '20px', 'padding' : '15px', 'margin' : '10px', 'font-size' : '16px', 'font-family' : 'Helvetica Neue'}" class="winner-bio">{{winner.bio}}</div>
+                <div ng-style="{'text-align' : 'center', 'margin-top' : '{{spotlightWinnerBackArrow}}px'}" class="arrow-container">
+                  <div ng-click="closeWinnerInfo()" class="go-back-to-main back-arrow"></div>
+                </div>
+              </div>
             </fa-surface>
           </fa-modifier>
         </fa-app>

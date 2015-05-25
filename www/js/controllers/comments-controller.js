@@ -6,6 +6,35 @@
 
   angular.module('spotlight-famous')
   .controller('CommentsCtrl', ['$scope', '$timeout', '$location', '$famous', '$timeline', '$state', 'ngDialog', function($scope , $timeout, $location, $famous, $timeline, $state, ngDialog){
+    $scope.spotlightWinnerMarginTop = 0;
+    $scope.spotlightWinnerCardHeight = 0;
+    $scope.spotlightWinnerBackArrow = 0;
+    function sizeDependencies(){
+     var  height = window.innerHeight;
+        if(height === 480){
+           $scope.spotlightWinnerCardHeight = 405;
+          $scope.spotlightWinnerMarginTop = -5;
+          $scope.spotlightWinnerBackArrow = -15;
+        } else if(height === 568){
+           $scope.spotlightWinnerCardHeight = 490;
+          $scope.spotlightWinnerMarginTop = 25;
+          $scope.spotlightWinnerBackArrow = 30;
+        } else if(height === 667){
+           $scope.spotlightWinnerCardHeight = 590;
+          $scope.spotlightWinnerMarginTop = 45;
+          $scope.spotlightWinnerBackArrow = 120;
+        } else if(height === 736){
+          $scope.spotlightWinnerCardHeight = 660;
+          $scope.spotlightWinnerMarginTop = 65;
+          $scope.spotlightWinnerBackArrow = 200;
+        } else {
+          console.log('unrecognized size');
+        }
+      }
+
+    sizeDependencies();
+
+
     //go to archive
     $scope.goToArchive = function(){
       console.log('switching states to archive');
@@ -260,10 +289,14 @@
     $scope.makeIdsForPosts();
 
     //helper function to add a color property archiveViews
-    var _colors = ['#FE4365', '#83AF9B', '#FC9D9A', '#F9CDAD', '#C8C8A9'];
+    var _colors = ['#E1ECF2', '#ECFFFF'];
     function addColorProperty(){
       for(var i = 0; i < $scope.archivedDays.length; i++){
-        $scope.archivedDays[i].color = _.sample(_colors);
+        if(i % 2 === 0){
+          $scope.archivedDays[i].color = _colors[0];
+        } else {
+          $scope.archivedDays[i].color = _colors[1];
+        }
       }
     }
     addColorProperty();
@@ -557,7 +590,7 @@
     $scope.showWinnerInfo = function(){
        var pageWidth = $scope.getPageWidth(),
        pageHeight = $scope.getPageHeight();
-      $scope.boxTransitionableWinnerInfo.set([0, 50, 0], {duration: 300, curve: Easing.easeIn});
+      $scope.boxTransitionableWinnerInfo.set([0, 60, 0], {duration: 300, curve: Easing.easeIn});
       $scope.winnerInfoBoxSize.set([pageWidth, pageHeight], {duration: 300, curve: Easing.easeIn});
       $scope.winnerInfoBoxTransparency.set([1], {duration: 300});
     };
@@ -622,6 +655,7 @@
       });
       console.log('modal');
     };
+
 
     $scope.closeDialog = function(){
       ngDialog.close('', '');

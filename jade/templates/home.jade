@@ -65,7 +65,7 @@ fa-view
                         textarea.card-format(ng-model="post.message"  placeholder="  Share something with the world." ng-style="{'width' : '94%', 'height': '{{textareaHeight()}}', 'background': 'white', 'font-size' : '16px', 'padding' : '10px'}")
                         .new-image-area.card-format(ng-style="{'background-image':'url({{addImageUrl}})', 'height': '{{addImageHeight()}}',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center', 'margin-top' : '10px'}")
                           .delete-image(ng-style="{'height' : '30px', 'width': '30px', 'background-color' : 'rgba(0, 0, 0, 0.5)', 'color' : 'white', 'font-size' : '20px', 'font-family' : 'Helvetica', 'float' : 'right', 'text-align' : 'center', 'line-height' : '32px'}") X
-                    fa-image-surface.make-post(ng-if="userIsInTheSpotlight" fa-size='[70,70]' fa-image-url="img/postit_icon.png")
+                    fa-image-surface.make-post(ng-if="userIsInTheSpotlight" fa-size='[70,70]' fa-image-url="img/airplane-icon-yellow.png")
                     fa-image-surface.open-camera(ng-if="userIsInTheSpotlight" fa-size='[50, 50]' fa-image-url="img/camera_icon.png")
                     fa-image-surface.open-albums(ng-if="userIsInTheSpotlight" fa-size='[45,45]' fa-image-url="img/albums_icon.png")
                     fa-image-surface.spotlight-help(ng-if="userIsInTheSpotlight" fa-size='[50,50]' fa-image-url="img/account_icon.png" ng-click="showAccount()")
@@ -109,10 +109,12 @@ fa-view
             fa-app.top-slide-in-view
               fa-modifier(fa-translate="boxTransitionableWinnerInfo.get()" fa-opacity="winnerInfoBoxTransparency" fa-size="winnerInfoBoxSize.get()")
                 fa-surface.winner-info-background
-                  .winner-image(ng-style="{'position' : 'relative', 'margin-top' : '20px'}")
-                    .image(ng-style="{'background-image':'url({{winner.avatar_url}})', 'height': '200px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to='dayScrollEventHandler')
-                  .winner-bio(ng-style="{'position' : 'absolute', 'top' : '220px', 'padding' : '15px', 'margin' : '20px', 'background' : 'rgb(215, 213, 213)',  'border-radius' : '10px', 'font-size' : '16px', 'font-family' : 'Helvetica Neue'}") {{winner.bio}}
-                  .go-back-to-main(ng-style="{'position' : 'absolute', 'top' : '80%', 'width' : '20%', 'height' : '30px', 'text-align' : 'center', 'line-height' : '30px', 'border' : '2px solid black', 'border-radius' : '10px', 'left' : '40%', 'font-family' : 'Helvetica'}" ng-click="closeWinnerInfo()") Back
+                  .winner-info-card(ng-style="{'margin' : '5px', 'background' : 'white', 'padding' : '10px', 'border': '1px solid rgba(103, 98, 98, .2)', 'border-bottom' : '2px solid rgba(103, 98, 98, .6)', 'height' : '{{spotlightWinnerCardHeight}}px'}")
+                    .winner-image(ng-style="{'position' : 'relative', 'margin-top' : '{{spotlightWinnerMarginTop}}px'}")
+                      .image(ng-style="{'background-image':'url({{winner.avatar_url}})', 'height': '200px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to='dayScrollEventHandler')
+                    .winner-bio(ng-style="{'position' : 'relative', 'margin-top' : '20px', 'padding' : '15px', 'margin' : '10px', 'font-size' : '16px', 'font-family' : 'Helvetica Neue'}") {{winner.bio}}
+                    .arrow-container(ng-style="{'text-align' : 'center', 'margin-top' : '{{spotlightWinnerBackArrow}}px'}")
+                      .go-back-to-main.back-arrow(ng-click="closeWinnerInfo()")
 
             //- confirmation box
             fa-app.top-slide-in-view
@@ -172,33 +174,33 @@ fa-view
                             .account-register(ng-click="showRegister()")  Register
             
             //- user account
-            fa-app.top-slide-in-view
-              fa-modifier(fa-translate="boxTransitionableUserAccount.get()" fa-opacity="userAccountBoxTransparency" fa-size="userAccountBoxSize.get()")
-                fa-surface.registration-view-background.registration-z-index
-                  fa-app.registration-view-background
-                    fa-modifier(fa-size="[getPageWidth(),getPageHeight()]")
-                      fa-surface
-                        .account-card(ng-style="{'height' : '{{accountContentHeight()+270}}px'}")
-                          //- bio, avatar, links to facebook and twitter log out
-                          .avatar-container(ng-style="{'position' : 'relative', 'height' : '80px', 'margin-top' : '40px'}")
-                            .avatar-choice(ng-style="{'position' : 'absolute', 'left' : '5%', 'height' : '80px', 'width' : '80px', 'background' : 'url({{avatar}})', 'background-size' : 'contain', 'background-repeat' : 'no-repeat', 'background-position' : 'center', 'background-size' : 'contain', 'border' : '1px solid rgba(0, 0, 0, 0.2)'}")
-                              //-   .change-avatar(ng-style="{'position' : 'absolute', 'top' : '20px', 'left' : '50%',  'height' : '30px', 'width' : '100px', 'border' : '2px solid black', 'text-align' : 'center', 'line-height' : '30px', 'border-radius' : '10px'}")  Replace
-                              .delete-image(ng-style="{'height' : '20px', 'width': '20px', 'background-color' : 'rgba(0, 0, 0, 0.5)', 'color' : 'white', 'font-size' : '20px', 'font-family' : 'Helvetica', 'float' : 'right', 'text-align' : 'center', 'line-height' : '22px'}") X
+            //- fa-app.top-slide-in-view
+            //-   fa-modifier(fa-translate="boxTransitionableUserAccount.get()" fa-opacity="userAccountBoxTransparency" fa-size="userAccountBoxSize.get()")
+            //-     fa-surface.registration-view-background.registration-z-index
+            //-       fa-app.registration-view-background
+            //-         fa-modifier(fa-size="[getPageWidth(),getPageHeight()]")
+            //-           fa-surface
+            //-             .account-card(ng-style="{'height' : '{{accountContentHeight()+270}}px'}")
+            //-               //- bio, avatar, links to facebook and twitter log out
+            //-               .avatar-container(ng-style="{'position' : 'relative', 'height' : '80px', 'margin-top' : '40px'}")
+            //-                 .avatar-choice(ng-style="{'position' : 'absolute', 'left' : '5%', 'height' : '80px', 'width' : '80px', 'background' : 'url({{avatar}})', 'background-size' : 'contain', 'background-repeat' : 'no-repeat', 'background-position' : 'center', 'background-size' : 'contain', 'border' : '1px solid rgba(0, 0, 0, 0.2)'}")
+            //-                   //-   .change-avatar(ng-style="{'position' : 'absolute', 'top' : '20px', 'left' : '50%',  'height' : '30px', 'width' : '100px', 'border' : '2px solid black', 'text-align' : 'center', 'line-height' : '30px', 'border-radius' : '10px'}")  Replace
+            //-                   .delete-image(ng-style="{'height' : '20px', 'width': '20px', 'background-color' : 'rgba(0, 0, 0, 0.5)', 'color' : 'white', 'font-size' : '20px', 'font-family' : 'Helvetica', 'float' : 'right', 'text-align' : 'center', 'line-height' : '22px'}") X
 
-                          .account-inputs(ng-style="{'position' : 'relative', 'height' : '{{accountContentHeight()}}px'}")
-                            input.account-card-input
-                            input.account-card-input
-                            input.account-card-input
-                            textarea.account-card-textarea
+            //-               .account-inputs(ng-style="{'position' : 'relative', 'height' : '{{accountContentHeight()}}px'}")
+            //-                 input.account-card-input
+            //-                 input.account-card-input
+            //-                 input.account-card-input
+            //-                 textarea.account-card-textarea
 
-                          .account-go-back-button(ng-click="closeUserAccount()") Back
-                          .account-save-button Save
+            //-               .account-go-back-button(ng-click="closeUserAccount()") Back
+            //-               .account-save-button Save
                             
-                      fa-image-surface.account-change-photo-camera(fa-size='[50, 50]' fa-image-url="img/camera_icon.png")
-                      fa-image-surface.account-change-photo-albums(fa-size='[50, 50]' fa-image-url="img/albums_icon.png")
+            //-           fa-image-surface.account-change-photo-camera(fa-size='[50, 50]' fa-image-url="img/camera_icon.png")
+            //-           fa-image-surface.account-change-photo-albums(fa-size='[50, 50]' fa-image-url="img/albums_icon.png")
                           
-                      //- fa-image-surface.account-go-back(fa-size='[90, 54]' fa-image-url="img/back_button.png" ng-click="closeUserAccountPage()")
-                      //- fa-image-surface.account-save(fa-size='[90, 54]' fa-image-url="img/save_button.png")
+            //-           //- fa-image-surface.account-go-back(fa-size='[90, 54]' fa-image-url="img/back_button.png" ng-click="closeUserAccountPage()")
+            //-           //- fa-image-surface.account-save(fa-size='[90, 54]' fa-image-url="img/save_button.png")
                     
 
 
@@ -213,7 +215,7 @@ fa-view
                     fa-app
                      fa-image-surface.spotlight-avatar(fa-size='[45,45]' fa-image-url="img/spotlight-icon-small-yellow.png")
                      fa-surface.spotlight-name Spotlight Archive
-                     fa-image-surface.account-icon(fa-size='[45,45]' fa-image-url="img/spotlight-icon-small-yellow.png" ng-click="showWinnerInfo()")
+                     fa-image-surface.account-icon(fa-size='[45,45]' fa-image-url="img/account-icon-yellow.png" ng-click="accountModal()")
 
 
                 // content
@@ -229,7 +231,7 @@ fa-view
                 // footer
                 fa-modifier(fa-translate="boxTransitionableFooter2.get()" fa-opacity="opacityTrans2" fa-size='[50,50]')
                   fa-image-surface.spotlight-icon(fa-image-url="img/left_arrow_yellow.png" ng-click="switchPage(0)")                 
-        
+
         fa-view(fa-index='2')
           fa-modifier(fa-size='[getPageWidth(), getPageHeight()]')
             fa-surface(fa-size='[getPageWidth(), 15]').phone-top-bar

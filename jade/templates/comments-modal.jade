@@ -96,4 +96,16 @@ fa-app
                           .account-login(ng-click="showLogin()")  Login
                           .account-register(ng-click="showRegister()")  Register
 
+                             //- if clicking on spotlight winner
+            
+               //- if clicking on spotlight winner
+            fa-modifier(fa-translate="boxTransitionableWinnerInfo.get()" fa-opacity="winnerInfoBoxTransparency" fa-size="winnerInfoBoxSize.get()")
+              fa-surface.winner-info-background
+                .winner-info-card(ng-style="{'margin' : '5px', 'background' : 'white', 'padding' : '10px', 'border': '1px solid rgba(103, 98, 98, .2)', 'border-bottom' : '2px solid rgba(103, 98, 98, .6)', 'height' : '{{spotlightWinnerCardHeight}}px'}")
+                  .winner-image(ng-style="{'position' : 'relative', 'margin-top' : '{{spotlightWinnerMarginTop}}px'}")
+                    .image(ng-style="{'background-image':'url({{winner.avatar_url}})', 'height': '200px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to='dayScrollEventHandler')
+                  .winner-bio(ng-style="{'position' : 'relative', 'margin-top' : '20px', 'padding' : '15px', 'margin' : '10px', 'font-size' : '16px', 'font-family' : 'Helvetica Neue'}") {{winner.bio}}
+                  .arrow-container(ng-style="{'text-align' : 'center', 'margin-top' : '{{spotlightWinnerBackArrow}}px'}")
+                    .go-back-to-main.back-arrow(ng-click="closeWinnerInfo()")
+
 

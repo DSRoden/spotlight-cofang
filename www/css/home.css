@@ -12,9 +12,19 @@ fa-app {
   bottom: 0;
   left: 0;
 }
+.back-arrow {
+  margin-left: 42%;
+  height: 50px;
+  background-image: url('../img/down_arrow.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
 .button {
   box-shadow: 0px 2px 5px #888888;
   border-radius: 100%;
+}
+.blue-background {
+  background: #088dff ! important;
 }
 .phone-top-bar {
   position: absolute;
@@ -557,9 +567,9 @@ fa-app {
 }
 .account-card-input {
   padding: 7px;
-  width: 85%;
+  width: 90%;
   margin-left: 5%;
-  height: 15%;
+  height: 55px;
   margin-top: 10px;
   /* border-radius: 5px; */
   border: none;
@@ -675,12 +685,11 @@ fa-app {
 }
 .account-save-button {
   position: absolute;
-  bottom: 10% ! important;
-  bottom: -40%;
   right: 15% ! important;
   height: 50px;
-  background-color: #f0f0f0;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: #088dff;
+  border: 1px solid #ffdc00;
+  color: #ffdc00;
   width: 100px;
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
   text-align: center;
@@ -700,12 +709,11 @@ fa-app {
 }
 .account-go-back-button {
   position: absolute;
-  bottom: 10% ! important;
-  bottom: -40%;
   left: 15% ! important;
   height: 50px;
-  background-color: #f0f0f0;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: #088dff;
+  border: 1px solid #ffdc00;
+  color: #ffdc00;
   width: 100px;
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
   text-align: center;
@@ -714,4 +722,7 @@ fa-app {
 .spotlight-session {
   bottom: 10% ! important;
   right: 15% ! important;
+}
+.full-width {
+  width: 100% ! important;
 }

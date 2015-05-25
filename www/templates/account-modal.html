@@ -1,0 +1,21 @@
+
+<fa-app class="blue-background">
+  <fa-modifier fa-size="[getPageWidth(),getPageHeight()]">
+    <fa-surface class="full-width">
+      <div ng-style="{'position' : 'relative', 'height' : '20%', 'margin-top' : '{{margin}}%', 'text-align' : 'center', 'color' : '#ffdc00', 'font-family' : 'Helvetica Neue'}" class="instructions">
+        <h2>Edit your information.</h2>
+      </div>
+      <div ng-style="{'position' : 'relative', 'height' : '110px'}" class="account-inputs">
+        <input placeholder="Username" class="account-card-input">
+        <input placeholder="Phone number" class="account-card-input">
+      </div>
+      <div ng-style="{'position' : 'relative', 'height' : '20%', 'text-align' : 'center', 'color' : '#ffdc00', 'padding' : '20px', 'font-family' : 'Helvetica Neue'}" class="info">
+        <h4>Adding a number enters you into the Spotlight Lottery. We will never use it for any other purpose.</h4>
+      </div>
+      <div ng-style="{'position' : 'relative'}" class="account-buttons">
+        <div ng-click="closeUserAccount()" class="account-go-back-button">Back</div>
+        <div class="account-save-button">Save</div>
+      </div>
+    </fa-surface>
+  </fa-modifier>
+</fa-app>
