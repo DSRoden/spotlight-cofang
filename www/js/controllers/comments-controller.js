@@ -9,24 +9,40 @@
     $scope.spotlightWinnerMarginTop = 0;
     $scope.spotlightWinnerCardHeight = 0;
     $scope.spotlightWinnerBackArrow = 0;
+    $scope.accountButtonPosition = 0;
+    $scope.titlePosition = 0;
+    $scope.registerContainerMarginTop = 0;
+
     function sizeDependencies(){
      var  height = window.innerHeight;
         if(height === 480){
            $scope.spotlightWinnerCardHeight = 405;
           $scope.spotlightWinnerMarginTop = -5;
           $scope.spotlightWinnerBackArrow = -15;
+          $scope.accountButtonPosition = 22;
+          $scope.titlePosition = -15;
+          $scope.registerContainerMarginTop = 10;
         } else if(height === 568){
            $scope.spotlightWinnerCardHeight = 490;
           $scope.spotlightWinnerMarginTop = 25;
           $scope.spotlightWinnerBackArrow = 30;
+          $scope.accountButtonPosition = 24;
+          $scope.titlePosition = 20;
+          $scope.registerContainerMarginTop = 20;
         } else if(height === 667){
            $scope.spotlightWinnerCardHeight = 590;
           $scope.spotlightWinnerMarginTop = 45;
           $scope.spotlightWinnerBackArrow = 120;
+          $scope.accountButtonPosition = 25;
+          $scope.titlePosition = 100;
+          $scope.registerContainerMarginTop = 20;
         } else if(height === 736){
           $scope.spotlightWinnerCardHeight = 660;
           $scope.spotlightWinnerMarginTop = 65;
           $scope.spotlightWinnerBackArrow = 200;
+          $scope.accountButtonPosition = 27;
+          $scope.titlePosition = 120;
+          $scope.registerContainerMarginTop = 25;
         } else {
           console.log('unrecognized size');
         }
@@ -358,17 +374,21 @@
       var post = $scope.ngDialogData.post;
       if(post.image_url && post.text){
         post.size = 450;
+        post.originalText = post.text;
+        delete post.text;
         $scope.commentsScrollHeight += 500;
       } else if(post.image_url === null && post.text){
         post.size = 150;
+        post.originalText = post.text;
+        delete post.test;
         $scope.commentsScrollHeight += 200;
       } else if(post.image_url && post.text === null){
         post.size = 300;
         $scope.commentsScrollHeight += 300;
       }
       for(var i = 0; i < $scope.comments.length; i++){
-        $scope.comments[i].size = 150;
-        $scope.commentsScrollHeight += 150;
+        $scope.comments[i].size = 200;
+        $scope.commentsScrollHeight += 200;
       }
       $scope.comments.unshift(post);
     }

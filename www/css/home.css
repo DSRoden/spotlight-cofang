@@ -528,44 +528,41 @@ fa-app {
 }
 .register-container {
   text-align: center ! important;
-  margin-top: 10% ! important;
 }
 .account-login {
   position: absolute;
-  border: 2px solid black;
+  border: 1px solid #088dff;
   width: 80px;
-  left: 22%;
   text-align: center;
   height: 50px;
-  border-radius: 10px;
   line-height: 50px;
   margin-bottom: 10px;
-  background: white;
+  background: #088dff;
+  color: #ffdc00;
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
 }
 .account-register {
   position: absolute;
-  border: 2px solid black;
+  border: 1px solid #088dff;
   width: 80px;
-  right: 22%;
   text-align: center;
   height: 50px;
-  border-radius: 10px;
-  line-height: 50px;
+  color: #ffdc00;
+  line-height: 45px;
   margin-bottom: 10px;
-  background: white;
+  background: #088dff;
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
 }
 .account-input {
-  height: 30px;
+  height: 60px;
   width: 80%;
   margin-bottom: 20px;
-  background: #eae9e9;
+  background: #ffdc00;
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
   font-size: 16px;
   padding: 5px;
   border: none;
-  border-radius: 10px;
+  color: #0090f7;
 }
 .account-card-input {
   padding: 7px;
@@ -596,6 +593,7 @@ fa-app {
   margin-top: -40px;
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
   margin-bottom: -10px;
+  color: #088dff;
 }
 .title {
   position: relative;
@@ -604,50 +602,40 @@ fa-app {
   margin-bottom: 20px;
   float: middle;
   text-align: center;
+  color: #088dff;
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
 }
 .logo {
   position: relative;
   height: 70px;
   width: 70px;
-  background: url('../img/spotlight-icon-small.png');
+  background: url('../img/spotlight-icon-small-yellow.png');
   background-size: contain;
   background-position: center;
-  left: 40%;
   margin-bottom: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 .question-mark {
   position: absolute;
   height: 35px;
   width: 35px;
-  background: url('../img/question_icon_blue.png');
+  background: url('../img/question_icon_yellow.png');
   background-size: contain;
   background-position: center;
-  top: 99%;
-  left: 45%;
-  margin-bottom: 20px;
+  left: 35%;
+  margin-top: 25%;
 }
-.go-left {
+.close-registration {
   position: absolute;
-  height: 30px;
-  width: 30px;
-  background: url('../img/left_arrow.png');
+  height: 35px;
+  width: 35px;
+  background: url('../img/close-icon-yellow.png');
   background-size: contain;
   background-position: center;
-  left: 20%;
-  top: 100%;
-  margin-bottom: 20px;
-}
-.go-right {
-  position: absolute;
-  height: 30px;
-  width: 30px;
-  background: url('../img/right_arrow.png');
-  background-size: contain;
-  background-position: center;
-  right: 20%;
-  top: 100%;
-  margin-bottom: 20px;
+  margin-top: 25%;
+  right: 35%;
 }
 .slogan {
   position: relative;

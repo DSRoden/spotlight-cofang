@@ -25,18 +25,34 @@
                     <fa-scroll-view id="comments-scrollview" fa-pipe-from="commentsScrollHandler" fa-options="options.container">
                       <fa-view fa-size="[getPageWidth(), commentsScrollHeight]">
                         <fa-modifier ng-repeat="post in comments track by $index">
-                          <fa-surface ng-if="post.image_url &amp;&amp; post.text === null" fa-size="[(getPageWidth() - 20), post.size]" ng-class="{borderBottom: $index === 0}" class="relative-image">
-                            <div ng-style="{'background-image':'url({{post.image_url}})', 'height': '285px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to="commentsScrollHandler" class="image">
+                          <fa-surface ng-if="post.image_url" fa-size="[(getPageWidth() - 19), 300]" ng-class="{connect : post.originalText, commentShadow : !post.originalText}" class="relative-image">
+                            <div ng-click="showComments(post.id)" ng-style="{'background-image':'url({{post.image_url}})', 'height': '285px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to="commentsScrollHandler" class="image">
+                              <fa-app ng-if="!post.originalText">
+                                <fa-surface class="content-date">{{moment(post.created_at).format('LT')}}</fa-surface>
+                                <fa-surface fa-size="[100,30]" ng-click="commentsModal(post)" class="comments-icon">Comments {{post.comments}}</fa-surface>
+                                <fa-image-surface fa-image-url="img/heart.png" fa-size="[20,20]" ng-click="like(post)" class="heart"></fa-image-surface>
+                                <fa-surface class="likes-image">{{post.likes}}</fa-surface>
+                              </fa-app>
                             </div>
                           </fa-surface>
-                          <fa-surface ng-if="post.image_url &amp;&amp; post.text" fa-size="[(getPageWidth() - 20), post.size]" ng-class="{borderBottom: $index === 0}" class="relative-image">
-                            <div ng-style="{'background-image':'url({{post.image_url}})', 'height': '285px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to="commentsScrollHandler" class="image">
+                          <fa-surface ng-if="post.originalText" fa-background-color="white" fa-size="[(getPageWidth() - 19), 200]" ng-class="{connectTop : post.image_url}" class="relative-text commentShadow">
+                            <div fa-pipe-to="commentsScrollHandler" class="content">
+                              <fa-app>
+                                <fa-surface ng-click="commentsModal()" class="content-text"> {{post.originalText}}</fa-surface>
+                                <fa-surface class="content-date">{{moment(post.created_at).format('LT')}}</fa-surface>
+                                <fa-surface fa-size="[100,30]" class="comments-icon">Comments {{post.comments}}</fa-surface>
+                                <fa-image-surface fa-image-url="img/heart.png" fa-size="[20,20]" ng-click="like(post)" class="heart"></fa-image-surface>
+                                <fa-surface class="likes">{{post.likes}}</fa-surface>
+                              </fa-app>
                             </div>
-                            <div ng-click="commentsModal()" class="content-text"> {{post.text}}</div>
                           </fa-surface>
-                          <fa-surface ng-if="(post.text &amp;&amp; !post.image_url)" fa-background-color="white" fa-size="[(getPageWidth() - 20), post.size]" ng-class="{connectTop : post.image_url, borderBottom: $index === 0}" fa-pipe-to="commentsScrollHandler" class="relative-image">
+                          <fa-surface ng-if="(post.text &amp;&amp; !post.originalText)" fa-background-color="white" fa-size="[(getPageWidth() - 20), post.size]" fa-pipe-to="commentsScrollHandler" class="relative-image">
                             <fa-app>
                               <fa-surface class="content-text"> {{post.text}}</fa-surface>
+                              <fa-surface class="content-date">{{moment(post.created_at).format('LT')}}</fa-surface>
+                              <fa-surface class="comments-icon">- User name </fa-surface>
+                              <fa-image-surface fa-image-url="img/heart.png" fa-size="[20,20]" ng-click="like(post)" class="heart"></fa-image-surface>
+                              <fa-surface class="likes">{{post.likes}}</fa-surface>
                             </fa-app>
                           </fa-surface>
                         </fa-modifier>
@@ -67,7 +83,7 @@
                 <fa-modifier fa-size="[getPageWidth(), 400]" fa-opacity="loginTransparency">
                   <fa-surface ng-if="login" fa-tap="tapEvent($event)" fa-pipe-to="archiveScrollEventHandler" class="registration-view-background"> 
                     <div class="login-container">
-                      <div class="title">Spotlight</div>
+                      <div ng-style="{'margin-top' : '{{titlePosition}}px'}" class="title">Spotlight</div>
                       <div class="logo"></div>
                       <div class="login-username">
                         <input type="text" ng-model="user.username" placeholder="User name" class="account-input">
@@ -76,19 +92,19 @@
                         <input type="password" ng-model="user.password" placeholder="Password" class="account-input">
                       </div>
                       <div class="register-surface-buttons">
-                        <div class="account-login">Login</div>
-                        <div ng-click="showRegister()" class="account-register">Register</div>
+                        <div ng-style="{'left' : '{{accountButtonPosition}}%'}" class="account-login">Login</div>
+                        <div ng-style="{'right' : '{{accountButtonPosition}}%'}" ng-click="showRegister()" class="account-register">Register</div>
+                      </div>
+                      <div ng-style="{'text-align' : 'center'}" class="about-section">
                         <div ng-click="showAboutOne($event);" class="question-mark"></div>
-                        <div ng-click="switchPage(0)" class="go-left"></div>
-                        <div ng-click="closeRegistration()" class="go-right"></div>
+                        <div ng-click="closeRegistration()" class="close-registration"></div>
                       </div>
                     </div>
                   </fa-surface>
                 </fa-modifier>
                 <fa-modifier fa-size="[getPageWidth(), 400]" fa-opacity="registerTransparency">            
                   <fa-surface ng-if="register" class="registration-view-background"> 
-                    <div class="register-container">
-                      <div class="slogan">One person at a time</div>
+                    <div ng-style="{'margin-top' : '{{registerContainerMarginTop}}%'}" class="register-container">
                       <div class="register-username">
                         <input type="text" ng-model="user.username" placeholder="User name" class="account-input">
                       </div>
@@ -103,8 +119,8 @@
                       </div>
                       <div class="register-explanation">* Adding your phone number enters you into the Spotlight Lottery, we will never use it for any other purpose.</div>
                       <div class="register-surface-buttons">
-                        <div ng-click="showLogin()" class="account-login"> Login</div>
-                        <div ng-click="showRegister()" class="account-register"> Register
+                        <div ng-style="{'left' : '{{accountButtonPosition}}%'}" ng-click="showLogin()" class="account-login"> Login</div>
+                        <div ng-style="{'right' : '{{accountButtonPosition}}%'}" ng-click="showRegister()" class="account-register"> Register
                         </div>
                       </div>
                     </div>

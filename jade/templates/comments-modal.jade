@@ -22,28 +22,29 @@ fa-app
                         fa-scroll-view#comments-scrollview(fa-pipe-from='commentsScrollHandler' fa-options='options.container')
                           fa-view(fa-size='[getPageWidth(), commentsScrollHeight]')
                             fa-modifier(ng-repeat='post in comments track by $index')
-                              fa-surface.relative-image(ng-if="post.image_url && post.text === null" fa-size='[(getPageWidth() - 20), post.size]' ng-class="{borderBottom: $index === 0}")
-                                .image(ng-style="{'background-image':'url({{post.image_url}})', 'height': '285px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to='commentsScrollHandler')
-                                  //- fa-app(ng-if="!post.text")
-                                  //-   fa-surface.content-date {{moment(post.created_at).format('LT')}}
-                                  //-   fa-surface.comments-icon(fa-size='[100,30]' ng-click="commentsModal(post.id)") Comments {{post.comments}}
-                                  //-   fa-image-surface.heart(fa-image-url="img/heart.png" fa-size='[20,20]' ng-click="like(post)")
-                                  //-   fa-surface.likes-image {{post.likes}}
-                              fa-surface.relative-image(ng-if="post.image_url && post.text" fa-size='[(getPageWidth() - 20), post.size]' ng-class="{borderBottom: $index === 0}")
-                                .image(ng-style="{'background-image':'url({{post.image_url}})', 'height': '285px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to='commentsScrollHandler')
-                                  //- fa-app(ng-if="!post.text")
-                                  //-   fa-surface.content-date {{moment(post.created_at).format('LT')}}
-                                  //-   fa-surface.comments-icon(fa-size='[100,30]' ng-click="commentsModal(post.id)") Comments {{post.comments}}
-                                  //-   fa-image-surface.heart(fa-image-url="img/heart.png" fa-size='[20,20]' ng-click="like(post)")
-                                  //-   fa-surface.likes-image {{post.likes}}
-                                 .content-text(ng-click="commentsModal()")  {{post.text}}
-                              fa-surface.relative-image(ng-if="(post.text && !post.image_url)" fa-background-color="white" fa-size='[(getPageWidth() - 20), post.size]' ng-class="{connectTop : post.image_url, borderBottom: $index === 0}" fa-pipe-to='commentsScrollHandler')
+                              fa-surface.relative-image(ng-if="post.image_url" fa-size='[(getPageWidth() - 19), 300]' ng-class="{connect : post.originalText, commentShadow : !post.originalText}")
+                                .image(ng-click="showComments(post.id)" ng-style="{'background-image':'url({{post.image_url}})', 'height': '285px',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" fa-pipe-to='commentsScrollHandler')
+                                  fa-app(ng-if="!post.originalText")
+                                    fa-surface.content-date {{moment(post.created_at).format('LT')}}
+                                    fa-surface.comments-icon(fa-size='[100,30]' ng-click="commentsModal(post)") Comments {{post.comments}}
+                                    fa-image-surface.heart(fa-image-url="img/heart.png" fa-size='[20,20]' ng-click="like(post)")
+                                    fa-surface.likes-image {{post.likes}}
+                              fa-surface.relative-text.commentShadow(ng-if="post.originalText" fa-background-color="white" fa-size='[(getPageWidth() - 19), 200]' ng-class="{connectTop : post.image_url}")
+                                .content(fa-pipe-to="commentsScrollHandler")
+                                  //- .open-quote
+                                  fa-app
+                                    fa-surface.content-text(ng-click="commentsModal()")  {{post.originalText}}
+                                    fa-surface.content-date {{moment(post.created_at).format('LT')}}
+                                    fa-surface.comments-icon(fa-size='[100,30]') Comments {{post.comments}}
+                                    fa-image-surface.heart(fa-image-url="img/heart.png" fa-size='[20,20]' ng-click="like(post)")
+                                    fa-surface.likes {{post.likes}}
+                              fa-surface.relative-image(ng-if="(post.text && !post.originalText)" fa-background-color="white" fa-size='[(getPageWidth() - 20), post.size]' fa-pipe-to='commentsScrollHandler')
                                 fa-app
                                   fa-surface.content-text  {{post.text}}
-                                  //- fa-surface.content-date {{moment(post.created_at).format('LT')}}
-                                  //- fa-surface.comments-icon(fa-size='[100,30]' ng-click="commentsModal(post)" fa-pipe-to="myEventHandler") Comments {{post.comments}}
-                                  //- fa-image-surface.heart(fa-image-url="img/heart.png" fa-size='[20,20]' ng-click="like(post)")
-                                  //- fa-surface.likes {{post.likes}}
+                                  fa-surface.content-date {{moment(post.created_at).format('LT')}}
+                                  fa-surface.comments-icon - User name 
+                                  fa-image-surface.heart(fa-image-url="img/heart.png" fa-size='[20,20]' ng-click="like(post)")
+                                  fa-surface.likes {{post.likes}}
               
                     // footer
                     fa-modifier(fa-translate="boxTransitionableFooter2.get()" fa-opacity="opacityTrans2" fa-size='[50,50]')
@@ -67,22 +68,21 @@ fa-app
                   fa-modifier(fa-size="[getPageWidth(), 400]" fa-opacity="loginTransparency")
                     fa-surface.registration-view-background(ng-if="login" fa-tap="tapEvent($event)" fa-pipe-to="archiveScrollEventHandler") 
                       .login-container
-                        .title Spotlight
+                        .title(ng-style="{'margin-top' : '{{titlePosition}}px'}") Spotlight
                         .logo
                         .login-username
                           input.account-input(type="text" ng-model="user.username" placeholder="User name")
                         .login-password
                           input.account-input(type="password" ng-model="user.password" placeholder="Password")
                         .register-surface-buttons
-                          .account-login Login
-                          .account-register(ng-click="showRegister()") Register
+                          .account-login(ng-style="{'left' : '{{accountButtonPosition}}%'}") Login
+                          .account-register(ng-style="{'right' : '{{accountButtonPosition}}%'}" ng-click="showRegister()") Register
+                        .about-section(ng-style="{'text-align' : 'center'}")
                           .question-mark(ng-click="showAboutOne($event);")
-                          .go-left(ng-click="switchPage(0)")
-                          .go-right(ng-click="closeRegistration()")
+                          .close-registration(ng-click="closeRegistration()")
                   fa-modifier(fa-size="[getPageWidth(), 400]" fa-opacity="registerTransparency")             
                     fa-surface.registration-view-background(ng-if="register") 
-                      .register-container
-                        .slogan One person at a time
+                      .register-container(ng-style="{'margin-top' : '{{registerContainerMarginTop}}%'}")
                         .register-username
                           input.account-input(type="text" ng-model="user.username" placeholder="User name")
                         .register-password
@@ -93,8 +93,8 @@ fa-app
                           input.account-input(type="text" ng-model="user.phone" placeholder="Phone (optional)")
                         .register-explanation * Adding your phone number enters you into the Spotlight Lottery, we will never use it for any other purpose.
                         .register-surface-buttons
-                          .account-login(ng-click="showLogin()")  Login
-                          .account-register(ng-click="showRegister()")  Register
+                          .account-login(ng-style="{'left' : '{{accountButtonPosition}}%'}" ng-click="showLogin()")  Login
+                          .account-register(ng-style="{'right' : '{{accountButtonPosition}}%'}" ng-click="showRegister()")  Register
 
                              //- if clicking on spotlight winner
             

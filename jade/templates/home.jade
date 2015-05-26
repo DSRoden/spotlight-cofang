@@ -48,7 +48,7 @@ fa-view
                           fa-surface.center-content
                             fa-app.highest-z-index
                               fa-image-surface.menu-icon(fa-size='[50,50]' fa-image-url="img/right_arrow_yellow.png" ng-click="switchPage(1)")
-                              fa-image-surface.show-post-button(ng-if="userIsInTheSpotlight" fa-size='[70,70]' fa-image-url="img/add_post_yellow.png" fa-pipe-to="eventHandler" fa-click="openPostBox($event)")
+                              fa-image-surface.show-post-button(ng-if="userIsInTheSpotlight" fa-size='[70,70]' fa-image-url="img/hand-icon-yellow.png" fa-pipe-to="eventHandler" fa-click="openPostBox($event)")
                               //- fa-image-surface.spotlight-icon(fa-size='[50,50]' fa-image-url="img/user-account-icon-yellow.png" ng-click="showUserAccount()")
             
 
@@ -66,10 +66,10 @@ fa-view
                         .new-image-area.card-format(ng-style="{'background-image':'url({{addImageUrl}})', 'height': '{{addImageHeight()}}',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center', 'margin-top' : '10px'}")
                           .delete-image(ng-style="{'height' : '30px', 'width': '30px', 'background-color' : 'rgba(0, 0, 0, 0.5)', 'color' : 'white', 'font-size' : '20px', 'font-family' : 'Helvetica', 'float' : 'right', 'text-align' : 'center', 'line-height' : '32px'}") X
                     fa-image-surface.make-post(ng-if="userIsInTheSpotlight" fa-size='[70,70]' fa-image-url="img/airplane-icon-yellow.png")
-                    fa-image-surface.open-camera(ng-if="userIsInTheSpotlight" fa-size='[50, 50]' fa-image-url="img/camera_icon.png")
-                    fa-image-surface.open-albums(ng-if="userIsInTheSpotlight" fa-size='[45,45]' fa-image-url="img/albums_icon.png")
-                    fa-image-surface.spotlight-help(ng-if="userIsInTheSpotlight" fa-size='[50,50]' fa-image-url="img/account_icon.png" ng-click="showAccount()")
-                    fa-image-surface.close-post-box(ng-if="userIsInTheSpotlight" fa-size='[45,45]' fa-image-url="img/close_icon.png" ng-click="closePostbox()")       
+                    fa-image-surface.open-camera(ng-if="userIsInTheSpotlight" fa-size='[50, 50]' fa-image-url="img/camera-icon-yellow.png")
+                    fa-image-surface.open-albums(ng-if="userIsInTheSpotlight" fa-size='[45,45]' fa-image-url="img/albums-icon-yellow.png")
+                    fa-image-surface.spotlight-help(ng-if="userIsInTheSpotlight" fa-size='[50,50]' fa-image-url="img/information-icon-yellow.png" ng-click="showAccount()")
+                    fa-image-surface.close-post-box(ng-if="userIsInTheSpotlight" fa-size='[45,45]' fa-image-url="img/close-icon-yellow.png" ng-click="closePostbox()")       
             
             //- spotlight account 
             fa-app.top-slide-in-view
