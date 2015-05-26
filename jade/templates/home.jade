@@ -14,7 +14,7 @@ fa-view
                         fa-modifier(fa-translate="boxTransitionableHeader.get()")
                           fa-surface.absolute(fa-background-color="'black'")
                             fa-app
-                              fa-image-surface.spotlight-avatar(fa-size='[45,45]' fa-image-url="img/spotlight-icon-small-yellow.png" ng-click="showWinnerInfo()")
+                              fa-image-surface.spotlight-avatar(fa-size='[45,45]' fa-image-url="img/spotlight-icon-tiered.png" ng-click="showWinnerInfo()")
                               fa-surface.spotlight-name(ng-click="showWinnerInfo()") Lilly Bloomings 
                               fa-surface.twitter(ng-click="showWinnerTwitter()") t
                               fa-surface.facebook(ng-click="goToCategories()") f
@@ -75,27 +75,19 @@ fa-view
             fa-app.top-slide-in-view
               fa-flipper
                 fa-modifier(fa-translate="boxTransitionableSpotlightAccount.get()" fa-opacity="accountBoxTransparency" fa-size="accountBoxSize.get()")
-                  fa-surface.account-box-background
-                    fa-app
-                      fa-modifier(fa-translate="boxTransitionableSpotlightAccount.get()" fa-opacity="accountBoxTransparency" fa-size="accountBoxSize.get()")
-                        fa-surface
-                          //- //- bio, avatar, links to facebook and twitter log out
-                          //- .avatar-container(ng-style="{'position' : 'relative', 'height' : '80px', 'margin-top' : '-20px'}")
-                          //-   .avatar-choice(ng-style="{'position' : 'absolute', 'left' : '5%', 'height' : '80px', 'width' : '80px', 'background' : 'url({{avatar}})', 'background-size' : 'contain', 'background-repeat' : 'no-repeat', 'background-position' : 'center', 'background-size' : 'contain'}")
-                          //- //-   .change-avatar(ng-style="{'position' : 'absolute', 'top' : '20px', 'left' : '50%',  'height' : '30px', 'width' : '100px', 'border' : '2px solid black', 'text-align' : 'center', 'line-height' : '30px', 'border-radius' : '10px'}")  Replace
-                          //- .account-inputs(ng-style="{'position' : 'relative', 'height' : '{{accountContentHeight()}}'}")
-                          //-   input(ng-style="{'padding' : '7px', 'width' : '85%', 'margin-left' : '5%', 'height' : '15%', 'margin-top' : '10px', 'background-color' : 'rgb(215, 213, 213)', 'border-radius' : '5px', 'border' : 'none', 'font-size' : '16px'}")
-                          //-   input(ng-style="{'padding' : '7px', 'width' : '85%', 'margin-left' : '5%', 'height' : '15%', 'margin-top' : '10px', 'background-color' : 'rgb(215, 213, 213)', 'border-radius' : '5px', 'border' : 'none', 'font-size' : '16px'}")
-                          //-   input(ng-style="{'padding' : '7px', 'width' : '85%', 'margin-left' : '5%', 'height' : '15%', 'margin-top' : '10px', 'background-color' : 'rgb(215, 213, 213)', 'border-radius' : '5px', 'border' : 'none', 'font-size' : '16px'}")
-                          //-   textarea(ng-style="{'padding' : '7px', 'width' : '85%', 'margin-left' : '5%', 'height' : '30%', 'margin-top' : '10px', 'background-color' : 'rgb(215, 213, 213)', 'border-radius' : '5px', 'border' : 'none', 'font-size' : '16px'}")
-                        
-                        //- fa-image-surface.delete-photo(fa-size='[50, 50]' fa-image-url="img/delete_icon.png")
-                        //- fa-image-surface.change-photo-camera(fa-size='[50, 50]' fa-image-url="img/camera_icon.png")
-                        //- fa-image-surface.change-photo-albums(fa-size='[50, 50]' fa-image-url="img/albums_icon.png")
-                        fa-image-surface.go-back(fa-size='[90, 54]' fa-image-url="img/back_button.png" ng-click="closeAccountPage()")
-                        fa-image-surface.spotlight-time(fa-size='[90, 54]' fa-image-url="img/session_button.png" ng-click="flipIt()")
-                      
-                fa-modifier(fa-translate="[0, 50, 0]" fa-size="[getPageWidth(), getPageHeight()]")
+                  fa-surface.information-card(fa-size='[(getPageWidth() - 10), {{informationCardHeight}}]')
+                    fa-app.grid-container(ng-style="{'margin-left': '{{gridMarginLeft}}%', 'margin-top': '{{gridMarginTop}}px'}")
+                      fa-modifier(fa-translate="boxTransitionableSpotlightAccount.get()" fa-opacity="accountBoxTransparency" fa-size="[200, 300]")
+                        fa-grid-layout(fa-options="winnerInformationGrid")
+                          fa-surface(ng-repeat="grid in grids" fa-size='[grid.width, undefined]')
+                            .grid-image(ng-if="grid.icon" ng-style="{'background' : 'url({{grid.icon}})', 'height' : '50px', 'width' : '50px', 'background-size' : 'cover', 'background-repeat' : 'no-repeat', 'display' : 'block', 'margin-left' : 'auto', 'margin-right': 'auto'}" ng-click="flipIt()")
+                            .grid-text(ng-if="grid.text") 
+                              .grid-text-content(ng-style="{'line-height' : '50px', 'font-family' : 'Helvetica Neue'}") {{grid.text}}
+                  fa-surface.shorter-height
+                    .go-back-to-main(ng-style="{'position' : 'relative', 'top' : '{{downArrowOnInfoView}}px'}")
+                      .back-out-of-info(ng-click="closeAccountPage()")
+
+                fa-modifier(fa-translate="[0, 60, 0]" fa-size="[getPageWidth(), getPageHeight()]")
                   fa-surface.account-box-background
                     fa-app
                       fa-surface.session-info-surface
@@ -173,37 +165,6 @@ fa-view
                             .account-login(ng-click="showLogin()")  Login
                             .account-register(ng-click="showRegister()")  Register
             
-            //- user account
-            //- fa-app.top-slide-in-view
-            //-   fa-modifier(fa-translate="boxTransitionableUserAccount.get()" fa-opacity="userAccountBoxTransparency" fa-size="userAccountBoxSize.get()")
-            //-     fa-surface.registration-view-background.registration-z-index
-            //-       fa-app.registration-view-background
-            //-         fa-modifier(fa-size="[getPageWidth(),getPageHeight()]")
-            //-           fa-surface
-            //-             .account-card(ng-style="{'height' : '{{accountContentHeight()+270}}px'}")
-            //-               //- bio, avatar, links to facebook and twitter log out
-            //-               .avatar-container(ng-style="{'position' : 'relative', 'height' : '80px', 'margin-top' : '40px'}")
-            //-                 .avatar-choice(ng-style="{'position' : 'absolute', 'left' : '5%', 'height' : '80px', 'width' : '80px', 'background' : 'url({{avatar}})', 'background-size' : 'contain', 'background-repeat' : 'no-repeat', 'background-position' : 'center', 'background-size' : 'contain', 'border' : '1px solid rgba(0, 0, 0, 0.2)'}")
-            //-                   //-   .change-avatar(ng-style="{'position' : 'absolute', 'top' : '20px', 'left' : '50%',  'height' : '30px', 'width' : '100px', 'border' : '2px solid black', 'text-align' : 'center', 'line-height' : '30px', 'border-radius' : '10px'}")  Replace
-            //-                   .delete-image(ng-style="{'height' : '20px', 'width': '20px', 'background-color' : 'rgba(0, 0, 0, 0.5)', 'color' : 'white', 'font-size' : '20px', 'font-family' : 'Helvetica', 'float' : 'right', 'text-align' : 'center', 'line-height' : '22px'}") X
-
-            //-               .account-inputs(ng-style="{'position' : 'relative', 'height' : '{{accountContentHeight()}}px'}")
-            //-                 input.account-card-input
-            //-                 input.account-card-input
-            //-                 input.account-card-input
-            //-                 textarea.account-card-textarea
-
-            //-               .account-go-back-button(ng-click="closeUserAccount()") Back
-            //-               .account-save-button Save
-                            
-            //-           fa-image-surface.account-change-photo-camera(fa-size='[50, 50]' fa-image-url="img/camera_icon.png")
-            //-           fa-image-surface.account-change-photo-albums(fa-size='[50, 50]' fa-image-url="img/albums_icon.png")
-                          
-            //-           //- fa-image-surface.account-go-back(fa-size='[90, 54]' fa-image-url="img/back_button.png" ng-click="closeUserAccountPage()")
-            //-           //- fa-image-surface.account-save(fa-size='[90, 54]' fa-image-url="img/save_button.png")
-                    
-
-
         //- this is the Main Archive View
         fa-view(fa-index='1')
           fa-modifier(fa-size='[getPageWidth(), getPageHeight()]')
@@ -213,7 +174,7 @@ fa-view
                 fa-modifier(fa-translate="boxTransitionableHeader2.get()")
                   fa-surface.absolute(fa-background-color="'black'")
                     fa-app
-                     fa-image-surface.spotlight-avatar(fa-size='[45,45]' fa-image-url="img/spotlight-icon-small-yellow.png")
+                     fa-image-surface.spotlight-avatar(fa-size='[45,45]' fa-image-url="img/spotlight-icon-tiered.png")
                      fa-surface.spotlight-name Spotlight Archive
                      fa-image-surface.account-icon(fa-size='[45,45]' fa-image-url="img/account-icon-yellow.png" ng-click="accountModal()")
 

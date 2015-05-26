@@ -12,7 +12,7 @@
                   <fa-modifier fa-translate="boxTransitionableHeader.get()">
                     <fa-surface fa-background-color="'black'" class="absolute">
                       <fa-app>
-                        <fa-image-surface fa-size="[45,45]" fa-image-url="img/spotlight-icon-small-yellow.png" ng-click="showWinnerInfo()" class="spotlight-avatar"></fa-image-surface>
+                        <fa-image-surface fa-size="[45,45]" fa-image-url="img/spotlight-icon-tiered.png" ng-click="showWinnerInfo()" class="spotlight-avatar"></fa-image-surface>
                         <fa-surface ng-click="showWinnerInfo()" class="spotlight-name">Lilly Bloomings </fa-surface>
                         <fa-surface ng-click="showWinnerTwitter()" class="twitter">t</fa-surface>
                         <fa-surface ng-click="goToCategories()" class="facebook">f</fa-surface>
@@ -89,18 +89,27 @@
           <fa-app class="top-slide-in-view">
             <fa-flipper>
               <fa-modifier fa-translate="boxTransitionableSpotlightAccount.get()" fa-opacity="accountBoxTransparency" fa-size="accountBoxSize.get()">
-                <fa-surface class="account-box-background">
-                  <fa-app>
-                    <fa-modifier fa-translate="boxTransitionableSpotlightAccount.get()" fa-opacity="accountBoxTransparency" fa-size="accountBoxSize.get()">
-                      <fa-surface>
-                      </fa-surface>
-                      <fa-image-surface fa-size="[90, 54]" fa-image-url="img/back_button.png" ng-click="closeAccountPage()" class="go-back"></fa-image-surface>
-                      <fa-image-surface fa-size="[90, 54]" fa-image-url="img/session_button.png" ng-click="flipIt()" class="spotlight-time"></fa-image-surface>
+                <fa-surface fa-size="[(getPageWidth() - 10), {{informationCardHeight}}]" class="information-card">
+                  <fa-app ng-style="{'margin-left': '{{gridMarginLeft}}%', 'margin-top': '{{gridMarginTop}}px'}" class="grid-container">
+                    <fa-modifier fa-translate="boxTransitionableSpotlightAccount.get()" fa-opacity="accountBoxTransparency" fa-size="[200, 300]">
+                      <fa-grid-layout fa-options="winnerInformationGrid">
+                        <fa-surface ng-repeat="grid in grids" fa-size="[grid.width, undefined]">
+                          <div ng-if="grid.icon" ng-style="{'background' : 'url({{grid.icon}})', 'height' : '50px', 'width' : '50px', 'background-size' : 'cover', 'background-repeat' : 'no-repeat', 'display' : 'block', 'margin-left' : 'auto', 'margin-right': 'auto'}" ng-click="flipIt()" class="grid-image"></div>
+                          <div ng-if="grid.text" class="grid-text"> 
+                            <div ng-style="{'line-height' : '50px', 'font-family' : 'Helvetica Neue'}" class="grid-text-content">{{grid.text}}</div>
+                          </div>
+                        </fa-surface>
+                      </fa-grid-layout>
                     </fa-modifier>
                   </fa-app>
                 </fa-surface>
+                <fa-surface class="shorter-height">
+                  <div ng-style="{'position' : 'relative', 'top' : '{{downArrowOnInfoView}}px'}" class="go-back-to-main">
+                    <div ng-click="closeAccountPage()" class="back-out-of-info"></div>
+                  </div>
+                </fa-surface>
               </fa-modifier>
-              <fa-modifier fa-translate="[0, 50, 0]" fa-size="[getPageWidth(), getPageHeight()]">
+              <fa-modifier fa-translate="[0, 60, 0]" fa-size="[getPageWidth(), getPageHeight()]">
                 <fa-surface class="account-box-background">
                   <fa-app>
                     <fa-surface class="session-info-surface">
@@ -204,8 +213,6 @@
               </fa-surface>
             </fa-modifier>
           </fa-app>
-          
-          
         </fa-surface>
       </fa-view>
       <fa-view fa-index="1">
@@ -216,7 +223,7 @@
             <fa-modifier fa-translate="boxTransitionableHeader2.get()">
               <fa-surface fa-background-color="'black'" class="absolute">
                 <fa-app>
-                  <fa-image-surface fa-size="[45,45]" fa-image-url="img/spotlight-icon-small-yellow.png" class="spotlight-avatar"></fa-image-surface>
+                  <fa-image-surface fa-size="[45,45]" fa-image-url="img/spotlight-icon-tiered.png" class="spotlight-avatar"></fa-image-surface>
                   <fa-surface class="spotlight-name">Spotlight Archive</fa-surface>
                   <fa-image-surface fa-size="[45,45]" fa-image-url="img/account-icon-yellow.png" ng-click="accountModal()" class="account-icon"></fa-image-surface>
                 </fa-app>

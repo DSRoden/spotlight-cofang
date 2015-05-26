@@ -11,7 +11,7 @@ fa-app
                     fa-modifier(fa-translate="boxTransitionableHeader2.get()")
                       fa-surface.absolute(fa-background-color="'black'")
                         fa-app
-                          fa-image-surface.spotlight-avatar(fa-size='[45,45]' fa-image-url="img/spotlight-icon-small-yellow.png" ng-click="showWinnerInfo()")
+                          fa-image-surface.spotlight-avatar(fa-size='[45,45]' fa-image-url="img/spotlight-icon-tiered.png" ng-click="showWinnerInfo()")
                           fa-surface.spotlight-name(ng-click="showWinnerInfo()") Lilly Bloomings 
                           fa-surface.twitter(ng-click="showWinnerTwitter()") t
                           fa-surface.facebook(ng-click="goToCategories()") f
@@ -96,8 +96,6 @@ fa-app
                           .account-login(ng-style="{'left' : '{{accountButtonPosition}}%'}" ng-click="showLogin()")  Login
                           .account-register(ng-style="{'right' : '{{accountButtonPosition}}%'}" ng-click="showRegister()")  Register
 
-                             //- if clicking on spotlight winner
-            
                //- if clicking on spotlight winner
             fa-modifier(fa-translate="boxTransitionableWinnerInfo.get()" fa-opacity="winnerInfoBoxTransparency" fa-size="winnerInfoBoxSize.get()")
               fa-surface.winner-info-background

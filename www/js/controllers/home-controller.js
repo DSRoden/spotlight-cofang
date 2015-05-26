@@ -10,24 +10,44 @@
     $scope.spotlightWinnerMarginTop = 0;
     $scope.spotlightWinnerCardHeight = 0;
     $scope.spotlightWinnerBackArrow = 0;
+    $scope.downArrowOnInfoView = 0;
+    $scope.gridMarginLeft = 0;
+    $scope.gridMarginTop = 0;
+    $scope.informationCardHeight = 0;
     function sizeDependencies(){
      var  height = window.innerHeight;
         if(height === 480){
-           $scope.spotlightWinnerCardHeight = 385;
+          $scope.spotlightWinnerCardHeight = 385;
           $scope.spotlightWinnerMarginTop = -5;
           $scope.spotlightWinnerBackArrow = -15;
+          $scope.downArrowOnInfoView = 350;
+          $scope.gridMarginLeft = 25;
+          $scope.gridMarginTop = -30;
+          $scope.informationCardHeight = 410;
         } else if(height === 568){
            $scope.spotlightWinnerCardHeight = 460;
           $scope.spotlightWinnerMarginTop = 25;
           $scope.spotlightWinnerBackArrow = 30;
+          $scope.downArrowOnInfoView = 400;
+          $scope.gridMarginLeft = 25;
+          $scope.gridMarginTop = -20;
+          $scope.informationCardHeight = 490;
         } else if(height === 667){
            $scope.spotlightWinnerCardHeight = 560;
           $scope.spotlightWinnerMarginTop = 45;
           $scope.spotlightWinnerBackArrow = 120;
+          $scope.downArrowOnInfoView = 450;
+          $scope.gridMarginLeft = 30;
+          $scope.gridMarginTop = -10;
+          $scope.informationCardHeight = 590;
         } else if(height === 736){
           $scope.spotlightWinnerCardHeight = 640;
           $scope.spotlightWinnerMarginTop = 65;
           $scope.spotlightWinnerBackArrow = 200;
+          $scope.downArrowOnInfoView = 500;
+          $scope.gridMarginLeft = 30;
+          $scope.gridMarginTop = -10;
+          $scope.informationCardHeight = 650;
         } else {
           console.log('unrecognized size');
         }
@@ -223,20 +243,60 @@
 
     //example for fa-grid-layout
 
-    $scope.myGridLayoutOptions = {
-       dimensions: [1,3] // specifies number of columns and rows
+    $scope.winnerInformationGrid = {
+       dimensions: [2,5] // specifies number of columns and rows
     };
-    // $scope.myGridLayoutOptions = {
-    //    dimensions: [1,1] // specifies number of columns and rows
-    // };
 
-    // $scope.grids = [{
-    //                   content: 'Hello',
-    //                   bgColor: 'rgb(240, 238, 233)'
-    //                 },
-    //                 {
-    //                   bgColor: 'rgb(240, 238, 233)'
-    //                 }];
+    $scope.grids = [{
+                      width : 70,
+                      icon: 'img/person-icon-yellow.png',
+                      bgColor: 'rgb(240, 238, 233)'
+                    },
+                    {
+                      width : undefined,
+                      text: 'Photo',
+                      bgColor: 'rgb(240, 238, 233)'
+                    },
+                    {
+                      width : 70,
+                      icon: 'img/compose_icon_yellow.png',
+                      bgColor: 'rgb(240, 238, 233)'
+                    },
+                    {
+                      width : undefined,
+                      text: 'Bio',
+                      bgColor: 'rgb(240, 238, 233)'
+                    },
+                    {
+                      width : 70,
+                      icon: 'img/social-media-icon-yellow.png',
+                      bgColor: 'rgb(240, 238, 233)'
+                    },
+                    {
+                      width : undefined,
+                      text: 'Social',
+                      bgColor: 'rgb(240, 238, 233)'
+                    },
+                    {
+                      width : 70,
+                      icon: 'img/clock-icon-yellow.png',
+                      bgColor: 'rgb(240, 238, 233)'
+                    },
+                    {
+                      width : undefined,
+                      text: 'Session',
+                      bgColor: 'rgb(240, 238, 233)'
+                    },
+                    {
+                      width : 70,
+                      icon: 'img/lightbulb-icon-yellow.png',
+                      bgColor: 'rgb(240, 238, 233)'
+                    },
+                    {
+                      width : undefined,
+                      text: 'Tips',
+                      bgColor: 'rgb(240, 238, 233)'
+                    }];
 
     //example arrays for views
     $scope.posts = [
