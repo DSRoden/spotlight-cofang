@@ -1,0 +1,49 @@
+.congratulations {
+  color: #088dff;
+  text-align: center;
+}
+.winner-icon {
+  height: 100px;
+  width: 100px;
+  background-image: url('../img/star-icon-yellow.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.what-does-winning-mean {
+  text-align: center;
+  color: #088dff;
+  width: 200px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.winner-option-buttons {
+  position: relative;
+}
+.seize-the-spotlight {
+  position: absolute;
+  border: 1px solid #088dff;
+  width: 80px;
+  text-align: center;
+  height: 50px;
+  line-height: 45px;
+  margin-bottom: 10px;
+  background: #088dff;
+  color: #ffdc00;
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+}
+.no-thanks {
+  position: absolute;
+  border: 1px solid #088dff;
+  width: 80px;
+  text-align: center;
+  height: 50px;
+  color: #ffdc00;
+  line-height: 45px;
+  margin-bottom: 10px;
+  background: #088dff;
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+}

@@ -1,0 +1,79 @@
+
+<fa-app>
+  <fa-modifier fa-size="[getPageWidth(), getPageHeight()]">
+    <fa-surface class="registration-view-background registration-z-index">
+      <fa-app class="registration-view-background">
+        <fa-modifier fa-size="[getPageWidth(), 400]" fa-opacity="aboutTransparency">
+          <fa-surface ng-if="about" class="registration-view-background">
+            <div class="about-container">
+              <div class="about-title">Why Spotlight?</div>
+              <div class="about-info"> <span>Spotlight is an attempt to create a simpler social network.</span><span>Spotlight is an attempt to create a simpler social network.</span><span>Spotlight is an attempt to create a simpler social network.</span><span>Spotlight is an attempt to create a simpler social network.</span><span>Spotlight is an attempt to create a simpler social network.</span></div>
+              <div ng-click="closeAboutOne()" class="go-back-to-login">Back</div>
+            </div>
+          </fa-surface>
+        </fa-modifier>
+        <fa-modifier fa-size="[getPageWidth(), 400]" fa-opacity="loginTransparency">
+          <fa-surface ng-if="login" fa-tap="tapEvent($event)" fa-pipe-to="loginEventHandler" class="registration-view-background"> 
+            <div class="login-container">
+              <div ng-style="{'margin-top' : '{{titlePosition}}px'}" class="title">Spotlight</div>
+              <div class="logo"></div>
+              <div class="login-username">
+                <input type="text" ng-model="user.username" placeholder="User name" class="account-input">
+              </div>
+              <div class="login-password">
+                <input type="password" ng-model="user.password" placeholder="Password" class="account-input">
+              </div>
+              <div class="register-surface-buttons">
+                <div ng-style="{'left' : '{{accountButtonPosition}}%'}" ng-click="login()" class="account-login">Login</div>
+                <div ng-style="{'right' : '{{accountButtonPosition}}%'}" ng-click="showRegister()" class="account-register">Register</div>
+              </div>
+              <div ng-style="{'text-align' : 'center'}" class="about-section">
+                <div ng-click="showAboutOne($event);" class="question-mark"></div>
+                <div ng-click="closeLogin()" class="close-registration"></div>
+              </div>
+            </div>
+          </fa-surface>
+        </fa-modifier>
+        <fa-modifier fa-size="[getPageWidth(), 400]" fa-opacity="registerTransparency">            
+          <fa-surface ng-if="register" class="registration-view-background"> 
+            <div ng-style="{'margin-top' : '{{registerContainerMarginTop}}%'}" class="register-container">
+              <div class="register-username">
+                <input type="text" ng-model="user.username" placeholder="User name" class="account-input">
+              </div>
+              <div class="register-password">
+                <input type="password" ng-model="user.password" placeholder="Password" class="account-input">
+              </div>
+              <div class="register-password-confirmation">
+                <input type="password" ng-model="user.passwordConfirmation" placeholder="Confirm Password" class="account-input">
+              </div>
+              <div class="register-phone">
+                <input type="text" ng-model="user.phone" placeholder="Phone (optional)" class="account-input">
+              </div>
+              <div class="register-explanation">* Adding your phone number enters you into the Spotlight Lottery, we will never use it for any other purpose.</div>
+              <div class="register-surface-buttons">
+                <div ng-style="{'left' : '{{accountButtonPosition}}%'}" ng-click="showLogin()" class="account-login"> Login</div>
+                <div ng-style="{'right' : '{{accountButtonPosition}}%'}" ng-click="showRegister()" class="account-register"> Register
+                </div>
+              </div>
+            </div>
+          </fa-surface>
+        </fa-modifier>
+        <fa-modifier fa-translate="boxTransitionableWinnerChosen.get()" fa-opacity="winnerChosenBoxTransparency" fa-size="winnerChosenBoxSize.get()">
+          <fa-surface class="winner-info-background">
+            <div ng-style="{'margin-top' : '{{titlePosition + 100}}px'}" class="congratulations">
+              <h3>The Spotlight's all yours!</h3>
+            </div>
+            <div class="winner-icon"></div>
+            <div class="what-does-winning-mean">
+              <h4>The whole world's a stage, will you set the scene?</h4>
+            </div>
+            <div class="winner-option-buttons">
+              <div ng-style="{'left' : '{{accountButtonPosition}}%'}" ng-click="spotlightRejected()" class="no-thanks">No thanks</div>
+              <div ng-style="{'right' : '{{accountButtonPosition}}%'}" ng-click="spotlightAccepted()" class="seize-the-spotlight">Yes!</div>
+            </div>
+          </fa-surface>
+        </fa-modifier>
+      </fa-app>
+    </fa-surface>
+  </fa-modifier>
+</fa-app>

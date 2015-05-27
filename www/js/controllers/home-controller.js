@@ -7,7 +7,9 @@
   angular.module('spotlight-famous')
   .controller('HomeCtrl', ['$scope', '$timeout', '$location', '$famous', '$timeline', '$state', 'ngDialog', '$controller', function($scope, $timeout, $location, $famous, $timeline, $state, ngDialog, $controller){
     $scope.spotlightTips = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
-    // listening to touch
+    //check user signed in or not
+    $scope.userSignedIn = false;
+    $scope.userNeedsToLogin = true;
 
 
     //initiating size depenedents
@@ -345,16 +347,6 @@
                     },
                     {
                       width : 70,
-                      icon: 'img/clock-icon-yellow.png',
-                      click: 'session'
-                    },
-                    {
-                      width : undefined,
-                      text: 'Session',
-                      click: 'session'
-                    },
-                    {
-                      width : 70,
                       icon: 'img/lightbulb-icon-yellow.png',
                       click: 'tips'
                     },
@@ -362,6 +354,16 @@
                       width : undefined,
                       text: 'Tips',
                       click: 'tips'
+                    },
+                    {
+                      width : 70,
+                      icon: 'img/clock-icon-yellow.png',
+                      click: 'session'
+                    },
+                    {
+                      width : undefined,
+                      text: 'Session',
+                      click: 'session'
                     }];
 
     //example arrays for views
@@ -811,6 +813,16 @@
       });
       console.log('account-modal');
     };
+
+    //login modal
+     $scope.loginModal = function(){
+      ngDialog.open({
+          template: 'templates/login-modal.html',
+          controller: 'LoginCtrl'
+      });
+      console.log('login-modal');
+    };
+
 
     $scope.closeDialog = function(){
       ngDialog.close('', '');

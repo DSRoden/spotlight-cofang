@@ -257,7 +257,8 @@
                 <fa-app>
                   <fa-image-surface fa-size="[45,45]" fa-image-url="img/spotlight-icon-tiered.png" class="spotlight-avatar"></fa-image-surface>
                   <fa-surface class="spotlight-name">Spotlight Archive</fa-surface>
-                  <fa-image-surface fa-size="[45,45]" fa-image-url="img/account-icon-yellow.png" ng-click="accountModal()" class="account-icon"></fa-image-surface>
+                  <fa-image-surface ng-if="userSignedIn" fa-size="[45,45]" fa-image-url="img/account-icon-yellow.png" ng-click="accountModal()" class="account-icon"></fa-image-surface>
+                  <fa-image-surface ng-if="userNeedsToLogin" fa-size="[45,45]" fa-image-url="img/lock-icon-yellow.png" ng-click="loginModal()" class="account-icon"></fa-image-surface>
                 </fa-app>
               </fa-surface>
             </fa-modifier>

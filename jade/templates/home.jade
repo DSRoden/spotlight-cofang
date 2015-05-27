@@ -206,7 +206,8 @@ fa-view
                     fa-app
                      fa-image-surface.spotlight-avatar(fa-size='[45,45]' fa-image-url="img/spotlight-icon-tiered.png")
                      fa-surface.spotlight-name Spotlight Archive
-                     fa-image-surface.account-icon(fa-size='[45,45]' fa-image-url="img/account-icon-yellow.png" ng-click="accountModal()")
+                     fa-image-surface.account-icon(ng-if="userSignedIn" fa-size='[45,45]' fa-image-url="img/account-icon-yellow.png" ng-click="accountModal()")
+                     fa-image-surface.account-icon(ng-if="userNeedsToLogin" fa-size='[45,45]' fa-image-url="img/lock-icon-yellow.png" ng-click="loginModal()")
 
 
                 // content
