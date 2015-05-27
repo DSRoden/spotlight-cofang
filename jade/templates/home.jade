@@ -80,8 +80,8 @@ fa-view
                       fa-modifier(fa-translate="boxTransitionableSpotlightAccount.get()" fa-opacity="accountBoxTransparency" fa-size="[200, 300]")
                         fa-grid-layout(fa-options="winnerInformationGrid")
                           fa-surface(ng-repeat="grid in grids" fa-size='[grid.width, undefined]')
-                            .grid-image(ng-if="grid.icon" ng-style="{'background' : 'url({{grid.icon}})', 'height' : '50px', 'width' : '50px', 'background-size' : 'cover', 'background-repeat' : 'no-repeat', 'display' : 'block', 'margin-left' : 'auto', 'margin-right': 'auto'}" ng-click="flipIt()")
-                            .grid-text(ng-if="grid.text") 
+                            .grid-image(ng-if="grid.icon" ng-style="{'background' : 'url({{grid.icon}})', 'height' : '50px', 'width' : '50px', 'background-size' : 'cover', 'background-repeat' : 'no-repeat', 'display' : 'block', 'margin-left' : 'auto', 'margin-right': 'auto'}" ng-click="flipIt(grid.click)")
+                            .grid-text(ng-if="grid.text" ng-click="flipIt(grid.click)") 
                               .grid-text-content(ng-style="{'line-height' : '50px', 'font-family' : 'Helvetica Neue'}") {{grid.text}}
                   fa-surface.shorter-height
                     .go-back-to-main(ng-style="{'position' : 'relative', 'top' : '{{downArrowOnInfoView}}px'}")
@@ -90,12 +90,42 @@ fa-view
                 fa-modifier(fa-translate="[0, 60, 0]" fa-size="[getPageWidth(), getPageHeight()]")
                   fa-surface.account-box-background
                     fa-app
-                      fa-surface.session-info-surface
-                        .session-info-container 
+                      fa-surface.information-card(fa-size='[(getPageWidth() - 10), {{informationCardHeight}}]')
+                        //- photo
+                        .photo-info-container(ng-if="photoClicked" ng-style="{'padding' : '10px', 'margin-top' : '{{photoInfoContainerMarginTop}}px'}")
+                          .current-photo(ng-style="{'background-image':'url({{winner.avatar_url || winnerAvatarDefault}})', 'height': '200px',  'width': '{{getPageWidth()-20}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}")
+                          .photo-info-container-buttons(ng-style="{'position' : 'relative'}")
+                            .replace-photo-camera(ng-style="{'left' : '{{cameraLeftMargin}}%'}")
+                            .replace-photo-albums(ng-style="{'right' : '{{albumRightMargin}}%'}") 
+                          .save-user-photo Save
+                        //- bio  
+                        .bio-info-container(ng-if="bioClicked" ng-style="{'padding' : '10px', 'margin-top' : '{{photoInfoContainerMarginTop}}px'}")
+                          textarea.bio-area(ng-style="{'height' : '250px', 'width' : '98%', 'border' : '1px solid #ffdc00'}")
+                          .save-user-bio Save
+
+                        //- social 
+                        .social-info-container(ng-if="socialClicked" ng-style="{'padding' : '10px', 'margin-top' : '{{photoInfoContainerMarginTop}}px'}")
+                          input.social-info-input(placeholder="Facebook Name")
+                          input.social-info-input(placeholder="Twitter Handle")
+                          .save-user-bio Save
+
+                        //- session
+                        .session-info-container(ng-if="sessionClicked" ng-style="{'padding' : '10px', 'margin-top' : '{{photoInfoContainerMarginTop}}px'}")
                           .session-time Your time in the Spotlight ends:
                           .session-end-date TIME
-                          .end-session(ng-click="showConfirmationDialog()") End my session now
-                      fa-image-surface.flip-back(fa-size='[90, 54]' fa-image-url="img/back_button.png" ng-click="flipIt()")
+                          .end-session(ng-click="showConfirmationDialog()") End Session
+
+                        //- tips
+                        .tips-info-container(ng-if="tipsClicked" ng-style="{'padding' : '10px', 'margin-top' : '{{photoInfoContainerMarginTop}}px'}")
+                          fa-app(ng-controller='HomeCtrl').scrolling
+                            fa-scroll-view#tips-scrollview(fa-pipe-from='myEventHandler' fa-options='options.tipsContainer')
+                              fa-view(ng-repeat='tip in spotlightTips track by $index' fa-size='[300, 800]')
+                                fa-modifier(fa-size='[getPageWidth(), 100]')
+                                  fa-surface.tip-item(fa-pipe-to='myEventHandler')
+                                   .tip {{tip}}
+
+                      fa-surface
+                        .flip-back(ng-click="flipIt('original')" ng-style="{'margin-left' : '{{flipBackMarginLeft}}px', 'margin-top' : '{{downArrowOnInfoView}}px'}")
                   
             //- if clicking on spotlight winner
             fa-app.top-slide-in-view

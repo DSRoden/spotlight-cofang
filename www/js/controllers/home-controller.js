@@ -6,6 +6,10 @@
 
   angular.module('spotlight-famous')
   .controller('HomeCtrl', ['$scope', '$timeout', '$location', '$famous', '$timeline', '$state', 'ngDialog', '$controller', function($scope, $timeout, $location, $famous, $timeline, $state, ngDialog, $controller){
+    $scope.spotlightTips = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+    // listening to touch
+
+
     //initiating size depenedents
     $scope.spotlightWinnerMarginTop = 0;
     $scope.spotlightWinnerCardHeight = 0;
@@ -14,6 +18,10 @@
     $scope.gridMarginLeft = 0;
     $scope.gridMarginTop = 0;
     $scope.informationCardHeight = 0;
+    $scope.cameraLeftMargin = 0;
+    $scope.albumsRightMargin = 0;
+    $scope.flipBackMarginLeft = window.innerWidth/2 - 20;
+    $scope.photoInfoContainerMarginTop = 0;
     function sizeDependencies(){
      var  height = window.innerHeight;
         if(height === 480){
@@ -24,6 +32,9 @@
           $scope.gridMarginLeft = 25;
           $scope.gridMarginTop = -30;
           $scope.informationCardHeight = 410;
+          $scope.cameraLeftMargin = -40;
+          $scope.albumRightMargin = 30;
+          $scope.photoInfoContainerMarginTop = 5;
         } else if(height === 568){
            $scope.spotlightWinnerCardHeight = 460;
           $scope.spotlightWinnerMarginTop = 25;
@@ -32,6 +43,9 @@
           $scope.gridMarginLeft = 25;
           $scope.gridMarginTop = -20;
           $scope.informationCardHeight = 490;
+          $scope.cameraLeftMargin = -40;
+          $scope.albumRightMargin = 30;
+          $scope.photoInfoContainerMarginTop = 15;
         } else if(height === 667){
            $scope.spotlightWinnerCardHeight = 560;
           $scope.spotlightWinnerMarginTop = 45;
@@ -40,6 +54,9 @@
           $scope.gridMarginLeft = 30;
           $scope.gridMarginTop = -10;
           $scope.informationCardHeight = 590;
+          $scope.cameraLeftMargin = -27;
+          $scope.albumRightMargin = 30;
+          $scope.photoInfoContainerMarginTop = 50;
         } else if(height === 736){
           $scope.spotlightWinnerCardHeight = 640;
           $scope.spotlightWinnerMarginTop = 65;
@@ -48,6 +65,9 @@
           $scope.gridMarginLeft = 30;
           $scope.gridMarginTop = -10;
           $scope.informationCardHeight = 650;
+          $scope.cameraLeftMargin = -23;
+          $scope.albumRightMargin = 30;
+          $scope.photoInfoContainerMarginTop = 100;
         } else {
           console.log('unrecognized size');
         }
@@ -140,6 +160,7 @@
     //winner avatar url
     $scope.winner = {};
     $scope.winner.avatar_url = 'http://fillmurray.com/300/400';
+    $scope.winnerAvatarDefault = 'img/person-icon-yellow.png';
     $scope.winner.bio = 'This is a Spotlight text update that contains a max 160 characters. Users can: share quotes, ideas, questions, shout outs, etc. Tell your story, make it count.';
 
     //add Image url
@@ -235,8 +256,53 @@
     $scope.userAccountBoxTransparency = new Transitionable(1);
 
 
+    //init flip object scope objects
+    $scope.photoClicked = false;
+    $scope.bioClicked = false;
+    $scope.socialClicked = false;
+    $scope.sessionClicked = false;
+    $scope.tipsClicked = false;
     //flipping to view session or account page
-    $scope.flipIt = function(){
+    $scope.flipIt = function(option){
+      switch(option){
+        case 'photo':
+          $scope.photoClicked = true;
+          $scope.bioClicked = false;
+          $scope.socialClicked = false;
+          $scope.sessionClicked = false;
+          $scope.tipsClicked = false;
+          break;
+        case 'bio':
+          $scope.bioClicked = true;
+          $scope.photoClicked = false;
+          $scope.socialClicked = false;
+          $scope.sessionClicked = false;
+          $scope.tipsClicked = false;
+          break;
+        case 'social':
+         $scope.photoClicked = false;
+          $scope.bioClicked = false;
+          $scope.sessionClicked = false;
+          $scope.tipsClicked = false;
+          $scope.socialClicked = true;
+          break;
+        case 'session':
+          $scope.sessionClicked = true;
+          $scope.photoClicked = false;
+          $scope.bioClicked = false;
+          $scope.socialClicked = false;
+          $scope.tipsClicked = false;
+          break;
+        case 'tips':
+          $scope.tipsClicked = true;
+          $scope.photoClicked = false;
+          $scope.bioClicked = false;
+          $scope.socialClicked = false;
+          $scope.sessionClicked = false;
+          break;
+        case 'original':
+          break;
+      }
       console.log('flipping');
        $famous.find('fa-flipper')[0].flip();
     };
@@ -250,52 +316,52 @@
     $scope.grids = [{
                       width : 70,
                       icon: 'img/person-icon-yellow.png',
-                      bgColor: 'rgb(240, 238, 233)'
+                      click: 'photo'
                     },
                     {
                       width : undefined,
                       text: 'Photo',
-                      bgColor: 'rgb(240, 238, 233)'
+                      click: 'photo'
                     },
                     {
                       width : 70,
                       icon: 'img/compose_icon_yellow.png',
-                      bgColor: 'rgb(240, 238, 233)'
+                      click: 'bio'
                     },
                     {
                       width : undefined,
                       text: 'Bio',
-                      bgColor: 'rgb(240, 238, 233)'
+                      click: 'bio'
                     },
                     {
                       width : 70,
                       icon: 'img/social-media-icon-yellow.png',
-                      bgColor: 'rgb(240, 238, 233)'
+                      click: 'social'
                     },
                     {
                       width : undefined,
                       text: 'Social',
-                      bgColor: 'rgb(240, 238, 233)'
+                      click: 'social'
                     },
                     {
                       width : 70,
                       icon: 'img/clock-icon-yellow.png',
-                      bgColor: 'rgb(240, 238, 233)'
+                      click: 'session'
                     },
                     {
                       width : undefined,
                       text: 'Session',
-                      bgColor: 'rgb(240, 238, 233)'
+                      click: 'session'
                     },
                     {
                       width : 70,
                       icon: 'img/lightbulb-icon-yellow.png',
-                      bgColor: 'rgb(240, 238, 233)'
+                      click: 'tips'
                     },
                     {
                       width : undefined,
                       text: 'Tips',
-                      bgColor: 'rgb(240, 238, 233)'
+                      click: 'tips'
                     }];
 
     //example arrays for views
@@ -479,6 +545,9 @@
         clipSize: 500,
         paginated: false,
         speedLimit: 15
+      },
+      tipsContainer: {
+        clipSize: 300
       }
     };
 

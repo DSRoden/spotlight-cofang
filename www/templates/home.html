@@ -94,8 +94,8 @@
                     <fa-modifier fa-translate="boxTransitionableSpotlightAccount.get()" fa-opacity="accountBoxTransparency" fa-size="[200, 300]">
                       <fa-grid-layout fa-options="winnerInformationGrid">
                         <fa-surface ng-repeat="grid in grids" fa-size="[grid.width, undefined]">
-                          <div ng-if="grid.icon" ng-style="{'background' : 'url({{grid.icon}})', 'height' : '50px', 'width' : '50px', 'background-size' : 'cover', 'background-repeat' : 'no-repeat', 'display' : 'block', 'margin-left' : 'auto', 'margin-right': 'auto'}" ng-click="flipIt()" class="grid-image"></div>
-                          <div ng-if="grid.text" class="grid-text"> 
+                          <div ng-if="grid.icon" ng-style="{'background' : 'url({{grid.icon}})', 'height' : '50px', 'width' : '50px', 'background-size' : 'cover', 'background-repeat' : 'no-repeat', 'display' : 'block', 'margin-left' : 'auto', 'margin-right': 'auto'}" ng-click="flipIt(grid.click)" class="grid-image"></div>
+                          <div ng-if="grid.text" ng-click="flipIt(grid.click)" class="grid-text"> 
                             <div ng-style="{'line-height' : '50px', 'font-family' : 'Helvetica Neue'}" class="grid-text-content">{{grid.text}}</div>
                           </div>
                         </fa-surface>
@@ -112,14 +112,46 @@
               <fa-modifier fa-translate="[0, 60, 0]" fa-size="[getPageWidth(), getPageHeight()]">
                 <fa-surface class="account-box-background">
                   <fa-app>
-                    <fa-surface class="session-info-surface">
-                      <div class="session-info-container"> 
+                    <fa-surface fa-size="[(getPageWidth() - 10), {{informationCardHeight}}]" class="information-card">
+                      <div ng-if="photoClicked" ng-style="{'padding' : '10px', 'margin-top' : '{{photoInfoContainerMarginTop}}px'}" class="photo-info-container">
+                        <div ng-style="{'background-image':'url({{winner.avatar_url || winnerAvatarDefault}})', 'height': '200px',  'width': '{{getPageWidth()-20}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" class="current-photo"></div>
+                        <div ng-style="{'position' : 'relative'}" class="photo-info-container-buttons">
+                          <div ng-style="{'left' : '{{cameraLeftMargin}}%'}" class="replace-photo-camera"></div>
+                          <div ng-style="{'right' : '{{albumRightMargin}}%'}" class="replace-photo-albums"> </div>
+                        </div>
+                        <div class="save-user-photo">Save</div>
+                      </div>
+                      <div ng-if="bioClicked" ng-style="{'padding' : '10px', 'margin-top' : '{{photoInfoContainerMarginTop}}px'}" class="bio-info-container">
+                        <textarea ng-style="{'height' : '250px', 'width' : '98%', 'border' : '1px solid #ffdc00'}" class="bio-area"></textarea>
+                        <div class="save-user-bio">Save</div>
+                      </div>
+                      <div ng-if="socialClicked" ng-style="{'padding' : '10px', 'margin-top' : '{{photoInfoContainerMarginTop}}px'}" class="social-info-container">
+                        <input placeholder="Facebook Name" class="social-info-input">
+                        <input placeholder="Twitter Handle" class="social-info-input">
+                        <div class="save-user-bio">Save</div>
+                      </div>
+                      <div ng-if="sessionClicked" ng-style="{'padding' : '10px', 'margin-top' : '{{photoInfoContainerMarginTop}}px'}" class="session-info-container">
                         <div class="session-time">Your time in the Spotlight ends:</div>
                         <div class="session-end-date">TIME</div>
-                        <div ng-click="showConfirmationDialog()" class="end-session">End my session now</div>
+                        <div ng-click="showConfirmationDialog()" class="end-session">End Session</div>
+                      </div>
+                      <div ng-if="tipsClicked" ng-style="{'padding' : '10px', 'margin-top' : '{{photoInfoContainerMarginTop}}px'}" class="tips-info-container">
+                        <fa-app ng-controller="HomeCtrl" class="scrolling">
+                          <fa-scroll-view id="tips-scrollview" fa-pipe-from="myEventHandler" fa-options="options.tipsContainer">
+                            <fa-view ng-repeat="tip in spotlightTips track by $index" fa-size="[300, 800]">
+                              <fa-modifier fa-size="[getPageWidth(), 100]">
+                                <fa-surface fa-pipe-to="myEventHandler" class="tip-item">
+                                  <div class="tip">{{tip}}</div>
+                                </fa-surface>
+                              </fa-modifier>
+                            </fa-view>
+                          </fa-scroll-view>
+                        </fa-app>
                       </div>
                     </fa-surface>
-                    <fa-image-surface fa-size="[90, 54]" fa-image-url="img/back_button.png" ng-click="flipIt()" class="flip-back"></fa-image-surface>
+                    <fa-surface>
+                      <div ng-click="flipIt('original')" ng-style="{'margin-left' : '{{flipBackMarginLeft}}px', 'margin-top' : '{{downArrowOnInfoView}}px'}" class="flip-back"></div>
+                    </fa-surface>
                   </fa-app>
                 </fa-surface>
               </fa-modifier>

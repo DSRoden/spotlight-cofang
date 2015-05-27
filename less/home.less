@@ -155,6 +155,11 @@ fa-app {
   text-align: center;
 }
 
+.tip-item {
+  text-align: center;
+  background: @themeYellow;
+  color: @headerColor;
+}
 .user-name {
   font-size: 30px;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -540,8 +545,11 @@ fa-app {
 }
 
 .flip-back {
-  bottom: 22% ! important;
-  left: 37% ! important; 
+  position: relative ! important;
+  height: 50px ! important;
+  width: 50px ! important;
+  background-image: url('../img/left_arrow_yellow.png');
+  background-size: contain;
 }
 
 .session-info-surface {
@@ -553,16 +561,32 @@ fa-app {
   text-align: center;
 }
 
+.session-time {
+  text-align: center;
+  font-family: Helvetica Neue;
+  color: @headerColor;
+}
+
 .session-end-date {
+  text-align: center;
   margin-top: 40px;
   margin-bottom: 40px;
   font-size: 20px;
+  font-family: 'Helvetica Neue';
+  color: @headerColor;
 }
 
 .end-session {
-  border: 2px solid red;
-  padding: 10px;
-  border-radius: 10px;
+  background-color: @headerColor;
+  border: 1px solid @themeYellow;
+  color: @themeYellow;
+  width: 120px;
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  text-align: center;
+  line-height: 50px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .confirmation-text {
@@ -910,6 +934,75 @@ fa-app {
   border: 1px solid rgba(103, 98, 98, 0.2);
   border-bottom: 2px solid rgba(103, 98, 98, 0.6);
 }
+
+.replace-photo-camera {
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  margin-left: 200px;
+  background-image: url('../img/camera-icon-yellow.png');
+  background-size: cover;
+  margin-top: 10px;
+}
+
+.replace-photo-albums {
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  margin-left: 200px;
+  background-image: url('../img/albums-icon-yellow.png');
+  background-size: cover;
+  margin-top: 10px;
+}
+
+
+.save-user-photo {
+  position: relative;
+  height: 40px;
+  width: 200px;
+  line-height: 40px;
+  text-align: center;
+  color: @themeYellow;
+  font-family: 'Helvetica Neue';
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 70px;
+  background: @headerColor;
+}
+
+.save-user-bio {
+  position: relative;
+  height: 40px;
+  width: 200px;
+  line-height: 40px;
+  text-align: center;
+  color: @themeYellow;
+  font-family: 'Helvetica Neue';
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  background: @headerColor;
+  border: 1px solid @themeYellow;
+}
+
+.social-info-input {
+  padding: 7px;
+  width: 90%;
+  margin-left: 5%;
+  height: 55px;
+  margin-top: 10px;
+  border: none;
+  font-size: 16px;
+  border: 1px solid @themeYellow;
+}
+
+.scrolling {
+  overflow: hidden;
+  height: 300px;
+}
+
 @media (min-width: 321px) {
   .go-back {
     bottom: 22% ! important;
