@@ -17,3 +17,19 @@
   font-size: 16px;
   border: 1px solid #ffdc00;
 }
+.opt-out {
+  text-align: center;
+  color: #088dff;
+  font-size: 14px;
+  font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
+}
+.process-title {
+  text-align: center;
+  font-family: 'Helvetica Neue';
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: #088dff;
+}
+.tips-scroll-height {
+  overflow: hidden;
+}
