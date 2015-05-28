@@ -1,6 +1,82 @@
 
 <fa-view>
   <fa-modifier fa-opacity="onboardingOpacity" fa-size="[getPageWidth(), getPageHeight()]">
-    <fa-surface class="registration-view-background"></fa-surface>
+    <fa-surface fa-size="[(getPageWidth() - 10), {{informationCardHeight}}]" class="information-card">
+      <fa-app>
+        <fa-modifier fa-size="[getPageWidth() - 10, 400]" fa-opacity="photoTransparency">
+          <fa-surface ng-if="onboardingPhoto">
+            <div ng-style="{'padding' : '10px', 'margin-top' : '{{photoInfoContainerMarginTop}}px'}" class="photo-info-container">
+              <div ng-style="{'background-image':'url({{winner.avatar_url || winnerAvatarDefault}})', 'height': '200px',  'width': '{{getPageWidth()-20}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}" class="current-photo"></div>
+              <div ng-style="{'position' : 'relative'}" class="photo-info-container-buttons">
+                <div ng-style="{'left' : '{{cameraLeftMargin}}%'}" class="replace-photo-camera"></div>
+                <div ng-style="{'right' : '{{albumRightMargin}}%'}" class="replace-photo-albums"> </div>
+              </div>
+              <div ng-click="showOnboardingProcess(onboardingNextProcess)" class="save-user-photo">Save</div>
+            </div>
+          </fa-surface>
+        </fa-modifier>
+        <fa-modifier fa-size="[getPageWidth() - 10, 400]" fa-opacity="bioTransparency">
+          <fa-surface ng-if="onboardingBio">
+            <div ng-style="{'padding' : '10px', 'margin-top' : '{{photoInfoContainerMarginTop}}px'}" class="bio-info-container">
+              <textarea ng-style="{'height' : '250px', 'width' : '98%', 'border' : '1px solid #ffdc00'}" class="bio-area"></textarea>
+              <div ng-click="showOnboardingProcess(onboardingNextProcess)" class="save-user-bio">Save</div>
+              <div ng-click="backOnboardingProcess(onboardingCurrentProcess)" class="back-one-process"></div>
+            </div>
+          </fa-surface>
+        </fa-modifier>
+        <fa-modifier fa-size="[getPageWidth() - 10, 400]" fa-opacity="socialTransparency">
+          <fa-surface ng-if="onboardingSocial">
+            <div ng-style="{'padding' : '10px', 'margin-top' : '{{photoInfoContainerMarginTop}}px'}" class="social-info-container">
+              <input placeholder="Facebook Name" class="social-winner-input">
+              <input placeholder="Twitter Handle" class="social-winner-input">
+              <div ng-click="showOnboardingProcess(onboardingNextProcess)" class="save-user-bio">Save</div>
+              <div ng-click="backOnboardingProcess(onboardingCurrentProcess)" class="back-one-process"></div>
+            </div>
+          </fa-surface>
+        </fa-modifier>
+        <fa-modifier fa-size="[getPageWidth() - 10, 400]" fa-opacity="tipsTransparency">
+          <fa-surface ng-if="onboardingTips">
+            <div ng-style="{'padding' : '10px', 'margin-top' : '{{photoInfoContainerMarginTop}}px'}" class="tips-info-container">
+              <fa-app ng-if="onboardingTips" class="scrolling">
+                <fa-scroll-view id="tips-scrollview" fa-pipe-from="tipsHandler" fa-options="options.tipsContainer">
+                  <fa-view ng-repeat="tip in spotlightTips track by $index" fa-size="[300, 800]">
+                    <fa-modifier fa-size="[getPageWidth(), 100]">
+                      <fa-surface fa-pipe-to="tipsHandler" class="tip-item">
+                        <div class="tip">{{tip}}</div>
+                      </fa-surface>
+                    </fa-modifier>
+                  </fa-view>
+                </fa-scroll-view>
+              </fa-app>
+            </div>
+            <div ng-click="backOnboardingProcess(onboardingCurrentProcess)" ng-style="{'margin-left' : '{{flipBackMarginLeft}}px', 'margin-top' : '{{downArrowOnInfoView}}px'}" class="flip-back"></div>
+          </fa-surface>
+        </fa-modifier>
+      </fa-app>
+    </fa-surface>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
   </fa-modifier>
 </fa-view>
