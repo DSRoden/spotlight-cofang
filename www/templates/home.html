@@ -71,8 +71,8 @@
                 <fa-app> 
                   <fa-modifier fa-translate="boxTransitionableSpotlightPost.get()" fa-opacity="postboxTransparency" fa-size="postboxSize.get()">
                     <fa-surface class="textbox-and-image-container">
-                      <textarea ng-model="post.message" placeholder="  Share something with the world." ng-style="{'width' : '94%', 'height': '{{textareaHeight()}}', 'background': 'white', 'font-size' : '16px', 'padding' : '10px'}" class="card-format"></textarea>
-                      <div ng-style="{'background-image':'url({{addImageUrl}})', 'height': '{{addImageHeight()}}',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center', 'margin-top' : '10px'}" class="new-image-area card-format">
+                      <textarea ng-model="post.message" placeholder="  Share something with the world." ng-style="{'width' : '94%', 'height': '{{textareaHeight()}}', 'background': 'white', 'font-size' : '16px', 'padding' : '10px'}" class="spotlight-textarea card-format"></textarea>
+                      <div ng-style="{'background-image':'url({{addImageUrl}})', 'height': '{{addImageHeight()}}',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center', 'margin-top' : '10px', 'background-color' : 'white'}" class="new-image-area card-format">
                         <div ng-style="{'height' : '30px', 'width': '30px', 'background-color' : 'rgba(0, 0, 0, 0.5)', 'color' : 'white', 'font-size' : '20px', 'font-family' : 'Helvetica', 'float' : 'right', 'text-align' : 'center', 'line-height' : '32px'}" class="delete-image">X</div>
                       </div>
                     </fa-surface>
@@ -172,13 +172,15 @@
               </fa-surface>
             </fa-modifier>
           </fa-app>
-          <fa-app class="top-slide-in-view">
+          <fa-app ng-style="{'background-color' : 'gray'}" class="top-slide-in-view">
             <fa-modifier fa-translate="boxTransitionableConfirmation.get()" fa-opacity="confirmationBoxTransparency" fa-size="confirmationBoxSize.get()">
-              <fa-surface class="confirmation-dialog-background">
+              <fa-surface fa-size="[(getPageWidth() - 10), {{informationCardHeight}}]" class="information-card">
                 <div class="confirmation-dialog-content">
                   <div class="confirmation-text">Are you sure {{confirmation.text}}?</div>
-                  <div ng-click="closeConfirmationDialog()" class="confirmation-no">No</div>
-                  <div class="confirmation-yes">Yes</div>
+                  <div class="confirmation-surface-buttons">
+                    <div ng-style="{'left' : '{{confirmationButtonPosition}}%'}" ng-click="closeConfirmationDialog()" class="confirmation-no">No</div>
+                    <div ng-style="{'right' : '{{confirmationButtonPosition}}%'}" class="confirmation-yes">Yes</div>
+                  </div>
                 </div>
               </fa-surface>
             </fa-modifier>

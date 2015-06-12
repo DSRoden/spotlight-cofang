@@ -44,7 +44,7 @@
           <fa-surface ng-if="onboardingTips">
             <div ng-style="{'padding' : '10px', 'margin-top' : '{{photoInfoContainerMarginTop}}px'}" class="tips-info-container">
               <div class="process-title">Tips</div>
-              <fa-app ng-if="onboardingTips" ng-style="{'height' : '185px', 'margin-top' : '50px'}" class="tips-scroll-height">
+              <fa-app ng-if="onboardingTips" ng-style="{'height' : '185px', 'margin-top' : '{{tipsScrollMarginTop}}px'}" class="tips-scroll-height">
                 <fa-scroll-view id="tips-scrollview" fa-pipe-from="tipsHandler" fa-options="options.tipsContainer">
                   <fa-view ng-repeat="tip in spotlightTips track by $index" fa-size="[300, 800]">
                     <fa-modifier fa-size="[getPageWidth(), 100]">
@@ -55,7 +55,7 @@
                   </fa-view>
                 </fa-scroll-view>
               </fa-app>
-              <div ng-click="showOnboardingProcess(onboardingNextProcess)" ng-style="{'margin-top' : '225px'}" class="save-user-bio">Get started!</div>
+              <div ng-click="confirmSpotlightAndSwitchStates()" ng-style="{'margin-top' : '225px'}" class="save-user-bio">Get started!</div>
               <div ng-click="backOnboardingProcess(onboardingCurrentProcess)" ng-style="{'margin-top' : '31px'}" class="back-one-process"></div>
               <div ng-style="{'margin-top' : '32px'}" class="opt-out">I changed my mind!</div>
             </div>

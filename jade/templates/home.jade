@@ -62,8 +62,8 @@ fa-view
                   fa-app 
                     fa-modifier(fa-translate="boxTransitionableSpotlightPost.get()" fa-opacity="postboxTransparency" fa-size="postboxSize.get()")
                       fa-surface.textbox-and-image-container
-                        textarea.card-format(ng-model="post.message"  placeholder="  Share something with the world." ng-style="{'width' : '94%', 'height': '{{textareaHeight()}}', 'background': 'white', 'font-size' : '16px', 'padding' : '10px'}")
-                        .new-image-area.card-format(ng-style="{'background-image':'url({{addImageUrl}})', 'height': '{{addImageHeight()}}',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center', 'margin-top' : '10px'}")
+                        textarea.spotlight-textarea.card-format(ng-model="post.message"  placeholder="  Share something with the world." ng-style="{'width' : '94%', 'height': '{{textareaHeight()}}', 'background': 'white', 'font-size' : '16px', 'padding' : '10px'}")
+                        .new-image-area.card-format(ng-style="{'background-image':'url({{addImageUrl}})', 'height': '{{addImageHeight()}}',  'width': '{{getPageWidth()}}', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center', 'margin-top' : '10px', 'background-color' : 'white'}")
                           .delete-image(ng-style="{'height' : '30px', 'width': '30px', 'background-color' : 'rgba(0, 0, 0, 0.5)', 'color' : 'white', 'font-size' : '20px', 'font-family' : 'Helvetica', 'float' : 'right', 'text-align' : 'center', 'line-height' : '32px'}") X
                     fa-image-surface.make-post(ng-if="userIsInTheSpotlight" fa-size='[70,70]' fa-image-url="img/airplane-icon-yellow.png")
                     fa-image-surface.open-camera(ng-if="userIsInTheSpotlight" fa-size='[50, 50]' fa-image-url="img/camera-icon-yellow.png")
@@ -139,13 +139,14 @@ fa-view
                       .go-back-to-main.back-arrow(ng-click="closeWinnerInfo()")
 
             //- confirmation box
-            fa-app.top-slide-in-view
+            fa-app.top-slide-in-view(ng-style="{'background-color' : 'gray'}")
               fa-modifier(fa-translate="boxTransitionableConfirmation.get()" fa-opacity="confirmationBoxTransparency" fa-size="confirmationBoxSize.get()")
-                fa-surface.confirmation-dialog-background
+                fa-surface.information-card(fa-size='[(getPageWidth() - 10), {{informationCardHeight}}]')
                   .confirmation-dialog-content
                     .confirmation-text Are you sure {{confirmation.text}}?
-                    .confirmation-no(ng-click="closeConfirmationDialog()") No
-                    .confirmation-yes Yes
+                    .confirmation-surface-buttons
+                      .confirmation-no(ng-style="{'left' : '{{confirmationButtonPosition}}%'}" ng-click="closeConfirmationDialog()") No
+                      .confirmation-yes(ng-style="{'right' : '{{confirmationButtonPosition}}%'}" ) Yes
 
             //- sign in page
             fa-app.top-slide-in-view

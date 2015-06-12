@@ -24,12 +24,14 @@
     $scope.albumsRightMargin = 0;
     $scope.flipBackMarginLeft = window.innerWidth/2 - 20;
     $scope.photoInfoContainerMarginTop = 0;
+    $scope.confirmationButtonPositon = 0;
+    $scope.confirmationCardHeight = 0;
     function sizeDependencies(){
      var  height = window.innerHeight;
         if(height === 480){
           $scope.spotlightWinnerCardHeight = 385;
           $scope.spotlightWinnerMarginTop = -5;
-          $scope.spotlightWinnerBackArrow = -15;
+          $scope.spotlightWinnerBackArrow = -25;
           $scope.downArrowOnInfoView = 350;
           $scope.gridMarginLeft = 25;
           $scope.gridMarginTop = -30;
@@ -37,6 +39,8 @@
           $scope.cameraLeftMargin = -40;
           $scope.albumRightMargin = 30;
           $scope.photoInfoContainerMarginTop = 5;
+          $scope.confirmationButtonPosition = 21;
+          $scope.confirmationCardHeight = 470;
         } else if(height === 568){
            $scope.spotlightWinnerCardHeight = 460;
           $scope.spotlightWinnerMarginTop = 25;
@@ -48,6 +52,8 @@
           $scope.cameraLeftMargin = -40;
           $scope.albumRightMargin = 30;
           $scope.photoInfoContainerMarginTop = 15;
+          $scope.confirmationButtonPosition = 23;
+          $scope.confirmationCardHeight = 560;
         } else if(height === 667){
            $scope.spotlightWinnerCardHeight = 560;
           $scope.spotlightWinnerMarginTop = 45;
@@ -59,6 +65,8 @@
           $scope.cameraLeftMargin = -27;
           $scope.albumRightMargin = 30;
           $scope.photoInfoContainerMarginTop = 50;
+          $scope.confirmationButtonPosition = 24;
+          $scope.confirmationCardHeight = 655;
         } else if(height === 736){
           $scope.spotlightWinnerCardHeight = 640;
           $scope.spotlightWinnerMarginTop = 65;
@@ -70,6 +78,8 @@
           $scope.cameraLeftMargin = -23;
           $scope.albumRightMargin = 30;
           $scope.photoInfoContainerMarginTop = 100;
+          $scope.confirmationButtonPosition = 26;
+          $scope.confirmationCardHeight = 725;
         } else {
           console.log('unrecognized size');
         }

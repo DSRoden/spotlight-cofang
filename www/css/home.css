@@ -14,7 +14,7 @@ fa-app {
 }
 .back-arrow {
   margin-left: 42%;
-  height: 50px;
+  height: 45px;
   background-image: url('../img/down_arrow.png');
   background-size: contain;
   background-repeat: no-repeat;
@@ -369,12 +369,16 @@ fa-app {
   background: #f0f0f0;
   padding: 10%;
 }
+.spotlight-textarea {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
 .account-box-background {
   background: url('../img/slash_it_white.png');
   padding: 10%;
 }
 .confirmation-dialog-background {
-  background: url('../img/slash_it_white.png');
+  background: gray;
 }
 .registration-view-background {
   /* background: url('../img/slash_it_white.png'); */
@@ -516,30 +520,31 @@ fa-app {
   font-size: 18px;
   font-family: Helvetica Neue;
   padding: 10%;
+  color: #088dff;
 }
 .confirmation-no {
   position: absolute;
-  border: 2px solid green;
-  width: 50px;
-  height: 50px;
-  line-height: 50px;
+  border: 1px solid #088dff;
+  width: 80px;
   text-align: center;
-  left: 30%;
-  font-family: Helvetica Neue;
-  margin-top: 20px;
-  border-radius: 10px;
+  height: 50px;
+  line-height: 45px;
+  margin-bottom: 10px;
+  background: #088dff;
+  color: #ffdc00;
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
 }
 .confirmation-yes {
   position: absolute;
-  border: 2px solid red;
-  width: 50px;
-  height: 50px;
-  line-height: 50px;
+  border: 1px solid #088dff;
+  width: 80px;
   text-align: center;
-  right: 30%;
-  font-family: Helvetica Neue;
-  margin-top: 20px;
-  border-radius: 10px;
+  height: 50px;
+  color: #ffdc00;
+  line-height: 45px;
+  margin-bottom: 10px;
+  background: #088dff;
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
 }
 .account-container {
   text-align: center;

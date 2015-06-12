@@ -119,6 +119,7 @@
     $scope.albumsRightMargin = 0;
     $scope.flipBackMarginLeft = window.innerWidth/2 - 20;
     $scope.photoInfoContainerMarginTop = 0;
+    $scope.tipsScrollMarginTop = 0;
     function sizeDependencies2(){
      var  height = window.innerHeight;
         if(height === 480){
@@ -132,6 +133,8 @@
           $scope.cameraLeftMargin = -40;
           $scope.albumRightMargin = 30;
           $scope.photoInfoContainerMarginTop = 5;
+          $scope.tipsScrollMarginTop = 50;
+
         } else if(height === 568){
            $scope.spotlightWinnerCardHeight = 460;
           $scope.spotlightWinnerMarginTop = 25;
@@ -139,10 +142,12 @@
           $scope.backArrowOnboardingView = 400;
           $scope.gridMarginLeft = 25;
           $scope.gridMarginTop = -20;
-          $scope.onboardingCardHeight = 490;
+          $scope.onboardingCardHeight = 560;
           $scope.cameraLeftMargin = -40;
           $scope.albumRightMargin = 30;
           $scope.photoInfoContainerMarginTop = 15;
+          $scope.tipsScrollMarginTop = 70;
+
         } else if(height === 667){
            $scope.spotlightWinnerCardHeight = 560;
           $scope.spotlightWinnerMarginTop = 45;
@@ -150,10 +155,12 @@
           $scope.backArrowOnboardingView = 450;
           $scope.gridMarginLeft = 30;
           $scope.gridMarginTop = -10;
-          $scope.onboardingCardHeight = 590;
+          $scope.onboardingCardHeight = 655;
           $scope.cameraLeftMargin = -27;
           $scope.albumRightMargin = 30;
           $scope.photoInfoContainerMarginTop = 50;
+          $scope.tipsScrollMarginTop = 100;
+
         } else if(height === 736){
           $scope.spotlightWinnerCardHeight = 640;
           $scope.spotlightWinnerMarginTop = 65;
@@ -161,10 +168,11 @@
           $scope.backArrowOnboardingView = 500;
           $scope.gridMarginLeft = 30;
           $scope.gridMarginTop = -10;
-          $scope.onboardingCardHeight = 650;
+          $scope.onboardingCardHeight = 725;
           $scope.cameraLeftMargin = -23;
           $scope.albumRightMargin = 30;
           $scope.photoInfoContainerMarginTop = 100;
+          $scope.tipsScrollMarginTop = 150;
         } else {
           console.log('unrecognized size');
         }
@@ -177,6 +185,9 @@
 
       //set onboarding process
       $scope.onboardingCurrentProcess = 'photo';
+      $scope.confirmSpotlightAndSwitchStates = function(){
+        $state.go('home');
+      };
 
 
   }]);
